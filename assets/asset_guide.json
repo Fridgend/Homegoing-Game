@@ -7,7 +7,7 @@
     {
       "name": "snake",
       "path": "assets/fonts/Snake.ttf",
-      "sizes": [ 64 ]
+      "sizes": [ 46, 64 ]
     }
   ],
 
