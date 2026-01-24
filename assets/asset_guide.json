@@ -1,0 +1,38 @@
+{
+  "audio": [
+
+  ],
+
+  "fonts": [
+    {
+      "name": "snake",
+      "path": "assets/fonts/Snake.ttf",
+      "sizes": [ 64 ]
+    }
+  ],
+
+  "images": [
+    {
+      "name": "null",
+      "path": "assets/images/null.png"
+    },
+    {
+      "name": "porcupine_sprite_sheet",
+      "path": "assets/images/porcupine.png"
+    }
+  ],
+
+  "sprites": [
+    {
+      "name": "player",
+      "sprite_sheet": "porcupine_sprite_sheet",
+      "width": 32,
+      "height": 32,
+      "num_frames": 4,
+      "direction": true,
+      "animations": ["right", "down", "up", "left"],
+      "animation_layout": "columns",
+      "frame_time": 0.1
+    }
+  ]
+}
