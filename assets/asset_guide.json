@@ -1,0 +1,32 @@
+{
+  "audio": [
+
+  ],
+
+  "fonts": [
+    {
+      "name": "snake",
+      "path": "assets/fonts/Snake.ttf",
+      "sizes": [ 64 ]
+    }
+  ],
+
+  "images": [
+    {
+      "name": "null",
+      "path": "assets/images/null.png"
+    }
+  ],
+
+  "sprites": [
+    {
+      "name": "player",
+      "sprite_sheet": "null",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "direction": false,
+      "frame_time": 0.2
+    }
+  ]
+}

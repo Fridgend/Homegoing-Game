@@ -1,6 +1,7 @@
 import pygame
 from src.scene_manager import SceneManager
 from src.asset_manager import AssetManager
+from src.ui_manager import UIManager
 from src.camera import Camera
 
 from src.scenes import test_scene
@@ -8,13 +9,16 @@ from src.scenes import test_scene
 import sys
 
 class Game:
-    def __init__(self, FPS: int, audio_assets_path: str = "", font_assets_path: str = "", image_assets_path: str = ""):
+    def __init__(self, asset_guide: str):
         self.scene_manager: SceneManager = SceneManager()
-        self.asset_manager: AssetManager = AssetManager(audio_assets_path, font_assets_path, image_assets_path)
+        self.asset_manager: AssetManager = AssetManager(asset_guide)
 
         self.window_surface: pygame.Surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        self.window_dimensions: pygame.Vector2 = pygame.Vector2(self.window_surface.get_width(), self.window_surface.get_height())
+        self.window_dimensions: pygame.Vector2 = pygame.Vector2(
+            self.window_surface.get_width(), self.window_surface.get_height())
         pygame.display.set_caption("Homegoing")
+
+        self.ui_manager: UIManager = UIManager(self.window_dimensions, self.window_surface)
         
         self.camera: Camera = Camera(self.window_dimensions, 32)
         
@@ -23,9 +27,9 @@ class Game:
 
         self.init_scenes()
 
-    def run(self):
+    def run(self, FPS: int):
         while True:
-            self.delta_time = self.clock.tick() / 1000.0
+            self.delta_time = self.clock.tick(FPS) / 1000.0
 
             self.input()
             self.update()
@@ -42,13 +46,14 @@ class Game:
                     sys.exit()
 
         keys: pygame.key.ScancodeWrapper = pygame.key.get_pressed()
-        self.scene_manager.input(keys)
+        self.scene_manager.input(self.ui_manager, keys)
 
     def update(self):
-        self.scene_manager.update(self.camera, self.delta_time)
+        self.scene_manager.update(self.camera, self.ui_manager, self.delta_time)
 
     def render(self):
         self.scene_manager.render(self.window_surface, self.camera)
+        self.ui_manager.render()
         pygame.display.flip()
 
     def init_scenes(self):

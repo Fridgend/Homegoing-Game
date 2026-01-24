@@ -1,8 +1,13 @@
+import pygame
+
 from src.game import Game
 
 def main():
-    game: Game = Game(60, "assets/audio", "assets/fonts", "assets/images")
-    game.run()
+    pygame.font.init()
+    pygame.mixer.init()
+
+    game: Game = Game("assets/asset_guide.json")
+    game.run(60)
 
 if __name__ == "__main__":
     main()
