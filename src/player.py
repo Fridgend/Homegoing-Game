@@ -50,6 +50,14 @@ class Player(Entity):
                 self.move_time = 0
                 return
         
+        target_grid_pos: pygame.Vector2 = self.grid_pos + self.move_dir
+        for entity in entities:
+            if entity.get_collision(target_grid_pos):
+                self.moving = False
+                self.move_dir = pygame.Vector2(0, 0)
+                self.move_time = 0
+                return
+        
         self.move_time += dt
         t: float = min(self.move_time / self.move_duration, 1.0)
 
