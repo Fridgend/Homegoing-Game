@@ -1,0 +1,26 @@
+{
+  "effia": {
+    "start_scene": "test",
+    "scenes": [
+      { "name": "test", "path": "scenes/effia/test.json" }
+    ]
+  },
+  "esi": {
+    "start_scene": null,
+    "scenes": [
+
+    ]
+  },
+  "marcus": {
+    "start_scene": null,
+    "scenes": [
+
+    ]
+  },
+  "marjorie": {
+    "start_scene": null,
+    "scenes": [
+
+    ]
+  }
+}

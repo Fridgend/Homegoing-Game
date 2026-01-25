@@ -19,19 +19,19 @@ class GameState(enum.Enum):
     PLAYING = 2
     SCENE_BUILDER = 3
     ENTITY_CONFIGURER = 4
+    QUITTING = 5
 
 class Game:
-    def __init__(self, asset_guide: str, game_state: GameState = GameState.PLAYING): # FIX: SHOULD START AT MAIN MENU
+    def __init__(self, asset_guide: str, scene_guide: str, game_state: GameState = GameState.MAIN_MENU):
         self.running: bool = True
-
-        self.scene_manager: SceneManager = SceneManager()
-        self.asset_manager: AssetManager = AssetManager(asset_guide)
 
         self.window_surface: pygame.Surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.window_dimensions: pygame.Vector2 = pygame.Vector2(
             self.window_surface.get_width(), self.window_surface.get_height())
         pygame.display.set_caption("Homegoing")
 
+        self.asset_manager: AssetManager = AssetManager(asset_guide)
+        self.scene_manager: SceneManager = SceneManager(scene_guide, self.asset_manager, self.window_surface)
         self.ui_manager: UIManager = UIManager(self.window_dimensions, self.window_surface)
         
         self.camera: Camera = Camera(self.window_dimensions, 32)
@@ -49,13 +49,15 @@ class Game:
     def set_backend(self, state: GameState):
         self.next_backend = self.state_backends[state.value]
         self.state = state
-        self.next_backend.init(self)
 
     def run(self, FPS: int, FPS_warn: int):
         while self.running:
             self.delta_time = self.clock.tick(FPS) / 1000.0
 
-            self.backend = self.next_backend
+            if self.backend != self.next_backend:
+                if self.backend: self.backend.unload(self)
+                self.backend = self.next_backend
+                self.backend.init(self)
 
             self.backend.input(self)
             self.backend.update(self)

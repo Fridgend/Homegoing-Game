@@ -8,8 +8,8 @@ from src.sprite import Sprite
 from src.player import Player
 
 class NPC(Entity, Interactable):
-    def __init__(self, grid_pos: pygame.Vector2, sprite: Sprite, dialogue: Dialogue):
-        Entity.__init__(self, grid_pos=grid_pos, sprite=sprite, collision=True)
+    def __init__(self, grid_pos: pygame.Vector2, sprite: Sprite, collision: bool, dialogue: Dialogue):
+        Entity.__init__(self, grid_pos=grid_pos, sprite=sprite, collision=collision)
         Interactable.__init__(self)
         self.dialogue: Dialogue = dialogue
 

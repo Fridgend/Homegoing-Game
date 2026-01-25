@@ -19,7 +19,7 @@ def main():
                        GameState.ENTITY_CONFIGURER if res.entity_configurer else \
                        GameState.MAIN_MENU
 
-    game: Game = Game("assets/asset_guide.json", game_state=state)
+    game: Game = Game("assets/asset_guide.json", "scenes/scene_guide.json", game_state=state)
     game.run(60, 50)
 
 if __name__ == "__main__":

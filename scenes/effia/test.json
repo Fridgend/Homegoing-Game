@@ -1,0 +1,77 @@
+{
+  "void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
+  "player": {
+    "sprite": "player",
+    "move_duration": 0.15
+  },
+  "entity_lookup": [
+    {
+      "name": "porcupine",
+      "sprite": "player",
+      "has_collision": true
+    }
+  ],
+  "static_entities": [
+    { "lookup_name": "porcupine", "grid_x": 4, "grid_y": 4 }
+  ],
+  "interactable_entities": [
+    {
+      "lookup_name": "porcupine",
+      "grid_x": 16,
+      "grid_y": 16,
+      "dialogue": {
+        "start_monologue": 0,
+        "monologues": [
+          {
+            "speaker": "strangely familiar stranger",
+            "lines": [ "do i know you?", "you look familiar" ],
+            "char_speeds": [ 0.05, 0.05 ],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": null,
+            "next_monologue": 1
+          },
+          {
+            "speaker": "you",
+            "lines": [ "what?" ],
+            "char_speeds": [ 0.25 ],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "null",
+            "next_monologue": 2
+          },
+          {
+            "speaker": "strangely familiar stranger",
+            "lines": [ "okay bye now" ],
+            "char_speeds": [ 0.05 ],
+            "font": "snake64",
+            "options": [
+              { "text": "okay bye", "leads_to": 3 },
+              { "text": "damn ok", "leads_to": 4 }
+            ],
+            "speaker_image": null,
+            "next_monologue": null
+          },
+          {
+            "speaker": "you",
+            "lines": [ "okay bye" ],
+            "char_speeds": [ 0.05 ],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "null",
+            "next_monologue": null
+          },
+          {
+            "speaker": "you",
+            "lines": [ "damn ok" ],
+            "char_speeds": [ 0.05 ],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "null",
+            "next_monologue": null
+          }
+        ]
+      }
+    }
+  ]
+}

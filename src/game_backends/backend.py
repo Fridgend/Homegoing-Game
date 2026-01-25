@@ -7,6 +7,7 @@ class GameState(enum.Enum):
     PLAYING = 2
     SCENE_BUILDER = 3
     ENTITY_CONFIGURER = 4
+    QUITTING = 5
 
 class Backend:
     def __init__(self):
@@ -19,6 +20,9 @@ class Backend:
     def init(self, game):
         self.fade = 0
         self.fading = 500
+
+    def unload(self, game):
+        pass
 
     def input(self, game):
         pass

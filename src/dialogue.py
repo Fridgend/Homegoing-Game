@@ -1,5 +1,6 @@
 import pygame
 
+from src.ui_manager import UIManager, Text, Button
 
 class Monologue:
     def __init__(self,
@@ -33,6 +34,9 @@ class Monologue:
 
     def set_next_monologue(self, monologue):
         self.options = [("NEXT_MONOLOGUE_RESERVED", monologue)]
+
+    def add_option_monologue(self, option_title: str, monologue):
+        self.options.append((option_title, monologue))
 
     def choose(self, choice: int):
         if not self.awaiting_choice: return None
@@ -74,47 +78,60 @@ class Monologue:
             self.char_index[0] += 1
             self.spoken += self.lines[self.line_index[0]][self.char_index[0] - 1]
 
-    def render(self, diag_surface: pygame.Surface):
-        def render_text(text: str, rect: pygame.Rect):
-            rect: pygame.Rect = pygame.Rect(rect)
-            y: int = rect.top
-            line_spacing: int = -2
+        self.awaiting_choice = len(self.options) > 1 and \
+                               self.char_index[0] == self.char_index[1] and \
+                               self.line_index[0] == self.line_index[1] - 1
 
-            font_height: int = self.font.size("Tg")[1]
+    def render(self, draw_surface: pygame.Surface, draw_surface_pos: pygame.Vector2, ui_manager: UIManager):
+        ui_manager.remove_text()
+        ui_manager.remove_buttons(reset_choice=False)
 
-            while text:
-                i: int = 1
-
-                if y + font_height > rect.bottom:
-                    break
-
-                while self.font.size(text[:i])[0] < rect.width and i < len(text):
-                    i += 1
-
-                if i < len(text):
-                    i = text.rfind(" ", 0, i) + 1
-
-                img: pygame.Surface = self.font.render(text[:i], False, (255, 255, 255))
-                diag_surface.blit(img, (rect.left, y))
-                y += font_height + line_spacing
-                text = text[i:]
-
+        options_start: pygame.Vector2 = draw_surface_pos + pygame.Vector2(draw_surface.get_width() - 450, 0)
         if self.speaker_image is not None:
-            diag_surface.blit(self.speaker_image, pygame.Vector2(15, 15))
-            render_text(
-                self.speaker, pygame.Rect(
-                    15 + self.speaker_image.get_width() + 30, 15,
-                    diag_surface.get_width() - 90 - self.speaker_image.get_width(), 500)
-            )
-            render_text(
-                self.spoken, pygame.Rect(
-                    15 + self.speaker_image.get_width() + 60, 80,
-                    diag_surface.get_width() - 90 - self.speaker_image.get_width(), 500)
-            )
-        else:
-            render_text(self.speaker, pygame.Rect(35, 15, diag_surface.get_width() - 30, 500))
-            render_text(self.spoken, pygame.Rect(65, 80, diag_surface.get_width() - 30, 500))
+            draw_surface.blit(self.speaker_image, pygame.Vector2(15, 15))
 
+            start: pygame.Vector2 = pygame.Vector2(15 + self.speaker_image.get_width(), draw_surface.get_rect().y) + \
+                                    draw_surface_pos
+
+            ui_manager.add_text(Text(
+                self.speaker, pygame.Vector3(255, 255, 255),
+                start + pygame.Vector2(30, 15), False, self.font,
+                dimensions=pygame.Vector2(options_start.x - (start.x + 30), draw_surface.get_height() - 15)
+            ))
+
+            ui_manager.add_text(Text(
+                self.spoken, pygame.Vector3(255, 255, 255),
+                start + pygame.Vector2(60, 80), False, self.font,
+                dimensions=pygame.Vector2(options_start.x - (start.x + 60), draw_surface.get_height() - 80)
+            ))
+
+        else:
+            ui_manager.add_text(Text(
+                self.speaker, pygame.Vector3(255, 255, 255),
+                pygame.Vector2(35, 15) + draw_surface_pos, False, self.font,
+                dimensions=pygame.Vector2(options_start.x - 35, draw_surface.get_height() - 15)
+            ))
+
+            ui_manager.add_text(Text(
+                self.spoken, pygame.Vector3(255, 255, 255),
+                pygame.Vector2(65, 80) + draw_surface_pos, False, self.font,
+                dimensions=pygame.Vector2(options_start.x - 65, draw_surface.get_height() - 80)
+            ))
+
+        options_start += pygame.Vector2(50, 50)
+
+        if not self.awaiting_choice: return
+
+        for opt in self.options:
+            if opt[0] == "NEXT_MONOLOGUE_RESERVED": continue
+            text: Text = Text(opt[0], pygame.Vector3(255, 255, 255),
+                options_start, False, self.font,
+                dimensions=pygame.Vector2(400, self.font.get_height())
+            )
+
+            ui_manager.add_button(Button(
+                text, pygame.Vector2(-40, 0), self.font, pygame.Vector3(150, 0, 150)))
+            options_start.y += text.rect.height - 15
 
 class Dialogue:
     def __init__(self, start_monologue: Monologue):
@@ -127,10 +144,10 @@ class Dialogue:
         self.choice_index: int = 0
 
         self.advance_block: bool = True
-        self.choice_move_block: bool = False
 
+        self.draw_surface_pos: pygame.Vector2 = pygame.Vector2(0, (2 * pygame.display.get_window_size()[1]) // 3)
         self.draw_surface: pygame.Surface = pygame.Surface(
-            (pygame.display.get_window_size()[0], pygame.display.get_window_size()[1] // 3))
+            (pygame.display.get_window_size()[0], pygame.display.get_window_size()[1] // 3), pygame.SRCALPHA)
 
     def start(self):
         self.playing = True
@@ -159,35 +176,21 @@ class Dialogue:
         else:
             self.advance_block = False
 
-        moving: bool = False
-        if keys[pygame.K_DOWN] or keys[pygame.K_s]:
-            moving = True
-            if not self.choice_move_block:
-                self.choice_index = min(len(self.current_monologue.options) - 1, self.choice_index + 1)
-                self.choice_move_block = True
-        if keys[pygame.K_UP] or keys[pygame.K_w]:
-            moving = True
-            if not self.choice_move_block:
-                self.choice_index = max(0, self.choice_index - 1)
-                self.choice_move_block = True
-
-        if not self.current_monologue.awaiting_choice: self.choice_index = 0
-
-        if not moving:
-            self.choice_move_block = False
-
-    def update(self, dt: float):
+    def update(self, ui_manager: UIManager, dt: float):
         self.fade = max(0, min(255, int(self.fade + self.fading * dt)))
         if self.playing and self.fade == 255: self.current_monologue.update(dt)
+        if self.fade == 0 and self.fading < 0: ui_manager.remove_text()
 
-    def render(self, sub_surface: pygame.Surface):
+        self.choice_index = ui_manager.choice
+
+    def render(self, sub_surface: pygame.Surface, ui_manager: UIManager):
         if not self.playing and self.fade == 0: return
         self.draw_surface.fill((0, 0, 0))
         self.draw_surface.set_alpha(self.fade)
-        self.current_monologue.render(self.draw_surface)
+        self.current_monologue.render(self.draw_surface, self.draw_surface_pos, ui_manager)
         sub_surface.blit(self.draw_surface, pygame.Vector2(0, 0))
 
-        if self.playing and self.current_monologue.line_finished():
+        if self.playing and self.current_monologue.line_finished() and not self.current_monologue.awaiting_choice:
             tri_pos = pygame.Vector2(sub_surface.get_width() - 80, sub_surface.get_height() - 50)
             tri_coords: list[pygame.Vector2] = [
                 pygame.Vector2(-1, -1),

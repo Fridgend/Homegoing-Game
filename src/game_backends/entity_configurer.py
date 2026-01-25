@@ -8,6 +8,9 @@ class EntityConfigurerBackend(Backend):
     def init(self, game):
         pass
 
+    def unload(self, game):
+        pass
+
     def input(self, game):
         pass
 
