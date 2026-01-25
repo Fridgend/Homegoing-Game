@@ -18,7 +18,7 @@ class Scene:
 
         self.clear_surface = pygame.Surface(window_surface.get_size(), pygame.SRCALPHA)
 
-    def load(self, asset_manager: AssetManager):
+    def load(self):
         self.clear_surface.fill(self.clear_color)
 
     def input(self, ui_manager: UIManager, keys: pygame.key.ScancodeWrapper):
@@ -38,6 +38,8 @@ class Scene:
         camera.center(self.player.pos, self.bounds)
 
         self.player.update(self.entities, ui_manager, dt)
+        self.player.grid_pos.x = max(0, min(self.player.grid_pos.x, self.bounds.x))
+        self.player.grid_pos.y = max(0, min(self.player.grid_pos.y, self.bounds.y))
         self.player.pos.x = max(0, min(self.player.pos.x, self.bounds.x - self.player.sprite.dimensions.x))
         self.player.pos.y = max(0, min(self.player.pos.y, self.bounds.y - self.player.sprite.dimensions.y))
 

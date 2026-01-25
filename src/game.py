@@ -1,6 +1,5 @@
 import pygame
 import sys
-import enum
 
 from src.scene_manager import SceneManager
 from src.asset_manager import AssetManager
@@ -12,14 +11,7 @@ from src.game_backends.playing import PlayingBackend
 from src.game_backends.paused import PausedBackend
 from src.game_backends.scene_builder import SceneBuilderBackend
 from src.game_backends.entity_configurer import EntityConfigurerBackend
-
-class GameState(enum.Enum):
-    MAIN_MENU = 0
-    PAUSED = 1
-    PLAYING = 2
-    SCENE_BUILDER = 3
-    ENTITY_CONFIGURER = 4
-    QUITTING = 5
+from src.game_backends.backend import GameState
 
 class Game:
     def __init__(self, asset_guide: str, scene_guide: str, game_state: GameState = GameState.MAIN_MENU):

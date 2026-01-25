@@ -19,7 +19,8 @@ def parse_monologue(monologue_obj, asset_manager: AssetManager) -> Monologue:
         font=asset_manager.get_font(monologue_obj["font"]),
         next_monologue=None,
         options=None,
-        speaker_image=None if not monologue_obj["speaker_image"] else asset_manager.get_image(monologue_obj["speaker_image"])
+        speaker_image=None if not monologue_obj["speaker_image"] else
+        asset_manager.get_image(monologue_obj["speaker_image"])
     )
 
 
@@ -29,7 +30,9 @@ def parse_dialogue(dialogue_obj, asset_manager: AssetManager) -> Dialogue:
         monologues.append(parse_monologue(monologue_obj, asset_manager))
 
     for (monologue, obj) in zip(monologues, dialogue_obj["monologues"]):
-        if obj["next_monologue"]: monologue.set_next_monologue(monologues[obj["next_monologue"]])
+        next_idx: int = obj.get("next_monologue")
+        if next_idx is not None:
+            monologue.set_next_monologue(monologues[obj[next_idx]])
         for option in obj["options"]:
             monologue.add_option_monologue(option["text"], monologues[option["leads_to"]])
 
@@ -91,8 +94,8 @@ class SceneManager:
     def add_scene(self, name: str, scene: Scene) -> None:
         self.scenes[name] = scene
 
-    def load_scene(self, scene_name: str, asset_manager: AssetManager) -> None:
-        self.scenes[scene_name].load(asset_manager)
+    def load_scene(self, scene_name: str) -> None:
+        self.scenes[scene_name].load()
         self.current_scene = scene_name
 
     def input(self, ui_manager: UIManager, keys: pygame.key.ScancodeWrapper) -> None:

@@ -5,7 +5,7 @@ from src.game_backends.backend import Backend, GameState
 from src.ui_manager import Text, Button
 
 class Menu(enum.Enum):
-    MAIN = 0,
+    MAIN = 0
     HOW_TO_PLAY = 1
 
 class MainMenuBackend(Backend):

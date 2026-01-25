@@ -17,7 +17,8 @@ class NPC(Entity, Interactable):
         return self.grid_pos.distance_to(player.grid_pos + player.facing) == 0
     
     def interact(self, player: Player, ui_manager: UIManager):
-        if self.block: return
+        if self.block:
+            return
         self.look_at(player.grid_pos)
         self.dialogue.start()
         ui_manager.set_dialogue(self.dialogue)

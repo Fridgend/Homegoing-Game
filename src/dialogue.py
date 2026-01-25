@@ -23,8 +23,14 @@ class Monologue:
         if next_monologue is not None:
             self.options.append(("NEXT_MONOLOGUE_RESERVED", next_monologue))
 
+        if not lines:
+            raise ValueError("Monologue requires at least one line")
+
         self.line_index: list[int] = [0, len(self.lines)]
         self.char_index: list[int] = [0, len(self.lines[0])]
+
+        if len(char_speeds) != len(lines):
+            raise ValueError("char_speeds must have the same length as lines")
 
         self.char_duration: float = 0
         self.char_speeds: list[float] = char_speeds

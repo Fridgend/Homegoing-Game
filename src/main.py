@@ -1,10 +1,10 @@
 import pygame
 import argparse
 
-from src.game import Game, GameState
+from src.game import Game
+from src.game_backends.backend import GameState
 def main():
-    pygame.font.init()
-    pygame.mixer.init()
+    pygame.init()
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-sb", action="store_true", dest="scene_editor", default=False)

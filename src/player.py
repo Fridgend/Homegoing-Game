@@ -10,7 +10,7 @@ class Player(Entity):
     def __init__(self, grid_pos: pygame.Vector2, sprite: Sprite, move_duration: float):
         super().__init__(grid_pos, sprite, False)
 
-        self.pos: pygame.Vector2 = pygame.Vector2(0, 0)
+        self.pos: pygame.Vector2 = grid_pos * 32
         self.moving: bool = False
         self.move_dir: pygame.Vector2 = pygame.Vector2(0, 0)
         self.move_time: float = 0.0
@@ -18,7 +18,7 @@ class Player(Entity):
 
     def set_sprite(self, sprite: Sprite):
         self.sprite = sprite
-        self.pos = self.grid_pos * self.sprite.dimensions.x
+        self.pos = self.grid_pos * 32
 
     def input(self, keys: pygame.key.ScancodeWrapper):
         if self.moving:
@@ -42,14 +42,6 @@ class Player(Entity):
 
         self.sprite.update(dt)
 
-        target_grid_pos: pygame.Vector2 = self.grid_pos + self.move_dir
-        for entity in entities:
-            if entity.get_collision(target_grid_pos):
-                self.moving = False
-                self.move_dir = pygame.Vector2(0, 0)
-                self.move_time = 0
-                return
-        
         target_grid_pos: pygame.Vector2 = self.grid_pos + self.move_dir
         for entity in entities:
             if entity.get_collision(target_grid_pos):

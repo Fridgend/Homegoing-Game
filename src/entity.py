@@ -26,6 +26,9 @@ class Entity:
 
     def look_at(self, grid_pos: pygame.Vector2):
         diff: pygame.Vector2 = self.grid_pos - grid_pos
+        if diff.x == 0 and diff.y == 0:
+            return
+
         if abs(diff[1]) > abs(diff[0]):
             self.facing = pygame.Vector2(0, -diff[1] / abs(diff[1]))
         else:

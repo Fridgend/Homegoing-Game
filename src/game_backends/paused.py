@@ -57,7 +57,7 @@ class PausedBackend(Backend):
         game.ui_manager.input(keys)
 
     def update(self, game):
-        self.fade = max(0, min(190, int(self.fade + self.fading * game.delta_time)))
+        self.fade = max(0, min(255, int(self.fade + self.fading * game.delta_time)))
         if self.next_backend and (self.fade == 0 or self.fading == 0):
             if self.next_backend == GameState.QUITTING:
                 game.running = False

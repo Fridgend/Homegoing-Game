@@ -119,7 +119,8 @@ class UIManager:
                     i += 1
 
                 if i < len(line):
-                    i = line.rfind(" ", 0, i) + 1
+                    split_idx: int = line.rfind(" ", 0, i)
+                    i = split_idx + 1 if split_idx != -1 else i
 
                 img: pygame.Surface = text.font.render(line[:i], False, text.color[:3])
                 img.set_alpha(text.color[3])
