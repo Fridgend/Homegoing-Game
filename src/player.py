@@ -2,21 +2,23 @@ import pygame
 
 from src.entity import Entity
 from src.camera import Camera
+from src.sprite import Sprite
+from src.sprite import dir_to_str
+from src.ui_manager import UIManager
 
 class Player(Entity):
-    def __init__(self, grid_pos: pygame.Vector2, image: pygame.Surface, move_duration: int):
-        super().__init__(grid_pos, image)
+    def __init__(self, grid_pos: pygame.Vector2, sprite: Sprite, move_duration: float):
+        super().__init__(grid_pos, sprite, False)
 
-        self.pos: pygame.Vector2 = pygame.Vector2(0, 0)
+        self.pos: pygame.Vector2 = grid_pos * 32
         self.moving: bool = False
         self.move_dir: pygame.Vector2 = pygame.Vector2(0, 0)
         self.move_time: float = 0.0
         self.move_duration: float = move_duration
 
-    def set_image(self, image: pygame.Surface):
-        self.surface = image
-        self.dimensions = pygame.Vector2(self.surface.get_width(), self.surface.get_height())
-        self.pos = self.grid_pos * self.dimensions.x
+    def set_sprite(self, sprite: Sprite):
+        self.sprite = sprite
+        self.pos = self.grid_pos * 32
 
     def input(self, keys: pygame.key.ScancodeWrapper):
         if self.moving:
@@ -30,18 +32,29 @@ class Player(Entity):
 
         if dx != 0 or dy != 0:
             self.move_dir = pygame.Vector2(dx, dy)
+            self.facing = self.move_dir
             self.moving = True
             self.move_time = 0.0
 
-    def update(self, dt: float):
+    def update(self, entities: list[Entity], ui_manager: UIManager, dt: float):
         if not self.moving:
             return
+
+        self.sprite.update(dt)
+
+        target_grid_pos: pygame.Vector2 = self.grid_pos + self.move_dir
+        for entity in entities:
+            if entity.get_collision(target_grid_pos):
+                self.moving = False
+                self.move_dir = pygame.Vector2(0, 0)
+                self.move_time = 0
+                return
         
         self.move_time += dt
         t: float = min(self.move_time / self.move_duration, 1.0)
 
-        start_pos: pygame.Vector2 = self.grid_pos * self.dimensions.x
-        target_pos: pygame.Vector2 = (self.grid_pos + self.move_dir) * self.dimensions.x
+        start_pos: pygame.Vector2 = self.grid_pos * 32
+        target_pos: pygame.Vector2 = target_grid_pos * 32
 
         self.pos = start_pos.lerp(target_pos, t)
 
@@ -50,5 +63,5 @@ class Player(Entity):
             self.moving = False
 
     def render(self, surface: pygame.Surface, camera: Camera):
-        centered: pygame.Vector2 = self.pos - self.dimensions / 2
-        surface.blit(self.surface, camera.world_pos_to_view_pos(centered))
+        centered: pygame.Vector2 = self.pos - self.sprite.dimensions / 2
+        surface.blit(self.sprite.get(dir_to_str(self.facing)), camera.world_pos_to_view_pos(centered))
