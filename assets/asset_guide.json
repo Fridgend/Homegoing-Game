@@ -8,6 +8,11 @@
       "name": "snake",
       "path": "assets/fonts/Snake.ttf",
       "sizes": [ 40, 46, 64, 192 ]
+    },
+    {
+      "name": "vcr_osd",
+      "path": "assets/fonts/vcr_osd.ttf",
+      "sizes": [ 16 ]
     }
   ],
 

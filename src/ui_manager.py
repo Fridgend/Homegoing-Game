@@ -1,5 +1,7 @@
 import pygame
 
+import src.config as cfg
+
 class Text:
     def __init__(self, text: str, color: list, pos: pygame.Vector2, centered: bool, font: pygame.font.Font,
                  dimensions: pygame.Vector2 | None = None):
@@ -29,8 +31,7 @@ class Button:
 
 
 class UIManager:
-    def __init__(self, window_dims: pygame.Vector2, window_surface: pygame.Surface):
-        self.window_dimensions: pygame.Vector2 = window_dims
+    def __init__(self, window_surface: pygame.Surface):
         self.window_surface: pygame.Surface = window_surface
 
         self.dialogue = None
@@ -101,19 +102,15 @@ class UIManager:
         rect: pygame.Rect = pygame.Rect(text.rect)
         y: int = rect.top
         line_spacing: int = -2
-
         font_height: int = text.font.size("Tg")[1]
 
         write = text.text
-
         lines = write.split("\n")
 
+        blits: list = []
         for line in lines:
             while line:
                 i: int = 1
-
-                if y + font_height > rect.bottom:
-                    break
 
                 while text.font.size(line[:i])[0] < rect.width and i < len(line):
                     i += 1
@@ -124,9 +121,11 @@ class UIManager:
 
                 img: pygame.Surface = text.font.render(line[:i], False, text.color[:3])
                 img.set_alpha(text.color[3])
-                self.window_surface.blit(img, (rect.left, y))
+                blits.append((img, (rect.left, y)))
                 y += font_height + line_spacing
                 line = line[i:]
+
+        self.window_surface.blits(blits)
 
     def update(self, dt: float):
         if self.is_in_dialogue():
@@ -136,8 +135,8 @@ class UIManager:
     def render(self):
         if self.dialogue is not None:
             surface: pygame.Surface = self.window_surface.subsurface(pygame.Rect(
-                self.window_dimensions.x * 1 / 12, self.window_dimensions.y - self.window_dimensions.y // 3,
-                self.window_dimensions.x * 10 / 12, self.window_dimensions.y // 3)
+                cfg.config.window_dims.x * 1 / 12, cfg.config.window_dims.y - cfg.config.window_dims.y // 3,
+                cfg.config.window_dims.x * 10 / 12, cfg.config.window_dims.y // 3)
             )
             self.dialogue.render(surface, self)
 

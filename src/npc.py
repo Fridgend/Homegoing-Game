@@ -29,7 +29,7 @@ class NPC(Entity, Interactable):
 
     def update(self, ui_manager: UIManager, dt: float):
         self.sprite.update(dt)
-        if self.block and not ui_manager.is_in_dialogue():
+        if self.block and not self.dialogue.playing:
             self.look_at(self.grid_pos + pygame.Vector2(0, 1))
             self.elapsed_time += dt
             if self.elapsed_time > 1:

@@ -19,7 +19,8 @@ def parse_monologue(monologue_obj, asset_manager: AssetManager) -> Monologue:
         font=asset_manager.get_font(monologue_obj["font"]),
         next_monologue=None,
         options=None,
-        speaker_image=None if not monologue_obj["speaker_image"] else asset_manager.get_image(monologue_obj["speaker_image"])
+        speaker_image=None if not monologue_obj["speaker_image"] else
+        asset_manager.get_image(monologue_obj["speaker_image"])
     )
 
 

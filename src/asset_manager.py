@@ -1,6 +1,5 @@
 import pygame
 import json
-import os
 
 from src.sprite import Sprite
 

@@ -16,8 +16,9 @@ class Player(Entity):
         self.move_time: float = 0.0
         self.move_duration: float = move_duration
 
-    def set_sprite(self, sprite: Sprite):
+    def set_sprite(self, sprite: Sprite, hit_box: pygame.Vector2):
         self.sprite = sprite
+        self.hit_box = hit_box
         self.pos = self.grid_pos * 32
 
     def input(self, keys: pygame.key.ScancodeWrapper):

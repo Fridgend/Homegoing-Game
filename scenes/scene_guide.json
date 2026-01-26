@@ -1,5 +1,6 @@
 {
   "effia": {
+
     "start_scene": "test",
     "scenes": [
       { "name": "test", "path": "scenes/effia/test.json" }

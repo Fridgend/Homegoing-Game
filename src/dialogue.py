@@ -2,6 +2,8 @@ import pygame
 
 from src.ui_manager import UIManager, Text, Button
 
+import src.config as cfg
+
 class Monologue:
     def __init__(self,
                  speaker: str, lines: list[str], char_speeds: list[float],
@@ -176,10 +178,7 @@ class Dialogue:
 
         self.advance_block: bool = True
 
-        self.draw_surface_pos: pygame.Vector2 = pygame.Vector2(
-            pygame.display.get_window_size()[0] * 1 / 12, (2 * pygame.display.get_window_size()[1]) // 3)
-        self.draw_surface: pygame.Surface = pygame.Surface(
-            (pygame.display.get_window_size()[0] * 10 / 12, pygame.display.get_window_size()[1] // 3), pygame.SRCALPHA)
+        self.draw_surface: pygame.Surface = pygame.Surface(cfg.config.dialogue_box_dims, pygame.SRCALPHA)
 
     def start(self):
         self.playing = True
@@ -232,7 +231,7 @@ class Dialogue:
         self.draw_surface.fill((255, 255, 255, self.fade))
         pygame.draw.rect(self.draw_surface, (0, 0, 0, self.fade), (
             3, 3, self.draw_surface.get_width() - 6, self.draw_surface.get_height() - 3))
-        self.current_monologue.render(self.draw_surface, self.draw_surface_pos, ui_manager)
+        self.current_monologue.render(self.draw_surface, cfg.config.dialogue_box_pos, ui_manager)
         sub_surface.blit(self.draw_surface, (0, 0))
 
         if self.playing and self.current_monologue.line_finished() and not self.current_monologue.awaiting_choice:

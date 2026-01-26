@@ -1,6 +1,8 @@
 import pygame
 import sys
 
+import src.config as cfg
+
 from src.scene_manager import SceneManager
 from src.asset_manager import AssetManager
 from src.ui_manager import UIManager
@@ -14,19 +16,20 @@ from src.game_backends.entity_configurer import EntityConfigurerBackend
 from src.game_backends.backend import GameState
 
 class Game:
-    def __init__(self, asset_guide: str, scene_guide: str, game_state: GameState = GameState.MAIN_MENU):
+    def __init__(self, asset_guide: str, scene_guide: str, config_path: str, game_state: GameState = GameState.MAIN_MENU):
         self.running: bool = True
+        cfg.config = cfg.Config(config_path)
 
-        self.window_surface: pygame.Surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        self.window_dimensions: pygame.Vector2 = pygame.Vector2(
-            self.window_surface.get_width(), self.window_surface.get_height())
+        self.window_surface: pygame.Surface = pygame.display.set_mode(
+            cfg.config.window_dims, pygame.FULLSCREEN if cfg.config.window_fullscreen else 0)
         pygame.display.set_caption("Homegoing")
+        cfg.config.set_window_dimensions(self.window_surface.get_size())
 
         self.asset_manager: AssetManager = AssetManager(asset_guide)
         self.scene_manager: SceneManager = SceneManager(scene_guide, self.asset_manager, self.window_surface)
-        self.ui_manager: UIManager = UIManager(self.window_dimensions, self.window_surface)
+        self.ui_manager: UIManager = UIManager(self.window_surface)
         
-        self.camera: Camera = Camera(self.window_dimensions, 32)
+        self.camera: Camera = Camera()
         
         self.clock: pygame.time.Clock = pygame.time.Clock()
         self.delta_time: float = 0
