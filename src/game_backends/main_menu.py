@@ -42,7 +42,7 @@ class MainMenuBackend(Backend):
                 game.ui_manager.add_text(Text("Homegoing", [170, 20, 20, 255],
                     self.center_pos + pygame.Vector2(0, -170), True, game.asset_manager.get_font("snake192")))
 
-                game.ui_manager.add_text(Text("Made by: Theodor, Yazan, Mihir, Abode", [255, 255, 255, 255],
+                game.ui_manager.add_text(Text("Made by: Theodor, Yazan, Mihir, Abode, Jonas", [255, 255, 255, 255],
                     self.bottom_pos + pygame.Vector2(0, -80), True, game.asset_manager.get_font("snake40")))
 
                 play_text: str = "Continue" if game.state_backends[GameState.PLAYING].is_setup else "Play"
