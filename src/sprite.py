@@ -1,6 +1,6 @@
 import pygame
 
-def dir_to_str(direction: pygame.Vector2):
+def dir_to_str(direction: pygame.Vector2) -> str:
     match (direction.x, direction.y):
         case (0, 0) | (0, 1): return "down"
         case (1, 0): return "right"
@@ -24,7 +24,8 @@ class Sprite:
         elements: int = num_frames
         if direction: elements *= 4
 
-        x = y = 0
+        x: int = 0
+        y: int = 0
         for i in range(elements):
             subsurface: pygame.Surface = frames.subsurface(pygame.Rect(
                 x * dimensions.x, y * dimensions.y,
@@ -50,13 +51,13 @@ class Sprite:
                     x += 1
                     y = 0
 
-    def reset_frames(self):
+    def reset_frames(self) -> None:
         self.frame_index = 0
 
     def get(self, animation: str) -> pygame.Surface:
         return self.frames[animation][self.frame_index]
 
-    def update(self, dt: float):
+    def update(self, dt: float) -> None:
         self.frame_progress += dt
         if self.frame_progress >= self.frame_time:
             self.frame_progress = 0

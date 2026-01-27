@@ -13,11 +13,13 @@ class MainMenuBackend(Backend):
     def __init__(self):
         super().__init__()
 
-        self.state = Menu.MAIN
+        self.state: Menu = Menu.MAIN
 
-        self.center_pos = self.bottom_pos = self.top_pos = None
+        self.center_pos: pygame.Vector2 = pygame.Vector2(0, 0)
+        self.bottom_pos: pygame.Vector2 = pygame.Vector2(0, 0)
+        self.top_pos: pygame.Vector2 = pygame.Vector2(0, 0)
 
-    def init(self, game):
+    def init(self, game) -> None:
         self.next_backend = None
         self.fade = 0
         self.fading = 500
@@ -28,11 +30,11 @@ class MainMenuBackend(Backend):
 
         self.switch_menu(game, Menu.MAIN)
 
-    def unload(self, game):
+    def unload(self, game) -> None:
         game.ui_manager.remove_text()
         game.ui_manager.remove_buttons()
 
-    def switch_menu(self, game, new_menu: Menu):
+    def switch_menu(self, game, new_menu: Menu) -> None:
         self.state = new_menu
 
         game.ui_manager.remove_text()
@@ -176,7 +178,7 @@ class MainMenuBackend(Backend):
                          game.asset_manager.get_font("snake64")
                     ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]))
 
-    def input(self, game):
+    def input(self, game) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game.running = False
@@ -205,7 +207,7 @@ class MainMenuBackend(Backend):
         keys: pygame.key.ScancodeWrapper = pygame.key.get_pressed()
         game.ui_manager.input(keys)
 
-    def update(self, game):
+    def update(self, game) -> None:
         self.fade = max(0, min(255, int(self.fade + self.fading * game.delta_time)))
         if self.next_backend and (self.fade == 0 or self.fading == 0):
             if self.next_backend == GameState.QUITTING:
@@ -213,7 +215,7 @@ class MainMenuBackend(Backend):
                 return
             game.set_backend(self.next_backend)
 
-    def render(self, game):
+    def render(self, game) -> None:
         game.window_surface.fill((0, 0, 0))
         game.ui_manager.render()
         self.overlay.fill((0, 0, 0, 255 - self.fade))

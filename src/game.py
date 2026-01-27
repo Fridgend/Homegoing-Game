@@ -13,7 +13,7 @@ from src.game_backends.playing import PlayingBackend
 from src.game_backends.paused import PausedBackend
 from src.game_backends.scene_builder import SceneBuilderBackend
 from src.game_backends.entity_configurer import EntityConfigurerBackend
-from src.game_backends.backend import GameState
+from src.game_backends.backend import GameState, Backend
 
 class Game:
     def __init__(self, asset_guide: str, scene_guide: str, config_path: str, game_state: GameState = GameState.MAIN_MENU):
@@ -34,7 +34,7 @@ class Game:
         self.clock: pygame.time.Clock = pygame.time.Clock()
         self.delta_time: float = 0
 
-        self.state = game_state
+        self.state: GameState = game_state
         self.state_backends: dict = {
             GameState.MAIN_MENU: MainMenuBackend(),
             GameState.PAUSED: PausedBackend(),
@@ -42,18 +42,18 @@ class Game:
             GameState.SCENE_BUILDER: SceneBuilderBackend(),
             GameState.ENTITY_CONFIGURER: EntityConfigurerBackend()
         }
-        self.backend = None
-        self.next_backend = None
+        self.backend: Backend | None = None
+        self.next_backend: Backend | None = None
         self.set_backend(self.state)
 
-    def set_backend(self, state: GameState):
+    def set_backend(self, state: GameState) -> None:
         if state == GameState.QUITTING:
             self.running = False
             return
         self.next_backend = self.state_backends[state]
         self.state = state
 
-    def run(self, FPS: int, FPS_warn: int):
+    def run(self, FPS: int, FPS_warn: int) -> None:
         while self.running:
             self.delta_time = self.clock.tick(FPS) / 1000.0
 
@@ -68,6 +68,10 @@ class Game:
 
             fps: float = self.clock.get_fps()
             if fps < FPS_warn: print("LAG SPIKE DETECTED:", fps, "FPS")
+
+            keys: pygame.key.ScancodeWrapper = pygame.key.get_pressed()
+            if keys[pygame.K_f]:
+                print(fps)
 
         pygame.quit()
         sys.exit()

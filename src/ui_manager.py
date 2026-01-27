@@ -42,41 +42,41 @@ class UIManager:
         self.choice: int = 0
         self.choice_move_block: bool = False
 
-    def set_text_fade(self, text_i: int, fade: int):
+    def set_text_fade(self, text_i: int, fade: int) -> None:
         self.text[text_i].color[3] = fade
 
-    def set_button_fade(self, button_i: int, fade: int):
+    def set_button_fade(self, button_i: int, fade: int) -> None:
         self.buttons[button_i].text.color[3] = fade
         self.buttons[button_i].select_color[3] = fade
 
-    def set_text_fades(self, fade: int):
+    def set_text_fades(self, fade: int) -> None:
         for i in range(len(self.text)):
             self.set_text_fade(i, fade)
 
-    def set_button_fades(self, fade: int):
+    def set_button_fades(self, fade: int) -> None:
         for i in range(len(self.buttons)):
             self.set_button_fade(i, fade)
 
-    def add_text(self, text: Text):
+    def add_text(self, text: Text) -> None:
         self.text.append(text)
 
-    def add_button(self, button: Button):
+    def add_button(self, button: Button) -> None:
         self.buttons.append(button)
 
-    def remove_text(self):
+    def remove_text(self) -> None:
         self.text = []
 
-    def remove_buttons(self, reset_choice: bool = True):
+    def remove_buttons(self, reset_choice: bool = True) -> None:
         self.buttons = []
         self.choice = 0 if reset_choice else self.choice
 
-    def set_dialogue(self, dialogue):
+    def set_dialogue(self, dialogue) -> None:
         self.dialogue = dialogue
 
-    def is_in_dialogue(self):
+    def is_in_dialogue(self) -> bool:
         return self.dialogue is not None and (self.dialogue.playing or self.dialogue.fade != 0)
     
-    def input(self, keys: pygame.key.ScancodeWrapper):
+    def input(self, keys: pygame.key.ScancodeWrapper) -> None:
         if self.is_in_dialogue(): self.dialogue.input(keys)
 
         moving: bool = False
@@ -98,14 +98,14 @@ class UIManager:
         if not moving:
             self.choice_move_block = False
 
-    def render_text(self, text: Text):
+    def render_text(self, text: Text) -> None:
         rect: pygame.Rect = pygame.Rect(text.rect)
         y: int = rect.top
         line_spacing: int = -2
         font_height: int = text.font.size("Tg")[1]
 
-        write = text.text
-        lines = write.split("\n")
+        write: str = text.text
+        lines: list[str] = write.split("\n")
 
         blits: list = []
         for line in lines:
@@ -127,12 +127,12 @@ class UIManager:
 
         self.window_surface.blits(blits)
 
-    def update(self, dt: float):
+    def update(self, dt: float) -> None:
         if self.is_in_dialogue():
             self.dialogue.update(self, dt)
             if self.dialogue.fade == 0: self.dialogue.reset()
 
-    def render(self):
+    def render(self) -> None:
         if self.dialogue is not None:
             surface: pygame.Surface = self.window_surface.subsurface(pygame.Rect(
                 cfg.config.window_dims.x * 1 / 12, cfg.config.window_dims.y - cfg.config.window_dims.y // 3,

@@ -16,12 +16,13 @@ class Scene:
 
         self.player: Player | None = None
 
-        self.clear_surface = pygame.Surface(window_surface.get_size(), pygame.SRCALPHA)
+        self.clear_surface = pygame.Surface(window_surface.get_size()).convert()
 
-    def load(self):
-        self.clear_surface.fill(self.clear_color)
+    def load(self) -> None:
+        self.clear_surface.fill(self.clear_color[:3])
+        self.clear_surface.set_alpha(self.clear_color[3])
 
-    def input(self, ui_manager: UIManager, keys: pygame.key.ScancodeWrapper):
+    def input(self, ui_manager: UIManager, keys: pygame.key.ScancodeWrapper) -> None:
         if ui_manager.is_in_dialogue():
             ui_manager.input(keys)
             return
@@ -34,7 +35,7 @@ class Scene:
             if isinstance(entity, Interactable) and entity.can_interact(self.player):
                 entity.interact(self.player, ui_manager)
 
-    def update(self, camera: Camera, ui_manager: UIManager, dt: float):
+    def update(self, camera: Camera, ui_manager: UIManager, dt: float) -> None:
         camera.center(self.player.pos, self.bounds)
 
         self.player.update(self.entities, ui_manager, dt)
@@ -47,7 +48,7 @@ class Scene:
 
         for entity in self.entities: entity.update(ui_manager, dt)
 
-    def render(self, window_surface: pygame.Surface, camera: Camera):
+    def render(self, window_surface: pygame.Surface, camera: Camera) -> None:
         window_surface.fill((0, 0, 0))
         window_surface.blit(self.clear_surface, (0, 0))
         for entity in self.entities: entity.render(window_surface, camera)

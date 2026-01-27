@@ -2,15 +2,15 @@ import pygame
 
 class Fade:
     def __init__(self, area_dims: pygame.Vector2, init_alpha=255):
-        self._fade_surface: pygame.Surface = pygame.Surface(area_dims, flags=SRCALPHA)
-        self._alpha = init_alpha
-        self._last_alpha = init_alpha
-        self._alpha_direction = 0
+        self._fade_surface: pygame.Surface = pygame.Surface(area_dims, flags=pygame.SRCALPHA)
+        self._alpha: float = init_alpha
+        self._last_alpha: int = init_alpha
+        self._alpha_direction: int = 0
 
     def update(self, dt: float) -> None:
         self._alpha += dt
-        if int(_alpha) != _last_alpha:
-            _last_alpha = int(_alpha)
+        if int(self._alpha) != self._last_alpha:
+            _last_alpha = int(self._alpha)
             self._fade_surface.fill((0, 0, 0, self._last_alpha))
 
     def begin_fade_in(self, speed: float) -> None:

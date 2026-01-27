@@ -11,7 +11,7 @@ from src.dialogue import Monologue, Dialogue
 from src.npc import NPC
 
 
-def parse_monologue(monologue_obj, asset_manager: AssetManager) -> Monologue:
+def parse_monologue(monologue_obj: dict, asset_manager: AssetManager) -> Monologue:
     return Monologue(
         speaker=monologue_obj["speaker"],
         lines=monologue_obj["lines"],
@@ -24,7 +24,7 @@ def parse_monologue(monologue_obj, asset_manager: AssetManager) -> Monologue:
     )
 
 
-def parse_dialogue(dialogue_obj, asset_manager: AssetManager) -> Dialogue:
+def parse_dialogue(dialogue_obj: dict, asset_manager: AssetManager) -> Dialogue:
     monologues: list[Monologue] = []
     for monologue_obj in dialogue_obj["monologues"]:
         monologues.append(parse_monologue(monologue_obj, asset_manager))

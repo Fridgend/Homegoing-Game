@@ -17,9 +17,8 @@ class Camera:
         self.clamp_pos(bounds)
 
     def clamp_pos(self, bounds: pygame.Vector2) -> None:
-        self.pos.x = max(0, min(self.pos.x, bounds.x - cfg.config.window_dims.x))
-        self.pos.y = max(0, min(self.pos.y, bounds.y - cfg.config.window_dims.y))
+        self.pos.x = pygame.math.clamp(self.pos.x, 0, cfg.config.window_dims.x)
+        self.pos.y = pygame.math.clamp(self.pos.y, 0, cfg.config.window_dims.y)
 
     def world_pos_to_view_pos(self, world_pos: pygame.Vector2) -> pygame.Vector2:
         return world_pos - self.pos
-    

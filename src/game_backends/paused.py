@@ -7,9 +7,11 @@ class PausedBackend(Backend):
     def __init__(self):
         super().__init__()
 
-        self.center_pos = self.bottom_pos = self.top_pos = None
+        self.center_pos: pygame.Vector2 = pygame.Vector2(0, 0)
+        self.bottom_pos: pygame.Vector2 = pygame.Vector2(0, 0)
+        self.top_pos: pygame.Vector2 = pygame.Vector2(0, 0)
 
-    def init(self, game):
+    def init(self, game) -> None:
         self.next_backend = None
         self.fade = 0
         self.fading = 500
@@ -30,11 +32,11 @@ class PausedBackend(Backend):
             self.center_pos + pygame.Vector2(0, 70), True, game.asset_manager.get_font("snake64")
         ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]))
 
-    def unload(self, game):
+    def unload(self, game) -> None:
         game.ui_manager.remove_text()
         game.ui_manager.remove_buttons()
 
-    def input(self, game):
+    def input(self, game) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game.running = False
@@ -56,7 +58,7 @@ class PausedBackend(Backend):
         keys: pygame.key.ScancodeWrapper = pygame.key.get_pressed()
         game.ui_manager.input(keys)
 
-    def update(self, game):
+    def update(self, game) -> None:
         self.fade = max(0, min(255, int(self.fade + self.fading * game.delta_time)))
         if self.next_backend and (self.fade == 0 or self.fading == 0):
             if self.next_backend == GameState.QUITTING:
@@ -64,7 +66,7 @@ class PausedBackend(Backend):
                 return
             game.set_backend(self.next_backend)
 
-    def render(self, game):
+    def render(self, game) -> None:
         game.window_surface.fill((0, 0, 0))
         self.overlay.fill((0, 0, 0, 255 - self.fade))
         game.ui_manager.render()

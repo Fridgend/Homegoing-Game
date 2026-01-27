@@ -5,9 +5,9 @@ from src.game_backends.backend import Backend, GameState
 class PlayingBackend(Backend):
     def __init__(self):
         super().__init__()
-        self.is_setup = False
+        self.is_setup: bool = False
 
-    def init(self, game):
+    def init(self, game) -> None:
         if not self.is_setup:
             self.is_setup = True
             game.scene_manager.load_scene("test")
@@ -16,10 +16,10 @@ class PlayingBackend(Backend):
         self.fade = 0
         self.fading = 500
 
-    def unload(self, game):
+    def unload(self, game) -> None:
         pass
 
-    def input(self, game):
+    def input(self, game) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game.running = False
@@ -38,7 +38,7 @@ class PlayingBackend(Backend):
         keys: pygame.key.ScancodeWrapper = pygame.key.get_pressed()
         game.scene_manager.input(game.ui_manager, keys)
 
-    def update(self, game):
+    def update(self, game) -> None:
         game.scene_manager.update(game.camera, game.ui_manager, game.delta_time)
         self.fade = max(0, min(255, int(self.fade + self.fading * game.delta_time)))
         if self.next_backend and (self.fade == 0 or self.fading == 0):
@@ -47,7 +47,7 @@ class PlayingBackend(Backend):
                 return
             game.set_backend(self.next_backend)
 
-    def render(self, game):
+    def render(self, game) -> None:
         game.scene_manager.render(game.window_surface, game.camera)
         game.ui_manager.render()
         self.overlay.fill((0, 0, 0, 255 - self.fade))
