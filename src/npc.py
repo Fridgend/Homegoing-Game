@@ -16,13 +16,13 @@ class NPC(Entity, Interactable):
     def can_interact(self, player: Player) -> bool:
         return self.grid_pos.distance_to(player.grid_pos + player.facing) == 0
     
-    def interact(self, player: Player, ui_manager: UIManager) -> None:
+    def interact(self, player: Player, ui_manager: UIManager) -> Dialogue | None:
         if self.block:
-            return
+            return None
         self.look_at(player.grid_pos)
         self.dialogue.start()
-        ui_manager.set_dialogue(self.dialogue)
         self.block = True
+        return self.dialogue
 
     def input(self, keys: pygame.key.ScancodeWrapper) -> None:
         pass

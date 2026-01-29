@@ -26,6 +26,7 @@ class Game:
         cfg.config.set_window_dimensions(self.window_surface.get_size())
 
         self.asset_manager: AssetManager = AssetManager(asset_guide)
+        AssetManager.NULL_IMAGE = self.asset_manager.get_image("null")
         self.scene_manager: SceneManager = SceneManager(scene_guide, self.asset_manager, self.window_surface)
         self.ui_manager: UIManager = UIManager(self.window_surface)
         

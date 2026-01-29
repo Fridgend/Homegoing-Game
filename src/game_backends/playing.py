@@ -30,7 +30,8 @@ class PlayingBackend(Backend):
             if self.fading != 0 and self.fade != 0 and self.fade != 255:
                 continue
 
-            if event.type == pygame.KEYDOWN and not game.ui_manager.is_in_dialogue():
+            if event.type == pygame.KEYDOWN and \
+                    game.scene_manager.scenes[game.scene_manager.current_scene].dialogue is None:
                 if event.key == pygame.K_ESCAPE:
                     self.fading = -500
                     self.next_backend = GameState.PAUSED
@@ -50,8 +51,10 @@ class PlayingBackend(Backend):
             game.set_backend(self.next_backend)
 
     def render(self, game) -> None:
-        game.scene_manager.render(game.window_surface, game.camera)
-        game.ui_manager.render()
-        self.overlay.set_alpha(self.fade)
-        game.window_surface.blit(self.overlay, (0, 0))
+        game.scene_manager.render(game.window_surface, game.camera, game.ui_manager)
+
+        if self.fade > 0:
+            self.overlay.set_alpha(self.fade)
+            game.window_surface.blit(self.overlay, (0, 0))
+
         pygame.display.flip()

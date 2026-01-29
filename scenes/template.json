@@ -3,7 +3,7 @@
 	"void_color": { "r": null, "g": null, "b": null, "a": null },
 	"bounds": { "x": null, "y": null },
 	"background_music": {
-		"identifier": "--asset manager identifier--",
+		"identifier": "--asset guide identifier--",
 		"volume": null
 	},
 
@@ -15,7 +15,7 @@
 				"w": null,
 				"h": null
 			},
-			"image": "--asset manager identifier--",
+			"image": "--asset guide identifier--",
 			"collision": false
 		}
 	],
@@ -23,10 +23,236 @@
 	"entity_lookup": [
 		{
 			"id": "--identifier--",
-			"sprite": "--asset manager sprite--",
-			"animation": "--animation name--",
+			"sprite": "--asset guide sprite--",
+			"start_animation": "--animation name--",
 			"animation_frame_time": null,
 			"collision": false
+		}
+	],
+
+	"player": {
+		"lookup": "--entity lookup identifier--",
+		"fallback_spawn": { "x": null, "y": null }
+	},
+
+	"static_entities": [
+		{
+			"lookup": "--entity lookup identifier--",
+			"spawn": { "x": null, "y": null },
+			"conditions": {
+				"all": ["--flags--"],
+				"any": ["--flags--"],
+				"not": ["--flags--"]
+			}
+		}
+	],
+
+	"interactable_entities": [
+		{
+			"lookup": "--entity lookup identifier--",
+			"spawn": { "x": null, "y": null },
+			"conditions": {
+				"all": ["--flags--"],
+				"any": ["--flags--"],
+				"not": ["--flags--"]
+			},
+
+			"routes": [
+				{
+					"id": "--optional: identifier--",
+					"waypoints": [
+						{ "x": null, "y": null, "speed": null, "face_dir": "--up/down/left/right--", "wait": null }
+					],
+					"conditions": {
+						"all": ["--flags--"],
+						"any": ["--flags--"],
+						"not": ["--flags--"]
+					}
+				}
+			],
+
+			"dialogues": [
+				{
+					"id": "--optional: identifier--",
+					"conditions": {
+						"all": ["--flags--"],
+						"any": ["--flags--"],
+						"not": ["--flags--"]
+					},
+
+					"modify_flags_on_start": {
+						"all": [
+							{ "how": "--remove/add/toggle--", "value": "--flag--" }
+						],
+						"any": [
+							{ "how": "--remove/add/toggle--", "value": "--flag--" }
+						],
+						"not": [
+							{ "how": "--remove/add/toggle--", "value": "--flag--" }
+						]
+					},
+
+					"dispatch_on_start": [
+						{
+							"name": "--event identifier--",
+							"--additional arguments--": null
+						}
+					],
+
+					"set_route_on_start": [
+						{
+							"id": "--route identifier--",
+							"conditions": {
+								"all": ["--flags--"],
+								"any": ["--flags--"],
+								"not": ["--flags--"]
+							}
+						}
+					],
+
+					"start_monologue": [
+						{
+							"id": "--monologue identifier--",
+							"conditions": {
+								"all": ["--flags--"],
+								"any": ["--flags--"],
+								"not": ["--flags--"]
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "--identifier--",
+							"conditions": {
+								"all": ["--flags--"],
+								"any": ["--flags--"],
+								"not": ["--flags--"]
+							},
+							"alt_monologue": "--monologue identifier--",
+
+							"speaker": "--name of person speaking--",
+							"lines": [
+								{
+									"text": "--spoken words--",
+									"char_time": null
+								}
+							],
+							"font": "--asset guide font identifier--",
+							"speaker_image": "--optional: asset guide image identifier--",
+							"speaking_sfx": "--optional: asset guide audio identifier--",
+							"next_monologue": "--monologue identifier--",
+
+							"set_route_on_reach": [
+								{
+									"id": "--route identifier--",
+									"conditions": {
+										"all": ["--flags--"],
+										"any": ["--flags--"],
+										"not": ["--flags--"]
+									}
+								}
+							],
+
+							"options": [
+								{
+									"text": "--option text--",
+									"next_monologue": "--monologue identifier--",
+									"conditions": {
+										"all": ["--flags--"],
+										"any": ["--flags--"],
+										"not": ["--flags--"]
+									},
+
+									"dispatch_on_select": [
+										{
+											"name": "--event identifier--",
+											"--additional arguments--": null
+										}
+									],
+
+									"modify_flags_on_select": {
+										"all": [
+											{ "how": "--remove/add/toggle--", "value": "--flag--" }
+										],
+										"any": [
+											{ "how": "--remove/add/toggle--", "value": "--flag--" }
+										],
+										"not": [
+											{ "how": "--remove/add/toggle--", "value": "--flag--" }
+										]
+									},
+
+									"set_route_on_select": [
+										{
+											"id": "--route identifier--",
+											"conditions": {
+												"all": ["--flags--"],
+												"any": ["--flags--"],
+												"not": ["--flags--"]
+											}
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+
+	"triggers": [
+		{
+			"id": "--optional: identifier--",
+			"once?": false,
+			"catch": [
+				{
+					"name": "--event identifier--",
+					"--additional arguments--": null
+				}
+			],
+			"dispatch": [
+				{
+					"name": "--event identifier--",
+					"--additional arguments--": null
+				}
+			]
+		}
+	],
+
+	"entrances": [
+		{
+			"rect": {
+				"x": null,
+				"y": null,
+				"w": null,
+				"h": null
+			},
+			"transition": "--void walk/fade/no transition--",
+			"conditions": {
+				"all": ["--flags--"],
+				"any": ["--flags--"],
+				"not": ["--flags--"]
+			}
+		}
+	],
+
+	"exits": [
+		{
+			"rect": {
+				"x": null,
+				"y": null,
+				"w": null,
+				"h": null
+			},
+			"transition": "--void walk/fade/no transition--",
+			"next_scene": "--scene identifier--",
+			"conditions": {
+				"all": ["--flags--"],
+				"any": ["--flags--"],
+				"not": ["--flags--"]
+			}
 		}
 	]
 }

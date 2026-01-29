@@ -79,7 +79,7 @@ class MainMenuBackend(Backend):
         game.ui_manager.input(keys)
 
     def update(self, game) -> None:
-        game.ui_manager.update(game.delta_time)
+        game.ui_manager.update()
         self.fade = max(0, min(255, int(self.fade - self.fading * game.delta_time)))
         if self.next_backend and (self.fade == 255 or self.fading == 0):
             if self.next_backend == GameState.QUITTING:
@@ -184,7 +184,6 @@ class MainMenuBackend(Backend):
 
     def render(self, game) -> None:
         game.window_surface.fill((0, 0, 0))
-        self.overlay.set_alpha(self.fade)
 
         match self.state:
             case Menu.MAIN:
@@ -194,5 +193,8 @@ class MainMenuBackend(Backend):
             case Menu.CREDITS:
                 self.render_credits(game)
 
-        game.window_surface.blit(self.overlay, (0, 0))
+        if self.fade > 0:
+            self.overlay.set_alpha(self.fade)
+            game.window_surface.blit(self.overlay, (0, 0))
+
         pygame.display.flip()

@@ -25,7 +25,7 @@ class Sprite:
 
     def init_frames(self, spritesheet: pygame.Surface, animations: list[str], row_major: bool) -> None:
         elements: int = self.num_frames
-        if self.compound: elements *= 4
+        if self.compound: elements *= len(animations)
 
         x: int = 0
         y: int = 0
@@ -57,8 +57,11 @@ class Sprite:
     def reset_frames(self) -> None:
         self.frame_index = 0
 
-    def get(self, animation: str) -> pygame.Surface:
-        return self.frames[animation][self.frame_index]
+    def get(self, animation: str) -> pygame.Surface | None:
+        if self.frames.get(animation, False):
+            return self.frames[animation][self.frame_index]
+        else:
+            return None
 
     def update(self, dt: float) -> None:
         self.frame_progress += dt

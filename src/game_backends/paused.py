@@ -50,7 +50,7 @@ class PausedBackend(Backend):
         game.ui_manager.input(keys)
 
     def update(self, game) -> None:
-        game.ui_manager.update(game.delta_time)
+        game.ui_manager.update()
         self.fade = max(0, min(255, int(self.fade - self.fading * game.delta_time)))
         if self.next_backend and (self.fade == 255 or self.fading == 0):
             if self.next_backend == GameState.QUITTING:
@@ -60,7 +60,6 @@ class PausedBackend(Backend):
 
     def render(self, game) -> None:
         game.window_surface.fill((0, 0, 0))
-        self.overlay.set_alpha(self.fade)
 
         game.ui_manager.draw_button(Button(Text(
             "Continue", [255, 255, 255, 255],
@@ -80,5 +79,8 @@ class PausedBackend(Backend):
             align_center=True
         ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]), 2)
 
-        game.window_surface.blit(self.overlay, (0, 0))
+        if self.fade > 0:
+            self.overlay.set_alpha(self.fade)
+            game.window_surface.blit(self.overlay, (0, 0))
+
         pygame.display.flip()

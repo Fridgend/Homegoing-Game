@@ -5,6 +5,7 @@ from src.camera import Camera
 from src.sprite import Sprite
 from src.sprite import dir_to_str
 from src.ui_manager import UIManager
+from src.asset_manager import AssetManager
 
 import src.config as cfg
 
@@ -67,4 +68,5 @@ class Player(Entity):
 
     def render(self, surface: pygame.Surface, camera: Camera) -> None:
         centered: pygame.Vector2 = self.pos - self.sprite.dimensions / 2
-        surface.blit(self.sprite.get(dir_to_str(self.facing)), camera.world_pos_to_view_pos(centered))
+        surface.blit(self.sprite.get(dir_to_str(self.facing)) or AssetManager.NULL_IMAGE,
+                     camera.world_pos_to_view_pos(centered))

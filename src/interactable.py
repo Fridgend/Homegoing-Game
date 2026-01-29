@@ -1,5 +1,6 @@
 from src.player import Player
 from src.ui_manager import UIManager
+from src.dialogue import Dialogue
 
 class Interactable:
     def __init__(self):
@@ -9,5 +10,5 @@ class Interactable:
     def can_interact(self, player: Player) -> bool:
         return self.block
 
-    def interact(self, player: Player, ui_manager: UIManager) -> None:
+    def interact(self, player: Player, ui_manager: UIManager) -> Dialogue | None:
         pass

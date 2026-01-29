@@ -105,5 +105,5 @@ class SceneManager:
     def update(self, camera: Camera, ui_manager: UIManager, dt: float) -> None:
         self.scenes[self.current_scene].update(camera, ui_manager, dt)
 
-    def render(self, window_surface: pygame.Surface, camera: Camera) -> None:
-        self.scenes[self.current_scene].render(window_surface, camera)
+    def render(self, window_surface: pygame.Surface, camera: Camera, ui_manager: UIManager) -> None:
+        self.scenes[self.current_scene].render(window_surface, camera, ui_manager)

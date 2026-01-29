@@ -2,19 +2,20 @@ import pygame
 
 from src.player import Player
 from src.ui_manager import UIManager
-from src.asset_manager import AssetManager
 from src.camera import Camera
 from src.entity import Entity
 from src.interactable import Interactable
+from src.dialogue import Dialogue
+import src.config as cfg
 
 class Scene:
     def __init__(self, window_surface: pygame.Surface):
-        self.bounds: pygame.Vector2 = pygame.Vector2(10000, 10000)
-        self.entities: list[Entity] = []
-
         self.clear_color: tuple = ()
-
+        self.bounds: pygame.Vector2 = pygame.Vector2(10000, 10000)
         self.player: Player | None = None
+
+        self.entities: list[Entity] = []
+        self.dialogue: Dialogue | None = None
 
         self.clear_surface = pygame.Surface(window_surface.get_size()).convert()
 
@@ -23,7 +24,8 @@ class Scene:
         self.clear_surface.set_alpha(self.clear_color[3])
 
     def input(self, ui_manager: UIManager, keys: pygame.key.ScancodeWrapper) -> None:
-        if ui_manager.is_in_dialogue():
+        if self.dialogue is not None:
+            self.dialogue.input(keys)
             ui_manager.input(keys)
             return
 
@@ -33,7 +35,7 @@ class Scene:
         for entity in self.entities:
             entity.input(keys)
             if isinstance(entity, Interactable) and entity.can_interact(self.player):
-                entity.interact(self.player, ui_manager)
+                self.dialogue = entity.interact(self.player, ui_manager)
 
     def update(self, camera: Camera, ui_manager: UIManager, dt: float) -> None:
         camera.center_at(self.player.pos, self.bounds)
@@ -44,12 +46,26 @@ class Scene:
         self.player.pos.x = pygame.math.clamp(self.player.pos.x, 0, self.bounds.x - self.player.sprite.dimensions.x)
         self.player.pos.y = pygame.math.clamp(self.player.pos.y, 0, self.bounds.y - self.player.sprite.dimensions.y)
 
-        ui_manager.update(dt)
+        if self.dialogue is not None:
+            self.dialogue.update(ui_manager, dt)
+            if self.dialogue.fade == 0:
+                self.dialogue.reset()
+                self.dialogue = None
+
+        ui_manager.update()
 
         for entity in self.entities: entity.update(ui_manager, dt)
 
-    def render(self, window_surface: pygame.Surface, camera: Camera) -> None:
+    def render(self, window_surface: pygame.Surface, camera: Camera, ui_manager: UIManager) -> None:
         window_surface.fill((0, 0, 0))
         window_surface.blit(self.clear_surface, (0, 0))
         for entity in self.entities: entity.render(window_surface, camera)
         self.player.render(window_surface, camera)
+
+        if self.dialogue is not None:
+            dims: pygame.Rect = pygame.Rect(
+                cfg.config.window_dims.x * 1 / 12, cfg.config.window_dims.y - cfg.config.window_dims.y // 3,
+                cfg.config.window_dims.x * 10 / 12, cfg.config.window_dims.y // 3
+            )
+
+            self.dialogue.render(window_surface, dims, ui_manager)
