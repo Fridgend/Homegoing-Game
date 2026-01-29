@@ -18,12 +18,9 @@ class Text:
         elif align_center:
             self.rect = self.font.render(text, True, color).get_rect(center=pos)
         elif align_right:
-            self.rect = self.font.render(text, True, color).get_rect(right=pos)
+            self.rect = self.font.render(text, True, color).get_rect(topright=pos)
         else:
-            self.rect.x = self.pos.x
-            self.rect.y = self.pos.y
-            self.rect.w = dimensions.x
-            self.rect.h = dimensions.h
+            self.rect = pygame.Rect(self.pos.x, self.pos.y, dimensions.x, dimensions.y)
 
 class Button:
     def __init__(self, text: Text, select_pos: pygame.Vector2,
@@ -55,10 +52,10 @@ class UIManager:
         if buttons != self.num_buttons: self.choice = 0
         self.num_buttons = buttons
 
-    def draw_text(self, text: Text) -> None:
+    def draw_text(self, text: Text, surface: pygame.Surface = None) -> None:
         self._render_text(text)
 
-    def draw_button(self, button: Button, button_index: int) -> None:
+    def draw_button(self, button: Button, button_index: int, surface: pygame.Surface = None) -> None:
         self._render_text(button.text)
         if self.choice == button_index:
             self._render_text(
@@ -122,7 +119,7 @@ class UIManager:
             if self.dialogue.fade == 0: self.dialogue.reset()
 
         if self.num_buttons > 0:
-            self.choice = self.choice % self.num_buttons
+            self.choice = pygame.math.clamp(self.choice, 0, self.num_buttons - 1)
 
     def render(self) -> None:
         if self.dialogue is not None:

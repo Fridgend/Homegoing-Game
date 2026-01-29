@@ -1,3 +1,5 @@
+import pdb
+
 import pygame
 
 from src.ui_manager import UIManager, Text, Button
@@ -51,9 +53,7 @@ class Monologue:
         self.char_duration: float = 0
         self.char_speeds: list[float] = char_speeds
 
-        self.fade: int = 0
-        self.fading: int = 0
-        self.choice_fade: int = 0
+        self.choice_fade: int = 255
         self.choice_fading: int = 0
 
         self.is_reset = True
@@ -86,9 +86,7 @@ class Monologue:
         self.char_index[0] = 0
         self.char_index[1] = len(self.lines[0])
 
-        self.fade: int = 0
-        self.fading: int = 0
-        self.choice_fade: int = 0
+        self.choice_fade: int = 255
         self.choice_fading: int = 0
 
         self.is_reset = True
@@ -103,7 +101,7 @@ class Monologue:
             self.line_index[0] += 1
             self.char_index[0] = 0
 
-            if self.final_line():
+            if self.last_rendered_line():
                 if len(self.options) != 0:
                     return self.options[-1][1]
                 return None
@@ -116,9 +114,7 @@ class Monologue:
 
     def update_fade(self, dt: float) -> None:
         self.choice_fading = FADE_SPEED if self.awaiting_choice else -FADE_SPEED
-
-        self.fade = pygame.math.clamp(self.fade + self.fading * dt, 0, 255)
-        self.choice_fade = pygame.math.clamp(self.choice_fade + self.choice_fading * dt, 0, 255)
+        self.choice_fade = pygame.math.clamp(self.choice_fade - self.choice_fading * dt, 0, 255)
 
     def update(self, dt: float) -> None:
         self.update_fade(dt)
@@ -136,14 +132,14 @@ class Monologue:
                   options_start: pygame.Vector2, start: pygame.Vector2) -> None:
 
         ui_manager.draw_text(Text(
-            self.speaker, [255, 255, 255, self.fade],
+            self.speaker, [255, 255, 255, 255],
             start + SPEAKER_TEXT_POS, self.font,
             dimensions=pygame.Vector2(options_start.x - (start.x + SPEAKER_TEXT_POS.x),
                                       surface.get_height() - SPEAKER_TEXT_POS.y)
         ))
 
         ui_manager.draw_text(Text(
-            self.spoken, [255, 255, 255, self.fade],
+            self.spoken, [255, 255, 255, 255],
             start + SPOKEN_TEXT_POS, self.font,
             dimensions=pygame.Vector2(options_start.x - (start.x + SPOKEN_TEXT_POS.x),
                                       surface.get_height() - SPOKEN_TEXT_POS.y)
@@ -176,7 +172,6 @@ class Monologue:
 
         start: pygame.Vector2 = draw_surface_pos.copy()
         if self.speaker_image is not None:
-            self.speaker_image.set_alpha(self.fade)
             draw_surface.blit(self.speaker_image, pygame.Vector2(SPEAKER_IMAGE_MARGIN_LEFT, SPEAKER_IMAGE_MARGIN_TOP))
 
             start += pygame.Vector2(
@@ -196,7 +191,7 @@ class Dialogue:
         self.current_monologue: Monologue = start_monologue
 
         self.playing: bool = False
-        self.fade: int = 0
+        self.fade: int = 255
         self.fading: int = 0
         self.choice_index: int = 0
 
@@ -256,9 +251,9 @@ class Dialogue:
             self.advance_block = False
 
     def update(self, ui_manager: UIManager, dt: float) -> None:
-        self.fade = max(0, min(255, int(self.fade + self.fading * dt)))
+        self.fade = pygame.math.clamp(self.fade - self.fading * dt, 0, 255)
 
-        if self.playing and self.fade == 255:
+        if self.playing and self.fade == 0:
             self.current_monologue.update(dt)
         else:
             self.current_monologue.update_fade(dt)
@@ -280,13 +275,13 @@ class Dialogue:
         ))
 
     def render(self, sub_surface: pygame.Surface, ui_manager: UIManager) -> None:
-        if not self.playing and self.fade == 0: return
+        breakpoint()
+        if not self.playing and self.fade == 255: return
 
         self.draw_dialogue_box()
         self.current_monologue.render(self.draw_surface, cfg.config.dialogue_box_pos, ui_manager)
-        self.draw_surface.set_alpha(self.fade)
-
         sub_surface.blit(self.draw_surface, (0, 0))
+        self.draw_surface.set_alpha(self.fade)
 
         if self.playing and self.current_monologue.line_finished() and not self.current_monologue.awaiting_choice:
             self.draw_triangle(sub_surface)

@@ -33,8 +33,7 @@ class MainMenuBackend(Backend):
         self.switch_menu(game, Menu.MAIN)
 
     def unload(self, game) -> None:
-        game.ui_manager.remove_text()
-        game.ui_manager.remove_buttons()
+        game.ui_manager.set_num_buttons(0)
 
     def switch_menu(self, game, new_menu: Menu) -> None:
         self.state = new_menu

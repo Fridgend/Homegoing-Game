@@ -20,23 +20,12 @@ class PausedBackend(Backend):
 
         self.center_pos = game.window_surface.get_rect().center
         self.bottom_pos = game.window_surface.get_rect().midbottom
-        self.top_pos = game.window_surface.get_rect().midtop
+        self.top_pos = game.window_surface.get_rect().midtop 
 
-        game.ui_manager.draw_button(Button(Text("Continue", [255, 255, 255, 255],
-                                                self.center_pos + pygame.Vector2(0, -70), True, game.asset_manager.get_font("snake64")
-                                                ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]))
-
-        game.ui_manager.draw_button(Button(Text("Exit to Main Menu", [255, 255, 255, 255],
-                                                self.center_pos, True, game.asset_manager.get_font("snake64")
-                                                ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]))
-
-        game.ui_manager.draw_button(Button(Text("Exit to Desktop", [255, 255, 255, 255],
-                                                self.center_pos + pygame.Vector2(0, 70), True, game.asset_manager.get_font("snake64")
-                                                ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]))
+        game.ui_manager.set_num_buttons(3)
 
     def unload(self, game) -> None:
-        game.ui_manager.remove_text()
-        game.ui_manager.remove_buttons()
+        game.ui_manager.set_num_buttons(0)
 
     def input(self, game) -> None:
         for event in pygame.event.get():
@@ -61,6 +50,7 @@ class PausedBackend(Backend):
         game.ui_manager.input(keys)
 
     def update(self, game) -> None:
+        game.ui_manager.update(game.delta_time)
         self.fade = max(0, min(255, int(self.fade - self.fading * game.delta_time)))
         if self.next_backend and (self.fade == 255 or self.fading == 0):
             if self.next_backend == GameState.QUITTING:
@@ -70,7 +60,25 @@ class PausedBackend(Backend):
 
     def render(self, game) -> None:
         game.window_surface.fill((0, 0, 0))
-        game.ui_manager.render()
         self.overlay.set_alpha(self.fade)
+
+        game.ui_manager.draw_button(Button(Text(
+            "Continue", [255, 255, 255, 255],
+            self.center_pos + pygame.Vector2(0, -70), game.asset_manager.get_font("snake64"),
+            align_center=True
+        ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]), 0)
+
+        game.ui_manager.draw_button(Button(Text(
+            "Exit to Main Menu", [255, 255, 255, 255],
+            self.center_pos, game.asset_manager.get_font("snake64"),
+            align_center=True
+        ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]), 1)
+
+        game.ui_manager.draw_button(Button(Text(
+            "Exit to Desktop", [255, 255, 255, 255],
+            self.center_pos + pygame.Vector2(0, 70), game.asset_manager.get_font("snake64"),
+            align_center=True
+        ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]), 2)
+
         game.window_surface.blit(self.overlay, (0, 0))
         pygame.display.flip()
