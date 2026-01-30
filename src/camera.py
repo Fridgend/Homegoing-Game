@@ -47,7 +47,7 @@ class Camera:
             offset_x = random.uniform(-current_x, current_x)
             offset_y = random.uniform(-current_y, current_y)
             
-            self.shake_duration -= delta_time
+            self.shake_duration -= dt 
             return pygame.Vector2(offset_x, offset_y)
         
         self.shake_amount.x = 0
