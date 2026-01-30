@@ -68,11 +68,7 @@ class Game:
             self.backend.render(self)
 
             fps: float = self.clock.get_fps()
-            if fps < FPS_warn: print("LAG SPIKE DETECTED:", fps, "FPS")
-
-            keys: pygame.key.ScancodeWrapper = pygame.key.get_pressed()
-            if keys[pygame.K_f]:
-                print(fps)
+            if fps < FPS_warn: print("LAG SPIKE DETECTED:", fps, "FPS") 
 
         pygame.quit()
         sys.exit()

@@ -46,7 +46,7 @@ class PlayingBackend(Backend):
 
         game.scene_manager.update(game.camera, game.ui_manager, game.delta_time)
         self.fade = max(0, min(255, int(self.fade - self.fading * game.delta_time)))
-        if self.next_backend and (self.fade == 255 or self.fading == 0):
+        if self.next_backend and self.fade == 255:
             if self.next_backend == GameState.QUITTING:
                 game.running = False
                 return
