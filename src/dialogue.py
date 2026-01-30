@@ -9,7 +9,7 @@ SPEAKER_IMAGE_MARGIN_TOP = 15
 
 SPEAKER_TEXT_POS = pygame.Vector2(30, 15)
 SPOKEN_TEXT_POS = pygame.Vector2(60, 80)
-OPTIONS_START_RIGHT_PROPORTION = 1 / 5
+OPTIONS_START_RIGHT_PROPORTION = 1 / 4
 OPTIONS_DISTANCE_BETWEEN = 15
 OPTIONS_INDICATOR_OFFSET_X = 40
 
@@ -170,7 +170,7 @@ class Monologue:
 
     def render(self, draw_surface: pygame.Surface, dims: pygame.Rect, ui_manager: UIManager) -> None:
         options_start: pygame.Vector2 = pygame.Vector2(
-            dims.width - pygame.display.get_window_size()[0] * OPTIONS_START_RIGHT_PROPORTION, 0
+            dims.width - dims.width * OPTIONS_START_RIGHT_PROPORTION, 0
         )
 
         start: pygame.Vector2 = pygame.Vector2(0, 0)
@@ -269,10 +269,10 @@ class Dialogue:
             0, 0, self.draw_surface.get_width(), self.draw_surface.get_height()
         ), width=cfg.config.dialogue_box_outline_thickness)
 
-        pygame.draw.rect(self.draw_surface, (0, 0, 0), (
+        pygame.draw.rect(self.draw_surface, cfg.config.dialogue_box_background_color, (
             cfg.config.dialogue_box_outline_thickness, cfg.config.dialogue_box_outline_thickness,
-            self.draw_surface.get_width() - cfg.config.dialogue_box_outline_thickness * 2,
-            self.draw_surface.get_height() - cfg.config.dialogue_box_outline_thickness
+            cfg.config.dialogue_box_dims.x - cfg.config.dialogue_box_outline_thickness * 2,
+            cfg.config.dialogue_box_dims.y - cfg.config.dialogue_box_outline_thickness
         ))
 
     def render(self, surface: pygame.Surface, dims: pygame.Rect, ui_manager: UIManager) -> None:

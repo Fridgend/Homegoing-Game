@@ -11,7 +11,7 @@ import src.config as cfg
 class Scene:
     def __init__(self, window_surface: pygame.Surface):
         self.clear_color: tuple = ()
-        self.bounds: pygame.Vector2 = pygame.Vector2(10000, 10000)
+        self.bounds: pygame.Vector2 = pygame.Vector2(100, 100)
         self.player: Player | None = None
 
         self.entities: list[Entity] = []
@@ -43,8 +43,8 @@ class Scene:
         self.player.update(self.entities, ui_manager, dt)
         self.player.grid_pos.x = pygame.math.clamp(self.player.grid_pos.x, 0, self.bounds.x)
         self.player.grid_pos.y = pygame.math.clamp(self.player.grid_pos.y, 0, self.bounds.y)
-        self.player.pos.x = pygame.math.clamp(self.player.pos.x, 0, self.bounds.x - self.player.sprite.dimensions.x)
-        self.player.pos.y = pygame.math.clamp(self.player.pos.y, 0, self.bounds.y - self.player.sprite.dimensions.y)
+        self.player.pos.x = pygame.math.clamp(self.player.pos.x, 0, self.bounds.x * cfg.config.tile_size - self.player.sprite.dimensions.x)
+        self.player.pos.y = pygame.math.clamp(self.player.pos.y, 0, self.bounds.y * cfg.config.tile_size - self.player.sprite.dimensions.y)
 
         if self.dialogue is not None:
             self.dialogue.update(ui_manager, dt)
@@ -65,8 +65,8 @@ class Scene:
 
         if self.dialogue is not None:
             dims: pygame.Rect = pygame.Rect(
-                cfg.config.window_dims.x * 1 / 12, cfg.config.window_dims.y - cfg.config.window_dims.y // 3,
-                cfg.config.window_dims.x * 10 / 12, cfg.config.window_dims.y // 3
+                cfg.config.dialogue_box_pos.x, cfg.config.dialogue_box_pos.y,
+                cfg.config.dialogue_box_dims.x, cfg.config.dialogue_box_dims.y
             )
 
             self.dialogue.render(window_surface, dims, ui_manager)
