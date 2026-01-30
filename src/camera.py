@@ -20,13 +20,13 @@ class Camera:
 
         self.zoom_level: float = 1
 
-    def center(self, pos: pygame.Vector2, bounds: pygame.Vector2) -> None:
+    def center_at(self, pos: pygame.Vector2, bounds: pygame.Vector2) -> None:
         self.pos = pos - self.window_center
         self.clamp_pos(bounds)
 
     def clamp_pos(self, bounds: pygame.Vector2) -> None:
-        self.pos.x = max(0, min(self.pos.x, bounds.x - cfg.config.window_dims.x))
-        self.pos.y = max(0, min(self.pos.y, bounds.y - cfg.config.window_dims.y))
+        self.pos.x = pygame.math.clamp(self.pos.x, 0, (bounds.x - 1) * cfg.config.tile_size - cfg.config.window_dims.x)
+        self.pos.y = pygame.math.clamp(self.pos.y, 0, (bounds.y - 1) * cfg.config.tile_size - cfg.config.window_dims.y)
 
     def update(self, dt: float) -> None:
         self.shake_offset = self._get_shake_offset(dt)
@@ -47,7 +47,7 @@ class Camera:
             offset_x = random.uniform(-current_x, current_x)
             offset_y = random.uniform(-current_y, current_y)
             
-            self.shake_duration -= delta_time
+            self.shake_duration -= dt 
             return pygame.Vector2(offset_x, offset_y)
         
         self.shake_amount.x = 0

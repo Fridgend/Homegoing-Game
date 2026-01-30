@@ -26,6 +26,7 @@ class Game:
         cfg.config.set_window_dimensions(self.window_surface.get_size())
 
         self.asset_manager: AssetManager = AssetManager(asset_guide)
+        AssetManager.NULL_IMAGE = self.asset_manager.get_image("null")
         self.scene_manager: SceneManager = SceneManager(scene_guide, self.asset_manager, self.window_surface)
         self.ui_manager: UIManager = UIManager(self.window_surface)
         
@@ -34,7 +35,7 @@ class Game:
         self.clock: pygame.time.Clock = pygame.time.Clock()
         self.delta_time: float = 0
 
-        self.state = game_state
+        self.state: GameState = game_state
         self.state_backends: dict = {
             GameState.MAIN_MENU: MainMenuBackend(),
             GameState.PAUSED: PausedBackend(),
@@ -43,17 +44,17 @@ class Game:
             GameState.ENTITY_CONFIGURER: EntityConfigurerBackend()
         }
         self.backend: Backend | None = None
-        self.next_backend = None
+        self.next_backend: Backend | None = None
         self.set_backend(self.state)
 
-    def set_backend(self, state: GameState):
+    def set_backend(self, state: GameState) -> None:
         if state == GameState.QUITTING:
             self.running = False
             return
         self.next_backend = self.state_backends[state]
         self.state = state
 
-    def run(self, FPS: int, FPS_warn: int):
+    def run(self, FPS: int, FPS_warn: int) -> None:
         while self.running:
             self.delta_time = self.clock.tick(FPS) / 1000.0
 
@@ -67,7 +68,7 @@ class Game:
             self.backend.render(self)
 
             fps: float = self.clock.get_fps()
-            if fps < FPS_warn: print("LAG SPIKE DETECTED:", fps, "FPS")
+            if fps < FPS_warn: print("LAG SPIKE DETECTED:", fps, "FPS") 
 
         pygame.quit()
         sys.exit()

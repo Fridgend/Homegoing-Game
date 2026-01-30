@@ -9,7 +9,7 @@ from src.game_backends.backend import GameState
 def main():
     pygame.init()
 
-    parser = argparse.ArgumentParser()
+    parser: argparse.ArgumentParser = argparse.ArgumentParser()
     parser.add_argument("-sb", action="store_true", dest="scene_editor", default=False)
     parser.add_argument("-ec", action="store_true", dest="entity_configurer", default=False)
     res = parser.parse_args()
@@ -31,4 +31,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

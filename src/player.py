@@ -5,6 +5,9 @@ from src.camera import Camera
 from src.sprite import Sprite
 from src.sprite import dir_to_str
 from src.ui_manager import UIManager
+from src.asset_manager import AssetManager
+
+import src.config as cfg
 
 class Player(Entity):
     def __init__(self, grid_pos: pygame.Vector2, sprite: Sprite, move_duration: float):
@@ -16,12 +19,12 @@ class Player(Entity):
         self.move_time: float = 0.0
         self.move_duration: float = move_duration
 
-    def set_sprite(self, sprite: Sprite, hit_box: pygame.Vector2):
+    def set_sprite(self, sprite: Sprite, hit_box: pygame.Vector2) -> None:
         self.sprite = sprite
         self.hit_box = hit_box
-        self.pos = self.grid_pos * 32
+        self.pos = self.grid_pos * cfg.config.tile_size
 
-    def input(self, keys: pygame.key.ScancodeWrapper):
+    def input(self, keys: pygame.key.ScancodeWrapper) -> None:
         if self.moving:
             return
         
@@ -37,7 +40,7 @@ class Player(Entity):
             self.moving = True
             self.move_time = 0.0
 
-    def update(self, entities: list[Entity], ui_manager: UIManager, dt: float):
+    def update(self, entities: list[Entity], ui_manager: UIManager, dt: float) -> None:
         if not self.moving:
             return
 
@@ -63,6 +66,7 @@ class Player(Entity):
             self.grid_pos += self.move_dir
             self.moving = False
 
-    def render(self, surface: pygame.Surface, camera: Camera):
+    def render(self, surface: pygame.Surface, camera: Camera) -> None:
         centered: pygame.Vector2 = self.pos - self.sprite.dimensions / 2
-        surface.blit(self.sprite.get(dir_to_str(self.facing)), camera.world_pos_to_view_pos(centered))
+        surface.blit(self.sprite.get(dir_to_str(self.facing)) or AssetManager.NULL_IMAGE,
+                     camera.world_pos_to_view_pos(centered))

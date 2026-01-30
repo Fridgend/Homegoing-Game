@@ -13,21 +13,21 @@ class NPC(Entity, Interactable):
         Interactable.__init__(self)
         self.dialogue: Dialogue = dialogue
 
-    def can_interact(self, player: Player):
+    def can_interact(self, player: Player) -> bool:
         return self.grid_pos.distance_to(player.grid_pos + player.facing) == 0
     
-    def interact(self, player: Player, ui_manager: UIManager):
+    def interact(self, player: Player, ui_manager: UIManager) -> Dialogue | None:
         if self.block:
-            return
+            return None
         self.look_at(player.grid_pos)
         self.dialogue.start()
-        ui_manager.set_dialogue(self.dialogue)
         self.block = True
+        return self.dialogue
 
-    def input(self, keys: pygame.key.ScancodeWrapper):
+    def input(self, keys: pygame.key.ScancodeWrapper) -> None:
         pass
 
-    def update(self, ui_manager: UIManager, dt: float):
+    def update(self, ui_manager: UIManager, dt: float) -> None:
         self.sprite.update(dt)
         if self.block and not self.dialogue.playing:
             self.look_at(self.grid_pos + pygame.Vector2(0, 1))
