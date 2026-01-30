@@ -13,7 +13,7 @@ from src.game_backends.playing import PlayingBackend
 from src.game_backends.paused import PausedBackend
 from src.game_backends.scene_builder import SceneBuilderBackend
 from src.game_backends.entity_configurer import EntityConfigurerBackend
-from src.game_backends.backend import GameState
+from src.game_backends.backend import GameState, Backend
 
 class Game:
     def __init__(self, asset_guide: str, scene_guide: str, config_path: str, game_state: GameState = GameState.MAIN_MENU):
@@ -42,7 +42,7 @@ class Game:
             GameState.SCENE_BUILDER: SceneBuilderBackend(),
             GameState.ENTITY_CONFIGURER: EntityConfigurerBackend()
         }
-        self.backend = None
+        self.backend: Backend | None = None
         self.next_backend = None
         self.set_backend(self.state)
 

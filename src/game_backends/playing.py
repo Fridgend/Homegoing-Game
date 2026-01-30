@@ -15,7 +15,7 @@ class PlayingBackend(Backend):
         self.next_backend = None
         self.fade = 0
         self.fading = 500
-
+ 
     def unload(self, game):
         pass
 
@@ -39,6 +39,8 @@ class PlayingBackend(Backend):
         game.scene_manager.input(game.ui_manager, keys)
 
     def update(self, game):
+        game.camera.update(game.delta_time)
+
         game.scene_manager.update(game.camera, game.ui_manager, game.delta_time)
         self.fade = max(0, min(255, int(self.fade + self.fading * game.delta_time)))
         if self.next_backend and (self.fade == 0 or self.fading == 0):
