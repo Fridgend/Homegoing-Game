@@ -130,7 +130,7 @@ class Monologue:
             self.char_index[0] += 1
             self.spoken += self.lines[self.line_index[0]][self.char_index[0] - 1]
 
-        self.awaiting_choice = len(self.options) > 1 and self.line_finished() and self.last_rendered_line()
+        self.awaiting_choice = len(self.options) > 0 and self.line_finished() and self.last_rendered_line()
 
     def draw_text(self, surface: pygame.Surface, ui_manager: UIManager,
                   options_start: pygame.Vector2, start: pygame.Vector2, dims: pygame.Rect) -> None:
@@ -266,7 +266,7 @@ class Dialogue:
 
     def draw_dialogue_box(self):
         pygame.draw.rect(self.draw_surface, cfg.config.dialogue_box_outline_color, (
-            0, 0, self.draw_surface.get_width(), self.draw_surface.get_height()
+            0, 0, cfg.config.dialogue_box_dims.x, cfg.config.dialogue_box_dims.y
         ), width=cfg.config.dialogue_box_outline_thickness)
 
         pygame.draw.rect(self.draw_surface, cfg.config.dialogue_box_background_color, (
