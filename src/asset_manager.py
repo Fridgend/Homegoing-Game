@@ -7,12 +7,12 @@ from src.sprite import Sprite
 class AssetManager:
     NULL_IMAGE: pygame.Surface | None = None
 
-    def __init__(self, asset_guide: str):
-        self.audio_assets: dict[str, pygame.mixer.Sound] = {}
-        self.font_assets: dict[str, pygame.font.Font] = {}
-        self.image_assets: dict[str, pygame.Surface] = {}
-        self.sprites: dict[str, Sprite] = {}
+    AUDIO_ASSETS: dict[str, pygame.mixer.Sound] = {}
+    FONT_ASSETS: dict[str, pygame.font.Font] = {}
+    IMAGE_ASSETS: dict[str, pygame.Surface] = {}
+    SPRITES: dict[str, Sprite] = {}
 
+    def __init__(self, asset_guide: str):
         with open(asset_guide, "r") as file:
             obj = json.load(file)
 
@@ -36,32 +36,40 @@ class AssetManager:
                             direction=sprite["direction"],
                             frame_time=sprite["frame_time"])
 
-    def add_audio(self, name: str, audio_path: str) -> None:
-        self.audio_assets[name] = pygame.mixer.Sound(file=audio_path)
+    @classmethod
+    def add_audio(cls, name: str, audio_path: str) -> None:
+        cls.AUDIO_ASSETS[name] = pygame.mixer.Sound(file=audio_path)
 
-    def add_font(self, name: str, font_path: str, font_size: int) -> None:
-        self.font_assets[name + str(font_size)] = pygame.font.Font(font_path, font_size)
+    @classmethod
+    def add_font(cls, name: str, font_path: str, font_size: int) -> None:
+        cls.FONT_ASSETS[name + str(font_size)] = pygame.font.Font(font_path, font_size)
 
-    def add_image(self, name: str, image_path: str) -> None:
-        self.image_assets[name] = pygame.image.load(image_path).convert_alpha()
+    @classmethod
+    def add_image(cls, name: str, image_path: str) -> None:
+        cls.IMAGE_ASSETS[name] = pygame.image.load(image_path).convert_alpha()
 
-    def add_sprite(self, name: str, sprite_sheet: str, dimensions: pygame.Vector2,
+    @classmethod
+    def add_sprite(cls, name: str, sprite_sheet: str, dimensions: pygame.Vector2,
                    animations: list[str], animation_layout: str,
                    num_frames: int, direction: bool, frame_time: float) -> None:
-        self.sprites[name] = Sprite(
-            self.image_assets[sprite_sheet], dimensions,
+        cls.SPRITES[name] = Sprite(
+            cls.IMAGE_ASSETS[sprite_sheet], dimensions,
             animations, animation_layout == "rows",
             num_frames, direction, frame_time
         )
 
-    def get_audio(self, name: str) -> pygame.mixer.Sound:
-        return self.audio_assets[name]
+    @classmethod
+    def get_audio(cls, name: str) -> pygame.mixer.Sound | None:
+        return cls.AUDIO_ASSETS.get(name, None)
 
-    def get_font(self, name: str) -> pygame.font.Font:
-        return self.font_assets[name]
+    @classmethod
+    def get_font(cls, name: str) -> pygame.font.Font | None:
+        return cls.FONT_ASSETS.get(name, None)
 
-    def get_image(self, name: str) -> pygame.Surface:
-        return self.image_assets[name]
+    @classmethod
+    def get_image(cls, name: str) -> pygame.Surface | None:
+        return cls.IMAGE_ASSETS.get(name, None)
 
-    def get_sprite(self, name: str) -> Sprite:
-        return self.sprites[name]
+    @classmethod
+    def get_sprite(cls, name: str) -> Sprite | None:
+        return cls.SPRITES.get(name, None)

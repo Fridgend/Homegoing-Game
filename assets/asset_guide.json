@@ -1,6 +1,9 @@
 {
   "audio": [
-
+    {
+      "name": "effia_theme",
+      "path": "assets/audio/effia_theme.mp3"
+    }
   ],
 
   "fonts": [

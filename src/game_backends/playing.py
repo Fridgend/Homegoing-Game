@@ -12,6 +12,8 @@ class PlayingBackend(Backend):
             self.is_setup = True
             game.scene_manager.load_scene("test")
 
+        game.scene_manager.scenes[game.scene_manager.current_scene].load()
+
         self.next_backend = None
         self.fade = 255
         self.fading = 500
@@ -19,7 +21,7 @@ class PlayingBackend(Backend):
         self.overlay.fill((0, 0, 0))
 
     def unload(self, game) -> None:
-        pass
+        game.scene_manager.scenes[game.scene_manager.current_scene].unload()
 
     def input(self, game) -> None:
         for event in pygame.event.get():

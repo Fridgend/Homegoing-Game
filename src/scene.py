@@ -6,22 +6,37 @@ from src.camera import Camera
 from src.entity import Entity
 from src.interactable import Interactable
 from src.dialogue import Dialogue
-import src.config as cfg
+
+from src.config import Config
+
+BACKGROUND_MUSIC_FADE_MS = 1000
 
 class Scene:
-    def __init__(self, window_surface: pygame.Surface):
-        self.clear_color: tuple = ()
-        self.bounds: pygame.Vector2 = pygame.Vector2(100, 100)
-        self.player: Player | None = None
+    def __init__(self, void_color: tuple[int, int, int, int], bounds: pygame.Vector2,
+                 background_music: pygame.mixer.Sound
+                 ):
+        self.void_color: tuple[int, int, int, int] = void_color
+        self.background_music: pygame.mixer.Sound = background_music
+        self.bounds: pygame.Vector2 = bounds
 
+        self.player: Player | None = None
         self.entities: list[Entity] = []
         self.dialogue: Dialogue | None = None
 
-        self.clear_surface = pygame.Surface(window_surface.get_size()).convert()
+        self.loaded: bool = False
+        self.void_surface = pygame.Surface(Config.WINDOW_DIMS).convert()
+        self.void_surface.fill(self.void_color[:3])
+        self.void_surface.set_alpha(self.void_color[3])
 
     def load(self) -> None:
-        self.clear_surface.fill(self.clear_color[:3])
-        self.clear_surface.set_alpha(self.clear_color[3])
+        if self.loaded: return
+        self.loaded = True
+        self.background_music.play(loops=-1, fade_ms=BACKGROUND_MUSIC_FADE_MS)
+
+    def unload(self) -> None:
+        if not self.loaded: return
+        self.loaded = False
+        self.background_music.fadeout(BACKGROUND_MUSIC_FADE_MS)
 
     def input(self, ui_manager: UIManager, keys: pygame.key.ScancodeWrapper) -> None:
         if self.dialogue is not None:
@@ -43,8 +58,10 @@ class Scene:
         self.player.update(self.entities, ui_manager, dt)
         self.player.grid_pos.x = pygame.math.clamp(self.player.grid_pos.x, 0, self.bounds.x)
         self.player.grid_pos.y = pygame.math.clamp(self.player.grid_pos.y, 0, self.bounds.y)
-        self.player.pos.x = pygame.math.clamp(self.player.pos.x, 0, self.bounds.x * cfg.config.tile_size - self.player.sprite.dimensions.x)
-        self.player.pos.y = pygame.math.clamp(self.player.pos.y, 0, self.bounds.y * cfg.config.tile_size - self.player.sprite.dimensions.y)
+        self.player.pos.x = pygame.math.clamp(self.player.pos.x, 0,
+                                              self.bounds.x * Config.TILE_SIZE - self.player.sprite.dimensions.x)
+        self.player.pos.y = pygame.math.clamp(self.player.pos.y, 0,
+                                              self.bounds.y * Config.TILE_SIZE - self.player.sprite.dimensions.y)
 
         if self.dialogue is not None:
             self.dialogue.update(ui_manager, dt)
@@ -59,14 +76,14 @@ class Scene:
 
     def render(self, window_surface: pygame.Surface, camera: Camera, ui_manager: UIManager) -> None:
         window_surface.fill((0, 0, 0))
-        window_surface.blit(self.clear_surface, (0, 0))
+        window_surface.blit(self.void_surface, (0, 0))
         for entity in self.entities: entity.render(window_surface, camera)
         self.player.render(window_surface, camera)
 
         if self.dialogue is not None:
             dims: pygame.Rect = pygame.Rect(
-                cfg.config.dialogue_box_pos.x, cfg.config.dialogue_box_pos.y,
-                cfg.config.dialogue_box_dims.x, cfg.config.dialogue_box_dims.y
+                Config.DIALOGUE_BOX_POS.x, Config.DIALOGUE_BOX_POS.y,
+                Config.DIALOGUE_BOX_DIMS.x, Config.DIALOGUE_BOX_DIMS.y
             )
 
             self.dialogue.render(window_surface, dims, ui_manager)

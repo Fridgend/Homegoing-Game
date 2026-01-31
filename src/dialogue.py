@@ -1,8 +1,7 @@
 import pygame
 
 from src.ui_manager import UIManager, Text, Button
-
-import src.config as cfg
+from src.config import Config
 
 SPEAKER_IMAGE_MARGIN_LEFT = 15
 SPEAKER_IMAGE_MARGIN_TOP = 15
@@ -29,8 +28,8 @@ class Monologue:
         self.lines: list[str] = lines
         self.font = font
         self.speaker_image: pygame.Surface | None = speaker_image
-        if self.speaker_image is not None and self.speaker_image.get_width() == cfg.config.tile_size:
-            size: int = cfg.config.dialogue_box_dims.y - SPEAKER_IMAGE_MARGIN_TOP * 2
+        if self.speaker_image is not None and self.speaker_image.get_width() == Config.TILE_SIZE:
+            size: int = Config.DIALOGUE_BOX_DIMS.y - SPEAKER_IMAGE_MARGIN_TOP * 2
             self.speaker_image = pygame.transform.scale(self.speaker_image, pygame.Vector2(size, size))
 
         self.awaiting_choice: bool = False
@@ -199,7 +198,7 @@ class Dialogue:
 
         self.advance_block: bool = True
 
-        self.draw_surface: pygame.Surface = pygame.Surface(cfg.config.dialogue_box_dims).convert()
+        self.draw_surface: pygame.Surface = pygame.Surface(Config.DIALOGUE_BOX_DIMS).convert()
 
         self.tri_coords: list[pygame.Vector2] = [
             pygame.Vector2(-1, -1),
@@ -262,17 +261,17 @@ class Dialogue:
         tri_pos = pygame.Vector2(dims.x, dims.y) + pygame.Vector2(dims.width - TRIANGLE_MARGIN_RIGHT,
                                                                   dims.height - TRIANGLE_MARGIN_BOTTOM)
 
-        pygame.draw.polygon(surface, cfg.config.dialogue_triangle_color, [c * 10 + tri_pos for c in self.tri_coords])
+        pygame.draw.polygon(surface, Config.DIALOGUE_TRIANGLE_COLOR, [c * 10 + tri_pos for c in self.tri_coords])
 
     def draw_dialogue_box(self):
-        pygame.draw.rect(self.draw_surface, cfg.config.dialogue_box_outline_color, (
-            0, 0, cfg.config.dialogue_box_dims.x, cfg.config.dialogue_box_dims.y
-        ), width=cfg.config.dialogue_box_outline_thickness)
+        pygame.draw.rect(self.draw_surface, Config.DIALOGUE_BOX_OUTLINE_COLOR, (
+            0, 0, Config.DIALOGUE_BOX_DIMS.x, Config.DIALOGUE_BOX_DIMS.y
+        ), width=Config.DIALOGUE_BOX_OUTLINE_THICKNESS)
 
-        pygame.draw.rect(self.draw_surface, cfg.config.dialogue_box_background_color, (
-            cfg.config.dialogue_box_outline_thickness, cfg.config.dialogue_box_outline_thickness,
-            cfg.config.dialogue_box_dims.x - cfg.config.dialogue_box_outline_thickness * 2,
-            cfg.config.dialogue_box_dims.y - cfg.config.dialogue_box_outline_thickness
+        pygame.draw.rect(self.draw_surface, Config.DIALOGUE_BOX_BACKGROUND_COLOR, (
+            Config.DIALOGUE_BOX_OUTLINE_THICKNESS, Config.DIALOGUE_BOX_OUTLINE_THICKNESS,
+            Config.DIALOGUE_BOX_DIMS.x - Config.DIALOGUE_BOX_OUTLINE_THICKNESS * 2,
+            Config.DIALOGUE_BOX_DIMS.y - Config.DIALOGUE_BOX_OUTLINE_THICKNESS
         ))
 
     def render(self, surface: pygame.Surface, dims: pygame.Rect, ui_manager: UIManager) -> None:

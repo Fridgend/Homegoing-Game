@@ -7,7 +7,7 @@ from src.sprite import dir_to_str
 from src.ui_manager import UIManager
 from src.asset_manager import AssetManager
 
-import src.config as cfg
+from src.config import Config
 
 class Player(Entity):
     def __init__(self, grid_pos: pygame.Vector2, sprite: Sprite, move_duration: float):
@@ -22,7 +22,7 @@ class Player(Entity):
     def set_sprite(self, sprite: Sprite, hit_box: pygame.Vector2) -> None:
         self.sprite = sprite
         self.hit_box = hit_box
-        self.pos = self.grid_pos * cfg.config.tile_size
+        self.pos = self.grid_pos * Config.TILE_SIZE
 
     def input(self, keys: pygame.key.ScancodeWrapper) -> None:
         if self.moving:

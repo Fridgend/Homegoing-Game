@@ -1,18 +1,18 @@
 import pygame
 import random
 
-import src.config as cfg
+from src.config import Config
 
 def grid_pos_to_view_pos(grid_pos: pygame.Vector2) -> pygame.Vector2:
-    return grid_pos * cfg.config.tile_size
+    return grid_pos * Config.TILE_SIZE
 
 
 class Camera:
     def __init__(self):
         self.pos: pygame.Vector2 = pygame.Vector2(0, 0)
 
-        self.window_dimensions = cfg.config.window_dims
-        self.window_center = cfg.config.window_dims // 2
+        self.window_dimensions = Config.WINDOW_DIMS
+        self.window_center = Config.WINDOW_DIMS // 2
 
         self.shake_offset: pygame.Vector2 = pygame.Vector2(0, 0)
         self.shake_amount: pygame.Vector2 = pygame.Vector2(0, 0)
@@ -25,8 +25,8 @@ class Camera:
         self.clamp_pos(bounds)
 
     def clamp_pos(self, bounds: pygame.Vector2) -> None:
-        self.pos.x = pygame.math.clamp(self.pos.x, 0, (bounds.x - 1) * cfg.config.tile_size - cfg.config.window_dims.x)
-        self.pos.y = pygame.math.clamp(self.pos.y, 0, (bounds.y - 1) * cfg.config.tile_size - cfg.config.window_dims.y)
+        self.pos.x = pygame.math.clamp(self.pos.x, 0, (bounds.x - 1) * Config.TILE_SIZE - Config.WINDOW_DIMS.x)
+        self.pos.y = pygame.math.clamp(self.pos.y, 0, (bounds.y - 1) * Config.TILE_SIZE - Config.WINDOW_DIMS.y)
 
     def update(self, dt: float) -> None:
         self.shake_offset = self._get_shake_offset(dt)

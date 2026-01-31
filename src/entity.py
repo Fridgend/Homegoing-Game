@@ -6,7 +6,7 @@ from src.sprite import Sprite
 from src.sprite import dir_to_str
 from src.asset_manager import AssetManager
 
-import src.config as cfg
+from src.config import Config
 
 class Entity:
     def __init__(self, grid_pos: pygame.Vector2, sprite: Sprite, collision: bool):
@@ -45,7 +45,7 @@ class Entity:
         self.sprite.update(dt)
 
     def render(self, surface: pygame.Surface, camera: Camera) -> None:
-        centered: pygame.Vector2 = self.grid_pos * cfg.config.tile_size - self.sprite.dimensions / 2
-        centered.x -= self.sprite.dimensions.y - cfg.config.tile_size
+        centered: pygame.Vector2 = self.grid_pos * Config.TILE_SIZE - self.sprite.dimensions / 2
+        centered.x -= self.sprite.dimensions.y - Config.TILE_SIZE
         surface.blit(self.sprite.get(dir_to_str(self.facing)) or AssetManager.NULL_IMAGE,
                      camera.world_pos_to_view_pos(centered))
