@@ -5,7 +5,6 @@ from src.scene_manager import SceneManager
 from src.asset_manager import AssetManager
 from src.ui_manager import UIManager
 from src.camera import Camera
-
 from src.game_backends.main_menu import MainMenuBackend
 from src.game_backends.playing import PlayingBackend
 from src.game_backends.paused import PausedBackend
