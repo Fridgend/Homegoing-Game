@@ -4,6 +4,7 @@ import pygame
 
 from src.player import Player
 from src.route_tracker import Conditions
+from src.map_element import MapElement 
 
 
 class SceneTransition(enum.Enum):
@@ -21,9 +22,11 @@ def str_to_scene_transition(string: str) -> SceneTransition:
             return SceneTransition.TELEPORT
 
 class SceneEntrance:
-    def __init__(self, rect: pygame.Rect, spawn: pygame.Vector2,
+    def __init__(self, rect: pygame.Rect, elements: list[MapElement],
+                 spawn: pygame.Vector2,
                  transition: SceneTransition, transition_time: float):
         self.rect: pygame.Rect = rect
+        self.elements: list[MapElement] = elements
         self.spawn: pygame.Vector2 = spawn
         self.transition: SceneTransition = transition
         self.transition_time: float = transition_time
@@ -44,10 +47,12 @@ class SceneEntrance:
                 self.complete = True
 
 class SceneExit:
-    def __init__(self, rect: pygame.Rect, require_interact: bool,
+    def __init__(self, rect: pygame.Rect, elements: list[MapElement],
+                 require_interact: bool,
                  transition: SceneTransition, transition_time: float,
                  next_scene: str, next_entrance: str, conditions: Conditions):
         self.rect: pygame.Rect = rect
+        self.map_elements: list[MapElement] = elements
         self.require_interact: bool = require_interact
         self.transition: SceneTransition = transition
         self.transition_time: float = transition_time

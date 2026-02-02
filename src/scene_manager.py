@@ -103,9 +103,29 @@ def parse_scene(scene_obj: dict) -> Scene:
     entrances_obj: list = scene_obj.get("entrances", [])
     for entrance_obj in entrances_obj:
         rect_obj: dict = entrance_obj.get("rect", {})
+        rect: pygame.Rect = pygame.Rect(rect_obj.get("x", 0), rect_obj.get("y", 0), rect_obj.get("w", 0), rect_obj.get("h", 0))
+
+        p_map_elements: list[MapElement] = []
+        for element in map_elements:
+            if element.rect.colliderect(rect):
+                p_map_elements.append(element)
+
+        scene_map_elements: list[MapElement] = []
+        for x in range(rect.x, rect.x + rect.w):
+            for y in range(rect.y, rect.y + rect.h):
+                next_rect: pygame.Rect = pygame.Rect(x, y, 1, 1)
+                for elem in p_map_elements:
+                    if elem.rect.colliderect(next_rect):
+                        scene_map_elements.append(MapElement(
+                            rect=next_rect,
+                            image=elem.render_surface.subsurface((0, 0), elem.dims * Config.TILE_SIZE),
+                            collision=elem.collision
+                        ))
+
         spawn_obj: dict = entrance_obj.get("spawn", {})
         entrances[entrance_obj.get("identifier", "")] = SceneEntrance(
-            rect=pygame.Rect(rect_obj.get("x", 0), rect_obj.get("y", 0), rect_obj.get("w", 0), rect_obj.get("h", 0)),
+            rect=rect,
+            elements=scene_map_elements,
             spawn=pygame.Vector2(spawn_obj.get("x", 0), spawn_obj.get("y", 0)),
             transition=str_to_scene_transition(entrance_obj.get("transition", "")),
             transition_time=entrance_obj.get("transition_time", 0)
@@ -115,8 +135,28 @@ def parse_scene(scene_obj: dict) -> Scene:
     exits_obj: list = scene_obj.get("exits", [])
     for exit_obj in exits_obj:
         rect_obj: dict = exit_obj.get("rect", {})
+        rect: pygame.Rect = pygame.Rect(rect_obj.get("x", 0), rect_obj.get("y", 0), rect_obj.get("w", 0), rect_obj.get("h", 0))
+
+        p_map_elements: list[MapElement] = []
+        for element in map_elements:
+            if element.rect.colliderect(rect):
+                p_map_elements.append(element)
+
+        scene_map_elements: list[MapElement] = []
+        for x in range(rect.x, rect.x + rect.w):
+            for y in range(rect.y, rect.y + rect.h):
+                next_rect: pygame.Rect = pygame.Rect(x, y, 1, 1)
+                for elem in p_map_elements:
+                    if elem.rect.colliderect(next_rect):
+                        scene_map_elements.append(MapElement(
+                            rect=next_rect,
+                            image=elem.render_surface.subsurface((0, 0), elem.image_dims),
+                            collision=elem.collision
+                        ))
+
         exits.append(SceneExit(
-            rect=pygame.Rect(rect_obj.get("x", 0), rect_obj.get("y", 0), rect_obj.get("w", 0), rect_obj.get("h", 0)),
+            rect=rect,
+            elements=scene_map_elements,
             require_interact=exit_obj.get("require_interact", False),
             transition=str_to_scene_transition(exit_obj.get("transition", "")),
             transition_time=exit_obj.get("transition_time", 0),
