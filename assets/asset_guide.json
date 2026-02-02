@@ -8,29 +8,53 @@
       "name": "snake",
       "path": "assets/fonts/Snake.ttf",
       "sizes": [ 40, 46, 64, 192 ]
+    },
+    {
+      "name": "vcr_osd",
+      "path": "assets/fonts/vcr_osd.ttf",
+      "sizes": [ 16 ]
     }
   ],
 
   "images": [
     {
       "name": "null",
-      "path": "assets/images/esi.png"
+      "path": "assets/images/null.png"
     },
     {
       "name": "porcupine_sprite_sheet",
       "path": "assets/images/porcupine.png"
+    },
+    {
+      "name": "big_man_portait",
+      "path": "assets/images/big_man.png"
+    },
+    {
+      "name": "Esi",
+      "path": "assets/images/Esi.png"
     }
   ],
 
   "sprites": [
     {
       "name": "player",
-      "sprite_sheet": "porcupine_sprite_sheet",
+      "sprite_sheet": "Esi",
       "width": 32,
       "height": 32,
-      "num_frames": 4,
-      "direction": true,
-      "animations": ["right", "down", "up", "left"],
+      "num_frames": 1,
+      "direction": false,
+      "animations": ["down"],
+      "animation_layout": "rows",
+      "frame_time": 0.1
+    },
+    {
+      "name": "null",
+      "sprite_sheet": "null",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "direction": false,
+      "animations": ["down"],
       "animation_layout": "columns",
       "frame_time": 0.1
     }

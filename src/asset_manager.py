@@ -1,10 +1,12 @@
-import pygame
 import json
-import os
+import pygame
 
 from src.sprite import Sprite
 
+
 class AssetManager:
+    NULL_IMAGE: pygame.Surface | None = None
+
     def __init__(self, asset_guide: str):
         self.audio_assets: dict[str, pygame.mixer.Sound] = {}
         self.font_assets: dict[str, pygame.font.Font] = {}
@@ -41,7 +43,7 @@ class AssetManager:
         self.font_assets[name + str(font_size)] = pygame.font.Font(font_path, font_size)
 
     def add_image(self, name: str, image_path: str) -> None:
-        self.image_assets[name] = pygame.image.load(image_path)
+        self.image_assets[name] = pygame.image.load(image_path).convert_alpha()
 
     def add_sprite(self, name: str, sprite_sheet: str, dimensions: pygame.Vector2,
                    animations: list[str], animation_layout: str,

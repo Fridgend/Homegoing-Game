@@ -4,10 +4,12 @@ import argparse
 from src.game import Game
 from src.game_backends.backend import GameState
 
+# from scalene import scalene_profiler
+
 def main():
     pygame.init()
 
-    parser = argparse.ArgumentParser()
+    parser: argparse.ArgumentParser = argparse.ArgumentParser()
     parser.add_argument("-sb", action="store_true", dest="scene_editor", default=False)
     parser.add_argument("-ec", action="store_true", dest="entity_configurer", default=False)
     res = parser.parse_args()
@@ -20,10 +22,12 @@ def main():
                        GameState.ENTITY_CONFIGURER if res.entity_configurer else \
                        GameState.MAIN_MENU
 
-    game: Game = Game("assets/asset_guide.json", "scenes/scene_guide.json", game_state=state)
+    # scalene_profiler.start()
+
+    game: Game = Game("assets/asset_guide.json", "scenes/scene_guide.json", "config.json", game_state=state)
     game.run(60, 50)
+
+    # scalene_profiler.stop()
 
 if __name__ == "__main__":
     main()
-
-

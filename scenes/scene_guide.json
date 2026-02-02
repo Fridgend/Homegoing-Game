@@ -1,8 +1,9 @@
 {
   "effia": {
+
     "start_scene": "test",
     "scenes": [
-      { "name": "test", "path": "scenes/effia/test.json" }
+      { "name": "test", "path": "scenes/Esi/Esi_intro.json" }
     ]
   },
   "esi": {

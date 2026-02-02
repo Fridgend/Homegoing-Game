@@ -1,73 +1,251 @@
 {
-  "void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
+  "void_color": { "r": 101, "g": 67, "b": 33, "a": 15 },
   "player": {
     "sprite": "player",
     "move_duration": 0.15
   },
   "entity_lookup": [
     {
-      "name": "Esi",
-      "sprite": "Esi",
+      "name": "big_man",
+      "sprite": "null",
       "has_collision": true
     }
   ],
-  "static_entities": [
-    { "lookup_name": "Esi", "grid_x": 6, "grid_y": 6 }
-  ],
+  "static_entities": [],
   "interactable_entities": [
     {
-      "lookup_name": "Esi",
-      "grid_x": 3,
-      "grid_y": 3,
+      "lookup_name": "big_man",
+      "grid_x": 5,
+      "grid_y": 4,
       "dialogue": {
         "start_monologue": 0,
         "monologues": [
           {
-            "speaker": "I am sorry for what happened to you.",
-            "lines": [ "do i know you?\n", "you look familiar" ],
-            "char_speeds": [ 0.05, 0.05 ],
+            "speaker": "Esi",
+            "lines": ["Father. May I sit with you?"],
+            "char_speeds": [0.05],
             "font": "snake64",
             "options": [],
             "speaker_image": null,
             "next_monologue": 1
           },
           {
-            "speaker": "you",
-            "lines": [ "what?" ],
-            "char_speeds": [ 0.25 ],
+            "speaker": "Big Man",
+            "lines": ["You never need to ask. Sit."],
+            "char_speeds": [0.05],
             "font": "snake64",
             "options": [],
-            "speaker_image": "null",
+            "speaker_image": "big_man_portait",
             "next_monologue": 2
           },
           {
-            "speaker": "strangely familiar stranger",
-            "lines": [ "okay bye now" ],
-            "char_speeds": [ 0.05 ],
+            "speaker": "Esi",
+            "lines": ["The village is restless. Why?"],
+            "char_speeds": [0.05],
             "font": "snake64",
-            "options": [
-              { "text": "okay bye", "leads_to": 3 },
-              { "text": "damn ok", "leads_to": 4 }
-            ],
+            "options": [],
             "speaker_image": null,
-            "next_monologue": null
+            "next_monologue": 3
           },
           {
-            "speaker": "you",
-            "lines": [ "okay bye" ],
-            "char_speeds": [ 0.05 ],
+            "speaker": "Big Man",
+            "lines": ["They are listening for news they already expect."],
+            "char_speeds": [0.05],
             "font": "snake64",
             "options": [],
-            "speaker_image": "null",
-            "next_monologue": null
+            "speaker_image": "big_man_portait",
+            "next_monologue": 4
           },
           {
-            "speaker": "you",
-            "lines": [ "damn ok" ],
-            "char_speeds": [ 0.05 ],
+            "speaker": "Esi",
+            "lines": ["What news?"],
+            "char_speeds": [0.05],
             "font": "snake64",
             "options": [],
-            "speaker_image": "null",
+            "speaker_image": null,
+            "next_monologue": 5
+          },
+          {
+            "speaker": "Big Man",
+            "lines": [
+              "The northern villages are breaking."
+            ],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "big_man_portait",
+            "next_monologue": 6
+          },
+          {
+            "speaker": "Big Man",
+            "lines": [
+              "Too many wars, too many prisoners."
+            ],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "big_man_portait",
+            "next_monologue": 7
+          },
+          {
+            "speaker": "Esi",
+            "lines": ["The white men?"],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": null,
+            "next_monologue": 8
+          },
+          {
+            "speaker": "Big Man",
+            "lines": [
+              "Yes. They trade guns for people. A gun lasts years. A person is spent once."
+            ],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "big_man_portait",
+            "next_monologue": 9
+          },
+          {
+            "speaker": "Esi",
+            "lines": ["Why do our people agree to this?"],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": null,
+            "next_monologue": 10
+          },
+          {
+            "speaker": "Big Man",
+            "lines": [
+              "Because refusing costs more than agreeing."
+            ],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "big_man_portait",
+            "next_monologue": 11
+          },
+          {
+            "speaker": "Esi",
+            "lines": ["And us?"],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": null,
+            "next_monologue": 12
+          },
+          {
+            "speaker": "Big Man",
+            "lines": [
+              "We have stayed strong by choosing our battles carefully."
+            ],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "big_man_portait",
+            "next_monologue": 13
+          },
+          {
+            "speaker": "Esi",
+            "lines": ["Is that why people call you Big Man?"],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": null,
+            "next_monologue": 14
+          },
+          {
+            "speaker": "Big Man",
+            "lines": [
+              "They call me that because I learned\nwhen to bend.",
+              "Strength that never bends snaps."
+            ],
+            "char_speeds": [0.05, 0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "big_man_portait",
+            "next_monologue": 15
+          },
+          {
+            "speaker": "Esi",
+            "lines": ["Are we in danger?"],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": null,
+            "next_monologue": 16
+          },
+          {
+            "speaker": "Big Man",
+            "lines": [
+              "...",
+              "Danger is always nearby. Today it\nhas not chosen us."
+            ],
+            "char_speeds": [0.15, 0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "big_man_portait",
+            "next_monologue": 17
+          },
+          {
+            "speaker": "Esi",
+            "lines": ["And tomorrow?"],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": null,
+            "next_monologue": 18
+          },
+          {
+            "speaker": "Big Man",
+            "lines": ["Tomorrow is why we stay alert, not\nafraid."],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "big_man_portait",
+            "next_monologue": 19
+          },
+          {
+            "speaker": "Esi",
+            "lines": ["If something happens... what should\nI do?"],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": null,
+            "next_monologue": 20
+          },
+          {
+            "speaker": "Big Man",
+            "lines": [
+              "Stay close to your mother. Watch\nbefore you speak.",
+              "Remember what you see."
+            ],
+            "char_speeds": [0.05, 0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "big_man_portait",
+            "next_monologue": 21
+          },
+          {
+            "speaker": "Esi",
+            "lines": ["I will."],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": null,
+            "next_monologue": 22
+          },
+          {
+            "speaker": "Big Man",
+            "lines": [
+              "Good. Knowing what is happening is\nhow people survive longer than others."
+            ],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "big_man_portait",
             "next_monologue": null
           }
         ]

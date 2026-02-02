@@ -11,7 +11,7 @@ from src.dialogue import Monologue, Dialogue
 from src.npc import NPC
 
 
-def parse_monologue(monologue_obj, asset_manager: AssetManager) -> Monologue:
+def parse_monologue(monologue_obj: dict, asset_manager: AssetManager) -> Monologue:
     return Monologue(
         speaker=monologue_obj["speaker"],
         lines=monologue_obj["lines"],
@@ -19,11 +19,13 @@ def parse_monologue(monologue_obj, asset_manager: AssetManager) -> Monologue:
         font=asset_manager.get_font(monologue_obj["font"]),
         next_monologue=None,
         options=None,
-        speaker_image=None if not monologue_obj["speaker_image"] else asset_manager.get_image(monologue_obj["speaker_image"])
+        speaker_image=None if not monologue_obj["speaker_image"] else
+        asset_manager.get_image(monologue_obj["speaker_image"])
     )
 
 
-def parse_dialogue(dialogue_obj, asset_manager: AssetManager) -> Dialogue:
+def parse_dialogue(dialogue_obj: dict, asset_manager: AssetManager) -> Dialogue:
+
     monologues: list[Monologue] = []
     for monologue_obj in dialogue_obj["monologues"]:
         monologues.append(parse_monologue(monologue_obj, asset_manager))
@@ -103,5 +105,5 @@ class SceneManager:
     def update(self, camera: Camera, ui_manager: UIManager, dt: float) -> None:
         self.scenes[self.current_scene].update(camera, ui_manager, dt)
 
-    def render(self, window_surface: pygame.Surface, camera: Camera) -> None:
-        self.scenes[self.current_scene].render(window_surface, camera)
+    def render(self, window_surface: pygame.Surface, camera: Camera, ui_manager: UIManager) -> None:
+        self.scenes[self.current_scene].render(window_surface, camera, ui_manager)

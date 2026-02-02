@@ -1,0 +1,12 @@
+{
+  "window_dimensions": [0, 0],
+  "window_fullscreen": true,
+  "tile_size": 32,
+
+  "dialogue_box_dimensions": [ 0.833, 0.333 ],
+  "dialogue_box_position": [ 0.083, 0.666 ],
+  "dialogue_box_background": [0, 0, 0],
+  "dialogue_box_outline": [255, 255, 255],
+  "dialogue_box_outline_thickness": 3,
+  "triangle_color": [255, 255, 255]
+}
