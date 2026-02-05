@@ -39,7 +39,7 @@ def draw_pixel_tree():
 class EsiEscapeGame:
     def __init__(self, will=1.5, heritage=1.5):
         pygame.init()
-        self.screen = pygame.display.set_mode((800, 600), pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.clock = pygame.time.Clock()
         self.screen_w, self.screen_h = self.screen.get_size()
         font_path = os.path.join("assets", "fonts", "Snake.ttf")
@@ -52,7 +52,7 @@ class EsiEscapeGame:
         self.camera_x = 0
         
         self.engine = EnduranceEngine()
-        self.move_speed = self.engine.get_speed(will, heritage)
+        self.move_speed = self.engine.get_speed(will, heritage) * 1.3
         
         
         self.esi_sprite = self._scale_sprite(draw_pixel_esi())
@@ -67,7 +67,7 @@ class EsiEscapeGame:
         )
         
         self.trees = []
-        for _ in range(120):
+        for _ in range(100):
             tx = random.randint(150, self.world_width - 100)
             ty = random.randint(50, self.world_height - 100)
             self.trees.append(pygame.Rect(
@@ -97,7 +97,7 @@ class EsiEscapeGame:
     def _render_background(self):
         if self.background_surface.get_size() != (self.screen_w * 2, self.screen_h * 2):
             self.background_surface = self._build_background()
-        scaled_bg = pygame.transform.smoothscale(self.background_surface, (self.screen_w, self.screen_h))
+        scaled_bg = pygame.transform.scale(self.background_surface, (self.screen_w, self.screen_h))
         self.screen.blit(scaled_bg, (0, 0))
 
     def spawn_raider(self):
@@ -111,13 +111,15 @@ class EsiEscapeGame:
         else:
             x, y = random.randint(self.camera_x, self.camera_x + self.screen_w), self.world_height + 40
         
+        if len(self.raiders) >= 30:
+            self.raiders.pop(0)
         self.raiders.append({
             "rect": pygame.Rect(
                 x, y,
                 int(24 * self.sprite_scale),
                 int(28 * self.sprite_scale)
             ),
-            "speed": random.uniform(1.8, 2.8)
+            "speed": random.uniform(3.2, 4.5)
         })
 
     def move_with_collision(self, rect, dx, dy):
@@ -215,6 +217,14 @@ class EsiEscapeGame:
                     if r["rect"].colliderect(self.player_rect):
                         return self.end_screen(True) # Captured
 
+            cam_left = self.camera_x - 200
+            cam_right = self.camera_x + self.screen_w + 200
+            self.raiders = [
+                r for r in self.raiders
+                if cam_left <= r["rect"].x <= cam_right
+                and -100 <= r["rect"].y <= self.world_height + 100
+            ]
+
             for tree_hitbox in self.trees:
                 self.screen.blit(
                     self.tree_sprite,
@@ -237,9 +247,9 @@ class EsiEscapeGame:
             if self.player_rect.x > self.world_width - 60:
                 return self.end_screen(False) # Escaped
 
-            pygame.draw.rect(self.screen, (0,0,0), (0, 560, 800, 40))
+            pygame.draw.rect(self.screen, (0, 0, 0), (0, self.screen_h - 40, self.screen_w, 40))
             label = self.font.render("", True, (255, 255, 255))
-            self.screen.blit(label, (250, 565))
+            self.screen.blit(label, (250, self.screen_h - 35))
 
             pygame.display.flip()
             self.clock.tick(60)
@@ -267,3 +277,5 @@ if __name__ == "__main__":
     game = EsiEscapeGame()
     game.run()
     pygame.quit()
+
+
