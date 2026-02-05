@@ -137,7 +137,7 @@ class EsiEscapeGame:
 
     def run(self):
         self.screen.fill((0, 0, 0))
-        instruction = "Get to the other side! Fast!"
+        instruction = "Get to the other side! You MUST be Fast!"
         words = instruction.split(" ")
         current_text = ""
         skip_reveal = False
