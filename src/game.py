@@ -54,7 +54,7 @@ class Game:
         self.next_backend = self.state_backends[state]
         self.state = state
 
-    def run(self, FPS: int, FPS_warn: int) -> None:
+    def run(self, FPS: int) -> None:
         while self.running:
             self.delta_time = self.clock.tick(FPS) / 1000.0
 
@@ -66,9 +66,6 @@ class Game:
             self.backend.input(self)
             self.backend.update(self)
             self.backend.render(self)
-
-            fps: float = self.clock.get_fps()
-            if fps < FPS_warn: print("LAG SPIKE DETECTED:", fps, "FPS") 
 
         pygame.quit()
         sys.exit()

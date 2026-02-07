@@ -3,7 +3,7 @@
     "bounds": { "x": 100, "y": 100 },
     "background_music": {
         "identifier": "effia_theme",
-        "volume": 0.5
+        "volume": 1
     },
 
     "map_elements": [
