@@ -92,6 +92,9 @@ class EsiWarGame:
         self.spears = []
         self.spear_ammo = 30
         self.spawn_timer = 0
+        self.spawn_interval = 25
+        self.raider_speed_min = 4.7
+        self.raider_speed_max = 5.9
         self.invincible_timer = 180 # 3 seconds of grace at 60fps        
         self.running = True
 
@@ -135,7 +138,7 @@ class EsiWarGame:
         self.raiders.append({
             "rect": rect,
             "pos": pygame.Vector2(rect.centerx, rect.centery),
-            "speed": random.uniform(4.7, 5.9)
+            "speed": random.uniform(self.raider_speed_min, self.raider_speed_max)
         })
 
     def move_with_collision(self, rect, dx, dy):
@@ -169,7 +172,7 @@ class EsiWarGame:
 
     def run(self):
         self.screen.fill((0, 0, 0))
-        instruction = "Get to the other side! SPACE to strike back!"
+        instruction = "Get to the other side using arrows or WASD and SPACE for spears!"
         words = instruction.split(" ")
         current_text = ""
         skip_reveal = False
@@ -203,14 +206,38 @@ class EsiWarGame:
             self.screen.blit(text, text_rect)
             pygame.display.flip()
 
+        pygame.time.delay(3000)
+
         waiting = True
+        choosing = True
+        choice_text = self.ui_font.render("Choose difficulty: 1= (Easy) , 2= (Normal) , 3= (Unlikley legend)", True, (255, 255, 255))
         while waiting:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
                     return
                 if event.type == pygame.KEYDOWN:
-                    waiting = False
+                    if event.key in (pygame.K_1, pygame.K_KP1):
+                        self.spawn_interval = 40
+                        self.raider_speed_min = 4.0
+                        self.raider_speed_max = 5.0
+                        choosing = False
+                    elif event.key in (pygame.K_2, pygame.K_KP2):
+                        self.spawn_interval = 25
+                        self.raider_speed_min = 4.7
+                        self.raider_speed_max = 5.9
+                        choosing = False
+                    elif event.key in (pygame.K_3, pygame.K_KP3):
+                        self.spawn_interval = 20
+                        self.raider_speed_min = 5.0
+                        self.raider_speed_max = 6.2
+                        choosing = False
+                    if not choosing:
+                        waiting = False
+            if choosing:
+                self.screen.fill((0, 0, 0))
+                self.screen.blit(choice_text, (self.screen_w // 2 - choice_text.get_width() // 2, self.screen_h // 2))
+                pygame.display.flip()
             self.clock.tick(60)
 
         while self.running:
@@ -235,7 +262,7 @@ class EsiWarGame:
             self.camera_x = max(0, min(self.player_rect.centerx - self.screen_w // 2, self.world_width - self.screen_w))
 
             self.spawn_timer += 1
-            if self.spawn_timer > 25:
+            if self.spawn_timer > self.spawn_interval:
                 self.spawn_raider()
                 self.spawn_timer = 0
 

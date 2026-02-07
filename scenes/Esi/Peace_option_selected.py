@@ -143,7 +143,7 @@ class EsiEscapeGame:
 
     def run(self):
         self.screen.fill((0, 0, 0))
-        instruction = "Get to the other side! You MUST be Fast!"
+        instruction = "Get to the other side using arrows or WASD keys! You MUST be Fast!"
         words = instruction.split(" ")
         current_text = ""
         skip_reveal = False
@@ -206,7 +206,7 @@ class EsiEscapeGame:
             self.camera_x = max(0, min(self.player_rect.centerx - self.screen_w // 2, self.world_width - self.screen_w))
 
             self.spawn_timer += 1
-            if self.spawn_timer > 60:
+            if self.spawn_timer > 55:
                 self.spawn_raider()
                 self.spawn_timer = 0
 
