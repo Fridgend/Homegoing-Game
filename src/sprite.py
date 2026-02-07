@@ -106,6 +106,8 @@ class Sprite:
         self.animation = animation if self.frames.get(animation, False) else self.default_anim
 
     def get(self) -> pygame.Surface | None:
+        if self.frames.get(self.animation) is None:
+            return None
         return self.frames.get(self.animation)[self.frame_index]
 
     def update(self, dt: float) -> None:

@@ -69,8 +69,7 @@
       "width": 32,
       "height": 32,
       "num_frames": 1,
-      "direction": false,
-      "animations": ["down"],
+      "animations": ["idle_down"],
       "animation_layout": "rows",
       "frame_time": 0.1
     },
@@ -80,8 +79,7 @@
       "width": 32,
       "height": 32,
       "num_frames": 1,
-      "direction": false,
-      "animations": ["down"],
+      "animations": ["idle_down"],
       "animation_layout": "columns",
       "frame_time": 10
     }

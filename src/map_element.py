@@ -20,7 +20,7 @@ class MapElement:
 
     def render(self, surface: pygame.Surface) -> None:
         centered: pygame.Vector2 = pygame.Vector2(self.rect.topleft) * Config.TILE_SIZE - self.image_dims / 2
-        centered.x -= self.image_dims.y - Config.TILE_SIZE
+        centered.y -= self.image_dims.y - Config.TILE_SIZE
         surface.blit(self.render_surface, Camera.world_pos_to_view_pos(centered))
 
     def _generate_render_surface(self, image: pygame.Surface, dims: pygame.Vector2) -> None:

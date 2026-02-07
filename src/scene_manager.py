@@ -41,7 +41,7 @@ def parse_entity_route(route_obj: dict) -> EntityRoute:
 
         waypoints.append(Waypoint(
             pos=pygame.Vector2(waypoint_obj.get("x", 0), waypoint_obj.get("y", 0)),
-            speed=waypoint_obj.get("speed", 0),
+            speed=waypoint_obj.get("speed", 1),
             face_dir=face_dir,
             wait=waypoint_obj.get("wait", 0)
         ))

@@ -10,12 +10,14 @@ class SceneTransition(enum.Enum):
     FADE = 0
     TELEPORT = 1
 
-def str_to_scene_transition(string: str) -> SceneTransition:
+def str_to_scene_transition(string: str) -> SceneTransition | None:
     match string:
         case "fade":
             return SceneTransition.FADE
         case "no transition":
             return SceneTransition.TELEPORT
+        case _:
+            return None
 
 class SceneEntrance:
     def __init__(self, spawn: pygame.Vector2,
@@ -39,17 +41,17 @@ class SceneEntrance:
 
 class SceneExit:
     def __init__(self, rect: pygame.Rect, require_interact: bool,
-                 transition: SceneTransition, transition_time: float,
+                 transition: SceneTransition | None, transition_time: float,
                  next_scene: str, next_entrance: str, conditions: Conditions):
         self.rect: pygame.Rect = rect
         self.require_interact: bool = require_interact
-        self.transition: SceneTransition = transition
+        self.transition: SceneTransition | None = transition
         self.transition_time: float = transition_time
         self.next_scene: str = next_scene
         self.next_entrance: str = next_entrance
         self.conditions: Conditions = conditions
 
-        self.fade_step: float = 255.0 / transition_time
+        self.fade_step: float = 255.0 / max(transition_time, 0.001)
         self.complete: bool = False
 
     def available(self) -> bool:
@@ -68,4 +70,6 @@ class SceneExit:
                 if manager.fade == 255:
                     self.complete = True
             case SceneTransition.TELEPORT:
+                self.complete = True
+            case _:
                 self.complete = True

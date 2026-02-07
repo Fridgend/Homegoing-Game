@@ -17,9 +17,9 @@ from src.ui_manager import UIManager
 BACKGROUND_MUSIC_FADE_MS = 1000
 
 class SceneState(enum.Enum):
-    ENTERING = 0,
-    ENTERED = 1,
-    EXITING = 2,
+    ENTERING = 0
+    ENTERED = 1
+    EXITING = 2
     EXITED = 3
 
 class Scene:
@@ -134,6 +134,8 @@ class Scene:
         Camera.update(self.bounds, dt)
 
         if self.state == SceneState.EXITED:
+            if self.exiting_through is None:
+                return
             manager.load_scene(self.exiting_through.next_scene,
                                self.exiting_through.next_entrance,
                                self.player.facing)

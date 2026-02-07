@@ -29,6 +29,7 @@ class NPC(Entity, Interactable):
             return None
 
         if dialogue is None:
+            self.current_dialogue = None
             for k, v in self.dialogues.items():
                 if v.conditions.satisfied():
                     self.current_dialogue = k

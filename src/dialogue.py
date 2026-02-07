@@ -241,14 +241,19 @@ class Dialogue:
                 self.current_monologue = monologue_id
                 break
         if self.current_monologue == "":
-            self.playing = True
+            self.playing = False
             self.fading = 0
             return True
 
-        while not self.monologues.get(self.current_monologue).conditions.satisfied():
-            self.current_monologue = self.monologues.get(self.current_monologue).alt_monologue
+        visited: set = set()
+        while not self.monologues[self.current_monologue].conditions.satisfied():
+            if self.current_monologue in visited:
+                self.current_monologue = ""
+                break
+            visited.add(self.current_monologue)
+            self.current_monologue = self.monologues[self.current_monologue].alt_monologue
         if self.current_monologue == "":
-            self.playing = True
+            self.playing = False
             self.fading = 0
             return True
 
@@ -273,7 +278,7 @@ class Dialogue:
     def handle_new_monologue(self, scene):
         route: str | None = self.monologues.get(self.current_monologue).get_set_route()
 
-        if route is not None:
+        if route is not None and self.entity_id != "":
             scene.entities_dict[self.entity_id].set_route(route)
 
         for (method, flag) in self.monologues.get(self.current_monologue).modify_flags:

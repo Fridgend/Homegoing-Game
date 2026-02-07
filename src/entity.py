@@ -14,7 +14,7 @@ from src.ui_manager import UIManager
 class Entity:
     def __init__(self, sprite: Sprite, collision: bool, spawn: pygame.Vector2, conditions: Conditions,
                  routes: dict[str, EntityRoute]):
-        self.grid_pos: pygame.Vector2 = spawn
+        self.grid_pos: pygame.Vector2 = spawn.copy()
         self.facing: pygame.Vector2 = pygame.Vector2(0, 1)
         self.velocity: pygame.Vector2 = pygame.Vector2(0, 0)
 

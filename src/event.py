@@ -154,7 +154,8 @@ class AddEntity(DispatchEvent):
 
     def dispatch(self, scene) -> None:
         for identifier in self.ids:
-            scene.entities.append(scene.entities_dict.get(identifier))
+            if scene.entities_dict.get(identifier) is not None:
+                scene.entities.append(scene.entities_dict.get(identifier))
         self.dispatched = True
 
 class RemoveEntity(DispatchEvent):
@@ -365,8 +366,8 @@ class PlayAudio(DispatchEvent):
     def dispatch(self, scene) -> None:
         self.sound = AssetManager.get_audio(self.audio_id)
         self.sound = pygame.mixer.Sound(self.sound)
-        self.sound.set_volume(self.volume)
         if self.sound is not None:
+            self.sound.set_volume(self.volume)
             self.sound.play()
         self.dispatched = True
 
