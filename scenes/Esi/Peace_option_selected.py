@@ -187,6 +187,34 @@ class EsiEscapeGame:
                     waiting = False
             self.clock.tick(60)
 
+        max_tries = 2
+        attempts = 0
+        while self.running and attempts < max_tries:
+            self._reset_round_state()
+            captured = self._play_round()
+            if captured is None:
+                return
+            if captured:
+                if attempts == 0:
+                    self.end_screen(True)
+                    attempts += 1
+                    continue
+                self.end_screen(True)
+                self._final_epilogue()
+                return True
+            self.end_screen(False)
+            self._final_epilogue()
+            return False
+
+    def _reset_round_state(self):
+        self.player_rect.x = 50
+        self.player_rect.y = 280
+        self.camera_x = 0
+        self.raiders = []
+        self.spawn_timer = 0
+        self.invincible_timer = 120 # 2 seconds of grace at 60fps        
+
+    def _play_round(self):
         while self.running:
             self._render_background()
             
@@ -225,7 +253,7 @@ class EsiEscapeGame:
                 
                 if self.invincible_timer <= 0:
                     if r["rect"].colliderect(self.player_rect):
-                        return self.end_screen(True) # Captured
+                        return True # Captured
 
             cam_left = self.camera_x - 200
             cam_right = self.camera_x + self.screen_w + 200
@@ -248,7 +276,7 @@ class EsiEscapeGame:
                 self.screen.blit(self.raider_sprite, (r["rect"].x - self.camera_x, r["rect"].y))
 
             if self.player_rect.x > self.world_width - 60:
-                return self.end_screen(False) # Escaped
+                return False # Escaped
 
             pygame.draw.rect(self.screen, (0, 0, 0), (0, self.screen_h - 40, self.screen_w, 40))
             label = self.font.render("", True, (255, 255, 255))
@@ -256,6 +284,7 @@ class EsiEscapeGame:
 
             pygame.display.flip()
             self.clock.tick(60)
+        return None
 
     def end_screen(self, captured):
         self.screen.fill((0, 0, 0))
@@ -275,6 +304,37 @@ class EsiEscapeGame:
 
         pygame.time.delay(2000)
         return captured
+
+    def _final_epilogue(self):
+        self.screen.fill((0, 0, 0))
+        msg = "What happens next is larger than any one life...."
+        words = msg.split(" ")
+        current_text = ""
+        for word in words:
+            current_text = (current_text + " " + word).strip()
+            self.screen.fill((0, 0, 0))
+            text = self.font.render(current_text, True, (255, 255, 255))
+            text_rect = text.get_rect(center=self.screen.get_rect().center)
+            self.screen.blit(text, text_rect)
+            pygame.display.flip()
+            pygame.time.delay(250)
+        pygame.time.delay(2000)
+        self._thanks_for_playing()
+
+    def _thanks_for_playing(self):
+        self.screen.fill((0, 0, 0))
+        msg = "Thanks for playing."
+        words = msg.split(" ")
+        current_text = ""
+        for word in words:
+            current_text = (current_text + " " + word).strip()
+            self.screen.fill((0, 0, 0))
+            text = self.font.render(current_text, True, (255, 255, 255))
+            text_rect = text.get_rect(center=self.screen.get_rect().center)
+            self.screen.blit(text, text_rect)
+            pygame.display.flip()
+            pygame.time.delay(250)
+        pygame.time.delay(2000)
 
 if __name__ == "__main__":
     game = EsiEscapeGame()

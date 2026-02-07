@@ -1,0 +1,93 @@
+{
+  "entity_lookup": [
+    {
+      "name": "maame",
+      "sprite": "maame_sprite",
+      "has_collision": true
+    }
+  ],
+  "interactable_entities": [
+    {
+      "lookup_name": "maame",
+      "grid_x": 8,
+      "grid_y": 10,
+      "dialogue": {
+        "start_monologue": 0,
+        "monologues": [
+          {
+            "speaker": "Maame",
+            "lines": ["Stupid girl! When will you learn to be careful around fire?"],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "maame_portrait",
+            "next_monologue": 1
+          },
+          {
+            "speaker": "Esi",
+            "lines": ["It was an accident, Mother. The oil just slipped."],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": null,
+            "next_monologue": 2
+          },
+          {
+            "speaker": "Maame",
+            "lines": ["Be careful of fire. Know when to use it and when to stay cold."],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "maame_portrait",
+            "next_monologue": 3
+          },
+          {
+            "speaker": "Esi",
+            "lines": ["I am not afraid of it."],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": null,
+            "next_monologue": 4
+          },
+          {
+            "speaker": "Maame",
+            "lines": ["You are soft, Esi. Your father has made you soft with his gold."],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "maame_portrait",
+            "next_monologue": 5
+          },
+          {
+            "speaker": "Maame",
+            "lines": ["But softness is a choice. One day, you will have to choose to be iron."],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "maame_portrait",
+            "next_monologue": 6
+          },
+          {
+            "speaker": "Esi",
+            "lines": ["I will remember."],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": null,
+            "next_monologue": 7
+          },
+          {
+            "speaker": "Maame",
+            "lines": ["See that you do. Now, take this stone and keep it safe. Always."],
+            "char_speeds": [0.05],
+            "font": "snake64",
+            "options": [],
+            "speaker_image": "maame_portrait",
+            "next_monologue": null
+          }
+        ]
+      }
+    }
+  ]
+}

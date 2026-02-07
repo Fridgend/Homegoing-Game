@@ -208,14 +208,40 @@ class EsiWarGame:
 
         pygame.time.delay(3000)
 
+        max_tries = 2
+        attempts = 0
+        while self.running and attempts < max_tries:
+            if not self._choose_difficulty():
+                return
+            self._reset_round_state()
+            captured = self._play_round()
+            if captured is None:
+                return
+            if captured:
+                if attempts == 0:
+                    self.end_screen(True)
+                    attempts += 1
+                    continue
+                self.end_screen(True)
+                self._final_epilogue()
+                return True
+            self.end_screen(False)
+            self._final_epilogue()
+            return False
+
+    def _choose_difficulty(self):
         waiting = True
         choosing = True
-        choice_text = self.ui_font.render("Choose difficulty: 1= (Easy) , 2= (Normal) , 3= (Unlikley legend)", True, (255, 255, 255))
+        choice_text = self.ui_font.render(
+            "Choose difficulty: 1= (Easy) , 2= (Normal) , 3= (Unlikley legend)",
+            True,
+            (255, 255, 255)
+        )
         while waiting:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
-                    return
+                    return False
                 if event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_1, pygame.K_KP1):
                         self.spawn_interval = 45
@@ -228,19 +254,30 @@ class EsiWarGame:
                         self.raider_speed_max = 4.9
                         choosing = False
                     elif event.key in (pygame.K_3, pygame.K_KP3):
-                        self.spawn_interval = 25
-                        self.raider_speed_min = 4.2
-                        self.raider_speed_max = 5.2
+                        self.spawn_interval = 22
+                        self.raider_speed_min = 4.3
+                        self.raider_speed_max = 5.3
                         choosing = False
                     if not choosing:
                         waiting = False 
-
             if choosing:
                 self.screen.fill((0, 0, 0))
                 self.screen.blit(choice_text, (self.screen_w // 2 - choice_text.get_width() // 2, self.screen_h // 2))
                 pygame.display.flip()
             self.clock.tick(60)
+        return True
 
+    def _reset_round_state(self):
+        self.player_rect.x = 50
+        self.player_rect.y = 280
+        self.camera_x = 0
+        self.raiders = []
+        self.spears = []
+        self.spear_ammo = 30
+        self.spawn_timer = 0
+        self.invincible_timer = 180 # 3 seconds of grace at 60fps        
+
+    def _play_round(self):
         while self.running:
             self._render_background()
             
@@ -295,7 +332,7 @@ class EsiWarGame:
                 
                 if self.invincible_timer <= 0:
                     if r["rect"].colliderect(self.player_rect):
-                        return self.end_screen(True) # Captured
+                        return True # Captured
 
             cam_left = self.camera_x - 200
             cam_right = self.camera_x + self.screen_w + 200
@@ -321,7 +358,7 @@ class EsiWarGame:
                 self.screen.blit(s.sprite, rect.topleft)
 
             if self.player_rect.x > self.world_width - 60:
-                return self.end_screen(False) # Escaped
+                return False # Escaped
 
             pygame.draw.rect(self.screen, (0, 0, 0), (0, self.screen_h - 40, self.screen_w, 40))
             ammo_label = self.ui_font.render(f"SPEARS: {self.spear_ammo}", True, (255, 255, 255))
@@ -329,6 +366,7 @@ class EsiWarGame:
 
             pygame.display.flip()
             self.clock.tick(60)
+        return None
 
     def end_screen(self, captured):
         self.screen.fill((0, 0, 0))
@@ -348,6 +386,37 @@ class EsiWarGame:
 
         pygame.time.delay(2000)
         return captured
+
+    def _final_epilogue(self):
+        self.screen.fill((0, 0, 0))
+        msg = "What happens next is larger than any one life...."
+        words = msg.split(" ")
+        current_text = ""
+        for word in words:
+            current_text = (current_text + " " + word).strip()
+            self.screen.fill((0, 0, 0))
+            text = self.font.render(current_text, True, (255, 255, 255))
+            text_rect = text.get_rect(center=self.screen.get_rect().center)
+            self.screen.blit(text, text_rect)
+            pygame.display.flip()
+            pygame.time.delay(250)
+        pygame.time.delay(2000)
+        self._thanks_for_playing()
+
+    def _thanks_for_playing(self):
+        self.screen.fill((0, 0, 0))
+        msg = "Thanks for Playing."
+        words = msg.split(" ")
+        current_text = ""
+        for word in words:
+            current_text = (current_text + " " + word).strip()
+            self.screen.fill((0, 0, 0))
+            text = self.font.render(current_text, True, (255, 255, 255))
+            text_rect = text.get_rect(center=self.screen.get_rect().center)
+            self.screen.blit(text, text_rect)
+            pygame.display.flip()
+            pygame.time.delay(250)
+        pygame.time.delay(2000)
 
 if __name__ == "__main__":
     game = EsiWarGame()
