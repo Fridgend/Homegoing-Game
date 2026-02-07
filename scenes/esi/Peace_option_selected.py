@@ -15,15 +15,18 @@ class EnduranceEngine(nn.Module):
             return 4.0 + (torch.sigmoid(self.fc(x)).item() * 2.5)
 
 def load_esi_sprite():
-    path = os.path.join("assets", "images", "Esi.png")
+    path = os.path.join("assets", "images", "esi.png")
     return pygame.image.load(path).convert_alpha()
+
+def draw_pixel_raider():
+    s = pygame.Surface((32, 32), pygame.SRCALPHA)
+    pygame.draw.rect(s, (20, 10, 5), (8, 6, 16, 22))  
+    pygame.draw.rect(s, (255, 255, 255), (10, 12, 2, 2)) 
+    pygame.draw.rect(s, (255, 255, 255), (20, 12, 2, 2)) 
+    return s
 
 def load_attacker_sprite():
     path = os.path.join("assets", "images", "attacker_for_minigame.png")
-    return pygame.image.load(path).convert_alpha()
-
-def load_spear_sprite():
-    path = os.path.join("assets", "images", "spear_Esi.png")
     return pygame.image.load(path).convert_alpha()
 
 def draw_pixel_tree():
@@ -34,16 +37,7 @@ def draw_pixel_tree():
     pygame.draw.circle(s, (10, 60, 10), (50, 35), 18)
     return s
 
-class Spear:
-    def __init__(self, start, target, half_length, base_sprite):
-        self.pos = pygame.Vector2(start[0], start[1])
-        angle = math.atan2(target[1]-start[1], target[0]-start[0])
-        self.vel = pygame.Vector2(math.cos(angle) * 16, math.sin(angle) * 16)
-        self.angle_deg = math.degrees(angle)
-        self.tip_offset = pygame.Vector2(half_length, 0)
-        self.sprite = pygame.transform.rotate(base_sprite, -self.angle_deg)
-
-class EsiWarGame:
+class EsiEscapeGame:
     def __init__(self, will=1.5, heritage=1.5):
         pygame.init()
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
@@ -51,11 +45,9 @@ class EsiWarGame:
         self.screen_w, self.screen_h = self.screen.get_size()
         font_path = os.path.join("assets", "fonts", "Snake.ttf")
         self.font = pygame.font.Font(font_path, 64)
-        self.ui_font = pygame.font.Font(font_path, 44)
         self.sprite_scale = 1.25
         self.esi_scale = self.sprite_scale * 1.15
         self.attacker_scale = self.sprite_scale * 1.1
-        self.spear_scale = self.sprite_scale * 0.9
         self.tree_offset_x = int(26 * self.sprite_scale)
         self.tree_offset_y = int(40 * self.sprite_scale)
         self.world_width = 12000
@@ -63,11 +55,11 @@ class EsiWarGame:
         self.camera_x = 0
         
         self.engine = EnduranceEngine()
-        self.move_speed = self.engine.get_speed(will, heritage) * 1.3 
+        self.move_speed = self.engine.get_speed(will, heritage) * 1.3
+        
         
         self.esi_sprite = self._scale_sprite(load_esi_sprite(), self.esi_scale)
         self.raider_sprite = self._scale_sprite(load_attacker_sprite(), self.attacker_scale)
-        self.spear_sprite = self._scale_sprite(load_spear_sprite(), self.spear_scale)
         self.tree_sprite = self._scale_sprite(draw_pixel_tree())
         self.background_surface = self._build_background()
         
@@ -78,7 +70,7 @@ class EsiWarGame:
         )
         
         self.trees = []
-        for _ in range(150):
+        for _ in range(120):
             tx = random.randint(150, self.world_width - 100)
             ty = random.randint(50, self.world_height - 100)
             self.trees.append(pygame.Rect(
@@ -89,13 +81,8 @@ class EsiWarGame:
             ))
 
         self.raiders = []
-        self.spears = []
-        self.spear_ammo = 30
         self.spawn_timer = 0
-        self.spawn_interval = 25
-        self.raider_speed_min = 4.7
-        self.raider_speed_max = 5.9
-        self.invincible_timer = 180 # 3 seconds of grace at 60fps        
+        self.invincible_timer = 120 # 2 seconds of grace at 60fps        
         self.running = True
 
     def _scale_sprite(self, surface, scale=None):
@@ -138,7 +125,7 @@ class EsiWarGame:
         self.raiders.append({
             "rect": rect,
             "pos": pygame.Vector2(rect.centerx, rect.centery),
-            "speed": random.uniform(self.raider_speed_min, self.raider_speed_max)
+            "speed": random.uniform(4.4, 5.5)
         })
 
     def move_with_collision(self, rect, dx, dy):
@@ -154,25 +141,9 @@ class EsiWarGame:
                 if dy > 0: rect.bottom = tree.top
                 if dy < 0: rect.top = tree.bottom
 
-    def get_nearest_raider(self):
-        if not self.raiders:
-            return None
-        return min(self.raiders, key=lambda r: math.hypot(
-            r["rect"].centerx - self.player_rect.centerx,
-            r["rect"].centery - self.player_rect.centery
-        ))
-
-    def fire_spear(self):
-        target = self.get_nearest_raider()
-        if target and self.spear_ammo > 0:
-            start = (self.player_rect.centerx, self.player_rect.centery)
-            end = (target["rect"].centerx, target["rect"].centery)
-            self.spears.append(Spear(start, end, self.spear_sprite.get_width() * 0.5, self.spear_sprite))
-            self.spear_ammo -= 1
-
     def run(self):
         self.screen.fill((0, 0, 0))
-        instruction = "Get to the other side using arrows or WASD and SPACE for spears!"
+        instruction = "Get to the other side using arrows or WASD keys! You MUST be Fast!"
         words = instruction.split(" ")
         current_text = ""
         skip_reveal = False
@@ -206,13 +177,19 @@ class EsiWarGame:
             self.screen.blit(text, text_rect)
             pygame.display.flip()
 
-        pygame.time.delay(3000)
+        waiting = True
+        while waiting:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
+                    return
+                if event.type == pygame.KEYDOWN:
+                    waiting = False
+            self.clock.tick(60)
 
         max_tries = 2
         attempts = 0
         while self.running and attempts < max_tries:
-            if not self._choose_difficulty():
-                return
             self._reset_round_state()
             captured = self._play_round()
             if captured is None:
@@ -229,53 +206,13 @@ class EsiWarGame:
             self._final_epilogue()
             return False
 
-    def _choose_difficulty(self):
-        waiting = True
-        choosing = True
-        choice_text = self.ui_font.render(
-            "Choose difficulty: 1= (Easy) , 2= (Normal) , 3= (Unlikley legend)",
-            True,
-            (255, 255, 255)
-        )
-        while waiting:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.running = False
-                    return False
-                if event.type == pygame.KEYDOWN:
-                    if event.key in (pygame.K_1, pygame.K_KP1):
-                        self.spawn_interval = 45
-                        self.raider_speed_min = 3.1
-                        self.raider_speed_max = 4.1
-                        choosing = False
-                    elif event.key in (pygame.K_2, pygame.K_KP2):
-                        self.spawn_interval = 30
-                        self.raider_speed_min = 3.9
-                        self.raider_speed_max = 4.9
-                        choosing = False
-                    elif event.key in (pygame.K_3, pygame.K_KP3):
-                        self.spawn_interval = 22
-                        self.raider_speed_min = 4.3
-                        self.raider_speed_max = 5.3
-                        choosing = False
-                    if not choosing:
-                        waiting = False 
-            if choosing:
-                self.screen.fill((0, 0, 0))
-                self.screen.blit(choice_text, (self.screen_w // 2 - choice_text.get_width() // 2, self.screen_h // 2))
-                pygame.display.flip()
-            self.clock.tick(60)
-        return True
-
     def _reset_round_state(self):
         self.player_rect.x = 50
         self.player_rect.y = 280
         self.camera_x = 0
         self.raiders = []
-        self.spears = []
-        self.spear_ammo = 30
         self.spawn_timer = 0
-        self.invincible_timer = 180 # 3 seconds of grace at 60fps        
+        self.invincible_timer = 120 # 2 seconds of grace at 60fps        
 
     def _play_round(self):
         while self.running:
@@ -284,9 +221,6 @@ class EsiWarGame:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
-                        self.fire_spear()
 
             keys = pygame.key.get_pressed()
             dx, dy = 0, 0
@@ -300,25 +234,12 @@ class EsiWarGame:
             self.camera_x = max(0, min(self.player_rect.centerx - self.screen_w // 2, self.world_width - self.screen_w))
 
             self.spawn_timer += 1
-            if self.spawn_timer > self.spawn_interval:
+            if self.spawn_timer > 59:
                 self.spawn_raider()
                 self.spawn_timer = 0
 
             if self.invincible_timer > 0:
                 self.invincible_timer -= 1
-
-            for s in self.spears[:]:
-                s.pos += s.vel
-                if not (0 <= s.pos.x <= self.world_width and 0 <= s.pos.y <= self.world_height):
-                    self.spears.remove(s)
-                    continue
-                tip = s.pos + s.tip_offset.rotate(s.angle_deg)
-                for r in self.raiders[:]:
-                    if math.hypot(tip.x - r["rect"].centerx, tip.y - r["rect"].centery) < 18:
-                        self.raiders.remove(r)
-                        if s in self.spears:
-                            self.spears.remove(s)
-                        break
 
             for r in self.raiders:
                 dx = self.player_rect.centerx - r["pos"].x
@@ -349,20 +270,17 @@ class EsiWarGame:
                 )
             
             self.screen.blit(self.esi_sprite, (self.player_rect.x - self.camera_x, self.player_rect.y))
+            # Invincibility grace period stays, but no on-screen circle.
             
             for r in self.raiders:
                 self.screen.blit(self.raider_sprite, (r["rect"].x - self.camera_x, r["rect"].y))
-
-            for s in self.spears:
-                rect = s.sprite.get_rect(center=(int(s.pos.x - self.camera_x), int(s.pos.y)))
-                self.screen.blit(s.sprite, rect.topleft)
 
             if self.player_rect.x > self.world_width - 60:
                 return False # Escaped
 
             pygame.draw.rect(self.screen, (0, 0, 0), (0, self.screen_h - 40, self.screen_w, 40))
-            ammo_label = self.ui_font.render(f"SPEARS: {self.spear_ammo}", True, (255, 255, 255))
-            self.screen.blit(ammo_label, (20, 20))
+            label = self.font.render("", True, (255, 255, 255))
+            self.screen.blit(label, (250, self.screen_h - 35))
 
             pygame.display.flip()
             self.clock.tick(60)
@@ -405,7 +323,7 @@ class EsiWarGame:
 
     def _thanks_for_playing(self):
         self.screen.fill((0, 0, 0))
-        msg = "Thanks for Playing."
+        msg = "Thanks for playing."
         words = msg.split(" ")
         current_text = ""
         for word in words:
@@ -419,6 +337,8 @@ class EsiWarGame:
         pygame.time.delay(2000)
 
 if __name__ == "__main__":
-    game = EsiWarGame()
+    game = EsiEscapeGame()
     game.run()
     pygame.quit()
+
+
