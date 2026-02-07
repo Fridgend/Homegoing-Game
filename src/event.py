@@ -202,7 +202,8 @@ class BeginEntityDialogue(DispatchEvent):
             if scene.dialogue.start(scene):
                 scene.dialogue = None
                 return
-            scene.background_music.set_volume(scene.background_music.get_volume() / 3)
+            if scene.background_music is not None:
+                scene.background_music.set_volume(scene.background_music.get_volume() / 3)
 
 class BeginIndependentDialogue(DispatchEvent):
     def __init__(self, dialogue):
@@ -218,7 +219,8 @@ class BeginIndependentDialogue(DispatchEvent):
         if scene.dialogue.start(scene):
             scene.dialogue = None
             return
-        scene.background_music.set_volume(scene.background_music.get_volume() / 3)
+        if scene.background_music is not None:
+            scene.background_music.set_volume(scene.background_music.get_volume() / 3)
 
 class EndDialogueAbruptly(DispatchEvent):
     def __init__(self):
@@ -231,7 +233,8 @@ class EndDialogueAbruptly(DispatchEvent):
         if scene.dialogue is not None:
             scene.dialogue.reset()
             scene.dialogue = None
-            scene.background_music.set_volume(scene.background_music.get_volume() * 3)
+            if scene.background_music is not None:
+                scene.background_music.set_volume(scene.background_music.get_volume() * 3)
         self.dispatched = True
 
 class MoveCameraPosition(DispatchEvent):

@@ -140,6 +140,7 @@ class Scene:
                                self.exiting_through.next_entrance,
                                self.player.facing)
             self.exiting_through = None
+            return
 
         self.dispatch_chains.update(self.added_dispatch_chains)
         self.added_dispatch_chains.clear()

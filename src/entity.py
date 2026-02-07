@@ -71,7 +71,7 @@ class Entity:
             if self.waypoint_wait_time < 0:
                 self.waypoint_wait_time = 0
 
-        if self.current_route is not None and self.waypoint_wait_time == 0:
+        if self.current_route is not None and self.waypoint_wait_time == 0 and not self.moving:
             dx: int = int(pygame.math.clamp(
                 self.routes.get(self.current_route).waypoints[self.route_waypoint].pos.x - self.grid_pos.x, -1, 1))
             dy: int = int(pygame.math.clamp(
@@ -105,15 +105,17 @@ class Entity:
                     collision = True
                     break
 
-            for map_element in map_elements:
-                if map_element.get_collision(rect):
-                    self.grid_pos = self.routes.get(self.current_route).waypoints[self.route_waypoint].pos
-                    self.pos = self.grid_pos * Config.TILE_SIZE
-                    self.moving = False
-                    self.velocity = pygame.Vector2(0, 0)
-                    self.move_time = 0
-                    collision = True
-                    break
+            if not collision:
+                for map_element in map_elements:
+                    if map_element.get_collision(rect):
+                        if self.current_route is not None:
+                            self.grid_pos = self.routes.get(self.current_route).waypoints[self.route_waypoint].pos
+                            self.pos = self.grid_pos * Config.TILE_SIZE
+                        self.moving = False
+                        self.velocity = pygame.Vector2(0, 0)
+                        self.move_time = 0
+                        collision = True
+                        break
 
             if not collision:
                 self.move_time += dt
