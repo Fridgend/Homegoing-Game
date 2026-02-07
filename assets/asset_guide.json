@@ -51,21 +51,39 @@
     {
       "name": "porcupine_sprite_sheet",
       "path": "assets/images/porcupine.png"
+    },
+    {
+      "name": "big_man_portait",
+      "path": "assets/images/big_man.png"
+    },
+    {
+      "name": "Esi",
+      "path": "assets/images/Esi.png"
     }
   ],
 
   "sprites": [
     {
       "name": "player",
-      "sprite_sheet": "porcupine_sprite_sheet",
+      "sprite_sheet": "Esi",
       "width": 32,
       "height": 32,
-      "num_frames": 4,
-      "animations": [
-        "move_right", "move_down", "move_up", "move_left",
-        "idle_right", "idle_down", "idle_up", "idle_left"
-      ],
-      "animation_layout": "columns"
+      "num_frames": 1,
+      "direction": false,
+      "animations": ["down"],
+      "animation_layout": "rows",
+      "frame_time": 0.1
+    },
+    {
+      "name": "null",
+      "sprite_sheet": "null",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "direction": false,
+      "animations": ["down"],
+      "animation_layout": "columns",
+      "frame_time": 10
     }
   ]
 }
