@@ -186,7 +186,9 @@ def parse_monologue(monologue_obj: dict) -> Monologue:
     dispatch_events: list[DispatchEvent] = []
     dispatch_objs: list = monologue_obj.get("dispatch_on_reach", [])
     for dispatch_obj in dispatch_objs:
-        dispatch_events.append(parse_dispatch(dispatch_obj))
+        de: DispatchEvent | None = parse_dispatch(dispatch_obj)
+        if de is not None:
+            dispatch_events.append(de)
 
     modify_flags: list[tuple[str, str]] = []
     modify_flags_objs: list = monologue_obj.get("modify_flags_on_reach", [])
@@ -194,7 +196,7 @@ def parse_monologue(monologue_obj: dict) -> Monologue:
         modify_flags.append((modify_flags_obj.get("how", ""), modify_flags_obj.get("value", "")))
 
     options: list[MonologueOption] = []
-    options_obj: dict = monologue_obj.get("options", {})
+    options_obj: list = monologue_obj.get("options", [])
     for option_obj in options_obj:
         options.append(parse_monologue_option(option_obj))
 
@@ -294,11 +296,16 @@ def parse_scene(scene_obj: dict) -> Scene:
     triggers: dict[str, Trigger] = {}
     triggers_obj: list = scene_obj.get("triggers", [])
     for trigger_obj in triggers_obj:
+        catches: list = [parse_catch(e) for e in trigger_obj.get("catch", [])]
+        dispatches: list = [parse_dispatch(e) for e in trigger_obj.get("dispatch", [])]
+        for i in range(catches.count(None)): catches.remove(None)
+        for i in range(dispatches.count(None)): dispatches.remove(None)
+
         triggers[trigger_obj.get("identifier", "")] = Trigger(
             disabled=trigger_obj.get("disabled", False),
             once=trigger_obj.get("once", False),
-            catch=[parse_catch(e) for e in trigger_obj.get("catch", [])],
-            dispatch=[parse_dispatch(e) for e in trigger_obj.get("dispatch", [])]
+            catch=catches,
+            dispatch=dispatches
         )
 
     entrances: dict[str, SceneEntrance] = {}

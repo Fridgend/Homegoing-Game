@@ -117,8 +117,10 @@ class Scene:
             if isinstance(entity, Interactable) and entity.can_interact(self.player):
                 self.dialogue = entity.interact(self.player)
                 if self.dialogue is not None:
-                    self.dialogue.start(self)
-                    self.background_music.set_volume(self.background_music.get_volume() / 3)
+                    if self.dialogue.start(self):
+                        self.dialogue = None
+                    else:
+                        self.background_music.set_volume(self.background_music.get_volume() / 3)
 
         for scene_exit in self.exits:
             if not scene_exit.available():

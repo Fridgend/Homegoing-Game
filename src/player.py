@@ -66,8 +66,8 @@ class Player(Entity):
         self.move_time += dt
         t: float = min(self.move_time / self.move_duration, 1.0)
 
-        start_pos: pygame.Vector2 = self.grid_pos * 32
-        target_pos: pygame.Vector2 = target_grid_pos * 32
+        start_pos: pygame.Vector2 = self.grid_pos * Config.TILE_SIZE
+        target_pos: pygame.Vector2 = target_grid_pos * Config.TILE_SIZE
 
         self.pos = start_pos.lerp(target_pos, t)
 

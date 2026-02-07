@@ -120,8 +120,8 @@ class Entity:
                 t: float = min(
                     self.move_time / self.routes.get(self.current_route).waypoints[self.route_waypoint].speed, 1.0)
 
-                start_pos: pygame.Vector2 = self.grid_pos * 32
-                target_pos: pygame.Vector2 = target_grid_pos * 32
+                start_pos: pygame.Vector2 = self.grid_pos * Config.TILE_SIZE
+                target_pos: pygame.Vector2 = target_grid_pos * Config.TILE_SIZE
 
                 self.pos = start_pos.lerp(target_pos, t)
 

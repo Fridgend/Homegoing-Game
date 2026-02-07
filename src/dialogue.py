@@ -233,18 +233,29 @@ class Dialogue:
             pygame.Vector2(1, -1)
         ]
 
-    def start(self, scene) -> None:
+    def start(self, scene) -> bool:
         self.playing = True
         self.fading = FADE_SPEED
         for (monologue_id, conditions) in self.start_monologues:
             if conditions.satisfied():
                 self.current_monologue = monologue_id
                 break
+        if self.current_monologue == "":
+            self.playing = True
+            self.fading = 0
+            return True
+
         while not self.monologues.get(self.current_monologue).conditions.satisfied():
             self.current_monologue = self.monologues.get(self.current_monologue).alt_monologue
+        if self.current_monologue == "":
+            self.playing = True
+            self.fading = 0
+            return True
+
         self.handle_new_monologue(scene)
         self.monologues.get(self.current_monologue).fading = FADE_SPEED
         self.monologues.get(self.current_monologue).is_reset = False
+        return False
 
     def end(self) -> None:
         self.playing = False

@@ -75,7 +75,8 @@ class DispatchChain:
             return
 
         if self.dispatch_index < len(self.dispatches):
-            while not self.dispatches[self.dispatch_index].conditions.satisfied():
+            while self.dispatches[self.dispatch_index].conditions is not None and \
+                    not self.dispatches[self.dispatch_index].conditions.satisfied():
                 self.dispatch_index += 1
 
         if self.dispatches[self.last_dispatch_index].is_complete(scene) and \
@@ -123,8 +124,8 @@ class OnEntityEnter(CatchEvent):
 
     def catch(self, scene) -> bool:
         for identifier in self.ids:
-            if (entity := scene.entities.get(identifier, None)) is not None and \
-                    self.rect.colliderect(entity.grid_pos, entity.hit_box):
+            if (entity := scene.entities_dict.get(identifier, None)) is not None and \
+                    self.rect.colliderect(pygame.Rect(entity.grid_pos, entity.hit_box)):
                 return True
         return False
 
@@ -192,12 +193,14 @@ class BeginEntityDialogue(DispatchEvent):
         return self.dispatched
 
     def dispatch(self, scene) -> None:
+        self.dispatched = True
         dialogue = scene.entities_dict.get(self.entity_id).interact(scene.player, self.dialogue_id)
         if dialogue is not None:
             scene.dialogue = dialogue
-            scene.dialogue.start(scene)
+            if scene.dialogue.start(scene):
+                scene.dialogue = None
+                return
             scene.background_music.set_volume(scene.background_music.get_volume() / 3)
-        self.dispatched = True
 
 class BeginIndependentDialogue(DispatchEvent):
     def __init__(self, dialogue):
@@ -208,10 +211,12 @@ class BeginIndependentDialogue(DispatchEvent):
         return self.dispatched
 
     def dispatch(self, scene) -> None:
-        scene.dialogue = self.dialogue
-        scene.dialogue.start(scene)
-        scene.background_music.set_volume(scene.background_music.get_volume() / 3)
         self.dispatched = True
+        scene.dialogue = self.dialogue
+        if scene.dialogue.start(scene):
+            scene.dialogue = None
+            return
+        scene.background_music.set_volume(scene.background_music.get_volume() / 3)
 
 class EndDialogueAbruptly(DispatchEvent):
     def __init__(self):
