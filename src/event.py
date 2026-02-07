@@ -323,15 +323,16 @@ class ResetCamera(DispatchEvent):
         self.dispatched = True
 
 class ShakeCamera(DispatchEvent):
-    def __init__(self, time: float):
+    def __init__(self, time: float, intensity: int):
         super().__init__()
         self.time: float = time
+        self.intensity: int = intensity
 
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
     def dispatch(self, scene) -> None:
-        Camera.shake_camera(duration=self.time)
+        Camera.shake_camera(intensity_x=self.intensity, intensity_y=self.intensity, duration=self.time)
         self.dispatched = True
 
 class EndCameraShake(DispatchEvent):

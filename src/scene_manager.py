@@ -129,7 +129,8 @@ def parse_dispatch(dispatch_obj: dict) -> DispatchEvent | None:
             event = ResetCamera()
         case "shake_camera":
             event = ShakeCamera(
-                time=dispatch_obj.get("time", 0)
+                time=dispatch_obj.get("time", 0),
+                intensity=dispatch_obj.get("intensity", 0)
             )
         case "stop_shake_camera":
             event = EndCameraShake()
@@ -396,7 +397,7 @@ class SceneManager:
         with open(scene_guide, "r") as file:
             obj = json.load(file)
 
-        for scene_obj in obj.get("effia", {}).get("scenes", []):
+        for scene_obj in obj.get("esi", {}).get("scenes", []):
             with open(scene_obj.get("path"), "r") as file:
                 scene_json = json.load(file)
             self.add_scene(scene_obj.get("name"), parse_scene(scene_json))

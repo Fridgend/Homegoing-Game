@@ -29,6 +29,7 @@ class Camera:
     def center_at(cls, pos: pygame.Vector2, bounds: pygame.Vector2) -> None:
         cls.POS = pos - cls.WINDOW_CENTER
         cls.clamp_pos(bounds)
+        cls.POS += cls.SHAKE_OFFSET
 
     @classmethod
     def clamp_pos(cls, bounds: pygame.Vector2) -> None:
@@ -43,26 +44,22 @@ class Camera:
 
     @classmethod
     def world_pos_to_view_pos(cls, world_pos: pygame.Vector2) -> pygame.Vector2:
-        return world_pos - cls.POS + cls.SHAKE_OFFSET
+        return world_pos - cls.POS
 
     @classmethod
-    def shake_camera(cls, intensity_x=10, intensity_y=10, duration=0.5) -> None:
+    def shake_camera(cls, intensity_x=3, intensity_y=3, duration=0.5) -> None:
         cls.SHAKE_AMOUNT.x = intensity_x
         cls.SHAKE_AMOUNT.y = intensity_y
-        cls.shake_duration = duration
+        cls.SHAKE_DURATION = duration
 
     @classmethod
     def _get_shake_offset(cls, dt: float) -> pygame.Vector2:
         if cls.SHAKE_DURATION > 0:
-            fraction = cls.SHAKE_DURATION / max(cls.SHAKE_DURATION + dt, 0.01)
-            current_x = cls.SHAKE_AMOUNT.x * fraction
-            current_y = cls.SHAKE_AMOUNT.y * fraction
-            offset_x = random.uniform(-current_x, current_x)
-            offset_y = random.uniform(-current_y, current_y)
+            offset_x = random.uniform(-cls.SHAKE_AMOUNT.x, cls.SHAKE_AMOUNT.x)
+            offset_y = random.uniform(-cls.SHAKE_AMOUNT.y, cls.SHAKE_AMOUNT.y)
             
             cls.SHAKE_DURATION -= dt
             return pygame.Vector2(offset_x, offset_y)
         
-        cls.SHAKE_AMOUNT.x = 0
-        cls.SHAKE_AMOUNT.y = 0
+        cls.SHAKE_AMOUNT = pygame.Vector2(0, 0)
         return pygame.Vector2(0, 0)

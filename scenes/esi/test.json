@@ -3,7 +3,7 @@
     "bounds": { "x": 100, "y": 100 },
     "background_music": {
         "identifier": "effia_theme",
-        "volume": 1
+        "volume": 0.3
     },
 
     "map_elements": [
@@ -275,7 +275,7 @@
         {
             "identifier": "trigger1",
             "disabled": false,
-            "once": true,
+            "once": false,
             "catch": [
                 {
                     "name": "on_player_enter",
@@ -298,13 +298,31 @@
             ],
             "dispatch": [
                 {
+                    "name": "disable_trigger",
+                    "identifier": "trigger1"
+                },
+                {
                     "name": "shake_camera",
-                    "time": -1
+                    "time": 10,
+                    "intensity": 6
                 },
                 {
                     "name": "set_route",
                     "entity_id": "stranger",
                     "route_id": "route1"
+                },
+                {
+                    "name": "stop_shake_camera",
+                    "wait": 5
+                },
+                {
+                    "name": "play_audio",
+                    "identifier": "effia_theme",
+                    "volume": 1
+                },
+                {
+                    "name": "enable_trigger",
+                    "identifier": "trigger1"
                 }
             ]
         }
