@@ -37,12 +37,14 @@ class Player(Entity):
             self.velocity = pygame.Vector2(dx, dy)
             self.facing = self.velocity
             self.moving = True
-            self.move_time = 0.0
 
     def update(self, entities: list[Entity], map_elements: list[MapElement], ui_manager: UIManager, dt: float)\
             -> None:
         self.sprite.set(dir_to_str(self.velocity, self.facing))
         self.sprite.update(dt)
+
+        if self.controls_disabled:
+            self.move_waypoints(dt)
 
         if not self.moving:
             return
@@ -75,6 +77,7 @@ class Player(Entity):
             self.grid_pos += self.velocity
             self.velocity = pygame.Vector2(0, 0)
             self.moving = False
+            self.move_time = 0
 
     def move_waypoints(self, dt: float):
         if self.waypoint_wait_time != 0:
@@ -95,13 +98,14 @@ class Player(Entity):
                 self.velocity = pygame.Vector2(dx, dy)
                 self.facing = self.routes.get(self.current_route).waypoints[self.route_waypoint].face_dir
                 self.moving = True
-                self.move_time = 0.0
             else:
                 self.waypoint_wait_time = self.routes.get(self.current_route).waypoints[self.route_waypoint].wait
                 self.route_waypoint += 1
                 if self.route_waypoint >= len(self.routes.get(self.current_route).waypoints):
                     self.route_waypoint = 0
                     self.current_route = None
+        elif self.current_route is None and self.waypoint_wait_time == 0:
+            self.controls_disabled = False
 
     def render(self, surface: pygame.Surface) -> None:
         centered: pygame.Vector2 = self.pos - self.sprite.dimensions / 2

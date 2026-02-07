@@ -287,6 +287,7 @@ class Dialogue:
         scene.add_dispatch_chain(self.monologues.get(self.current_monologue).dispatch)
 
     def choose_option(self, scene) -> None:
+        self.choice_index %= len(self.monologues.get(self.current_monologue).options)
         self.current_monologue = self.monologues.get(self.current_monologue).choose(self.choice_index)
         while not self.monologues.get(self.current_monologue).conditions.satisfied():
             self.current_monologue = self.monologues.get(self.current_monologue).alt_monologue

@@ -321,6 +321,15 @@
                     "volume": 1
                 },
                 {
+                    "name": "move_player",
+                    "waypoints": [
+                        { "x": 10, "y": 3, "speed": 0.20, "face_dir": "left", "wait": 1 },
+                        { "x": 10, "y": 10, "speed": 0.20, "face_dir": "down", "wait": 0 },
+                        { "x": 3, "y": 10, "speed": 0.20, "face_dir": "left", "wait": 0 },
+                        { "x": 5, "y": 3, "speed": 0.20, "face_dir": "up", "wait": 5 }
+                    ]
+                },
+                {
                     "name": "enable_trigger",
                     "identifier": "trigger1"
                 }

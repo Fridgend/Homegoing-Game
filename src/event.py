@@ -181,7 +181,8 @@ class SetEntityRoute(DispatchEvent):
         return self.dispatched
 
     def dispatch(self, scene) -> None:
-        scene.entities_dict.get(self.entity_id).set_route(self.route_id)
+        if scene.entities_dict.get(self.entity_id) is not None:
+            scene.entities_dict.get(self.entity_id).set_route(self.route_id)
         self.dispatched = True
 
 class BeginEntityDialogue(DispatchEvent):
