@@ -70,7 +70,7 @@ class EsiEscapeGame:
         )
         
         self.trees = []
-        for _ in range(115):
+        for _ in range(120):
             tx = random.randint(150, self.world_width - 100)
             ty = random.randint(50, self.world_height - 100)
             self.trees.append(pygame.Rect(
@@ -206,7 +206,7 @@ class EsiEscapeGame:
             self.camera_x = max(0, min(self.player_rect.centerx - self.screen_w // 2, self.world_width - self.screen_w))
 
             self.spawn_timer += 1
-            if self.spawn_timer > 55:
+            if self.spawn_timer > 59:
                 self.spawn_raider()
                 self.spawn_timer = 0
 

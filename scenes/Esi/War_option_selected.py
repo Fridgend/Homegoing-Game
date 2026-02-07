@@ -78,7 +78,7 @@ class EsiWarGame:
         )
         
         self.trees = []
-        for _ in range(200):
+        for _ in range(150):
             tx = random.randint(150, self.world_width - 100)
             ty = random.randint(50, self.world_height - 100)
             self.trees.append(pygame.Rect(
@@ -218,22 +218,23 @@ class EsiWarGame:
                     return
                 if event.type == pygame.KEYDOWN:
                     if event.key in (pygame.K_1, pygame.K_KP1):
-                        self.spawn_interval = 40
-                        self.raider_speed_min = 4.0
-                        self.raider_speed_max = 5.0
+                        self.spawn_interval = 45
+                        self.raider_speed_min = 3.1
+                        self.raider_speed_max = 4.1
                         choosing = False
                     elif event.key in (pygame.K_2, pygame.K_KP2):
-                        self.spawn_interval = 25
-                        self.raider_speed_min = 4.7
-                        self.raider_speed_max = 5.9
+                        self.spawn_interval = 30
+                        self.raider_speed_min = 3.9
+                        self.raider_speed_max = 4.9
                         choosing = False
                     elif event.key in (pygame.K_3, pygame.K_KP3):
-                        self.spawn_interval = 20
-                        self.raider_speed_min = 5.0
-                        self.raider_speed_max = 6.2
+                        self.spawn_interval = 25
+                        self.raider_speed_min = 4.2
+                        self.raider_speed_max = 5.2
                         choosing = False
                     if not choosing:
-                        waiting = False
+                        waiting = False 
+
             if choosing:
                 self.screen.fill((0, 0, 0))
                 self.screen.blit(choice_text, (self.screen_w // 2 - choice_text.get_width() // 2, self.screen_h // 2))
