@@ -1,6 +1,33 @@
 {
   "audio": [
-
+    {
+      "name": "effia_theme",
+      "path": "assets/audio/effia_theme.flac"
+    },
+    {
+      "name": "alto_voice",
+      "path": "assets/audio/voices/alto.flac"
+    },
+    {
+      "name": "baritone_voice",
+      "path": "assets/audio/voices/baritone.flac"
+    },
+    {
+      "name": "bass_voice",
+      "path": "assets/audio/voices/bass.flac"
+    },
+    {
+      "name": "mezzo_soprano_voice",
+      "path": "assets/audio/voices/mezzo_soprano.flac"
+    },
+    {
+      "name": "soprano_voice",
+      "path": "assets/audio/voices/soprano.flac"
+    },
+    {
+      "name": "tenor_voice",
+      "path": "assets/audio/voices/tenor.flac"
+    }
   ],
 
   "fonts": [
@@ -42,8 +69,7 @@
       "width": 32,
       "height": 32,
       "num_frames": 1,
-      "direction": false,
-      "animations": ["down"],
+      "animations": ["idle_down"],
       "animation_layout": "rows",
       "frame_time": 0.1
     },
@@ -53,10 +79,9 @@
       "width": 32,
       "height": 32,
       "num_frames": 1,
-      "direction": false,
-      "animations": ["down"],
+      "animations": ["idle_down"],
       "animation_layout": "columns",
-      "frame_time": 0.1
+      "frame_time": 10
     }
   ]
 }

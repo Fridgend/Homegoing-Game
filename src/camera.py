@@ -1,55 +1,65 @@
-import pygame
 import random
 
-import src.config as cfg
+import pygame
+
+from src.config import Config
+
 
 def grid_pos_to_view_pos(grid_pos: pygame.Vector2) -> pygame.Vector2:
-    return grid_pos * cfg.config.tile_size
+    return grid_pos * Config.TILE_SIZE
 
 
 class Camera:
-    def __init__(self):
-        self.pos: pygame.Vector2 = pygame.Vector2(0, 0)
+    POS: pygame.Vector2 = pygame.Vector2(0, 0)
+    WINDOW_CENTER: int = 0
 
-        self.window_dimensions = cfg.config.window_dims
-        self.window_center = cfg.config.window_dims // 2
+    SHAKE_OFFSET: pygame.Vector2 = pygame.Vector2(0, 0)
+    SHAKE_AMOUNT: pygame.Vector2 = pygame.Vector2(0, 0)
+    SHAKE_DURATION: float = 0
 
-        self.shake_offset: pygame.Vector2 = pygame.Vector2(0, 0)
-        self.shake_amount: pygame.Vector2 = pygame.Vector2(0, 0)
-        self.shake_duration: float = 0
+    ZOOM: float = 1
 
-        self.zoom_level: float = 1
+    TRACK = None
 
-    def center_at(self, pos: pygame.Vector2, bounds: pygame.Vector2) -> None:
-        self.pos = pos - self.window_center
-        self.clamp_pos(bounds)
+    @classmethod
+    def init_window_center(cls) -> None:
+        cls.WINDOW_CENTER = Config.WINDOW_DIMS // 2
 
-    def clamp_pos(self, bounds: pygame.Vector2) -> None:
-        self.pos.x = pygame.math.clamp(self.pos.x, 0, (bounds.x - 1) * cfg.config.tile_size - cfg.config.window_dims.x)
-        self.pos.y = pygame.math.clamp(self.pos.y, 0, (bounds.y - 1) * cfg.config.tile_size - cfg.config.window_dims.y)
+    @classmethod
+    def center_at(cls, pos: pygame.Vector2, bounds: pygame.Vector2) -> None:
+        cls.POS = pos - cls.WINDOW_CENTER
+        cls.clamp_pos(bounds)
+        cls.POS += cls.SHAKE_OFFSET
 
-    def update(self, dt: float) -> None:
-        self.shake_offset = self._get_shake_offset(dt)
+    @classmethod
+    def clamp_pos(cls, bounds: pygame.Vector2) -> None:
+        cls.POS.x = pygame.math.clamp(cls.POS.x, 0, (bounds.x - 1) * Config.TILE_SIZE - Config.WINDOW_DIMS.x)
+        cls.POS.y = pygame.math.clamp(cls.POS.y, 0, (bounds.y - 1) * Config.TILE_SIZE - Config.WINDOW_DIMS.y)
 
-    def world_pos_to_view_pos(self, world_pos: pygame.Vector2) -> pygame.Vector2:
-        return world_pos - self.pos + self.shake_offset
+    @classmethod
+    def update(cls, bounds: pygame.Vector2, dt: float) -> None:
+        cls.SHAKE_OFFSET = cls._get_shake_offset(dt)
+        if cls.TRACK is not None:
+            cls.center_at(cls.TRACK.pos, bounds)
+
+    @classmethod
+    def world_pos_to_view_pos(cls, world_pos: pygame.Vector2) -> pygame.Vector2:
+        return world_pos - cls.POS
+
+    @classmethod
+    def shake_camera(cls, intensity_x=3, intensity_y=3, duration=0.5) -> None:
+        cls.SHAKE_AMOUNT.x = intensity_x
+        cls.SHAKE_AMOUNT.y = intensity_y
+        cls.SHAKE_DURATION = duration
+
+    @classmethod
+    def _get_shake_offset(cls, dt: float) -> pygame.Vector2:
+        if cls.SHAKE_DURATION > 0:
+            offset_x = random.uniform(-cls.SHAKE_AMOUNT.x, cls.SHAKE_AMOUNT.x)
+            offset_y = random.uniform(-cls.SHAKE_AMOUNT.y, cls.SHAKE_AMOUNT.y)
             
-    def shake_camera(self, intensity_x=10, intensity_y=10, duration=0.5) -> None:
-        self.shake_amount.x = intensity_x
-        self.shake_amount.y = intensity_y
-        self.shake_duration = duration 
-
-    def _get_shake_offset(self, dt: float) -> pygame.Vector2:
-        if self.shake_duration > 0:
-            fraction = self.shake_duration / max(self.shake_duration + dt, 0.01)
-            current_x = self.shake_amount.x * fraction
-            current_y = self.shake_amount.y * fraction
-            offset_x = random.uniform(-current_x, current_x)
-            offset_y = random.uniform(-current_y, current_y)
-            
-            self.shake_duration -= dt 
+            cls.SHAKE_DURATION -= dt
             return pygame.Vector2(offset_x, offset_y)
         
-        self.shake_amount.x = 0
-        self.shake_amount.y = 0
+        cls.SHAKE_AMOUNT = pygame.Vector2(0, 0)
         return pygame.Vector2(0, 0)

@@ -1,6 +1,7 @@
 import pygame
 import enum
 
+from src.asset_manager import AssetManager
 from src.game_backends.backend import Backend, GameState
 from src.ui_manager import Text, Button
 
@@ -90,83 +91,83 @@ class MainMenuBackend(Backend):
     def render_main_menu(self, game) -> None:
         game.ui_manager.draw_text(Text(
             "Homegoing", [170, 20, 20, 255],
-            self.center_pos + pygame.Vector2(0, -230), game.asset_manager.get_font("snake192"),
+            self.center_pos + pygame.Vector2(0, -230), AssetManager.get_font("snake192"),
             align_center=True
         ))
 
         play_text: str = "Continue" if game.state_backends[GameState.PLAYING].is_setup else "Play"
         game.ui_manager.draw_button(Button(Text(
             play_text, [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, -20), game.asset_manager.get_font("snake64"),
+            self.center_pos + pygame.Vector2(0, -20), AssetManager.get_font("snake64"),
             align_center=True
-        ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]), 0)
+        ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 0)
 
         game.ui_manager.draw_button(Button(Text(
             "How to Play", [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, 60), game.asset_manager.get_font("snake64"),
+            self.center_pos + pygame.Vector2(0, 60), AssetManager.get_font("snake64"),
             align_center=True
-        ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]), 1)
+        ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 1)
 
         game.ui_manager.draw_button(Button(Text(
             "Credits", [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, 140), game.asset_manager.get_font("snake64"),
+            self.center_pos + pygame.Vector2(0, 140), AssetManager.get_font("snake64"),
             align_center=True
-        ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]), 2)
+        ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 2)
 
         game.ui_manager.draw_button(Button(Text(
             "Exit", [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, 220), game.asset_manager.get_font("snake64"),
+            self.center_pos + pygame.Vector2(0, 220), AssetManager.get_font("snake64"),
             align_center=True
-        ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]), 3)
+        ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 3)
 
     def render_how_to_play(self, game) -> None:
         game.ui_manager.draw_text(Text(
             "How to Play", [170, 20, 20, 255],
-            self.center_pos + pygame.Vector2(0, -200), game.asset_manager.get_font("snake64"),
+            self.center_pos + pygame.Vector2(0, -200), AssetManager.get_font("snake64"),
             align_center=True
         ))
 
         game.ui_manager.draw_text(Text(
             "Walk around and talk with WASD or the arrow keys", [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, -60), game.asset_manager.get_font("snake46"),
+            self.center_pos + pygame.Vector2(0, -60), AssetManager.get_font("snake46"),
             align_center=True
         ))
 
         game.ui_manager.draw_text(Text(
             "Interact with the environment with ENTER or SPACE", [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, 0), game.asset_manager.get_font("snake46"),
+            self.center_pos + pygame.Vector2(0, 0), AssetManager.get_font("snake46"),
             align_center=True
         ))
 
         game.ui_manager.draw_text(Text(
             "Talk to characters and complete objectives", [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, 60), game.asset_manager.get_font("snake46"),
+            self.center_pos + pygame.Vector2(0, 60), AssetManager.get_font("snake46"),
             align_center=True
         ))
 
         game.ui_manager.draw_button(Button(Text(
             "Understood", [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, 180), game.asset_manager.get_font("snake64"),
+            self.center_pos + pygame.Vector2(0, 180), AssetManager.get_font("snake64"),
             align_center=True
-        ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]), 0)
+        ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 0)
 
     def render_credit(self, game, name: str, role: str, y: int):
         game.ui_manager.draw_text(Text(
             name, [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(-200, y), game.asset_manager.get_font("snake46"),
+            self.center_pos + pygame.Vector2(-200, y), AssetManager.get_font("snake46"),
             align_left=True
         ))
 
         game.ui_manager.draw_text(Text(
             role, [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(200, y), game.asset_manager.get_font("snake46"),
+            self.center_pos + pygame.Vector2(200, y), AssetManager.get_font("snake46"),
             align_right=True
         ))
 
     def render_credits(self, game) -> None:
         game.ui_manager.draw_text(Text(
             "Credits", [170, 20, 20, 255],
-            self.center_pos + pygame.Vector2(0, -300), game.asset_manager.get_font("snake64"),
+            self.center_pos + pygame.Vector2(0, -300), AssetManager.get_font("snake64"),
             align_center=True
         ))
 
@@ -178,9 +179,9 @@ class MainMenuBackend(Backend):
 
         game.ui_manager.draw_button(Button(Text(
             "Back", [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, 200), game.asset_manager.get_font("snake64"),
+            self.center_pos + pygame.Vector2(0, 200), AssetManager.get_font("snake64"),
             align_center=True
-        ), pygame.Vector2(-40, 0), game.asset_manager.get_font("snake40"), [150, 0, 150, 255]), 0)
+        ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 0)
 
     def render(self, game) -> None:
         game.window_surface.fill((0, 0, 0))

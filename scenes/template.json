@@ -1,5 +1,4 @@
 {
-	"scene_id": "--identifier--",
 	"void_color": { "r": null, "g": null, "b": null, "a": null },
 	"bounds": { "x": null, "y": null },
 	"background_music": {
@@ -24,7 +23,7 @@
 		{
 			"id": "--identifier--",
 			"sprite": "--asset guide sprite--",
-			"start_animation": "--animation name--",
+			"default_animation": "--animation name--",
 			"animation_frame_time": null,
 			"collision": false
 		}
@@ -32,23 +31,13 @@
 
 	"player": {
 		"lookup": "--entity lookup identifier--",
-		"fallback_spawn": { "x": null, "y": null }
+		"fallback_spawn": { "x": null, "y": null },
+		"move_duration": null
 	},
 
-	"static_entities": [
+	"entities": [
 		{
-			"lookup": "--entity lookup identifier--",
-			"spawn": { "x": null, "y": null },
-			"conditions": {
-				"all": ["--flags--"],
-				"any": ["--flags--"],
-				"not": ["--flags--"]
-			}
-		}
-	],
-
-	"interactable_entities": [
-		{
+			"id": "--identifier--",
 			"lookup": "--entity lookup identifier--",
 			"spawn": { "x": null, "y": null },
 			"conditions": {
@@ -79,36 +68,6 @@
 						"any": ["--flags--"],
 						"not": ["--flags--"]
 					},
-
-					"modify_flags_on_start": {
-						"all": [
-							{ "how": "--remove/add/toggle--", "value": "--flag--" }
-						],
-						"any": [
-							{ "how": "--remove/add/toggle--", "value": "--flag--" }
-						],
-						"not": [
-							{ "how": "--remove/add/toggle--", "value": "--flag--" }
-						]
-					},
-
-					"dispatch_on_start": [
-						{
-							"name": "--event identifier--",
-							"--additional arguments--": null
-						}
-					],
-
-					"set_route_on_start": [
-						{
-							"id": "--route identifier--",
-							"conditions": {
-								"all": ["--flags--"],
-								"any": ["--flags--"],
-								"not": ["--flags--"]
-							}
-						}
-					],
 
 					"start_monologue": [
 						{
@@ -154,6 +113,17 @@
 								}
 							],
 
+							"dispatch_on_reach": [
+								{
+									"name": "--event identifier--",
+									"--additional arguments--": null
+								}
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "--remove/add/toggle--", "value": "--flag--" }
+							],
+
 							"options": [
 								{
 									"text": "--option text--",
@@ -162,37 +132,7 @@
 										"all": ["--flags--"],
 										"any": ["--flags--"],
 										"not": ["--flags--"]
-									},
-
-									"dispatch_on_select": [
-										{
-											"name": "--event identifier--",
-											"--additional arguments--": null
-										}
-									],
-
-									"modify_flags_on_select": {
-										"all": [
-											{ "how": "--remove/add/toggle--", "value": "--flag--" }
-										],
-										"any": [
-											{ "how": "--remove/add/toggle--", "value": "--flag--" }
-										],
-										"not": [
-											{ "how": "--remove/add/toggle--", "value": "--flag--" }
-										]
-									},
-
-									"set_route_on_select": [
-										{
-											"id": "--route identifier--",
-											"conditions": {
-												"all": ["--flags--"],
-												"any": ["--flags--"],
-												"not": ["--flags--"]
-											}
-										}
-									]
+									}
 								}
 							]
 						}
@@ -204,8 +144,9 @@
 
 	"triggers": [
 		{
-			"id": "--optional: identifier--",
-			"once?": false,
+			"identifier": "--optional: identifier--",
+			"disabled": false,
+			"once": false,
 			"catch": [
 				{
 					"name": "--event identifier--",
@@ -223,18 +164,10 @@
 
 	"entrances": [
 		{
-			"rect": {
-				"x": null,
-				"y": null,
-				"w": null,
-				"h": null
-			},
-			"transition": "--void walk/fade/no transition--",
-			"conditions": {
-				"all": ["--flags--"],
-				"any": ["--flags--"],
-				"not": ["--flags--"]
-			}
+			"identifier": "--identifier--",
+			"spawn": { "x": null, "y": null },
+			"transition": "--fade/no transition--",
+			"transition_time": null
 		}
 	],
 
@@ -246,8 +179,11 @@
 				"w": null,
 				"h": null
 			},
-			"transition": "--void walk/fade/no transition--",
+			"require_interact": false,
+			"transition": "--fade/no transition--",
+			"transition_time": null,
 			"next_scene": "--scene identifier--",
+			"entrance": "--next scene entrance identifier--",
 			"conditions": {
 				"all": ["--flags--"],
 				"any": ["--flags--"],

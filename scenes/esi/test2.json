@@ -1,0 +1,275 @@
+{
+    "void_color": { "r": 0, "g": 170, "b": 0, "a": 15 },
+    "bounds": { "x": 100, "y": 100 },
+    "background_music": {
+        "identifier": "effia_theme",
+        "volume": 0
+    },
+
+    "map_elements": [
+		{
+			"rect": {
+				"x": 20,
+				"y": 5,
+				"w": 1,
+				"h": 3
+			},
+			"image": "null",
+			"collision": false
+		}
+	],
+
+    "entity_lookup": [
+		{
+			"id": "porcupine",
+			"sprite": "player",
+			"default_animation": "move_down",
+			"animation_frame_time": 0.05,
+			"collision": true
+		}
+	],
+
+    "player": {
+		"lookup": "porcupine",
+		"fallback_spawn": { "x": 0, "y": 0 },
+        "move_duration": 0.15
+	},
+
+    "entities": [
+        {
+            "id": "stranger",
+            "lookup": "porcupine",
+            "spawn": { "x": 3, "y": 3 },
+            "conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+            "routes": [],
+
+            "dialogues": [
+                {
+                    "id": "dialogue",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "start",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+                    "monologues": [
+						{
+							"id": "start",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "strangely familiar stranger",
+							"lines": [
+								{
+									"text": "do i know you?\n",
+									"char_time": 0.05
+								},
+                                {
+									"text": "you look familiar",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "you:what",
+
+							"set_route_on_reach": [],
+
+							"dispatch_on_reach": [],
+
+                            "modify_flags_on_reach": [],
+
+							"options": []
+						},
+                        {
+                            "id": "you:what",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "you",
+                            "lines": [
+                                {
+                                    "text": "what?",
+                                    "char_time": 0.25
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "null",
+                            "speaking_sfx": "",
+                            "next_monologue": "sfs:bye",
+
+                            "set_route_on_reach": [],
+
+                            "dispatch_on_reach": [],
+
+                            "modify_flags_on_reach": [],
+
+                            "options": []
+                        },
+                        {
+                            "id": "sfs:bye",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "strangely familiar stranger",
+                            "lines": [
+                                {
+                                    "text": "okay bye now",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "",
+
+                            "set_route_on_reach": [],
+
+                            "dispatch_on_reach": [],
+
+                            "modify_flags_on_reach": [],
+
+                            "options": [
+								{
+									"text": "okay bye",
+									"next_monologue": "you:ok bye",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+                                {
+									"text": "damn ok",
+									"next_monologue": "you:damn ok",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+                        },
+                        {
+                            "id": "you:ok bye",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "you",
+                            "lines": [
+                                {
+                                    "text": "okay bye",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "null",
+                            "speaking_sfx": "",
+                            "next_monologue": null,
+
+                            "set_route_on_reach": [],
+
+                            "dispatch_on_reach": [],
+
+                            "modify_flags_on_reach": [],
+
+                            "options": []
+                        },
+                        {
+                            "id": "you:damn ok",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "you",
+                            "lines": [
+                                {
+                                    "text": "damn ok",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "null",
+                            "speaking_sfx": "",
+                            "next_monologue": null,
+
+                            "set_route_on_reach": [],
+
+                            "dispatch_on_reach": [],
+
+                            "modify_flags_on_reach": [],
+
+                            "options": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+
+    "entrances": [
+		{
+            "identifier": "second",
+            "spawn": { "x": 1, "y": 6 },
+			"transition": "fade",
+            "transition_time": 1
+		}
+	],
+
+	"exits": [
+		{
+			"rect": {
+				"x": 20,
+				"y": 5,
+				"w": 1,
+				"h": 3
+			},
+			"require_interact": true,
+			"transition": "fade",
+            "transition_time": 1,
+			"next_scene": "test",
+            "entrance": "first",
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			}
+		}
+	]
+}
