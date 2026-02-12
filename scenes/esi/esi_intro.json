@@ -174,7 +174,9 @@
 
 							"dispatch_on_reach": [],
 
-                            "modify_flags_on_reach": [],
+                            "modify_flags_on_reach": [
+                                { "how": "add", "value": "SPOKE_BIG_MAN" }
+                            ],
 
 							"options": []
 						},
@@ -904,7 +906,9 @@
                             "next_monologue": "abronoma:1",
                             "set_route_on_reach": [],
                             "dispatch_on_reach": [],
-                            "modify_flags_on_reach": [],
+                            "modify_flags_on_reach": [
+                                { "how": "add", "value": "SPOKE_ABRONOMA" }
+                            ],
                             "options": []
                         },
                         {
@@ -1323,7 +1327,9 @@
                             "next_monologue": null,
                             "set_route_on_reach": [],
                             "dispatch_on_reach": [],
-                            "modify_flags_on_reach": [],
+                            "modify_flags_on_reach": [
+                                { "how": "add", "value": "SPOKE_MAAME" }
+                            ],
                             "options": []
                         }
                     ]
@@ -1384,7 +1390,9 @@
                             "next_monologue": "kojo:1",
                             "set_route_on_reach": [],
                             "dispatch_on_reach": [],
-                            "modify_flags_on_reach": [],
+                            "modify_flags_on_reach": [
+                                { "how": "add", "value": "SPOKE_KOJO" }
+                            ],
                             "options": []
                         },
                         {
@@ -1609,7 +1617,7 @@
         }
     ],
 
-    "triggers": [
+	"triggers": [
 		{
 			"identifier": "big man wants to talk",
 			"disabled": false,
@@ -1625,6 +1633,29 @@
 					"entity_id": "big_man",
                     "dialogue_id": "come_here",
 					"wait": 0.5
+				}
+			]
+		},
+		{
+			"identifier": "attack choice after all talks",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_enter",
+                    "conditions": {
+                        "all": ["SPOKE_BIG_MAN", "SPOKE_ABRONOMA", "SPOKE_MAAME", "SPOKE_KOJO"],
+                        "any": [],
+                        "not": ["INTRO_ATTACK_CHOICE_DONE"]
+                    }
+				}
+			],
+			"dispatch": [
+				{
+					"name": "show_attack_choice",
+                    "wait": 0.8,
+                    "peace_path": "scenes/esi/Peace_option_selected.py",
+                    "war_path": "scenes/esi/War_option_selected.py"
 				}
 			]
 		}

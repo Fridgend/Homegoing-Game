@@ -1,5 +1,8 @@
 import enum
 import math
+import os
+import subprocess
+import sys
 
 import pygame
 
@@ -373,6 +376,32 @@ class PlayAudio(DispatchEvent):
         if self.sound is not None:
             self.sound.set_volume(self.volume)
             self.sound.play()
+        self.dispatched = True
+
+class LaunchScript(DispatchEvent):
+    def __init__(self, script_path: str):
+        super().__init__()
+        self.script_path: str = script_path
+
+    def is_complete(self, scene) -> bool:
+        return self.dispatched
+
+    def dispatch(self, scene) -> None:
+        abs_path = os.path.abspath(self.script_path)
+        subprocess.run([sys.executable, abs_path], check=False)
+        self.dispatched = True
+
+class ShowAttackChoice(DispatchEvent):
+    def __init__(self, peace_path: str, war_path: str):
+        super().__init__()
+        self.peace_path: str = peace_path
+        self.war_path: str = war_path
+
+    def is_complete(self, scene) -> bool:
+        return self.dispatched
+
+    def dispatch(self, scene) -> None:
+        scene.start_attack_choice(self.peace_path, self.war_path)
         self.dispatched = True
 
 class EnableTrigger(DispatchEvent):

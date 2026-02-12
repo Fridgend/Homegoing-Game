@@ -139,6 +139,15 @@ def parse_dispatch(dispatch_obj: dict) -> DispatchEvent | None:
                 audio_id=dispatch_obj.get("identifier", ""),
                 volume=dispatch_obj.get("volume", 0)
             )
+        case "launch_script":
+            event = LaunchScript(
+                script_path=dispatch_obj.get("path", "")
+            )
+        case "show_attack_choice":
+            event = ShowAttackChoice(
+                peace_path=dispatch_obj.get("peace_path", ""),
+                war_path=dispatch_obj.get("war_path", "")
+            )
         case "enable_trigger":
             event = EnableTrigger(
                 trigger_id=dispatch_obj.get("identifier", "")
