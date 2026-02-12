@@ -57,6 +57,22 @@
       "path": "assets/images/big_man.png"
     },
     {
+      "name": "big_man_character",
+      "path": "assets/images/bigMan.png"
+    },
+    {
+      "name": "abronoma_portrait",
+      "path": "assets/images/Abronoma.png"
+    },
+    {
+      "name": "maame_portrait",
+      "path": "assets/images/Mam.png"
+    },
+    {
+      "name": "grass_tile",
+      "path": "assets/images/grass_tiles/grass.png"
+    },
+    {
       "name": "Esi",
       "path": "assets/images/Esi.png"
     }
@@ -72,6 +88,36 @@
       "animations": ["idle_down"],
       "animation_layout": "rows",
       "frame_time": 0.1
+    },
+    {
+      "name": "big_man_sprite",
+      "sprite_sheet": "big_man_character",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "animations": ["idle_down"],
+      "animation_layout": "rows",
+      "frame_time": 10
+    },
+    {
+      "name": "abronoma_sprite",
+      "sprite_sheet": "abronoma_portrait",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "animations": ["idle_down"],
+      "animation_layout": "rows",
+      "frame_time": 10
+    },
+    {
+      "name": "maame_sprite",
+      "sprite_sheet": "maame_portrait",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "animations": ["idle_down"],
+      "animation_layout": "rows",
+      "frame_time": 10
     },
     {
       "name": "null",

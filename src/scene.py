@@ -193,11 +193,11 @@ class Scene:
     def render(self, window_surface: pygame.Surface, ui_manager: UIManager) -> None:
         window_surface.fill((0, 0, 0))
         window_surface.blit(self.void_surface, (0, 0))
+        for map_element in self.map_elements: map_element.render(window_surface)
         for entity in self.entities:
             if isinstance(entity, Player):
                 continue
             entity.render(window_surface)
-        for map_element in self.map_elements: map_element.render(window_surface)
         self.player.render(window_surface)
 
         if self.dialogue is not None:

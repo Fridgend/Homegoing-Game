@@ -7,7 +7,11 @@
 	},
 
     "map_elements": [
-
+        {
+            "rect": { "x": 0, "y": 0, "w": 100, "h": 100 },
+            "image": "grass_tile",
+            "collision": false
+        }
 	],
 
     "entity_lookup": [
@@ -20,21 +24,21 @@
 		},
 		{
 			"id": "big_man",
-			"sprite": "null",
+			"sprite": "big_man_sprite",
 			"default_animation": "idle_down",
 			"animation_frame_time": 10,
 			"collision": true
 		},
 		{
 			"id": "abronoma",
-			"sprite": "null",
+			"sprite": "abronoma_sprite",
 			"default_animation": "idle_down",
 			"animation_frame_time": 10,
 			"collision": true
 		},
 		{
 			"id": "maame",
-			"sprite": "null",
+			"sprite": "maame_sprite",
 			"default_animation": "idle_down",
 			"animation_frame_time": 10,
 			"collision": true
