@@ -73,6 +73,10 @@
       "path": "assets/images/grass_tiles/grass.png"
     },
     {
+      "name": "kojo_image",
+      "path": "assets/images/kojo.png"
+    },
+    {
       "name": "Esi",
       "path": "assets/images/Esi.png"
     }
@@ -112,6 +116,16 @@
     {
       "name": "maame_sprite",
       "sprite_sheet": "maame_portrait",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "animations": ["idle_down"],
+      "animation_layout": "rows",
+      "frame_time": 10
+    },
+    {
+      "name": "kojo_sprite",
+      "sprite_sheet": "kojo_image",
       "width": 32,
       "height": 32,
       "num_frames": 1,

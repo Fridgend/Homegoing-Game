@@ -36,6 +36,13 @@
 			"default_animation": "idle_down",
 			"animation_frame_time": 10,
 			"collision": true
+		},
+		{
+			"id": "dummy_npc",
+			"sprite": "kojo_sprite",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
 		}
 	],
 
@@ -1313,6 +1320,283 @@
                             "font": "snake64",
                             "speaker_image": "",
                             "speaking_sfx": "soprano_voice",
+                            "next_monologue": null,
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "dummy_npc",
+            "lookup": "dummy_npc",
+            "spawn": { "x": 17, "y": 20 },
+            "conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+            "routes": [
+
+            ],
+
+            "dialogues": [
+                {
+                    "id": "main",
+                    "conditions": {
+                        "all": [],
+                        "any": [],
+                        "not": []
+                    },
+                    "start_monologue": [
+                        {
+                            "id": "kojo:0",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            }
+                        }
+                    ],
+                    "monologues": [
+                        {
+                            "id": "kojo:0",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Esi",
+                            "lines": [
+                                {
+                                    "text": "The air feels different today.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "kojo:1",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "kojo:1",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Kojo",
+                            "lines": [
+                                {
+                                    "text": "It feels the same to me. You are listening too hard.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "tenor_voice",
+                            "next_monologue": "kojo:2",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "kojo:2",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Esi",
+                            "lines": [
+                                {
+                                    "text": "My father says the northern villages are breaking.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "kojo:3",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "kojo:3",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Kojo",
+                            "lines": [
+                                {
+                                    "text": "They have been breaking for months. We are still here.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "tenor_voice",
+                            "next_monologue": "kojo:4",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "kojo:4",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Esi",
+                            "lines": [
+                                {
+                                    "text": "That does not mean they will not come.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "kojo:5",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "kojo:5",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Kojo",
+                            "lines": [
+                                {
+                                    "text": "If they come, we fight. We are not children.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "tenor_voice",
+                            "next_monologue": "kojo:6",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "kojo:6",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Esi",
+                            "lines": [
+                                {
+                                    "text": "They have weapons.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "kojo:7",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "kojo:7",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Kojo",
+                            "lines": [
+                                {
+                                    "text": "Weapons do not walk on their own. Men do.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "tenor_voice",
+                            "next_monologue": "kojo:8",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "kojo:8",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Esi",
+                            "lines": [
+                                {
+                                    "text": "And if there are too many men?",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "kojo:9",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "kojo:9",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Kojo",
+                            "lines": [
+                                {
+                                    "text": "Then we run faster than them.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "tenor_voice",
                             "next_monologue": null,
                             "set_route_on_reach": [],
                             "dispatch_on_reach": [],
