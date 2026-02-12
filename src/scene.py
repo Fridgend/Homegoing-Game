@@ -49,10 +49,22 @@ class Scene:
         self.void_surface = pygame.Surface(Config.WINDOW_DIMS).convert()
         self.void_surface.fill(self.void_color[:3])
         self.void_surface.set_alpha(self.void_color[3])
+        self.background_surface: pygame.Surface = self._build_background()
 
         self.dispatch_chains: set[DispatchChain] = set()
         self.added_dispatch_chains: set[DispatchChain] = set()
         self.removed_dispatch_chains: set[DispatchChain] = set()
+
+    def _build_background(self) -> pygame.Surface:
+        world_w = max(int(self.bounds.x * Config.TILE_SIZE), int(Config.WINDOW_DIMS.x))
+        world_h = max(int(self.bounds.y * Config.TILE_SIZE), int(Config.WINDOW_DIMS.y))
+        try:
+            image = pygame.image.load("assets/images/Copilot_20260212_213420.png").convert()
+            return pygame.transform.scale(image, (world_w, world_h))
+        except Exception:
+            bg = pygame.Surface((world_w, world_h)).convert()
+            bg.fill(self.void_color[:3])
+            return bg
 
     def add_dispatch_chain(self, chain: DispatchChain):
         self.added_dispatch_chains.add(chain)
@@ -192,7 +204,7 @@ class Scene:
 
     def render(self, window_surface: pygame.Surface, ui_manager: UIManager) -> None:
         window_surface.fill((0, 0, 0))
-        window_surface.blit(self.void_surface, (0, 0))
+        window_surface.blit(self.background_surface, Camera.world_pos_to_view_pos(pygame.Vector2(0, 0)))
         for map_element in self.map_elements: map_element.render(window_surface)
         for entity in self.entities:
             if isinstance(entity, Player):

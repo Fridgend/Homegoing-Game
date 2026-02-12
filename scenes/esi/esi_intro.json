@@ -1,18 +1,12 @@
 {
     "void_color": { "r": 101, "g": 67, "b": 33, "a": 15 },
-    "bounds": { "x": 100, "y": 100 },
+    "bounds": { "x": 40, "y": 24 },
     "background_music": {
 		"identifier": "esi_theme",
 		"volume": 0.3
 	},
 
-    "map_elements": [
-        {
-            "rect": { "x": 0, "y": 0, "w": 100, "h": 100 },
-            "image": "grass_tile",
-            "collision": false
-        }
-	],
+    "map_elements": [],
 
     "entity_lookup": [
         {
@@ -55,7 +49,7 @@
         {
             "id": "big_man",
             "lookup": "big_man",
-            "spawn": { "x": 5, "y": 4 },
+            "spawn": { "x": 4, "y": 9 },
             "conditions": {
 				"all": [],
 				"any": [],
@@ -854,7 +848,7 @@
         {
             "id": "abronoma",
             "lookup": "abronoma",
-            "spawn": { "x": 12, "y": 15 },
+            "spawn": { "x": 17, "y": 9 },
             "conditions": {
 				"all": [],
 				"any": [],
@@ -1105,7 +1099,7 @@
         {
             "id": "maame",
             "lookup": "maame",
-            "spawn": { "x": 8, "y": 10 },
+            "spawn": { "x": 34, "y": 13 },
             "conditions": {
 				"all": [],
 				"any": [],
