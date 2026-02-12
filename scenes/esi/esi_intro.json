@@ -24,6 +24,20 @@
 			"default_animation": "idle_down",
 			"animation_frame_time": 10,
 			"collision": true
+		},
+		{
+			"id": "abronoma",
+			"sprite": "null",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		},
+		{
+			"id": "maame",
+			"sprite": "null",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
 		}
 	],
 
@@ -829,6 +843,484 @@
 
 							"options": []
 						}
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "abronoma",
+            "lookup": "abronoma",
+            "spawn": { "x": 12, "y": 15 },
+            "conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+            "routes": [],
+
+            "dialogues": [
+                {
+                    "id": "main",
+                    "conditions": {
+                        "all": [],
+                        "any": [],
+                        "not": []
+                    },
+                    "start_monologue": [
+                        {
+                            "id": "abronoma:0",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            }
+                        }
+                    ],
+                    "monologues": [
+                        {
+                            "id": "abronoma:0",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Esi",
+                            "lines": [
+                                {
+                                    "text": "Drink. The water is fresh.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "abronoma:1",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "abronoma:1",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Abronoma",
+                            "lines": [
+                                {
+                                    "text": "Leave me alone, daughter of a lion.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "mezzo_soprano_voice",
+                            "next_monologue": "abronoma:2",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "abronoma:2",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Esi",
+                            "lines": [
+                                {
+                                    "text": "My father is a good man. He provides for us.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "abronoma:3",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "abronoma:3",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Abronoma",
+                            "lines": [
+                                {
+                                    "text": "He provides by taking. My father too was a Big Man.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "mezzo_soprano_voice",
+                            "next_monologue": "abronoma:4",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "abronoma:4",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Esi",
+                            "lines": [
+                                {
+                                    "text": "I... I did not know.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "abronoma:5",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "abronoma:5",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Abronoma",
+                            "lines": [
+                                {
+                                    "text": "Strength is knowing that everyone belongs to themselves.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "mezzo_soprano_voice",
+                            "next_monologue": "abronoma:6",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "abronoma:6",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Abronoma",
+                            "lines": [
+                                {
+                                    "text": "Your father does not know this. Neither do you.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "mezzo_soprano_voice",
+                            "next_monologue": "abronoma:7",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "abronoma:7",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Esi",
+                            "lines": [
+                                {
+                                    "text": "I will tell him to let you go.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "abronoma:8",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "abronoma:8",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Abronoma",
+                            "lines": [
+                                {
+                                    "text": "It is too late for that. The ships are already coming.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "mezzo_soprano_voice",
+                            "next_monologue": null,
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "maame",
+            "lookup": "maame",
+            "spawn": { "x": 8, "y": 10 },
+            "conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+            "routes": [],
+
+            "dialogues": [
+                {
+                    "id": "main",
+                    "conditions": {
+                        "all": [],
+                        "any": [],
+                        "not": []
+                    },
+                    "start_monologue": [
+                        {
+                            "id": "maame:0",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            }
+                        }
+                    ],
+                    "monologues": [
+                        {
+                            "id": "maame:0",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Maame",
+                            "lines": [
+                                {
+                                    "text": "Stupid girl! When will you learn to be careful around fire?",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "soprano_voice",
+                            "next_monologue": "maame:1",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "maame:1",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Esi",
+                            "lines": [
+                                {
+                                    "text": "It was an accident, Mother. The oil just slipped.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "maame:2",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "maame:2",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Maame",
+                            "lines": [
+                                {
+                                    "text": "Be careful of fire. Know when to use it and when to stay cold.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "soprano_voice",
+                            "next_monologue": "maame:3",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "maame:3",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Esi",
+                            "lines": [
+                                {
+                                    "text": "I am not afraid of it.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "maame:4",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "maame:4",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Maame",
+                            "lines": [
+                                {
+                                    "text": "You are soft, Esi. Your father has made you soft with his gold.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "soprano_voice",
+                            "next_monologue": "maame:5",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "maame:5",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Maame",
+                            "lines": [
+                                {
+                                    "text": "But softness is a choice. One day, you will have to choose to be iron.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "soprano_voice",
+                            "next_monologue": "maame:6",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "maame:6",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Esi",
+                            "lines": [
+                                {
+                                    "text": "I will remember.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "maame:7",
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        },
+                        {
+                            "id": "maame:7",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+                            "speaker": "Maame",
+                            "lines": [
+                                {
+                                    "text": "See that you do. Now, take this stone and keep it safe. Always.",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "soprano_voice",
+                            "next_monologue": null,
+                            "set_route_on_reach": [],
+                            "dispatch_on_reach": [],
+                            "modify_flags_on_reach": [],
+                            "options": []
+                        }
                     ]
                 }
             ]
