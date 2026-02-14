@@ -10,6 +10,7 @@ SPEAKER_IMAGE_MARGIN_TOP = 15
 
 SPEAKER_TEXT_POS = pygame.Vector2(30, 15)
 SPOKEN_TEXT_POS = pygame.Vector2(60, 80)
+SPOKEN_TEXT_END_RIGHT_PROPORTION = 1 / 3
 OPTIONS_START_RIGHT_PROPORTION = 1 / 4
 OPTIONS_DISTANCE_BETWEEN = 15
 OPTIONS_INDICATOR_OFFSET_X = 40
@@ -100,7 +101,10 @@ class Monologue:
 
     def choose(self, choice: int) -> str | None:
         if not self.awaiting_choice: return None
-        return self.options[choice].next_monologue
+        if self.options[choice].next_monologue is not None:
+            return self.options[choice].next_monologue
+        else:
+            return None
 
     def reset(self) -> None:
         if self.is_reset: return
@@ -154,19 +158,19 @@ class Monologue:
         self.awaiting_choice = len(self.options) > 0 and self.line_finished() and self.last_rendered_line()
 
     def draw_text(self, surface: pygame.Surface, ui_manager: UIManager,
-                  options_start: pygame.Vector2, start: pygame.Vector2, dims: pygame.Rect) -> None:
+                  text_end: pygame.Vector2, start: pygame.Vector2, dims: pygame.Rect) -> None:
 
         ui_manager.draw_text(Text(
             self.speaker, [255, 255, 255, 255],
             start + SPEAKER_TEXT_POS, self.font,
-            dimensions=pygame.Vector2(options_start.x - (start.x + SPEAKER_TEXT_POS.x),
+            dimensions=pygame.Vector2(text_end.x - (start.x + SPEAKER_TEXT_POS.x),
                                       dims.height - SPEAKER_TEXT_POS.y)
         ), surface)
 
         ui_manager.draw_text(Text(
             self.spoken, [255, 255, 255, 255],
             start + SPOKEN_TEXT_POS, self.font,
-            dimensions=pygame.Vector2(options_start.x - (start.x + SPOKEN_TEXT_POS.x),
+            dimensions=pygame.Vector2(text_end.x - (start.x + SPOKEN_TEXT_POS.x),
                                       dims.height - SPOKEN_TEXT_POS.y)
         ), surface)
 
@@ -194,13 +198,17 @@ class Monologue:
             dims.width - dims.width * OPTIONS_START_RIGHT_PROPORTION, 0
         )
 
+        text_end: pygame.Vector2 = pygame.Vector2(
+            dims.width - dims.width * SPOKEN_TEXT_END_RIGHT_PROPORTION, 0
+        )
+
         start: pygame.Vector2 = pygame.Vector2(0, 0)
         if self.speaker_image is not None:
             draw_surface.blit(self.speaker_image, pygame.Vector2(SPEAKER_IMAGE_MARGIN_LEFT, SPEAKER_IMAGE_MARGIN_TOP))
 
             start.x += SPEAKER_IMAGE_MARGIN_LEFT + self.speaker_image.get_width()
 
-        self.draw_text(draw_surface, ui_manager, options_start, start, dims)
+        self.draw_text(draw_surface, ui_manager, text_end, start, dims)
 
         if not self.awaiting_choice:
             ui_manager.set_num_buttons(0)
@@ -289,11 +297,11 @@ class Dialogue:
 
     def choose_option(self, scene) -> None:
         self.choice_index %= len(self.monologues.get(self.current_monologue).options)
-        self.current_monologue = self.monologues.get(self.current_monologue).choose(self.choice_index)
-        while not self.monologues.get(self.current_monologue).conditions.satisfied():
-            self.current_monologue = self.monologues.get(self.current_monologue).alt_monologue
-        self.monologues.get(self.current_monologue).is_reset = False
-        self.handle_new_monologue(scene)
+        next: str | None = self.monologues.get(self.current_monologue).choose(self.choice_index)
+        if next is None:
+            self.end()
+            return
+        self.load_monologue(next, scene)
 
     def load_monologue(self, monologue_id: str, scene) -> None:
         self.current_monologue = monologue_id
