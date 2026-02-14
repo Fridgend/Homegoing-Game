@@ -10,6 +10,8 @@ from src.sprite import Sprite
 from src.sprite import dir_to_str
 from src.ui_manager import UIManager
 
+CHARACTER_RENDER_SCALE: float = 2.0
+
 
 class Player(Entity):
     def __init__(self, spawn: pygame.Vector2, sprite: Sprite, move_duration: float):
@@ -108,5 +110,11 @@ class Player(Entity):
             self.controls_disabled = False
 
     def render(self, surface: pygame.Surface) -> None:
-        centered: pygame.Vector2 = self.pos - self.sprite.dimensions / 2
-        surface.blit(self.sprite.get() or AssetManager.NULL_IMAGE, Camera.world_pos_to_view_pos(centered))
+        frame: pygame.Surface = self.sprite.get() or AssetManager.NULL_IMAGE
+        scaled_size = (
+            int(self.sprite.dimensions.x * CHARACTER_RENDER_SCALE),
+            int(self.sprite.dimensions.y * CHARACTER_RENDER_SCALE)
+        )
+        scaled = pygame.transform.scale(frame, scaled_size)
+        centered: pygame.Vector2 = self.pos - pygame.Vector2(scaled_size) / 2
+        surface.blit(scaled, Camera.world_pos_to_view_pos(centered))

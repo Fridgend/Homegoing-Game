@@ -45,6 +45,7 @@ class EsiEscapeGame:
         self.screen_w, self.screen_h = self.screen.get_size()
         font_path = os.path.join("assets", "fonts", "Snake.ttf")
         self.font = pygame.font.Font(font_path, 64)
+        self.ui_font = pygame.font.Font(font_path, 44)
         self.sprite_scale = 1.25
         self.esi_scale = self.sprite_scale * 1.15
         self.attacker_scale = self.sprite_scale * 1.1
@@ -84,6 +85,64 @@ class EsiEscapeGame:
         self.spawn_timer = 0
         self.invincible_timer = 120 # 2 seconds of grace at 60fps        
         self.running = True
+
+    def _show_instruction_tabs(self):
+        tab_names = ["Controls", "Objective"]
+        active_tab = 0
+
+        controls_lines = [
+            "Use WASD or arrow keys for movement.",
+        ]
+        objective_lines = [
+            "You have to get to the other side without getting caught.",
+        ]
+
+        waiting = True
+        while waiting and self.running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
+                    return
+                if event.type == pygame.KEYDOWN:
+                    if event.key in (pygame.K_TAB, pygame.K_LEFT, pygame.K_RIGHT):
+                        active_tab = 1 - active_tab
+                    elif event.key in (pygame.K_RETURN, pygame.K_KP_ENTER, pygame.K_SPACE):
+                        waiting = False
+
+            self.screen.fill((0, 0, 0))
+            panel_w = min(1200, self.screen_w - 80)
+            panel_h = min(700, self.screen_h - 80)
+            panel_x = (self.screen_w - panel_w) // 2
+            panel_y = (self.screen_h - panel_h) // 2
+            pygame.draw.rect(self.screen, (35, 35, 35), (panel_x, panel_y, panel_w, panel_h), border_radius=18)
+            pygame.draw.rect(self.screen, (200, 200, 200), (panel_x, panel_y, panel_w, panel_h), 3, border_radius=18)
+
+            tab_w = 260
+            tab_h = 70
+            tab_y = panel_y - 35
+            for i, name in enumerate(tab_names):
+                tab_x = panel_x + 40 + i * (tab_w + 20)
+                is_active = i == active_tab
+                fill_color = (255, 215, 0) if is_active else (75, 75, 75)
+                text_color = (0, 0, 0) if is_active else (235, 235, 235)
+                pygame.draw.rect(self.screen, fill_color, (tab_x, tab_y, tab_w, tab_h), border_radius=12)
+                pygame.draw.rect(self.screen, (220, 220, 220), (tab_x, tab_y, tab_w, tab_h), 2, border_radius=12)
+                tab_text = self.ui_font.render(name, True, text_color)
+                tab_text_rect = tab_text.get_rect(center=(tab_x + tab_w // 2, tab_y + tab_h // 2))
+                self.screen.blit(tab_text, tab_text_rect)
+
+            lines = controls_lines if active_tab == 0 else objective_lines
+            for idx, line in enumerate(lines):
+                line_text = self.ui_font.render(line, True, (255, 255, 255))
+                line_rect = line_text.get_rect(center=(self.screen_w // 2, panel_y + 180 + idx * 90))
+                self.screen.blit(line_text, line_rect)
+
+            hint = self.ui_font.render("TAB/LEFT/RIGHT = switch tabs    ENTER/SPACE = continue", True, (200, 200, 200))
+            hint_rect = hint.get_rect(center=(self.screen_w // 2, panel_y + panel_h - 70))
+            self.screen.blit(hint, hint_rect)
+
+            pygame.display.flip()
+            self.clock.tick(60)
 
     def _scale_sprite(self, surface, scale=None):
         scale = self.sprite_scale if scale is None else scale
@@ -142,50 +201,9 @@ class EsiEscapeGame:
                 if dy < 0: rect.top = tree.bottom
 
     def run(self):
-        self.screen.fill((0, 0, 0))
-        instruction = "Get to the other side using arrows or WASD keys! You MUST be Fast!"
-        words = instruction.split(" ")
-        current_text = ""
-        skip_reveal = False
-
-        for i, word in enumerate(words):
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.running = False
-                    return
-                if event.type == pygame.KEYDOWN:
-                    skip_reveal = True
-            if skip_reveal:
-                current_text = instruction
-                break
-
-            current_text = (current_text + " " + word).strip()
-            self.screen.fill((0, 0, 0))
-            text = self.font.render(current_text, True, (255, 255, 0))
-            text_rect = text.get_rect(center=self.screen.get_rect().center)
-            self.screen.blit(text, text_rect)
-            pygame.display.flip()
-            pygame.time.delay(250)
-
+        self._show_instruction_tabs()
         if not self.running:
             return
-
-        if skip_reveal:
-            self.screen.fill((0, 0, 0))
-            text = self.font.render(current_text, True, (255, 255, 0))
-            text_rect = text.get_rect(center=self.screen.get_rect().center)
-            self.screen.blit(text, text_rect)
-            pygame.display.flip()
-
-        waiting = True
-        while waiting:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.running = False
-                    return
-                if event.type == pygame.KEYDOWN:
-                    waiting = False
-            self.clock.tick(60)
 
         max_tries = 2
         attempts = 0
