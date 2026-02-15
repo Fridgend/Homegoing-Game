@@ -34,7 +34,7 @@
     {
       "name": "snake",
       "path": "assets/fonts/Snake.ttf",
-      "sizes": [ 40, 46, 64, 192 ]
+      "sizes": [ 40, 46, 64, 96, 192 ]
     },
     {
       "name": "vcr_osd",
@@ -73,12 +73,36 @@
       "path": "assets/images/grass_tiles/grass.png"
     },
     {
+      "name": "dirt_tile",
+      "path": "assets/images/grass_tiles/dirt.png"
+    },
+    {
       "name": "kojo_image",
       "path": "assets/images/kojo.png"
     },
     {
       "name": "Esi",
       "path": "assets/images/Esi.png"
+    },
+    {
+      "name": "aufa",
+      "path": "assets/images/dungeon_aufa.png"
+    },
+    {
+      "name": "aufa_baby",
+      "path": "assets/images/dungeon_aufa_baby.png"
+    },
+    {
+      "name": "dungeon_soldier",
+      "path": "assets/images/dungeon_soldier.png"
+    },
+    {
+      "name": "tansi",
+      "path": "assets/images/dungeon_tansi.png"
+    },
+    {
+      "name": "dungeon_esi",
+      "path": "assets/images/dungeon_esi.png"
     }
   ],
 
@@ -132,6 +156,56 @@
       "animations": ["idle_down"],
       "animation_layout": "rows",
       "frame_time": 10
+    },
+    {
+      "name": "dungeon_player",
+      "sprite_sheet": "dungeon_esi",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "animations": ["idle_down"],
+      "animation_layout": "rows",
+      "frame_time": 0.1
+    },
+    {
+      "name": "aufa",
+      "sprite_sheet": "aufa",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "animations": ["idle_down"],
+      "animation_layout": "rows",
+      "frame_time": 0.1
+    },
+    {
+      "name": "aufa_baby",
+      "sprite_sheet": "aufa_baby",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "animations": ["idle_down"],
+      "animation_layout": "rows",
+      "frame_time": 0.1
+    },
+    {
+      "name": "dungeon_soldier",
+      "sprite_sheet": "dungeon_soldier",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "animations": ["idle_down"],
+      "animation_layout": "rows",
+      "frame_time": 0.1
+    },
+    {
+      "name": "tansi",
+      "sprite_sheet": "tansi",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "animations": ["idle_down"],
+      "animation_layout": "rows",
+      "frame_time": 0.1
     },
     {
       "name": "null",

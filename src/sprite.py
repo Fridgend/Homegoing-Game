@@ -6,11 +6,11 @@ def dir_to_str(moving: pygame.Vector2, facing: pygame.Vector2) -> str | None:
             case (0, 1):
                 return "move_down"
             case (1, 0):
-                return "move_right"
+                return "move_down"
             case (0, -1):
-                return "move_up"
+                return "move_down"
             case (-1, 0):
-                return "move_left"
+                return "move_down"
             case _:
                 return None
 
@@ -18,11 +18,11 @@ def dir_to_str(moving: pygame.Vector2, facing: pygame.Vector2) -> str | None:
         case (0, 1):
             return "idle_down"
         case (1, 0):
-            return "idle_right"
+            return "idle_down"
         case (0, -1):
-            return "idle_up"
+            return "idle_down"
         case (-1, 0):
-            return "idle_left"
+            return "idle_down"
         case _:
             return None
 

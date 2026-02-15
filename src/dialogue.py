@@ -4,6 +4,7 @@ from src.config import Config
 from src.event import DispatchChain
 from src.route_tracker import Conditions, Flags
 from src.ui_manager import UIManager, Text, Button
+from src.asset_manager import AssetManager
 
 SPEAKER_IMAGE_MARGIN_LEFT = 15
 SPEAKER_IMAGE_MARGIN_TOP = 15
@@ -162,7 +163,7 @@ class Monologue:
 
         ui_manager.draw_text(Text(
             self.speaker, [255, 255, 255, 255],
-            start + SPEAKER_TEXT_POS, self.font,
+            start + SPEAKER_TEXT_POS, AssetManager.get_font("snake64"),
             dimensions=pygame.Vector2(text_end.x - (start.x + SPEAKER_TEXT_POS.x),
                                       dims.height - SPEAKER_TEXT_POS.y)
         ), surface)
@@ -242,7 +243,7 @@ class Dialogue:
             pygame.Vector2(1, -1)
         ]
 
-    def start(self, scene) -> bool:
+    def start(self, scene, manager) -> bool:
         self.playing = True
         self.fading = FADE_SPEED
         for (monologue_id, conditions) in self.start_monologues:
@@ -266,7 +267,7 @@ class Dialogue:
             self.fading = 0
             return True
 
-        self.handle_new_monologue(scene)
+        self.handle_new_monologue(scene, manager)
         self.monologues.get(self.current_monologue).fading = FADE_SPEED
         self.monologues.get(self.current_monologue).is_reset = False
         return False
@@ -284,7 +285,7 @@ class Dialogue:
                 self.current_monologue = monologue_id
                 break
 
-    def handle_new_monologue(self, scene):
+    def handle_new_monologue(self, scene, manager):
         route: str | None = self.monologues.get(self.current_monologue).get_set_route()
 
         if route is not None and self.entity_id != "":
@@ -293,31 +294,31 @@ class Dialogue:
         for (method, flag) in self.monologues.get(self.current_monologue).modify_flags:
             Flags.modify(flag=flag, how=method)
 
-        scene.add_dispatch_chain(self.monologues.get(self.current_monologue).dispatch)
+        scene.add_dispatch_chain(manager, self.monologues.get(self.current_monologue).dispatch)
 
-    def choose_option(self, scene) -> None:
+    def choose_option(self, scene, manager) -> None:
         self.choice_index %= len(self.monologues.get(self.current_monologue).options)
-        next: str | None = self.monologues.get(self.current_monologue).choose(self.choice_index)
-        if next is None:
+        next_mon: str | None = self.monologues.get(self.current_monologue).choose(self.choice_index)
+        if next_mon is None:
             self.end()
             return
-        self.load_monologue(next, scene)
+        self.load_monologue(next_mon, scene, manager)
 
-    def load_monologue(self, monologue_id: str, scene) -> None:
+    def load_monologue(self, monologue_id: str, scene, manager) -> None:
         self.current_monologue = monologue_id
         while not self.monologues.get(self.current_monologue).conditions.satisfied():
             self.current_monologue = self.monologues.get(self.current_monologue).alt_monologue
         self.monologues.get(self.current_monologue).is_reset = False
-        self.handle_new_monologue(scene)
+        self.handle_new_monologue(scene, manager)
 
-    def input(self, scene, keys: pygame.key.ScancodeWrapper) -> None:
+    def input(self, scene, manager, keys: pygame.key.ScancodeWrapper) -> None:
         if not self.playing: return
         if keys[pygame.K_RETURN] or keys[pygame.K_SPACE]:
             if self.advance_block: return
             self.advance_block = True
 
             if self.monologues.get(self.current_monologue).awaiting_choice:
-                self.choose_option(scene)
+                self.choose_option(scene, manager)
                 return
 
             new_monologue: str | None = self.monologues.get(self.current_monologue).advance()
@@ -325,7 +326,7 @@ class Dialogue:
                 return
 
             if new_monologue is not None:
-                self.load_monologue(new_monologue, scene)
+                self.load_monologue(new_monologue, scene, manager)
             else:
                 self.end()
         else:

@@ -23,10 +23,10 @@ class Trigger:
                 return True
         return False
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, manager, scene) -> None:
         if self.disabled:
             return
 
         if self.once:
             self.disabled = True
-        scene.add_dispatch_chain(self.dispatch_chain)
+        scene.add_dispatch_chain(manager, self.dispatch_chain)

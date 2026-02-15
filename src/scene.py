@@ -54,71 +54,71 @@ class Scene:
         self.void_surface = pygame.Surface(Config.WINDOW_DIMS).convert()
         self.void_surface.fill(self.void_color[:3])
         self.void_surface.set_alpha(self.void_color[3])
-        self.background_surface: pygame.Surface = self._build_background()
+        # self.background_surface: pygame.Surface = self._build_background()
 
         self.dispatch_chains: set[DispatchChain] = set()
         self.added_dispatch_chains: set[DispatchChain] = set()
         self.removed_dispatch_chains: set[DispatchChain] = set()
 
-        self.attack_choice_active: bool = False
-        self.attack_choice_index: int = 0
-        self.attack_choice_input_block: bool = False
-        self.attack_choice_paths: tuple[str, str] = ("", "")
-        self.attack_choice_title: str = "The village is being attacked!"
-        self.choice_font = AssetManager.get_font("snake46") or pygame.font.Font(None, 46)
-        self.choice_title_font = AssetManager.get_font("snake64") or pygame.font.Font(None, 64)
+        # self.attack_choice_active: bool = False
+        # self.attack_choice_index: int = 0
+        # self.attack_choice_input_block: bool = False
+        # self.attack_choice_paths: tuple[str, str] = ("", "")
+        # self.attack_choice_title: str = "The village is being attacked!"
+        # self.choice_font = AssetManager.get_font("snake46") or pygame.font.Font(None, 46)
+        # self.choice_title_font = AssetManager.get_font("snake64") or pygame.font.Font(None, 64)
 
-    def start_attack_choice(self, peace_path: str, war_path: str) -> None:
-        self.attack_choice_paths = (peace_path, war_path)
-        self.attack_choice_index = 0
-        self.attack_choice_input_block = False
-        self.attack_choice_active = True
+    # def start_attack_choice(self, peace_path: str, war_path: str) -> None:
+    #     self.attack_choice_paths = (peace_path, war_path)
+    #     self.attack_choice_index = 0
+    #     self.attack_choice_input_block = False
+    #     self.attack_choice_active = True
+    #
+    # def _confirm_attack_choice(self) -> None:
+    #     path = self.attack_choice_paths[self.attack_choice_index]
+    #     if path != "":
+    #         abs_path = os.path.abspath(path)
+    #         try:
+    #             proc = subprocess.Popen([sys.executable, abs_path])
+    #             wait_clock = pygame.time.Clock()
+    #             while proc.poll() is None:
+    #                 for event in pygame.event.get():
+    #                     if event.type == pygame.QUIT:
+    #                         pass
+    #
+    #                 surface = pygame.display.get_surface()
+    #                 if surface is not None:
+    #                     surface.fill((0, 0, 0))
+    #                     title = self.choice_title_font.render("Loading next part...", True, (255, 220, 120))
+    #                     hint = self.choice_font.render("Please wait", True, (220, 220, 220))
+    #                     title_rect = title.get_rect(center=(Config.WINDOW_DIMS.x // 2, Config.WINDOW_DIMS.y // 2 - 24))
+    #                     hint_rect = hint.get_rect(center=(Config.WINDOW_DIMS.x // 2, Config.WINDOW_DIMS.y // 2 + 28))
+    #                     surface.blit(title, title_rect)
+    #                     surface.blit(hint, hint_rect)
+    #                     pygame.display.flip()
+    #
+    #                 wait_clock.tick(60)
+    #         except Exception:
+    #             subprocess.run([sys.executable, abs_path], check=False)
+    #     Flags.modify(flag="INTRO_ATTACK_CHOICE_DONE", how="add")
+    #     self.attack_choice_active = False
+    #     pygame.quit()
+    #     sys.exit()
+    #
+    # def _build_background(self) -> pygame.Surface:
+    #     world_w = max(int(self.bounds.x * Config.TILE_SIZE), int(Config.WINDOW_DIMS.x))
+    #     world_h = max(int(self.bounds.y * Config.TILE_SIZE), int(Config.WINDOW_DIMS.y))
+    #     try:
+    #         image = pygame.image.load("assets/images/Copilot_20260212_213420.png").convert()
+    #         return pygame.transform.scale(image, (world_w, world_h))
+    #     except Exception:
+    #         bg = pygame.Surface((world_w, world_h)).convert()
+    #         bg.fill(self.void_color[:3])
+    #         return bg
 
-    def _confirm_attack_choice(self) -> None:
-        path = self.attack_choice_paths[self.attack_choice_index]
-        if path != "":
-            abs_path = os.path.abspath(path)
-            try:
-                proc = subprocess.Popen([sys.executable, abs_path])
-                wait_clock = pygame.time.Clock()
-                while proc.poll() is None:
-                    for event in pygame.event.get():
-                        if event.type == pygame.QUIT:
-                            pass
-
-                    surface = pygame.display.get_surface()
-                    if surface is not None:
-                        surface.fill((0, 0, 0))
-                        title = self.choice_title_font.render("Loading next part...", True, (255, 220, 120))
-                        hint = self.choice_font.render("Please wait", True, (220, 220, 220))
-                        title_rect = title.get_rect(center=(Config.WINDOW_DIMS.x // 2, Config.WINDOW_DIMS.y // 2 - 24))
-                        hint_rect = hint.get_rect(center=(Config.WINDOW_DIMS.x // 2, Config.WINDOW_DIMS.y // 2 + 28))
-                        surface.blit(title, title_rect)
-                        surface.blit(hint, hint_rect)
-                        pygame.display.flip()
-
-                    wait_clock.tick(60)
-            except Exception:
-                subprocess.run([sys.executable, abs_path], check=False)
-        Flags.modify(flag="INTRO_ATTACK_CHOICE_DONE", how="add")
-        self.attack_choice_active = False
-        pygame.quit()
-        sys.exit()
-
-    def _build_background(self) -> pygame.Surface:
-        world_w = max(int(self.bounds.x * Config.TILE_SIZE), int(Config.WINDOW_DIMS.x))
-        world_h = max(int(self.bounds.y * Config.TILE_SIZE), int(Config.WINDOW_DIMS.y))
-        try:
-            image = pygame.image.load("assets/images/Copilot_20260212_213420.png").convert()
-            return pygame.transform.scale(image, (world_w, world_h))
-        except Exception:
-            bg = pygame.Surface((world_w, world_h)).convert()
-            bg.fill(self.void_color[:3])
-            return bg
-
-    def add_dispatch_chain(self, chain: DispatchChain):
+    def add_dispatch_chain(self, manager, chain: DispatchChain):
         self.added_dispatch_chains.add(chain)
-        chain.start(self)
+        chain.start(self, manager)
 
     def remove_dispatch_chain(self, chain: DispatchChain):
         self.removed_dispatch_chains.add(chain)
@@ -153,31 +153,31 @@ class Scene:
         self.state = SceneState.EXITED
         self.background_music.fadeout(BACKGROUND_MUSIC_FADE_MS)
 
-    def input(self, ui_manager: UIManager, keys: pygame.key.ScancodeWrapper) -> None:
-        if self.attack_choice_active:
-            moving = keys[pygame.K_LEFT] or keys[pygame.K_RIGHT] or keys[pygame.K_UP] or keys[pygame.K_DOWN]
-            confirming = keys[pygame.K_RETURN] or keys[pygame.K_SPACE]
-
-            if self.attack_choice_input_block:
-                if not moving and not confirming:
-                    self.attack_choice_input_block = False
-                return
-
-            if keys[pygame.K_LEFT] or keys[pygame.K_UP]:
-                self.attack_choice_index = (self.attack_choice_index - 1) % 2
-                self.attack_choice_input_block = True
-                return
-            if keys[pygame.K_RIGHT] or keys[pygame.K_DOWN]:
-                self.attack_choice_index = (self.attack_choice_index + 1) % 2
-                self.attack_choice_input_block = True
-                return
-            if confirming:
-                self._confirm_attack_choice()
-                self.attack_choice_input_block = True
-            return
+    def input(self, ui_manager: UIManager, manager, keys: pygame.key.ScancodeWrapper) -> None:
+        # if self.attack_choice_active:
+        #     moving = keys[pygame.K_LEFT] or keys[pygame.K_RIGHT] or keys[pygame.K_UP] or keys[pygame.K_DOWN]
+        #     confirming = keys[pygame.K_RETURN] or keys[pygame.K_SPACE]
+        #
+        #     if self.attack_choice_input_block:
+        #         if not moving and not confirming:
+        #             self.attack_choice_input_block = False
+        #         return
+        #
+        #     if keys[pygame.K_LEFT] or keys[pygame.K_UP]:
+        #         self.attack_choice_index = (self.attack_choice_index - 1) % 2
+        #         self.attack_choice_input_block = True
+        #         return
+        #     if keys[pygame.K_RIGHT] or keys[pygame.K_DOWN]:
+        #         self.attack_choice_index = (self.attack_choice_index + 1) % 2
+        #         self.attack_choice_input_block = True
+        #         return
+        #     if confirming:
+        #         self._confirm_attack_choice()
+        #         self.attack_choice_input_block = True
+        #     return
 
         if self.dialogue is not None:
-            self.dialogue.input(self, keys)
+            self.dialogue.input(self, manager, keys)
             ui_manager.input(keys)
             return
 
@@ -194,7 +194,7 @@ class Scene:
             if isinstance(entity, Interactable) and entity.can_interact(self.player):
                 self.dialogue = entity.interact(self.player)
                 if self.dialogue is not None:
-                    if self.dialogue.start(self):
+                    if self.dialogue.start(self, manager):
                         self.dialogue = None
                     else:
                         self.background_music.set_volume(self.background_music.get_volume() / 3)
@@ -222,13 +222,13 @@ class Scene:
         self.dispatch_chains.update(self.added_dispatch_chains)
         self.added_dispatch_chains.clear()
         for chain in self.dispatch_chains:
-            chain.update(self, dt)
+            chain.update(self, manager, dt)
         self.dispatch_chains = self.dispatch_chains.difference(self.removed_dispatch_chains)
         self.removed_dispatch_chains.clear()
 
         for _, trigger in self.triggers.items():
             if trigger.catch(self):
-                trigger.dispatch(self)
+                trigger.dispatch(manager, self)
 
         if self.entering_through is not None:
             self.entering_through.update(manager, dt)
@@ -245,12 +245,16 @@ class Scene:
             return
 
         self.player.update(self.entities, self.map_elements, ui_manager, dt)
-        self.player.grid_pos.x = pygame.math.clamp(self.player.grid_pos.x, 0, self.bounds.x)
-        self.player.grid_pos.y = pygame.math.clamp(self.player.grid_pos.y, 0, self.bounds.y)
-        self.player.pos.x = pygame.math.clamp(self.player.pos.x, 0,
-                                              self.bounds.x * Config.TILE_SIZE - self.player.sprite.dimensions.x)
-        self.player.pos.y = pygame.math.clamp(self.player.pos.y, 0,
-                                              self.bounds.y * Config.TILE_SIZE - self.player.sprite.dimensions.y)
+        if self.player.pos.x > self.bounds.x * Config.TILE_SIZE or \
+           self.player.pos.y > self.bounds.y * Config.TILE_SIZE:
+            self.player.grid_pos.x = pygame.math.clamp(self.player.grid_pos.x, 0, self.bounds.x)
+            self.player.grid_pos.y = pygame.math.clamp(self.player.grid_pos.y, 0, self.bounds.y)
+            self.player.pos.x = self.player.grid_pos.x * Config.TILE_SIZE
+            self.player.pos.y = self.player.grid_pos.y * Config.TILE_SIZE
+
+            self.player.velocity = pygame.Vector2(0, 0)
+            self.player.moving = False
+            self.player.move_time = 0
 
         for scene_exit in self.exits:
             if not scene_exit.available():
@@ -276,7 +280,7 @@ class Scene:
 
     def render(self, window_surface: pygame.Surface, ui_manager: UIManager) -> None:
         window_surface.fill((0, 0, 0))
-        window_surface.blit(self.background_surface, Camera.world_pos_to_view_pos(pygame.Vector2(0, 0)))
+        # window_surface.blit(self.background_surface, Camera.world_pos_to_view_pos(pygame.Vector2(0, 0)))
         for map_element in self.map_elements: map_element.render(window_surface)
         for entity in self.entities:
             if isinstance(entity, Player):
@@ -292,32 +296,32 @@ class Scene:
 
             self.dialogue.render(window_surface, dims, ui_manager)
 
-        if self.attack_choice_active:
-            overlay = pygame.Surface(Config.WINDOW_DIMS).convert_alpha()
-            overlay.fill((0, 0, 0, 190))
-            window_surface.blit(overlay, (0, 0))
-
-            panel_w = int(Config.WINDOW_DIMS.x * 0.82)
-            panel_h = int(Config.WINDOW_DIMS.y * 0.5)
-            panel_x = (int(Config.WINDOW_DIMS.x) - panel_w) // 2
-            panel_y = (int(Config.WINDOW_DIMS.y) - panel_h) // 2
-
-            pygame.draw.rect(window_surface, (20, 20, 24), (panel_x, panel_y, panel_w, panel_h), border_radius=14)
-            pygame.draw.rect(window_surface, (230, 230, 230), (panel_x, panel_y, panel_w, panel_h), width=3, border_radius=14)
-
-            title = self.choice_title_font.render(self.attack_choice_title, True, (255, 220, 120))
-            title_rect = title.get_rect(center=(panel_x + panel_w // 2, panel_y + int(panel_h * 0.28)))
-            window_surface.blit(title, title_rect)
-
-            options = ["Escape", "Escape and fight back"]
-            for i, text in enumerate(options):
-                selected = i == self.attack_choice_index
-                color = (255, 255, 255) if selected else (170, 170, 170)
-                opt = self.choice_font.render(text, True, color)
-                opt_rect = opt.get_rect(center=(panel_x + panel_w // 2, panel_y + int(panel_h * (0.58 + 0.20 * i))))
-                window_surface.blit(opt, opt_rect)
-
-                if selected:
-                    pygame.draw.rect(window_surface, (255, 215, 90),
-                                     (opt_rect.x - 14, opt_rect.y - 8, opt_rect.width + 28, opt_rect.height + 16),
-                                     width=2, border_radius=10)
+        # if self.attack_choice_active:
+        #     overlay = pygame.Surface(Config.WINDOW_DIMS).convert_alpha()
+        #     overlay.fill((0, 0, 0, 190))
+        #     window_surface.blit(overlay, (0, 0))
+        #
+        #     panel_w = int(Config.WINDOW_DIMS.x * 0.82)
+        #     panel_h = int(Config.WINDOW_DIMS.y * 0.5)
+        #     panel_x = (int(Config.WINDOW_DIMS.x) - panel_w) // 2
+        #     panel_y = (int(Config.WINDOW_DIMS.y) - panel_h) // 2
+        #
+        #     pygame.draw.rect(window_surface, (20, 20, 24), (panel_x, panel_y, panel_w, panel_h), border_radius=14)
+        #     pygame.draw.rect(window_surface, (230, 230, 230), (panel_x, panel_y, panel_w, panel_h), width=3, border_radius=14)
+        #
+        #     title = self.choice_title_font.render(self.attack_choice_title, True, (255, 220, 120))
+        #     title_rect = title.get_rect(center=(panel_x + panel_w // 2, panel_y + int(panel_h * 0.28)))
+        #     window_surface.blit(title, title_rect)
+        #
+        #     options = ["Escape", "Escape and fight back"]
+        #     for i, text in enumerate(options):
+        #         selected = i == self.attack_choice_index
+        #         color = (255, 255, 255) if selected else (170, 170, 170)
+        #         opt = self.choice_font.render(text, True, color)
+        #         opt_rect = opt.get_rect(center=(panel_x + panel_w // 2, panel_y + int(panel_h * (0.58 + 0.20 * i))))
+        #         window_surface.blit(opt, opt_rect)
+        #
+        #         if selected:
+        #             pygame.draw.rect(window_surface, (255, 215, 90),
+        #                              (opt_rect.x - 14, opt_rect.y - 8, opt_rect.width + 28, opt_rect.height + 16),
+        #                              width=2, border_radius=10)

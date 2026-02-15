@@ -1,0 +1,1950 @@
+{
+	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
+	"bounds": { "x": 11, "y": 8 },
+	"background_music": {
+		"identifier": "esi_theme",
+		"volume": 0
+	},
+
+	"map_elements": [
+		{
+			"rect": {
+				"x": 0,
+				"y": 1,
+				"w": 12,
+				"h": 8
+			},
+			"image": "dirt_tile",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": -1,
+				"y": 1,
+				"w": 1,
+				"h": 8
+			},
+			"image": "",
+			"collision": true
+		},
+		{
+			"rect": {
+				"x": 0,
+				"y": 0,
+				"w": 12,
+				"h": 1
+			},
+			"image": "",
+			"collision": true
+		}
+	],
+
+	"entity_lookup": [
+		{
+			"id": "dungeon_player",
+			"sprite": "dungeon_player",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		},
+		{
+			"id": "tansi",
+			"sprite": "tansi",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		},
+		{
+			"id": "aufa",
+			"sprite": "aufa",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		},
+		{
+			"id": "aufa_baby",
+			"sprite": "aufa_baby",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		},
+		{
+			"id": "soldier",
+			"sprite": "dungeon_soldier",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		}
+	],
+
+	"player": {
+		"lookup": "dungeon_player",
+		"fallback_spawn": { "x": 7, "y": 7 },
+		"move_duration": 0.35
+	},
+
+	"entities": [
+		{
+			"id": "tansi",
+			"lookup": "tansi",
+			"spawn": { "x": 5, "y": 7 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+				{
+					"id": "friend",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": ["GUARD_ENTERED_DUNGEON"]
+					},
+
+					"start_monologue": [
+						{
+							"id": "friend",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "friend",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "Tansi is your only friend in here",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "together",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "together",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You were taken here together, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "along with many others",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "difference",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "difference",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "Only difference between then and now, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "is that you don't need to speak so quietly here",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				},
+				{
+					"id": "sleep",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "sleep?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "sleep?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "Would you like to go to sleep next to Tansi?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+								{
+									"text": "Yes",
+									"next_monologue": "go-sleep",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Not yet",
+									"next_monologue": null,
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "go-sleep",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "So you do.",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+								{
+									"name": "exit_scene",
+									"transition": "fade",
+									"transition_time": 3,
+									"next_scene": "dungeon_morning",
+									"entrance": "main"
+								}
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				},
+				{
+					"id": "dialogue",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": ["TANSI_BABY_DIALOGUE"]
+					},
+
+					"start_monologue": [
+						{
+							"id": "esi:where?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "esi:where?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Where are they taking the baby?",
+									"char_time": 0.04
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "tansi:kill",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "add", "value": "TANSI_BABY_DIALOGUE" }
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:kill",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "They will kill it, I'm sure",
+									"char_time": 0.04
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:story?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:story?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Tansi, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "tell me a story, please",
+									"char_time": 0.04
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "tansi:too-old",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:too-old",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "Ah! ",
+									"char_time": 0.05
+								},
+								{
+									"text": "You're too old for stories, my sister",
+									"char_time": 0.04
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "tansi:...",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:...",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "... ",
+									"char_time": 0.07
+								},
+								{
+									"text": "... ",
+									"char_time": 0.07
+								},
+								{
+									"text": "...",
+									"char_time": 0.07
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "tansi:ok",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:ok",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "Do you know the story of the kente cloth?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:tell",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:tell",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You've heard it several times before, but you shake your head",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "tansi:story1",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:story1",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "Two Asante men went out into the forest one day",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "tansi:story2",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:story2",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "They were weavers by trade, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and they had gone out to hunt for meat",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "tansi:story3",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:story3",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "When they got to the forest to collect their traps,",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "tansi:story4",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:story4",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "they were met by Anansi, the mischievous spider",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "tansi:story5",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:story5",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "He was spinning a magnificent web",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "tansi:story6",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:story6",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "They watched him, studied him,",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "tansi:story7",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:story7",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "and soon realized that a spider's web was a unique and beautiful thing,",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "tansi:story8",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:story8",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "and that a spider's technique is flawless",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "tansi:story9",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:story9",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "They went home and decided to weave cloth,",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "tansi:story10",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:story10",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "the same way Anansi weaves his web",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "tansi:story11",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi:story11",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "From that, kente was born",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:nice",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:nice",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "You are a fine storyteller",
+									"char_time": 0.06
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "tansi-laugh",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "tansi-laugh",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "Tansi laughed. ",
+									"char_time": 0.05
+								},
+								{
+									"text": "It might be time to go to bed.",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "aufa",
+			"lookup": "aufa",
+			"spawn": { "x": 10, "y": 3 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+				{
+					"id": "hopeless",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": ["AUFA_VIOLENT_SCREAMS", "GUARD_ENTERED_DUNGEON"]
+					},
+
+					"start_monologue": [
+						{
+							"id": "violent-screams",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "violent-screams",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "... ",
+									"char_time": 0.1
+								},
+								{
+									"text": "Aufa's whole body convulses to the violent screams of her sorrows",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "torn",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "add", "value": "AUFA_VIOLENT_SCREAMS" }
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "torn",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "It's something being torn from a human throat",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "weep",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "add", "value": "AUFA_VIOLENT_SCREAMS" }
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "weep",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "She's naked and weeping, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "because she's lost something very important to her",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				},
+				{
+					"id": "missing",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": ["GUARD_ENTERED_DUNGEON"]
+					},
+
+					"start_monologue": [
+						{
+							"id": "missing",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "missing",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "She's lost something very important to her",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				},
+				{
+					"id": "baby-gone",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "taken",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": ["AUFA_BABY_GONE_DIALOGUE"]
+							}
+						},
+						{
+							"id": "best",
+							"conditions": {
+								"all": ["AUFA_BABY_GONE_DIALOGUE"],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "taken",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "They have taken her last source of joy",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "console",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "console",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You'd like to console her, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "but you fear she is too far gone",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "best",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "best",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "It might be best to leave her alone",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "add", "value": "AUFA_BABY_GONE_DIALOGUE" }
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "aufa_baby",
+			"lookup": "aufa_baby",
+			"spawn": { "x": 10, "y": 2 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+				{
+					"id": "cries",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "cries",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "cries",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "The baby's cries are subdued by the mud walls",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "soldier",
+			"lookup": "soldier",
+			"spawn": { "x": 0, "y": 3 },
+			"conditions": {
+				"all": ["BLOCK"],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+				{
+					"id": "walk-to-baby",
+					"waypoints": [
+						{ "x": 9, "y": 2, "speed": 0.25, "face_dir": "down", "wait": 0 }
+					],
+					"conditions": {
+						"all": ["BLOCK"],
+						"any": [],
+						"not": []
+					}
+				},
+				{
+					"id": "walk-out",
+					"waypoints": [
+						{ "x": 0, "y": 3, "speed": 0.45, "face_dir": "down", "wait": 2 }
+					],
+					"conditions": {
+						"all": ["BLOCK"],
+						"any": [],
+						"not": []
+					}
+				}
+			],
+
+			"dialogues": [
+				{
+					"id": "entered",
+					"conditions": {
+						"all": ["BLOCK"],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "thought",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "thought",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "A soldier entered the dungeon",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "quiet",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "quiet",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "soldier",
+							"lines": [
+								{
+									"text": "Nfye ttyuew aghruheriu kfj sndjf ptesdf lenfsufs",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "baritone_voice",
+							"next_monologue": "understanding",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "understanding",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "nobody understood the words he spoke",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "loud",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "loud",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "soldier",
+							"lines": [
+								{
+									"text": "Nfye ttyuew aghruheriu kfj sndjf ptesdf lenfsufs",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake96",
+							"speaker_image": "",
+							"speaking_sfx": "baritone_voice",
+							"next_monologue": "still",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "still",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "he spoke louder as if we would suddenly understand his language",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+
+	"triggers": [
+		{
+			"identifier": "center-camera",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_load"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "move_camera_to_pos",
+					"pos": { "x": 6, "y": 4 },
+					"duration": 0
+				}
+			]
+		},
+		{
+			"identifier": "guard-enters",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_enter"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "add_entity",
+					"ids": ["soldier"],
+					"wait": 30
+				},
+				{
+					"name": "modify_flags",
+					"how": "add",
+					"value": "GUARD_ENTERED_DUNGEON"
+				},
+				{
+					"name": "end_dialogue"
+				},
+				{
+					"name": "move_player",
+					"waypoints": [
+						{ "x": 6, "y": 7, "speed": 0.10, "face_dir": "down", "wait": 10 }
+					]
+				},
+				{
+					"name": "start_entity_dialogue",
+					"entity_id": "soldier",
+					"dialogue_id": "entered"
+				},
+				{
+					"name": "set_route",
+					"entity_id": "soldier",
+					"route_id": "walk-to-baby",
+					"wait_for_previous": true
+				},
+				{
+					"name": "move_player",
+					"waypoints": [
+						{ "x": 6, "y": 7, "speed": 0.10, "face_dir": "down", "wait": 10 }
+					]
+				}
+			]
+		},
+		{
+			"identifier": "guard-leaves",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_entity_enter",
+					"ids": ["soldier"],
+					"rect": {
+						"x": 9,
+						"y": 2,
+						"w": 1,
+						"h": 1
+					}
+				}
+			],
+			"dispatch": [
+				{
+					"name": "remove_entity",
+					"ids": ["aufa_baby"],
+					"wait": 1
+				},
+				{
+					"name": "start_entity_dialogue",
+					"entity_id": "tansi",
+					"dialogue_id": "dialogue"
+				},
+				{
+					"name": "set_route",
+					"entity_id": "soldier",
+					"route_id": "walk-out",
+					"wait": 2
+				},
+				{
+					"name": "remove_entity",
+					"ids": ["soldier"],
+					"wait": 5
+				}
+			]
+		}
+	],
+
+	"entrances": [
+		
+	],
+
+	"exits": [
+		
+	]
+}

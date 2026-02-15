@@ -11,6 +11,8 @@ from src.camera import Camera
 from src.config import Config
 from src.entity_route import EntityRoute
 from src.route_tracker import Conditions
+from src.scene_in_out import SceneExit, str_to_scene_transition
+from src.route_tracker import Flags
 
 
 class SceneState(enum.Enum):
@@ -37,7 +39,7 @@ class DispatchEvent:
     def is_complete(self, scene) -> bool:
         pass
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         self.dispatched = True
 
     def update(self, scene, dt: float) -> None:
@@ -53,7 +55,7 @@ class DispatchChain:
         self.last_dispatch_index: int = 0
         self.dispatch_index: int = 0
 
-    def start(self, scene):
+    def start(self, scene, manager):
         if len(self.dispatches) == 1:
             return
 
@@ -69,11 +71,11 @@ class DispatchChain:
                 self.dispatch_index = 0
                 scene.remove_dispatch_chain(self)
                 return
-        self.dispatches[self.dispatch_index].dispatch(scene)
+        self.dispatches[self.dispatch_index].dispatch(scene, manager)
         self.last_dispatch_index = self.dispatch_index
         self.dispatch_index += 1
 
-    def update(self, scene, dt: float):
+    def update(self, scene, manager, dt: float):
         if not self.active:
             return
 
@@ -100,13 +102,13 @@ class DispatchChain:
         if self.dispatches[self.dispatch_index].org_wait > 0:
             if self.dispatches[self.dispatch_index].wait <= 0:
                 self.dispatches[self.dispatch_index].wait = self.dispatches[self.dispatch_index].org_wait
-                self.dispatches[self.dispatch_index].dispatch(scene)
+                self.dispatches[self.dispatch_index].dispatch(scene, manager)
                 self.last_dispatch_index = self.dispatch_index
                 self.dispatch_index += 1
             else:
                 self.dispatches[self.dispatch_index].wait -= dt
         else:
-            self.dispatches[self.dispatch_index].dispatch(scene)
+            self.dispatches[self.dispatch_index].dispatch(scene, manager)
             self.last_dispatch_index = self.dispatch_index
             self.dispatch_index += 1
 
@@ -132,6 +134,13 @@ class OnEntityEnter(CatchEvent):
                 return True
         return False
 
+class OnSceneLoad(CatchEvent):
+    def __init__(self):
+        super().__init__()
+
+    def catch(self, scene) -> bool:
+        return True
+
 class OnSceneStart(CatchEvent):
     def __init__(self):
         super().__init__()
@@ -147,6 +156,40 @@ class OnSceneExit(CatchEvent):
         return scene.state == SceneState.EXITED
 
 
+class ExitScene(DispatchEvent):
+    def __init__(self, transition: str, transition_time: float, next_scene: str, entrance: str):
+        super().__init__()
+        self.exit: SceneExit = SceneExit(
+            rect=pygame.Rect(0, 0, 0, 0),
+            require_interact=False,
+            transition=str_to_scene_transition(transition),
+            transition_time=transition_time,
+            next_scene=next_scene,
+            next_entrance=entrance,
+            conditions=Conditions([], [], [])
+        )
+
+    def is_complete(self, scene) -> bool:
+        return self.dispatched
+
+    def dispatch(self, scene, manager) -> None:
+        scene.exiting_through = self.exit
+        scene.state = SceneState.EXITING
+
+class ModifyFlags(DispatchEvent):
+    def __init__(self, how: str, value: str):
+        super().__init__()
+        self.how: str = how
+        self.value: str = value
+
+    def is_complete(self, scene) -> bool:
+        return self.dispatched
+
+    def dispatch(self, scene, manager) -> None:
+        Flags.modify(self.value, self.how)
+        self.dispatched = True
+
+
 class AddEntity(DispatchEvent):
     def __init__(self, ids: list[str]):
         super().__init__()
@@ -155,7 +198,7 @@ class AddEntity(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         for identifier in self.ids:
             if scene.entities_dict.get(identifier) is not None:
                 scene.entities.append(scene.entities_dict.get(identifier))
@@ -169,7 +212,7 @@ class RemoveEntity(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         for identifier in self.ids:
             scene.entities.remove(scene.entities_dict.get(identifier))
         self.dispatched = True
@@ -183,7 +226,7 @@ class SetEntityRoute(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         if scene.entities_dict.get(self.entity_id) is not None:
             scene.entities_dict.get(self.entity_id).set_route(self.route_id)
         self.dispatched = True
@@ -195,14 +238,14 @@ class BeginEntityDialogue(DispatchEvent):
         self.dialogue_id: str = dialogue_id
 
     def is_complete(self, scene) -> bool:
-        return self.dispatched
+        return scene.dialogue is None and self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         self.dispatched = True
         dialogue = scene.entities_dict.get(self.entity_id).interact(scene.player, self.dialogue_id)
         if dialogue is not None:
             scene.dialogue = dialogue
-            if scene.dialogue.start(scene):
+            if scene.dialogue.start(scene, manager):
                 scene.dialogue = None
                 return
             if scene.background_music is not None:
@@ -214,12 +257,12 @@ class BeginIndependentDialogue(DispatchEvent):
         self.dialogue = dialogue
 
     def is_complete(self, scene) -> bool:
-        return self.dispatched
+        return scene.dialogue is None and self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         self.dispatched = True
         scene.dialogue = self.dialogue
-        if scene.dialogue.start(scene):
+        if scene.dialogue.start(scene, manager):
             scene.dialogue = None
             return
         if scene.background_music is not None:
@@ -232,9 +275,12 @@ class EndDialogueAbruptly(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         if scene.dialogue is not None:
             scene.dialogue.reset()
+            if (entity := scene.entities_dict.get(scene.dialogue.entity_id, None)) is not None:
+                entity.block = False
+                entity.current_dialogue = None
             scene.dialogue = None
             if scene.background_music is not None:
                 scene.background_music.set_volume(scene.background_music.get_volume() * 3)
@@ -253,7 +299,7 @@ class MoveCameraPosition(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return Camera.POS == self.pos and self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         Camera.TRACK = None
         self.start_pos = Camera.POS.copy()
         self.dispatched = True
@@ -266,7 +312,10 @@ class MoveCameraPosition(DispatchEvent):
         Camera.POS = self.start_pos.lerp(self.pos, t)
 
         self.elapsed += dt
-        self.fraction = min(self.elapsed / self.duration, 1.0)
+        if self.duration == 0:
+            self.fraction = 1
+        else:
+            self.fraction = min(self.elapsed / self.duration, 1.0)
 
 class MoveCameraEntity(DispatchEvent):
     def __init__(self, entity_id: str, duration: float):
@@ -282,7 +331,7 @@ class MoveCameraEntity(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return Camera.POS == self.target_pos and self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         Camera.TRACK = None
         self.target_pos = scene.entities_dict.get(self.entity_id).pos - Camera.WINDOW_CENTER
         self.start_pos = Camera.POS.copy()
@@ -306,7 +355,7 @@ class MoveCameraFollowEntity(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         Camera.TRACK = scene.entities_dict.get(self.entity_id)
         self.dispatched = True
 
@@ -318,7 +367,7 @@ class MovePlayer(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return scene.player.current_route is None
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         scene.player.controls_disabled = True
         scene.player.routes["ROUTE"] = self.route
         scene.player.set_route("ROUTE")
@@ -331,7 +380,7 @@ class ResetCamera(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         Camera.TRACK = scene.player
         self.dispatched = True
 
@@ -344,7 +393,7 @@ class ShakeCamera(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         Camera.shake_camera(intensity_x=self.intensity, intensity_y=self.intensity, duration=self.time)
         self.dispatched = True
 
@@ -355,7 +404,7 @@ class EndCameraShake(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         Camera.shake_camera(duration=0)
         self.dispatched = True
 
@@ -370,7 +419,7 @@ class PlayAudio(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         self.sound = AssetManager.get_audio(self.audio_id)
         self.sound = pygame.mixer.Sound(self.sound)
         if self.sound is not None:
@@ -386,7 +435,7 @@ class LaunchScript(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         abs_path = os.path.abspath(self.script_path)
         subprocess.run([sys.executable, abs_path], check=False)
         self.dispatched = True
@@ -400,7 +449,7 @@ class ShowAttackChoice(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         scene.start_attack_choice(self.peace_path, self.war_path)
         self.dispatched = True
 
@@ -412,7 +461,7 @@ class EnableTrigger(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         scene.triggers.get(self.trigger_id).disabled = False
         self.dispatched = True
 
@@ -424,6 +473,6 @@ class DisableTrigger(DispatchEvent):
     def is_complete(self, scene) -> bool:
         return self.dispatched
 
-    def dispatch(self, scene) -> None:
+    def dispatch(self, scene, manager) -> None:
         scene.triggers.get(self.trigger_id).disabled = True
         self.dispatched = True

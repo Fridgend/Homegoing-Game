@@ -1,6 +1,8 @@
 {
-    "start_scene": "start",
+    "start_scene": "dungeon_morning",
     "scenes": [
-        { "name": "start", "path": "scenes/esi/intro_dungeon.json" }
+        { "name": "dungeon", "path": "scenes/esi/dungeon.json" },
+        { "name": "dungeon_morning", "path": "scenes/esi/dungeon_morning.json" },
+        { "name": "test", "path": "scenes/esi/esi_intro.json" }
     ]
 }

@@ -144,10 +144,5 @@ class Entity:
 
     def render(self, surface: pygame.Surface) -> None:
         frame: pygame.Surface = self.sprite.get() or AssetManager.NULL_IMAGE
-        scaled_size = (
-            int(self.sprite.dimensions.x * CHARACTER_RENDER_SCALE),
-            int(self.sprite.dimensions.y * CHARACTER_RENDER_SCALE)
-        )
-        scaled = pygame.transform.scale(frame, scaled_size)
-        centered: pygame.Vector2 = self.pos - pygame.Vector2(scaled_size) / 2
-        surface.blit(scaled, Camera.world_pos_to_view_pos(centered))
+        centered: pygame.Vector2 = self.pos - pygame.Vector2(frame.get_size()) / 2
+        surface.blit(frame, Camera.world_pos_to_view_pos(centered))

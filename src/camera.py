@@ -5,19 +5,13 @@ import pygame
 from src.config import Config
 
 
-def grid_pos_to_view_pos(grid_pos: pygame.Vector2) -> pygame.Vector2:
-    return grid_pos * Config.TILE_SIZE
-
-
 class Camera:
     POS: pygame.Vector2 = pygame.Vector2(0, 0)
-    WINDOW_CENTER: int = 0
+    WINDOW_CENTER: pygame.Vector2 = pygame.Vector2(0, 0)
 
     SHAKE_OFFSET: pygame.Vector2 = pygame.Vector2(0, 0)
     SHAKE_AMOUNT: pygame.Vector2 = pygame.Vector2(0, 0)
     SHAKE_DURATION: float = 0
-
-    ZOOM: float = 1
 
     TRACK = None
 

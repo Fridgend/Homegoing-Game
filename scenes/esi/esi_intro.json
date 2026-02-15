@@ -1662,7 +1662,12 @@
 	],
 
 	"entrances": [
-
+		{
+			"identifier": "main",
+			"spawn": { "x": 0, "y": 0 },
+			"transition": "fade",
+			"transition_time": 1
+		}
 	],
 
     "exits": [

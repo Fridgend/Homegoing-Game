@@ -65,6 +65,8 @@ def parse_catch(catch_obj: dict) -> CatchEvent | None:
                 ids=[ind for ind in catch_obj.get("ids", [])],
                 rect=pygame.Rect(rect_obj.get("x", 0), rect_obj.get("y", 0), rect_obj.get("w", 0), rect_obj.get("h", 0))
             )
+        case "on_scene_load":
+            event = OnSceneLoad()
         case "on_scene_enter":
             event = OnSceneStart()
         case "on_scene_exit":
@@ -78,6 +80,18 @@ def parse_catch(catch_obj: dict) -> CatchEvent | None:
 def parse_dispatch(dispatch_obj: dict) -> DispatchEvent | None:
     name: str = dispatch_obj.get("name", "")
     match name:
+        case "exit_scene":
+            event = ExitScene(
+                transition=dispatch_obj.get("transition"),
+                transition_time=dispatch_obj.get("transition_time"),
+                next_scene=dispatch_obj.get("next_scene"),
+                entrance=dispatch_obj.get("entrance")
+            )
+        case "modify_flags":
+            event = ModifyFlags(
+                how=dispatch_obj.get("how", ""),
+                value=dispatch_obj.get("value", "")
+            )
         case "add_entity":
             event = AddEntity(
                 ids=[ind for ind in dispatch_obj.get("ids", [])]
@@ -431,7 +445,7 @@ class SceneManager:
         self.current_scene = scene_name
 
     def input(self, ui_manager: UIManager, keys: pygame.key.ScancodeWrapper) -> None:
-        self.scenes[self.current_scene].input(ui_manager, keys)
+        self.scenes[self.current_scene].input(ui_manager, self, keys)
 
     def update(self, ui_manager: UIManager, dt: float) -> None:
         self.fade = pygame.math.clamp(self.fade + self.fading * dt, 0, 255)

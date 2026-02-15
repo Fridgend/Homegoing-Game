@@ -1,0 +1,528 @@
+{
+	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
+	"bounds": { "x": 11, "y": 8 },
+	"background_music": {
+		"identifier": "esi_theme",
+		"volume": 0
+	},
+
+	"map_elements": [
+		{
+			"rect": {
+				"x": 0,
+				"y": 1,
+				"w": 12,
+				"h": 8
+			},
+			"image": "dirt_tile",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": -1,
+				"y": 1,
+				"w": 1,
+				"h": 8
+			},
+			"image": "",
+			"collision": true
+		},
+		{
+			"rect": {
+				"x": 0,
+				"y": 0,
+				"w": 12,
+				"h": 1
+			},
+			"image": "",
+			"collision": true
+		}
+	],
+
+	"entity_lookup": [
+		{
+			"id": "dungeon_player",
+			"sprite": "dungeon_player",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		},
+		{
+			"id": "tansi",
+			"sprite": "tansi",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		},
+		{
+			"id": "aufa",
+			"sprite": "aufa",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		}
+	],
+
+	"player": {
+		"lookup": "dungeon_player",
+		"fallback_spawn": { "x": 6, "y": 7 },
+		"move_duration": 0.35
+	},
+
+	"entities": [
+		{
+			"id": "tansi",
+			"lookup": "tansi",
+			"spawn": { "x": 5, "y": 7 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+				{
+					"id": "suspicious",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": ["FOUND_AUFA_DEAD"]
+					},
+
+					"start_monologue": [
+						{
+							"id": "quiet",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "quiet",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "Aufa is awfully quiet this morning",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "check",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "check",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "Will you please check on her?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				},
+                {
+					"id": "confirmed",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "esi:dead",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "esi:dead",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Her lips are purple. ",
+									"char_time": 0.05
+								},
+                                {
+                                    "text": "She's dead.",
+                                    "char_time": 0.05
+                                }
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "tansi:...",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "tansi:...",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "tansi",
+							"lines": [
+								{
+									"text": "....................",
+									"char_time": 0.15
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+                                {
+                                    "name": "exit_scene",
+                                    "transition": "fade",
+                                    "transition_time": 1,
+                                    "next_scene": "test",
+                                    "entrance": "main",
+									"wait": 0.5
+                                }
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "aufa",
+			"lookup": "aufa",
+			"spawn": { "x": 10, "y": 3 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+				{
+					"id": "dead",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": ["FOUND_AUFA_DEAD"]
+					},
+
+					"start_monologue": [
+						{
+							"id": "still",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "still",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "She's very still... ",
+									"char_time": 0.05
+								},
+                                {
+                                    "text": "is she alive?",
+                                    "char_time": 0.05
+                                }
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+                                {
+                                    "text": "check pulse",
+                                    "next_monologue": "dead",
+                                    "conditions": {
+                                        "all": [],
+                                        "any": [],
+                                        "not": []
+                                    }
+                                },
+								{
+                                    "text": "check breathing",
+                                    "next_monologue": "dead",
+                                    "conditions": {
+                                        "all": [],
+                                        "any": [],
+                                        "not": []
+                                    }
+                                }
+							]
+						},
+						{
+							"id": "dead",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "She's dead. ",
+									"char_time": 0.15
+								},
+                                {
+                                    "text": "Her body's cold. ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "She's been dead for a while.",
+                                    "char_time": 0.05
+                                }
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+                                { "how": "add", "value": "FOUND_AUFA_DEAD" }
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				},
+				{
+					"id": "corpse",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "corpse",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "corpse",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "A corpse",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				}
+			]
+		}
+    ],
+
+	"triggers": [
+		{
+			"identifier": "center-camera",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_load"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "move_camera_to_pos",
+					"pos": { "x": 6, "y": 4 },
+					"duration": 0
+				}
+			]
+		}
+	],
+
+	"entrances": [
+        {
+            "identifier": "main",
+            "spawn": { "x": 6, "y": 7 },
+            "transition": "fade",
+            "transition_time": 1
+        }
+	],
+
+	"exits": [
+
+	]
+}

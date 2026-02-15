@@ -49,7 +49,7 @@ class Player(Entity):
             self.move_waypoints(dt)
 
         if not self.moving:
-            return
+            self.pos = self.grid_pos * Config.TILE_SIZE
 
         target_grid_pos: pygame.Vector2 = self.grid_pos + self.velocity
         rect: pygame.Rect = pygame.Rect(target_grid_pos, self.hit_box)
@@ -68,12 +68,12 @@ class Player(Entity):
                 return
         
         self.move_time += dt
-        t: float = min(self.move_time / self.move_duration, 1.0)
+        t: float = self.move_time / self.move_duration
 
         start_pos: pygame.Vector2 = self.grid_pos * Config.TILE_SIZE
         target_pos: pygame.Vector2 = target_grid_pos * Config.TILE_SIZE
 
-        self.pos = start_pos.lerp(target_pos, t)
+        self.pos = start_pos.lerp(target_pos, min(t, 1.0))
 
         if t >= 1.0:
             self.grid_pos += self.velocity
@@ -111,10 +111,5 @@ class Player(Entity):
 
     def render(self, surface: pygame.Surface) -> None:
         frame: pygame.Surface = self.sprite.get() or AssetManager.NULL_IMAGE
-        scaled_size = (
-            int(self.sprite.dimensions.x * CHARACTER_RENDER_SCALE),
-            int(self.sprite.dimensions.y * CHARACTER_RENDER_SCALE)
-        )
-        scaled = pygame.transform.scale(frame, scaled_size)
-        centered: pygame.Vector2 = self.pos - pygame.Vector2(scaled_size) / 2
-        surface.blit(scaled, Camera.world_pos_to_view_pos(centered))
+        centered: pygame.Vector2 = self.pos - pygame.Vector2(frame.get_size()) / 2
+        surface.blit(frame, Camera.world_pos_to_view_pos(centered))
