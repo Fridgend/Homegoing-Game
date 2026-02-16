@@ -15,7 +15,7 @@ class EnduranceEngine(nn.Module):
             return 4.0 + (torch.sigmoid(self.fc(x)).item() * 2.5)
 
 def load_esi_sprite():
-    path = os.path.join("assets", "images", "esi.png")
+    path = os.path.join("assets", "images", "esi_spritesheet.png")
     return pygame.image.load(path).convert_alpha()
 
 def draw_pixel_raider():

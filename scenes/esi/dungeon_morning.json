@@ -41,8 +41,8 @@
 
 	"entity_lookup": [
 		{
-			"id": "dungeon_player",
-			"sprite": "dungeon_player",
+			"id": "dungeon_esi",
+			"sprite": "dungeon_esi",
 			"default_animation": "idle_down",
 			"animation_frame_time": 0.15,
 			"collision": true
@@ -64,7 +64,7 @@
 	],
 
 	"player": {
-		"lookup": "dungeon_player",
+		"lookup": "dungeon_esi",
 		"fallback_spawn": { "x": 6, "y": 7 },
 		"move_duration": 0.35
 	},
@@ -123,7 +123,7 @@
 							],
 							"font": "snake64",
 							"speaker_image": "",
-							"speaking_sfx": "mezzo_soprano_voice",
+							"speaking_sfx": "alto_voice",
 							"next_monologue": "check",
 
 							"set_route_on_reach": [
@@ -160,7 +160,7 @@
 							],
 							"font": "snake64",
 							"speaker_image": "",
-							"speaking_sfx": "mezzo_soprano_voice",
+							"speaking_sfx": "alto_voice",
 							"next_monologue": null,
 
 							"set_route_on_reach": [
@@ -260,7 +260,7 @@
 							],
 							"font": "snake64",
 							"speaker_image": "",
-							"speaking_sfx": "mezzo_soprano_voice",
+							"speaking_sfx": "alto_voice",
 							"next_monologue": null,
 
 							"set_route_on_reach": [
@@ -271,8 +271,8 @@
                                 {
                                     "name": "exit_scene",
                                     "transition": "fade",
-                                    "transition_time": 1,
-                                    "next_scene": "test",
+                                    "transition_time": 3,
+                                    "next_scene": "village",
                                     "entrance": "main",
 									"wait": 0.5
                                 }

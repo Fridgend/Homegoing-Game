@@ -18,6 +18,7 @@ class Player(Entity):
         super().__init__(sprite, True, spawn, Conditions([], [], []), {})
 
         self.move_duration: float = move_duration
+        self.waypoint_move_duration: float | None = None
         self.controls_disabled: bool = False
 
     def set_sprite(self, sprite: Sprite, hit_box: pygame.Vector2) -> None:
@@ -69,6 +70,8 @@ class Player(Entity):
         
         self.move_time += dt
         t: float = self.move_time / self.move_duration
+        if self.waypoint_move_duration is not None:
+            t = self.move_time / self.waypoint_move_duration
 
         start_pos: pygame.Vector2 = self.grid_pos * Config.TILE_SIZE
         target_pos: pygame.Vector2 = target_grid_pos * Config.TILE_SIZE
@@ -99,6 +102,7 @@ class Player(Entity):
             if dx != 0 or dy != 0:
                 self.velocity = pygame.Vector2(dx, dy)
                 self.facing = self.routes.get(self.current_route).waypoints[self.route_waypoint].face_dir
+                self.waypoint_move_duration = self.routes.get(self.current_route).waypoints[self.route_waypoint].speed
                 self.moving = True
             else:
                 self.waypoint_wait_time = self.routes.get(self.current_route).waypoints[self.route_waypoint].wait
@@ -106,6 +110,7 @@ class Player(Entity):
                 if self.route_waypoint >= len(self.routes.get(self.current_route).waypoints):
                     self.route_waypoint = 0
                     self.current_route = None
+                    self.waypoint_move_duration = None
         elif self.current_route is None and self.waypoint_wait_time == 0:
             self.controls_disabled = False
 

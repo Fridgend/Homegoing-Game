@@ -1,0 +1,1330 @@
+{
+	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
+	"bounds": { "x": 6, "y": 8 },
+	"background_music": {
+		"identifier": "esi_theme",
+		"volume": 0.5
+	},
+
+	"map_elements": [
+		{
+			"rect": {
+				"x": 0,
+				"y": 1,
+				"w": 7,
+				"h": 8
+			},
+			"image": "dirt_tile",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": -1,
+				"y": 1,
+				"w": 1,
+				"h": 8
+			},
+			"image": "",
+			"collision": true
+		},
+		{
+			"rect": {
+				"x": 0,
+				"y": 0,
+				"w": 7,
+				"h": 1
+			},
+			"image": "",
+			"collision": true
+		}
+	],
+
+	"entity_lookup": [
+		{
+			"id": "player",
+			"sprite": "esi",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		},
+		{
+			"id": "maame",
+			"sprite": "maame",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		},
+		{
+			"id": "big_man",
+			"sprite": "big_man",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": false
+		}
+	],
+
+	"player": {
+		"lookup": "player",
+		"fallback_spawn": { "x": 3, "y": 3 },
+		"move_duration": 0.3
+	},
+
+	"entities": [
+		{
+			"id": "big_man",
+			"lookup": "big_man",
+			"spawn": { "x": 30, "y": 2 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+
+			]
+		},
+		{
+			"id": "maame",
+			"lookup": "maame",
+			"spawn": { "x": 1, "y": 3 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+				{
+					"id": "move-to-esi",
+					"waypoints": [
+						{ "x": 3, "y": 3, "speed": 0.3, "face_dir": "down", "wait": 0 }
+					],
+					"conditions": {
+						"all": ["BLOCK"],
+						"any": [],
+						"not": []
+					}
+				},
+				{
+					"id": "walk-back",
+					"waypoints": [
+						{ "x": 1, "y": 3, "speed": 0.5, "face_dir": "down", "wait": 0 }
+					],
+					"conditions": {
+						"all": ["BLOCK"],
+						"any": [],
+						"not": []
+					}
+				}
+			],
+
+			"dialogues": [
+				{
+					"id": "main",
+					"conditions": {
+						"all": ["BLOCK"],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "maame:ah",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "maame:ah",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Aiieee!",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame:careful",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:careful",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Stupid girl! ",
+									"char_time": 0.05
+								},
+                                {
+									"text": "When will you learn to be careful around fire?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:accident",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "esi:accident",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "It was an accident",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				},
+                {
+					"id": "second-main",
+					"conditions": {
+						"all": ["BLOCK"],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "maame:what",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "maame:what",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "What's that way?!",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame:talking-to",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:talking-to",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Who are you talking to?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame:think",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "maame:think",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Think before you act. ",
+									"char_time": 0.05
+								},
+                                {
+									"text": "Think before you speak",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:sorry",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "esi:sorry",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I'm sorry, mama",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:me-too",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "maame:me-too",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "... ",
+									"char_time": 0.05
+								},
+                                {
+                                    "text": "Me too, Esi",
+                                    "char_time": 0.05
+                                }
+							],
+							"font": "snake64",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				}
+			]
+		}
+    ],
+
+	"triggers": [
+		{
+			"identifier": "center-camera",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_load"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "move_camera_to_pos",
+					"pos": { "x": 30, "y": 4 },
+					"duration": 0
+				}
+			]
+		},
+		{
+			"identifier": "start",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_enter"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "start_independent_dialogue",
+					"dialogue": {
+						"id": "men-outside",
+						"conditions": {
+							"all": [],
+							"any": [],
+							"not": []
+						},
+
+						"start_monologue": [
+							{
+								"id": "kitchen",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								}
+							}
+						],
+
+						"monologues": [
+							{
+								"id": "kitchen",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "",
+								"lines": [
+									{
+										"text": "You've been in the kitchen with Maame for a long time now",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "",
+								"next_monologue": "cooking",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "cooking",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "",
+								"lines": [
+									{
+										"text": "You've been helping her cook",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "",
+								"next_monologue": "outside",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "outside",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "",
+								"lines": [
+									{
+										"text": "Just outside, Chief Nnuro had called a meeting",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "",
+								"next_monologue": "father",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "father",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "",
+								"lines": [
+									{
+										"text": "Your father, Big Man, is attending",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "",
+								"next_monologue": "cn:news",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "cn:news",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "chief nnuro",
+								"lines": [
+									{
+										"text": "Have you heard the news?",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "tenor_voice",
+								"next_monologue": "cn:swine",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "cn:swine",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "chief nnuro",
+								"lines": [
+									{
+										"text": "The swine of the northern village are walking about like kings.",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "tenor_voice",
+								"next_monologue": "cn:all-around-asante",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "cn:all-around-asante",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "chief nnuro",
+								"lines": [
+									{
+										"text": "All around Asante people will say, ",
+										"char_time": 0.05
+									},
+									{
+										"text": "it is the northerners who stole guns from the British",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "tenor_voice",
+								"next_monologue": "cn:northerners",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "cn:northerners",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "chief nnuro",
+								"lines": [
+									{
+										"text": "It is the northerners who are the most powerful warriors in all of the Gold Coast",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "tenor_voice",
+								"next_monologue": "cn:allow?",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "cn:allow?",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "chief nnuro",
+								"lines": [
+									{
+										"text": "Will we allow this?",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "tenor_voice",
+								"next_monologue": "all:no",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "all:no",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "all",
+								"lines": [
+									{
+										"text": "No!",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake96",
+								"speaker_image": "",
+								"speaking_sfx": "",
+								"next_monologue": "ka:listen",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "ka:listen",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "kwaku agyei",
+								"lines": [
+									{
+										"text": "Listen to us! ",
+										"char_time": 0.05
+									},
+									{
+										"text": "We may go to fight the northerners, but what have we?",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "baritone_voice",
+								"next_monologue": "ka:no-guns",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "ka:no-guns",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "kwaku agyei",
+								"lines": [
+									{
+										"text": "No guns, no gunpowder. ",
+										"char_time": 0.05
+									},
+									{
+										"text": "And what will we gain?",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "baritone_voice",
+								"next_monologue": "ka:praise",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "ka:praise",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "kwaku agyei",
+								"lines": [
+									{
+										"text": "So many people will praise our enemies in the north, ",
+										"char_time": 0.05
+									},
+									{
+										"text": "but will they not still praise us as well?",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "baritone_voice",
+								"next_monologue": "ka:strongest",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "ka:strongest",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "kwaku agyei",
+								"lines": [
+									{
+										"text": "We have been the strongest village for decades",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "baritone_voice",
+								"next_monologue": "ka:forest",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "ka:forest",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "kwaku agyei",
+								"lines": [
+									{
+										"text": "No one has been able to break through the forest and challenge us",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "baritone_voice",
+								"next_monologue": "bm:slithers",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "bm:slithers",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "big man",
+								"lines": [
+									{
+										"text": "So will you have us wait until the northern snake slithers its way into our fields and steals our women?",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "big_man_portrait",
+								"speaking_sfx": "bass_voice",
+								"next_monologue": "ka:appear-weak",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "ka:appear-weak",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "kwaku agyei",
+								"lines": [
+									{
+										"text": "I only say, ",
+										"char_time": 0.05
+									},
+									{
+										"text": "let us not be too hasty. ",
+										"char_time": 0.05
+									},
+									{
+										"text": "Lest we appear weak in the process",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "",
+								"speaking_sfx": "baritone_voice",
+								"next_monologue": "bm:who-weak?",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "bm:who-weak?",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "big man",
+								"lines": [
+									{
+										"text": "But who is weak? ",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "big_man_portrait",
+								"speaking_sfx": "bass_voice",
+								"next_monologue": "bm:pointing",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "bm:pointing",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "big man",
+								"lines": [
+									{
+										"text": "Who among us is weak? ",
+										"char_time": 0.05
+									},
+									{
+										"text": "You? ",
+										"char_time": 0.05
+									},
+									{
+										"text": "Or maybe you?",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake64",
+								"speaker_image": "big_man_portrait",
+								"speaking_sfx": "bass_voice",
+								"next_monologue": null,
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							}
+						]
+					}
+				},
+				{
+					"name": "move_camera_to_pos",
+					"pos": { "x": 6, "y": 4 },
+					"duration": 3,
+					"wait_for_previous": true
+				},
+				{
+					"name": "move_player",
+					"waypoints": [
+						{ "x": 2, "y": 3, "speed": 0.5, "face_dir": "down", "wait": 0 }
+					],
+					"wait": 5
+				},
+                {
+                    "name": "start_entity_dialogue",
+                    "entity_id": "maame",
+                    "dialogue_id": "main",
+					"wait": 3
+                },
+				{
+					"name": "move_player",
+					"waypoints": [
+						{ "x": 4, "y": 3, "speed": 0.5, "face_dir": "down", "wait": 0 }
+					],
+					"wait_for_previous": true
+				},
+				{
+					"name": "set_route",
+					"entity_id": "maame",
+					"route_id": "move-to-esi",
+					"wait": 1
+				},
+				{
+                    "name": "start_entity_dialogue",
+                    "entity_id": "maame",
+                    "dialogue_id": "second-main"
+                },
+				{
+					"name": "set_route",
+					"entity_id": "maame",
+					"route_id": "walk-back",
+					"wait_for_previous": true
+				}
+			]
+        }
+	],
+
+	"entrances": [
+        {
+            "identifier": "main",
+            "spawn": { "x": 3, "y": 3 },
+            "transition": "fade",
+            "transition_time": 1
+        }
+	],
+
+	"exits": [
+
+	]
+}

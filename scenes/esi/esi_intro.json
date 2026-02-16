@@ -11,35 +11,35 @@
     "entity_lookup": [
         {
 			"id": "player",
-			"sprite": "player",
+			"sprite": "esi",
 			"default_animation": "idle_down",
 			"animation_frame_time": 0.5,
 			"collision": true
 		},
 		{
 			"id": "big_man",
-			"sprite": "big_man_sprite",
+			"sprite": "big_man",
 			"default_animation": "idle_down",
 			"animation_frame_time": 10,
 			"collision": true
 		},
 		{
 			"id": "abronoma",
-			"sprite": "abronoma_sprite",
+			"sprite": "abronoma",
 			"default_animation": "idle_down",
 			"animation_frame_time": 10,
 			"collision": true
 		},
 		{
 			"id": "maame",
-			"sprite": "maame_sprite",
+			"sprite": "maame",
 			"default_animation": "idle_down",
 			"animation_frame_time": 10,
 			"collision": true
 		},
 		{
 			"id": "dummy_npc",
-			"sprite": "kojo_sprite",
+			"sprite": "kojo",
 			"default_animation": "idle_down",
 			"animation_frame_time": 10,
 			"collision": true

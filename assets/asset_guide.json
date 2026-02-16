@@ -49,24 +49,20 @@
       "path": "assets/images/null.png"
     },
     {
-      "name": "porcupine_sprite_sheet",
-      "path": "assets/images/porcupine.png"
-    },
-    {
       "name": "big_man_portrait",
-      "path": "assets/images/big_man.png"
+      "path": "assets/images/big_man_portrait.png"
     },
     {
-      "name": "big_man_character",
-      "path": "assets/images/bigMan.png"
+      "name": "big_man_spritesheet",
+      "path": "assets/images/big_man_spritesheet.png"
     },
     {
-      "name": "abronoma_portrait",
-      "path": "assets/images/Abronoma.png"
+      "name": "abronoma_spritesheet",
+      "path": "assets/images/abronoma_spritesheet.png"
     },
     {
-      "name": "maame_portrait",
-      "path": "assets/images/Mam.png"
+      "name": "maame_spritesheet",
+      "path": "assets/images/maame_spritesheet.png"
     },
     {
       "name": "grass_tile",
@@ -77,12 +73,12 @@
       "path": "assets/images/grass_tiles/dirt.png"
     },
     {
-      "name": "kojo_image",
-      "path": "assets/images/kojo.png"
+      "name": "kojo_spritesheet",
+      "path": "assets/images/kojo_spritesheet.png"
     },
     {
-      "name": "Esi",
-      "path": "assets/images/Esi.png"
+      "name": "esi_spritesheet",
+      "path": "assets/images/esi_spritesheet.png"
     },
     {
       "name": "aufa",
@@ -93,23 +89,23 @@
       "path": "assets/images/dungeon_aufa_baby.png"
     },
     {
-      "name": "dungeon_soldier",
-      "path": "assets/images/dungeon_soldier.png"
+      "name": "dungeon_soldier_spritesheet",
+      "path": "assets/images/dungeon_soldier_spritesheet.png"
     },
     {
-      "name": "tansi",
-      "path": "assets/images/dungeon_tansi.png"
+      "name": "tansi_spritesheet",
+      "path": "assets/images/dungeon_tansi_spritesheet.png"
     },
     {
-      "name": "dungeon_esi",
-      "path": "assets/images/dungeon_esi.png"
+      "name": "dungeon_esi_spritesheet",
+      "path": "assets/images/dungeon_esi_spritesheet.png"
     }
   ],
 
   "sprites": [
     {
-      "name": "player",
-      "sprite_sheet": "Esi",
+      "name": "esi",
+      "sprite_sheet": "esi_spritesheet",
       "width": 32,
       "height": 32,
       "num_frames": 1,
@@ -118,8 +114,8 @@
       "frame_time": 0.1
     },
     {
-      "name": "big_man_sprite",
-      "sprite_sheet": "big_man_character",
+      "name": "big_man",
+      "sprite_sheet": "big_man_spritesheet",
       "width": 32,
       "height": 32,
       "num_frames": 1,
@@ -128,8 +124,8 @@
       "frame_time": 10
     },
     {
-      "name": "abronoma_sprite",
-      "sprite_sheet": "abronoma_portrait",
+      "name": "abronoma",
+      "sprite_sheet": "abronoma_spritesheet",
       "width": 32,
       "height": 32,
       "num_frames": 1,
@@ -138,8 +134,8 @@
       "frame_time": 10
     },
     {
-      "name": "maame_sprite",
-      "sprite_sheet": "maame_portrait",
+      "name": "maame",
+      "sprite_sheet": "maame_spritesheet",
       "width": 32,
       "height": 32,
       "num_frames": 1,
@@ -148,8 +144,8 @@
       "frame_time": 10
     },
     {
-      "name": "kojo_sprite",
-      "sprite_sheet": "kojo_image",
+      "name": "kojo",
+      "sprite_sheet": "kojo_spritesheet",
       "width": 32,
       "height": 32,
       "num_frames": 1,
@@ -158,8 +154,8 @@
       "frame_time": 10
     },
     {
-      "name": "dungeon_player",
-      "sprite_sheet": "dungeon_esi",
+      "name": "dungeon_esi",
+      "sprite_sheet": "dungeon_esi_spritesheet",
       "width": 32,
       "height": 32,
       "num_frames": 1,
@@ -189,7 +185,7 @@
     },
     {
       "name": "dungeon_soldier",
-      "sprite_sheet": "dungeon_soldier",
+      "sprite_sheet": "dungeon_soldier_spritesheet",
       "width": 32,
       "height": 32,
       "num_frames": 1,
@@ -199,7 +195,7 @@
     },
     {
       "name": "tansi",
-      "sprite_sheet": "tansi",
+      "sprite_sheet": "tansi_spritesheet",
       "width": 32,
       "height": 32,
       "num_frames": 1,
