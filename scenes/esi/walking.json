@@ -1,0 +1,685 @@
+{
+	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
+	"bounds": { "x": 30, "y": 30 },
+	"background_music": {
+		"identifier": "esi_theme",
+		"volume": 0.5
+	},
+
+	"map_elements": [
+		{
+			"rect": {
+				"x": -1,
+				"y": 0,
+				"w": 2,
+				"h": 30
+			},
+			"image": "dirt_tile",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": -2,
+				"y": 0,
+				"w": 1,
+				"h": 30
+			},
+			"image": "path_E",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 1,
+				"y": 0,
+				"w": 1,
+				"h": 30
+			},
+			"image": "path_W",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": -30,
+				"y": 0,
+				"w": 28,
+				"h": 30
+			},
+			"image": "grass_tile",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 2,
+				"y": 0,
+				"w": 30,
+				"h": 30
+			},
+			"image": "grass_tile",
+			"collision": false
+		}
+	],
+
+	"entity_lookup": [
+		{
+			"id": "player",
+			"sprite": "esi",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		},
+		{
+			"id": "maame",
+			"sprite": "maame",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		},
+		{
+			"id": "big_man",
+			"sprite": "big_man",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		}
+	],
+
+	"player": {
+		"lookup": "player",
+		"fallback_spawn": { "x": 0, "y": 15 },
+		"move_duration": 0.3
+	},
+
+	"entities": [
+		{
+			"id": "big_man",
+			"lookup": "big_man",
+			"spawn": { "x": 0, "y": 14 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+
+			]
+		},
+		{
+			"id": "maame",
+			"lookup": "maame",
+			"spawn": { "x": -1, "y": 15 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+				{
+					"id": "main",
+					"conditions": {
+						"all": ["BLOCK"],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "esi:what-happens?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "esi:what-happens?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Mama, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "what happens to all the prisoners after they leave here?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:boys-talk",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:boys-talk",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "That's boys talk, Esi. ",
+									"char_time": 0.05
+								},
+								{
+									"text": "You don't need to think about it",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "silence",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "silence",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "... ",
+									"char_time": 0.1
+								},
+								{
+									"text": "... ",
+									"char_time": 0.1
+								},
+								{
+									"text": "...",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "bm:house-girl",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "bm:house-girl",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "big man",
+							"lines": [
+								{
+									"text": "A house girl could help you with the cooking",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "big_man_portrait",
+							"speaking_sfx": "bass_voice",
+							"next_monologue": "maame:esi-helps",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:esi-helps",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Esi helps me with my cooking",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "bm:esi-daughter",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "bm:esi-daughter",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "big man",
+							"lines": [
+								{
+									"text": "But Esi is my daughter, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "not some common girl to be ordered about",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "big_man_portrait",
+							"speaking_sfx": "bass_voice",
+							"next_monologue": "smile",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "smile",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You noticed you started smiling",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "lucky-maame",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "lucky-maame",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "Maame was very lucky to get a husband like Big Man",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "maame-background",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame-background",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You don't know her background, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "but you know that Big Man saved her from something somehow",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "maame-anything",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame-anything",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "Because of it, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "Maame will do almost anything for Big Man",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "maame:ok",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:ok",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "All right, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "Esi and I will choose a girl tomorrow",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "anything",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "anything",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "Almost anything",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				}
+			]
+		}
+    ],
+
+	"triggers": [
+		{
+			"identifier": "center-camera",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_load"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "move_camera_to_pos",
+					"pos": { "x": 0, "y": 15 },
+					"duration": 0
+				}
+			]
+		},
+		{
+			"identifier": "start",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_enter"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "start_entity_dialogue",
+					"entity_id": "maame",
+					"dialogue_id": "main"
+				},
+				{
+					"name": "exit_scene",
+					"transition": "fade",
+					"transition_time": 1,
+					"next_scene": "dungeon_morning",
+					"entrance": "main",
+					"wait_for_previous": true
+				}
+			]
+		}
+	],
+
+	"entrances": [
+        {
+            "identifier": "main",
+            "spawn": { "x": 0, "y": 15 },
+            "transition": "fade",
+            "transition_time": 1
+        }
+	],
+
+	"exits": [
+
+	]
+}

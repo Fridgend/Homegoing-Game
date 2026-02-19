@@ -34,7 +34,7 @@
     {
       "name": "snake",
       "path": "assets/fonts/Snake.ttf",
-      "sizes": [ 40, 46, 64, 96, 192 ]
+      "sizes": [ 32, 40, 46, 64, 96, 192 ]
     },
     {
       "name": "vcr_osd",
@@ -71,6 +71,54 @@
     {
       "name": "dirt_tile",
       "path": "assets/images/grass_tiles/dirt.png"
+    },
+    {
+      "name": "path_E",
+      "path": "assets/images/grass_tiles/path_E.png"
+    },
+    {
+      "name": "path_in_NE",
+      "path": "assets/images/grass_tiles/path_in_NE.png"
+    },
+    {
+      "name": "path_in_NW",
+      "path": "assets/images/grass_tiles/path_in_NW.png"
+    },
+    {
+      "name": "path_in_SE",
+      "path": "assets/images/grass_tiles/path_in_SE.png"
+    },
+    {
+      "name": "path_in_SW",
+      "path": "assets/images/grass_tiles/path_in_SW.png"
+    },
+    {
+      "name": "path_N",
+      "path": "assets/images/grass_tiles/path_N.png"
+    },
+    {
+      "name": "path_out_NE",
+      "path": "assets/images/grass_tiles/path_out_NE.png"
+    },
+    {
+      "name": "path_out_NW",
+      "path": "assets/images/grass_tiles/path_out_NW.png"
+    },
+    {
+      "name": "path_out_SE",
+      "path": "assets/images/grass_tiles/path_out_SE.png"
+    },
+    {
+      "name": "path_out_SW",
+      "path": "assets/images/grass_tiles/path_out_SW.png"
+    },
+    {
+      "name": "path_S",
+      "path": "assets/images/grass_tiles/path_S.png"
+    },
+    {
+      "name": "path_W",
+      "path": "assets/images/grass_tiles/path_W.png"
     },
     {
       "name": "kojo_spritesheet",

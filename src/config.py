@@ -1,5 +1,6 @@
 import pygame
 import json
+import math
 
 class Config:
     WINDOW_DIMS: pygame.Vector2 = pygame.Vector2(0, 0)
@@ -28,13 +29,13 @@ class Config:
 
         if (dlg_box_dims := obj.get("dialogue_box_dimensions", None)) is not None:
             cls.DIALOGUE_BOX_DIMS_FRACTIONS = pygame.Vector2(dlg_box_dims)
-            cls.DIALOGUE_BOX_DIMS = pygame.Vector2(round(dlg_box_dims[0] * cls.WINDOW_DIMS.x),
-                                                   round(dlg_box_dims[1] * cls.WINDOW_DIMS.y))
+            cls.DIALOGUE_BOX_DIMS = pygame.Vector2(math.ceil(dlg_box_dims[0] * cls.WINDOW_DIMS.x),
+                                                   math.ceil(dlg_box_dims[1] * cls.WINDOW_DIMS.y))
 
         if (dlg_box_pos := obj.get("dialogue_box_position", None)) is not None:
             cls.DIALOGUE_BOX_POS_FRACTIONS = pygame.Vector2(dlg_box_pos)
-            cls.DIALOGUE_BOX_POS = pygame.Vector2(round(dlg_box_pos[0] * cls.WINDOW_DIMS.x),
-                                                  round(dlg_box_pos[1] * cls.WINDOW_DIMS.y))
+            cls.DIALOGUE_BOX_POS = pygame.Vector2(math.ceil(dlg_box_pos[0] * cls.WINDOW_DIMS.x),
+                                                  math.ceil(dlg_box_pos[1] * cls.WINDOW_DIMS.y))
 
         if (tile_size := obj.get("tile_size", None)) is not None:
             cls.TILE_SIZE = tile_size
@@ -55,7 +56,7 @@ class Config:
     def set_window_dimensions(cls, dims: tuple) -> None:
         cls.WINDOW_DIMS = pygame.Vector2(dims)
 
-        cls.DIALOGUE_BOX_DIMS = pygame.Vector2(round(cls.DIALOGUE_BOX_DIMS_FRACTIONS.x * cls.WINDOW_DIMS.x),
-                                               round(cls.DIALOGUE_BOX_DIMS_FRACTIONS.y * cls.WINDOW_DIMS.y))
-        cls.DIALOGUE_BOX_POS = pygame.Vector2(round(cls.DIALOGUE_BOX_POS_FRACTIONS.x * cls.WINDOW_DIMS.x),
-                                              round(cls.DIALOGUE_BOX_POS_FRACTIONS.y * cls.WINDOW_DIMS.y))
+        cls.DIALOGUE_BOX_DIMS = pygame.Vector2(math.ceil(cls.DIALOGUE_BOX_DIMS_FRACTIONS.x * cls.WINDOW_DIMS.x),
+                                               math.ceil(cls.DIALOGUE_BOX_DIMS_FRACTIONS.y * cls.WINDOW_DIMS.y))
+        cls.DIALOGUE_BOX_POS = pygame.Vector2(math.ceil(cls.DIALOGUE_BOX_POS_FRACTIONS.x * cls.WINDOW_DIMS.x),
+                                              math.ceil(cls.DIALOGUE_BOX_POS_FRACTIONS.y * cls.WINDOW_DIMS.y))

@@ -33,11 +33,9 @@ class PlayingBackend(Backend):
             if self.fading != 0 and self.fade != 0 and self.fade != 255:
                 continue
 
-            if event.type == pygame.KEYDOWN and \
-                    game.scene_manager.scenes[game.scene_manager.current_scene].dialogue is None:
-                if event.key == pygame.K_ESCAPE:
-                    self.fading = -500
-                    self.next_backend = GameState.PAUSED
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                self.fading = -500
+                self.next_backend = GameState.PAUSED
 
         if self.fading != 0 and self.fade != 0 and self.fade != 255: return
 

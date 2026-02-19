@@ -102,7 +102,7 @@
 				{
 					"id": "move-to-esi",
 					"waypoints": [
-						{ "x": 3, "y": 3, "speed": 0.3, "face_dir": "down", "wait": 0 }
+						{ "x": 3, "y": 3, "speed": 0.15, "face_dir": "down", "wait": 0 }
 					],
 					"conditions": {
 						"all": ["BLOCK"],
@@ -160,7 +160,7 @@
 									"char_time": 0.05
 								}
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "mezzo_soprano_voice",
 							"next_monologue": "maame:careful",
@@ -201,7 +201,7 @@
 									"char_time": 0.05
 								}
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "mezzo_soprano_voice",
 							"next_monologue": "esi:accident",
@@ -238,7 +238,7 @@
 									"char_time": 0.1
 								}
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
 							"next_monologue": null,
@@ -297,7 +297,7 @@
 									"char_time": 0.05
 								}
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "mezzo_soprano_voice",
 							"next_monologue": "maame:talking-to",
@@ -334,7 +334,7 @@
 									"char_time": 0.05
 								}
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "mezzo_soprano_voice",
 							"next_monologue": "maame:think",
@@ -375,7 +375,7 @@
 									"char_time": 0.05
 								}
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "mezzo_soprano_voice",
 							"next_monologue": "esi:sorry",
@@ -412,7 +412,7 @@
 									"char_time": 0.05
 								}
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
 							"next_monologue": "maame:me-too",
@@ -453,7 +453,7 @@
                                     "char_time": 0.05
                                 }
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
 							"next_monologue": null,
@@ -546,7 +546,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "",
 								"next_monologue": "cooking",
@@ -583,7 +583,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "",
 								"next_monologue": "outside",
@@ -620,7 +620,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "",
 								"next_monologue": "father",
@@ -657,7 +657,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "",
 								"next_monologue": "cn:news",
@@ -694,7 +694,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "tenor_voice",
 								"next_monologue": "cn:swine",
@@ -731,7 +731,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "tenor_voice",
 								"next_monologue": "cn:all-around-asante",
@@ -772,7 +772,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "tenor_voice",
 								"next_monologue": "cn:northerners",
@@ -809,7 +809,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "tenor_voice",
 								"next_monologue": "cn:allow?",
@@ -846,7 +846,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "tenor_voice",
 								"next_monologue": "all:no",
@@ -883,7 +883,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake96",
+								"font": "snake46",
 								"speaker_image": "",
 								"speaking_sfx": "",
 								"next_monologue": "ka:listen",
@@ -924,7 +924,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "baritone_voice",
 								"next_monologue": "ka:no-guns",
@@ -965,7 +965,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "baritone_voice",
 								"next_monologue": "ka:praise",
@@ -1006,7 +1006,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "baritone_voice",
 								"next_monologue": "ka:strongest",
@@ -1043,7 +1043,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "baritone_voice",
 								"next_monologue": "ka:forest",
@@ -1080,7 +1080,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "baritone_voice",
 								"next_monologue": "bm:slithers",
@@ -1117,7 +1117,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "big_man_portrait",
 								"speaking_sfx": "bass_voice",
 								"next_monologue": "ka:appear-weak",
@@ -1162,7 +1162,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "baritone_voice",
 								"next_monologue": "bm:who-weak?",
@@ -1199,7 +1199,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "big_man_portrait",
 								"speaking_sfx": "bass_voice",
 								"next_monologue": "bm:pointing",
@@ -1244,7 +1244,7 @@
 										"char_time": 0.05
 									}
 								],
-								"font": "snake64",
+								"font": "snake32",
 								"speaker_image": "big_man_portrait",
 								"speaking_sfx": "bass_voice",
 								"next_monologue": null,
@@ -1279,7 +1279,7 @@
 					"waypoints": [
 						{ "x": 2, "y": 3, "speed": 0.5, "face_dir": "down", "wait": 0 }
 					],
-					"wait": 5
+					"wait": 4
 				},
                 {
                     "name": "start_entity_dialogue",
@@ -1310,6 +1310,14 @@
 					"entity_id": "maame",
 					"route_id": "walk-back",
 					"wait_for_previous": true
+				},
+				{
+					"name": "exit_scene",
+					"transition": "fade",
+					"transition_time": 1,
+					"next_scene": "walking",
+					"entrance": "main",
+					"wait": 2
 				}
 			]
         }

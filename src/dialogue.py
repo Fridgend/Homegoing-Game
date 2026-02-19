@@ -163,7 +163,7 @@ class Monologue:
 
         ui_manager.draw_text(Text(
             self.speaker, [255, 255, 255, 255],
-            start + SPEAKER_TEXT_POS, AssetManager.get_font("snake64"),
+            start + SPEAKER_TEXT_POS, AssetManager.get_font("snake46"),
             dimensions=pygame.Vector2(text_end.x - (start.x + SPEAKER_TEXT_POS.x),
                                       dims.height - SPEAKER_TEXT_POS.y)
         ), surface)
@@ -185,13 +185,13 @@ class Monologue:
         for opt_i in range(len(self.options)):
             text: Text = Text(
                 self.options[opt_i].text, [255, 255, 255, self.choice_fade],
-                start, self.font,
+                start, AssetManager.get_font("snake32"),
                 align_left=True
             )
 
             ui_manager.draw_button(Button(
                 text, pygame.Vector2(-OPTIONS_INDICATOR_OFFSET_X, 0),
-                self.font, [150, 0, 150, self.choice_fade]), opt_i, surface)
+                AssetManager.get_font("snake32"), [150, 0, 150, self.choice_fade]), opt_i, surface)
             start.y += text.rect.height - OPTIONS_DISTANCE_BETWEEN
 
     def render(self, draw_surface: pygame.Surface, dims: pygame.Rect, ui_manager: UIManager) -> None:
@@ -356,7 +356,7 @@ class Dialogue:
         pygame.draw.rect(self.draw_surface, Config.DIALOGUE_BOX_BACKGROUND_COLOR, (
             Config.DIALOGUE_BOX_OUTLINE_THICKNESS, Config.DIALOGUE_BOX_OUTLINE_THICKNESS,
             Config.DIALOGUE_BOX_DIMS.x - Config.DIALOGUE_BOX_OUTLINE_THICKNESS * 2,
-            Config.DIALOGUE_BOX_DIMS.y - Config.DIALOGUE_BOX_OUTLINE_THICKNESS
+            Config.DIALOGUE_BOX_DIMS.y
         ))
 
     def render(self, surface: pygame.Surface, dims: pygame.Rect, ui_manager: UIManager) -> None:
@@ -368,7 +368,7 @@ class Dialogue:
         if self.fade < 255:
             self.draw_surface.set_alpha(self.fade)
 
-        surface.blit(self.draw_surface, dims)
+        surface.blit(self.draw_surface, (dims.x, dims.y))
 
         if self.playing and self.monologues.get(self.current_monologue).line_finished() and \
                 not self.monologues.get(self.current_monologue).awaiting_choice:

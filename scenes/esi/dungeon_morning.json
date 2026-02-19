@@ -121,7 +121,7 @@
 									"char_time": 0.05
 								}
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
 							"next_monologue": "check",
@@ -158,7 +158,7 @@
 									"char_time": 0.05
 								}
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
 							"next_monologue": null,
@@ -221,7 +221,7 @@
                                     "char_time": 0.05
                                 }
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
 							"next_monologue": "tansi:...",
@@ -258,7 +258,7 @@
 									"char_time": 0.15
 								}
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
 							"next_monologue": null,
@@ -345,7 +345,7 @@
                                     "char_time": 0.05
                                 }
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "",
 							"next_monologue": null,
@@ -407,7 +407,7 @@
                                     "char_time": 0.05
                                 }
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "",
 							"next_monologue": null,
@@ -466,7 +466,7 @@
 									"char_time": 0.05
 								}
 							],
-							"font": "snake64",
+							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "",
 							"next_monologue": null,

@@ -6,11 +6,9 @@ from src.asset_manager import AssetManager
 from src.camera import Camera
 from src.config import Config
 from src.game_backends.backend import GameState, Backend
-from src.game_backends.entity_configurer import EntityConfigurerBackend
 from src.game_backends.main_menu import MainMenuBackend
 from src.game_backends.paused import PausedBackend
 from src.game_backends.playing import PlayingBackend
-from src.game_backends.scene_builder import SceneBuilderBackend
 from src.scene_manager import SceneManager
 from src.ui_manager import UIManager
 
@@ -39,9 +37,7 @@ class Game:
         self.state_backends: dict = {
             GameState.MAIN_MENU: MainMenuBackend(),
             GameState.PAUSED: PausedBackend(),
-            GameState.PLAYING: PlayingBackend(),
-            GameState.SCENE_BUILDER: SceneBuilderBackend(),
-            GameState.ENTITY_CONFIGURER: EntityConfigurerBackend()
+            GameState.PLAYING: PlayingBackend()
         }
         self.backend: Backend | None = None
         self.next_backend: Backend | None = None
