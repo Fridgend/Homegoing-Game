@@ -37,6 +37,8 @@ class Camera:
         cls.SHAKE_OFFSET = cls._get_shake_offset(dt)
         if cls.TRACK is not None:
             cls.center_at(cls.TRACK.pos, bounds)
+        else:
+            cls.center_at(cls.POS + cls.WINDOW_CENTER, bounds)
 
     @classmethod
     def world_pos_to_view_pos(cls, world_pos: pygame.Vector2) -> pygame.Vector2:
@@ -50,12 +52,15 @@ class Camera:
 
     @classmethod
     def _get_shake_offset(cls, dt: float) -> pygame.Vector2:
-        if cls.SHAKE_DURATION > 0:
+        if cls.SHAKE_DURATION != 0:
             offset_x = random.uniform(-cls.SHAKE_AMOUNT.x, cls.SHAKE_AMOUNT.x)
             offset_y = random.uniform(-cls.SHAKE_AMOUNT.y, cls.SHAKE_AMOUNT.y)
-            
+
+            if cls.SHAKE_DURATION < 0:
+                return pygame.Vector2(offset_x, offset_y)
             cls.SHAKE_DURATION -= dt
-            return pygame.Vector2(offset_x, offset_y)
-        
+            if cls.SHAKE_DURATION < 0:
+                cls.SHAKE_DURATION = 0
+
         cls.SHAKE_AMOUNT = pygame.Vector2(0, 0)
         return pygame.Vector2(0, 0)

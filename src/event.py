@@ -10,6 +10,7 @@ from src.asset_manager import AssetManager
 from src.camera import Camera
 from src.config import Config
 from src.entity_route import EntityRoute
+from src.game_backends.backend import GameState
 from src.route_tracker import Conditions
 from src.scene_in_out import SceneExit, str_to_scene_transition
 from src.route_tracker import Flags
@@ -175,6 +176,20 @@ class ExitScene(DispatchEvent):
     def dispatch(self, scene, manager) -> None:
         scene.exiting_through = self.exit
         scene.state = SceneState.EXITING
+
+class StartRunningScene(DispatchEvent):
+    def __init__(self, game, params: dict):
+        super().__init__()
+
+        self.game = game
+        self.params: dict = params
+
+    def is_complete(self, scene) -> bool:
+        return self.dispatched
+
+    def dispatch(self, scene, manager) -> None:
+        self.dispatched = True
+        self.game.set_backend(GameState.RUNNING_SCENE, self.params)
 
 class ModifyFlags(DispatchEvent):
     def __init__(self, how: str, value: str):

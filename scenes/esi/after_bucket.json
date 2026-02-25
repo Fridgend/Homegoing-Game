@@ -1,0 +1,1216 @@
+{
+	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
+	"bounds": { "x": 32, "y": 24 },
+	"background_music": {
+		"identifier": "esi_theme",
+		"volume": 0
+	},
+
+	"map_elements": [
+        {
+			"rect": {
+				"x": -1,
+				"y": 0,
+				"w": 1,
+				"h": 25
+			},
+			"image": "",
+			"collision": true
+		},
+        {
+			"rect": {
+				"x": 0,
+				"y": -1,
+				"w": 33,
+				"h": 1
+			},
+			"image": "",
+			"collision": true
+		},
+		{
+			"rect": {
+				"x": 5,
+				"y": 9,
+				"w": 23,
+				"h": 4
+			},
+			"image": "dirt_tile",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 4,
+				"y": 9,
+				"w": 1,
+				"h": 4
+			},
+			"image": "path_E",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 4,
+				"y": 8,
+				"w": 1,
+				"h": 1
+			},
+			"image": "path_in_SE",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 4,
+				"y": 13,
+				"w": 1,
+				"h": 1
+			},
+			"image": "path_in_NE",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 28,
+				"y": 9,
+				"w": 1,
+				"h": 4
+			},
+			"image": "path_W",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 28,
+				"y": 8,
+				"w": 1,
+				"h": 1
+			},
+			"image": "path_in_SW",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 28,
+				"y": 13,
+				"w": 1,
+				"h": 1
+			},
+			"image": "path_in_NW",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 5,
+				"y": 8,
+				"w": 23,
+				"h": 1
+			},
+			"image": "path_S",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 5,
+				"y": 13,
+				"w": 23,
+				"h": 1
+			},
+			"image": "path_N",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 0,
+				"y": 0,
+				"w": 33,
+				"h": 8
+			},
+			"image": "grass_tile",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 0,
+				"y": 14,
+				"w": 33,
+				"h": 11
+			},
+			"image": "grass_tile",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 0,
+				"y": 8,
+				"w": 4,
+				"h": 6
+			},
+			"image": "grass_tile",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 29,
+				"y": 8,
+				"w": 4,
+				"h": 6
+			},
+			"image": "grass_tile",
+			"collision": false
+		}
+    ],
+
+	"entity_lookup": [
+		{
+			"id": "player",
+			"sprite": "esi",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		},
+        {
+            "id": "abronoma",
+			"sprite": "abronoma",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+        }
+	],
+
+	"player": {
+		"lookup": "player",
+		"fallback_spawn": { "x": 23, "y": 8 },
+		"move_duration": 0.3
+	},
+
+	"entities": [
+        {
+			"id": "abronoma",
+			"lookup": "abronoma",
+			"spawn": { "x": 26, "y": 12 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+                {
+					"id": "main",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "a:leave",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "a:leave",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+								{
+									"text": "Leave me",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:sorry",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "esi:sorry",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I'm sorry for what happened",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:good-man",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "esi:good-man",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "He is a good man",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:big-man?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a:big-man?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+								{
+									"text": "Your father is Big Man, eh?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "big-man-nod",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "big-man-nod",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You nod",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "a-laugh",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a-laugh",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "Abronoma laughed",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "a:my-father",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a:my-father",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+								{
+									"text": "My father too is Big Man, ",
+									"char_time": 0.05
+								},
+                                {
+									"text": "and now look at what I am. ",
+									"char_time": 0.05
+								},
+                                {
+									"text": "Look at what your mother was",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:my-mother?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "esi:my-mother?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "What my mother was?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:dont-know?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a:dont-know?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+								{
+									"text": "You don't know?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a-laugh-again",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a-laugh-again",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "She laughed again",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "a:mother-slave",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a:mother-slave",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+								{
+									"text": "Your mother was once a slave for a Fante family",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:mother-raped",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a:mother-raped",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+								{
+									"text": "She was raped by her master because he too was a Big Man, ",
+									"char_time": 0.05
+								},
+                                {
+									"text": "and big men can do what they please, ",
+									"char_time": 0.05
+								},
+                                {
+									"text": "lest they appear weak, eh?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:not-first-daughter",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a:not-first-daughter",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+								{
+									"text": "You are not your mother's first daughter. ",
+									"char_time": 0.05
+								},
+                                {
+									"text": "There was one before you",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:saying",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a:saying",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+								{
+									"text": "And in my village we have a saying about separated sisters",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:reflection",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a:reflection",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+								{
+									"text": "They are like a woman and her reflection, ",
+									"char_time": 0.05
+								},
+                                {
+									"text": "doomed to stay on opposite sides of the pond",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:more-mother",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "esi:more-mother",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "... ",
+									"char_time": 0.1
+								},
+                                {
+									"text": "Will you tell me more about my mother?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:dont-know-more",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a:dont-know-more",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+								{
+									"text": "I don't know any more",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:please",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "esi:please",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Please! ",
+									"char_time": 0.05
+								},
+                                {
+									"text": "What can I do?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:send-word",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a:send-word",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+								{
+									"text": "... ",
+									"char_time": 0.2
+								},
+                                {
+									"text": "Send word to my father",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:tell-location",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a:tell-location",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+								{
+									"text": "Tell him where I am, ",
+									"char_time": 0.05
+								},
+                                {
+									"text": "and there will be no bad blood between us",
+									"char_time": 0.05
+								}
+                            ],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+                                {
+									"text": "Accept",
+									"next_monologue": "esi:accept",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Deny",
+									"next_monologue": "esi:deny",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+                        {
+							"id": "esi:accept",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I'll do it",
+									"char_time": 0.05
+								}
+                            ],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:equal",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+                                { "how": "add", "value": "ACCEPTED_ABRONOMA_OFFER" }
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a:equal",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+                                {
+									"text": "Then all is equal",
+									"char_time": 0.05
+								}
+                            ],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+                                {
+                                    "name": "exit_scene",
+                                    "transition": "fade",
+                                    "transition_time": 1,
+                                    "next_scene": "mailman",
+                                    "entrance": "main",
+                                    "wait": 2
+                                }
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "esi:deny",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I can't do it",
+									"char_time": 0.05
+								}
+                            ],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:too-bad",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+                                { "how": "add", "value": "DENIED_ABRONOMA_OFFER" }
+							],
+
+							"options": [
+
+							]
+						},
+                        {
+							"id": "a:too-bad",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "abronoma",
+							"lines": [
+								{
+									"text": "Then I don't want to see you again",
+									"char_time": 0.05
+								}
+                            ],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+                                {
+                                    "name": "exit_scene",
+                                    "transition": "fade",
+                                    "transition_time": 1,
+                                    "next_scene": "dungeon",
+                                    "entrance": "main",
+                                    "wait": 3
+                                }
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+                    ]
+				}
+			]
+		}
+    ],
+
+	"triggers": [
+		{
+			"identifier": "reset-camera",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_load"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "reset_camera"
+				}
+			]
+		}
+	],
+
+	"entrances": [
+        {
+            "identifier": "main",
+            "spawn": { "x": 23, "y": 8 },
+            "transition": "fade",
+            "transition_time": 3
+        }
+	],
+
+	"exits": [
+
+	]
+}

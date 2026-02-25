@@ -52,6 +52,7 @@ class Monologue:
         self.dispatch: DispatchChain = dispatch
         self.modify_flags: list[tuple[str, str]] = modify_flags
         self.options: list[MonologueOption] = options
+        self.drawn_options: list[MonologueOption] = []
 
         self.speaking_sfx: pygame.mixer.Sound | None = speaking_sfx
         self.speaker_image: pygame.Surface | None = speaker_image
@@ -102,8 +103,8 @@ class Monologue:
 
     def choose(self, choice: int) -> str | None:
         if not self.awaiting_choice: return None
-        if self.options[choice].next_monologue is not None:
-            return self.options[choice].next_monologue
+        if self.drawn_options[choice].next_monologue is not None:
+            return self.drawn_options[choice].next_monologue
         else:
             return None
 
@@ -180,11 +181,15 @@ class Monologue:
         required_size: int = len(self.options) * (self.font.get_height() - OPTIONS_DISTANCE_BETWEEN)
         start.y = (dims.height - required_size) / 2
 
-        ui_manager.set_num_buttons(len(self.options))
+        self.drawn_options = []
+        for opt in self.options:
+            if opt.conditions.satisfied():
+                self.drawn_options.append(opt)
 
-        for opt_i in range(len(self.options)):
+        ui_manager.set_num_buttons(len(self.drawn_options))
+        for opt_i in range(len(self.drawn_options)):
             text: Text = Text(
-                self.options[opt_i].text, [255, 255, 255, self.choice_fade],
+                self.drawn_options[opt_i].text, [255, 255, 255, self.choice_fade],
                 start, AssetManager.get_font("snake32"),
                 align_left=True
             )
@@ -295,6 +300,9 @@ class Dialogue:
             Flags.modify(flag=flag, how=method)
 
         scene.add_dispatch_chain(manager, self.monologues.get(self.current_monologue).dispatch)
+
+        self.monologues.get(self.current_monologue).is_reset = False
+        self.monologues.get(self.current_monologue).reset()
 
     def choose_option(self, scene, manager) -> None:
         self.choice_index %= len(self.monologues.get(self.current_monologue).options)

@@ -2353,7 +2353,7 @@
 							],
 							"font": "snake32",
 							"speaker_image": "",
-							"speaking_sfx": "",
+							"speaking_sfx": "mezzo_soprano_voice",
 							"next_monologue": "esi-withdraws",
 
 							"set_route_on_reach": [

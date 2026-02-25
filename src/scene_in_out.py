@@ -26,7 +26,7 @@ class SceneEntrance:
         self.transition: SceneTransition = transition
         self.transition_time: float = transition_time
 
-        self.fade_step: float = 255.0 / transition_time
+        self.fade_step: float = 255.0 / max(transition_time, 0.001)
         self.complete: bool = False
 
     def update(self, manager, dt: float) -> None:

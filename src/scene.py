@@ -123,10 +123,12 @@ class Scene:
     def remove_dispatch_chain(self, chain: DispatchChain):
         self.removed_dispatch_chains.add(chain)
 
-    def load(self, entrance: str, player_face_dir: pygame.Vector2, from_continue: bool) -> None:
+    def load(self, entrance: str, player_face_dir: pygame.Vector2, same_bg_music: bool, from_continue: bool) -> None:
         if self.state != SceneState.EXITED: return
         self.state = SceneState.ENTERED
-        self.background_music.play(loops=-1, fade_ms=BACKGROUND_MUSIC_FADE_MS)
+
+        if not same_bg_music:
+            self.background_music.play(loops=-1, fade_ms=BACKGROUND_MUSIC_FADE_MS)
 
         if from_continue:
             return
@@ -149,9 +151,10 @@ class Scene:
 
         self.has_loaded_prev = True
 
-    def unload(self) -> None:
+    def unload(self, same_bg_music: bool) -> None:
         self.state = SceneState.EXITED
-        self.background_music.fadeout(BACKGROUND_MUSIC_FADE_MS)
+        if not same_bg_music:
+            self.background_music.fadeout(BACKGROUND_MUSIC_FADE_MS)
 
     def input(self, ui_manager: UIManager, manager, keys: pygame.key.ScancodeWrapper) -> None:
         # if self.attack_choice_active:

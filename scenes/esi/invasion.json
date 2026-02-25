@@ -1,0 +1,2452 @@
+{
+	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
+	"bounds": { "x": 100, "y": 100 },
+	"background_music": {
+		"identifier": "esi_theme",
+		"volume": 0
+	},
+
+	"map_elements": [
+        {
+			"rect": {
+				"x": 0,
+				"y": 0,
+				"w": 7,
+				"h": 5
+			},
+			"image": "dirt_tile",
+			"collision": false
+		}
+    ],
+
+	"entity_lookup": [
+		{
+			"id": "player",
+			"sprite": "esi",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		},
+        {
+			"id": "maame",
+			"sprite": "maame",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		},
+        {
+			"id": "abronoma",
+			"sprite": "abronoma",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		},
+        {
+            "id": "warrior",
+			"sprite": "warrior",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+        }
+	],
+
+	"player": {
+		"lookup": "player",
+		"fallback_spawn": { "x": 1, "y": 2 },
+		"move_duration": 0.3
+	},
+
+	"entities": [
+        {
+            "id": "warrior0",
+			"lookup": "warrior",
+			"spawn": { "x": 0, "y": 1 },
+			"conditions": {
+				"all": ["BLOCK"],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+                {
+                    "id": "main",
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    },
+                    "waypoints": [
+                        { "x": 2, "y": 1, "speed": 0.2, "face_dir": "down", "wait": 0 }
+                    ]
+                }
+			],
+
+			"dialogues": [
+
+            ]
+        },
+        {
+            "id": "warrior1",
+			"lookup": "warrior",
+			"spawn": { "x": 0, "y": 2 },
+			"conditions": {
+				"all": ["BLOCK"],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+                {
+                    "id": "main",
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    },
+                    "waypoints": [
+                        { "x": 2, "y": 3, "speed": 0.2, "face_dir": "down", "wait": 0 }
+                    ]
+                },
+                {
+                    "id": "move-to-maame",
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    },
+                    "waypoints": [
+                        { "x": 4, "y": 2, "speed": 0.4, "face_dir": "down", "wait": 0 }
+                    ]
+                }
+			],
+
+			"dialogues": [
+
+            ]
+        },
+        {
+			"id": "abronoma",
+			"lookup": "abronoma",
+			"spawn": { "x": 4, "y": 4 },
+			"conditions": {
+				"all": ["BLOCK"],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+
+            ]
+		},
+        {
+			"id": "maame",
+			"lookup": "maame",
+			"spawn": { "x": 5, "y": 2 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+                {
+                    "id": "main",
+                    "conditions": {
+                        "all": [],
+                        "any": [],
+                        "not": []
+                    },
+                    "start_monologue": [
+                        {
+                            "id": "esi:come-on!",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            }
+                        }
+                    ],
+                    "monologues": [
+                        {
+                            "id": "esi:come-on!",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "you",
+                            "lines": [
+                                {
+                                    "text": "Come on!",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake46",
+                            "speaker_image": "",
+                            "speaking_sfx": "mezzo_soprano_voice",
+                            "next_monologue": "maame:not-again",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:not-again",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "I can't do it again",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake28",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "esi:what?",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "esi:what?",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "you",
+                            "lines": [
+                                {
+                                    "text": "Do what again?",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "message",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "message",
+                            "conditions": {
+                                "all": ["ACCEPTED_ABRONOMA_OFFER"],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "abronoma?",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "You weren't actually listening. ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "All you could think was if this was because of the message",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "maame:not-again2",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "abronoma?",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "You weren't actually listening. ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "All you could think was if Abronoma had something to do with this",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "maame:not-again2",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:not-again2",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "I can't do it again",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake28",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "maame:no-woods",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:no-woods",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "No more woods. ",
+                                    "char_time": 0.1
+                                },
+                                {
+                                    "text": "No more fire",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake28",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "rocking",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "rocking",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "She was rocking back and forth",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "abronoma-enters",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "abronoma-enters",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "Abronoma entered the room. ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "She was laughing",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "a:father",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+                                {
+                                    "name": "add_entity",
+                                    "ids": ["abronoma"]
+                                }
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "a:father",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "abronoma",
+                            "lines": [
+                                {
+                                    "text": "My father is here!",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "mezzo_soprano_voice",
+                            "next_monologue": "a:told-you",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "a:told-you",
+                            "conditions": {
+                                "all": ["ACCEPTED_ABRONOMA_OFFER"],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "abronoma-leaves",
+
+                            "speaker": "abronoma",
+                            "lines": [
+                                {
+                                    "text": "I told you he would come to find me, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "and he has come!",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "mezzo_soprano_voice",
+                            "next_monologue": "abronoma-leaves",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "abronoma-leaves",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "She danced her way out of the room",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "maame-grab-esi",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+                                {
+                                    "name": "remove_entity",
+                                    "ids": ["abronoma"]
+                                }
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame-grab-esi",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "Then, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "Maame grabbed your hand and dropped something into it",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "black-stone",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "black-stone",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "It was a black stone, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "glimmering with gold",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "maame:waiting",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:waiting",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "I have been keeping this for you",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "maame:wedding-day",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:wedding-day",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "I wanted to give it to you on your wedding day",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "maame:your-sister",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:your-sister",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "I... ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "I left one like this for your sister",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "maame:after-fire",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:after-fire",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "I left it for Baaba after I set the fire",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "esi:sister?",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "esi:sister?",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "you",
+                            "lines": [
+                                {
+                                    "text": "My sister?",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "maame:babble",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:babble",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "Sister, ",
+                                    "char_time": 0.1
+                                },
+                                {
+                                    "text": "Baaba, ",
+                                    "char_time": 0.1
+                                },
+                                {
+                                    "text": "fire. ",
+                                    "char_time": 0.1
+                                },
+                                {
+                                    "text": "Sister, ",
+                                    "char_time": 0.1
+                                },
+                                {
+                                    "text": "Baaba, ",
+                                    "char_time": 0.1
+                                },
+                                {
+                                    "text": "fire.",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake28",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "maame-leaving",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame-leaving",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "Maame's eyes were growing blank, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "emptying somehow of something",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "maame-not-whole",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame-not-whole",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "You saw then, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "and wondered how it had taken you so long, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "that Maame was not a whole woman",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "maame-missing-spirit",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame-missing-spirit",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "Her spirit had been shattered a long time ago",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "no-matter",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "no-matter",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "No matter how much she loved you, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "and no matter how much you loved her, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "you both knew in that moment, ",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "love-not-enough",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "love-not-enough",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "that no amount of love could return what Maame had lost",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "esi-knew-also",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "esi-knew-also",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "And you knew, too, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "that Maame would rather die than run into the woods ever again, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "even if it meant that you would inherit that unspeakable sense of loss, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "and learn what it meant to be un-whole",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "maame:you-go",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:you-go",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "You go!",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "mezzo_soprano_voice",
+                            "next_monologue": "maame:go!",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:go!",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "Go!",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "mezzo_soprano_voice",
+                            "next_monologue": "leave?",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "leave?",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "Will you leave Maame?",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": null,
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+                                {
+									"text": "Leave",
+									"next_monologue": "esi-leaves",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Stay",
+									"next_monologue": "esi:stay",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+                            ]
+                        },
+                        {
+                            "id": "esi-leaves",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "You hugged Maame, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "and gave her your knife",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "then-ran",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+                                { "how": "add", "value": "LEFT_MAAME" }
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "then-ran",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "Then you ran",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "then-ran",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+                                {
+                                    "name": "start_running_scene",
+                                    "first_spawn": 3,
+                                    "can_win": false,
+                                    "next_scene_captured": "memories",
+                                    "wait": 1
+                                }
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "esi:stay",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "you",
+                            "lines": [
+                                {
+                                    "text": "I can't",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "esi:maame-come",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+                                { "how": "add", "value": "STAYED_WITH_MAAME" }
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "esi:maame-come",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "you",
+                            "lines": [
+                                {
+                                    "text": "Maame, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "we have to go",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "maame:...",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:...",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "...",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "esi:have-to-go",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "esi:have-to-go",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "you",
+                            "lines": [
+                                {
+                                    "text": "Maame, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "we have to go",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake46",
+                            "speaker_image": "",
+                            "speaking_sfx": "mezzo_soprano_voice",
+                            "next_monologue": "maame:same-as-before",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:same-as-before",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "That's what they said",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "maame:be-x",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:be-x",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "Run, ",
+                                    "char_time": 0.1
+                                },
+                                {
+                                    "text": "hide, ",
+                                    "char_time": 0.1
+                                },
+                                {
+                                    "text": "be quiet, ",
+                                    "char_time": 0.1
+                                },
+                                {
+                                    "text": "be good. ",
+                                    "char_time": 0.1
+                                },
+                                {
+                                    "text": "It didn't matter",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "esi-lifts",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "esi-lifts",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "You try to lift Maame, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "but she resists",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "esi:why?",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "esi:why?",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "you",
+                            "lines": [
+                                {
+                                    "text": "Why won't you move?",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "mezzo_soprano_voice",
+                            "next_monologue": "maame:already-run",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:already-run",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "Because I have already run once",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "footsteps",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "footsteps",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "Heavy footsteps are approaching the hut",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "maame:listen",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:listen",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "Listen to me",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "maame:dont-lose-yourself",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame:dont-lose-yourself",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "maame",
+                            "lines": [
+                                {
+                                    "text": "Whatever they take from you, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "whatever you lose, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "just don't let it be yourself",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "alto_voice",
+                            "next_monologue": "door-breaks",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "door-breaks",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "Light floods the room as splinters fly past your head and the warriors enter",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "warrior:move",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+                                {
+                                    "name": "add_entity",
+                                    "ids": ["warrior0", "warrior1"]
+                                },
+                                {
+                                    "name": "set_route",
+                                    "entity_id": "warrior0",
+                                    "route_id": "main"
+                                },
+                                {
+                                    "name": "set_route",
+                                    "entity_id": "warrior1",
+                                    "route_id": "main"
+                                }
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "warrior:move",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "warrior",
+                            "lines": [
+                                {
+                                    "text": "You two! ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "Move!",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake46",
+                            "speaker_image": "",
+                            "speaking_sfx": "tenor_voice",
+                            "next_monologue": "esi-moves-to-warriors",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "esi-moves-to-warriors",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "Afraid of what they might do, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "you do as he says",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "warrior:...",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+                                {
+                                    "name": "move_player",
+                                    "waypoints": [
+                                       { "x": 2, "y": 2, "speed": 0.4, "move_dir": "down", "wait": 0 }
+                                    ]
+                                }
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "warrior:...",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "warrior",
+                            "lines": [
+                                {
+                                    "text": "...",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "tenor_voice",
+                            "next_monologue": "maame-not-moved",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame-not-moved",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "Maame hasn't moved, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "her eyes have gone blank",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "warrior:move-maame",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "warrior:move-maame",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "warrior",
+                            "lines": [
+                                {
+                                    "text": "Move",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake46",
+                            "speaker_image": "",
+                            "speaking_sfx": "tenor_voice",
+                            "next_monologue": "warrior-approaches-maame",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "warrior-approaches-maame",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "You watch as one of the warriors approach Maame, ",
+                                    "char_time": 0.05
+                                },
+                                {
+                                    "text": "readying his knife",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "esi:no!",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+                                {
+                                    "name": "set_route",
+                                    "entity_id": "warrior1",
+                                    "route_id": "move-to-maame"
+                                }
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "esi:no!",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "you",
+                            "lines": [
+                                {
+                                    "text": "NO!",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake64",
+                            "speaker_image": "",
+                            "speaking_sfx": "mezzo_soprano_voice",
+                            "next_monologue": "warrior-grabs-esi",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "warrior-grabs-esi",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "The other warrior grabs you by your arm",
+                                    "char_time": 0.05
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "maame-dies",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame-dies",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "Once the warrior's knife has steadied in the air-",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "maame-not-moving",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "maame-not-moving",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "Maame does not move",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "quiet",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+                                {
+                                    "name": "remove_entity",
+                                    "ids": ["warrior0", "warrior1"]
+                                }
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        },
+                        {
+                            "id": "quiet",
+                            "conditions": {
+                                "all": [],
+                                "any": [],
+                                "not": []
+                            },
+                            "alt_monologue": "",
+
+                            "speaker": "",
+                            "lines": [
+                                {
+                                    "text": "...",
+                                    "char_time": 0.1
+                                }
+                            ],
+                            "font": "snake32",
+                            "speaker_image": "",
+                            "speaking_sfx": "",
+                            "next_monologue": "quiet",
+
+                            "set_route_on_reach": [
+
+                            ],
+
+                            "dispatch_on_reach": [
+                                {
+                                    "name": "exit_scene",
+                                    "transition": "fade",
+                                    "transition_time": 3,
+                                    "next_scene": "memories",
+                                    "entrance": "main",
+                                    "wait": 3
+                                }
+                            ],
+
+                            "modify_flags_on_reach": [
+
+                            ],
+
+                            "options": [
+
+                            ]
+                        }
+                    ]
+                }
+            ]
+		}
+    ],
+
+	"triggers": [
+		{
+			"identifier": "center-camera",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_load"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "move_camera_to_pos",
+                    "pos": { "x": 3, "y": 2 },
+                    "duration": 0
+				}
+			]
+		}
+    ],
+
+	"entrances": [
+        {
+            "identifier": "main",
+            "spawn": { "x": 1, "y": 2 },
+            "transition": "no transition",
+            "transition_time": 0
+        }
+	],
+
+	"exits": [
+
+	]
+}

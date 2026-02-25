@@ -22,7 +22,7 @@ class PlayingBackend(Backend):
         self.overlay.fill((0, 0, 0))
 
     def unload(self, game) -> None:
-        game.scene_manager.scenes[game.scene_manager.current_scene].unload()
+        game.scene_manager.scenes[game.scene_manager.current_scene].unload(False)
 
     def input(self, game) -> None:
         for event in pygame.event.get():

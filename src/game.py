@@ -9,6 +9,7 @@ from src.game_backends.backend import GameState, Backend
 from src.game_backends.main_menu import MainMenuBackend
 from src.game_backends.paused import PausedBackend
 from src.game_backends.playing import PlayingBackend
+from src.game_backends.running_scene import EscapeGameBackend
 from src.scene_manager import SceneManager
 from src.ui_manager import UIManager
 
@@ -27,7 +28,7 @@ class Game:
 
         self.asset_manager: AssetManager = AssetManager(asset_guide)
         AssetManager.NULL_IMAGE = AssetManager.get_image("null")
-        self.scene_manager: SceneManager = SceneManager(scene_guide)
+        self.scene_manager: SceneManager = SceneManager(scene_guide, self)
         self.ui_manager: UIManager = UIManager(self.window_surface)
         
         self.clock: pygame.time.Clock = pygame.time.Clock()
@@ -37,16 +38,19 @@ class Game:
         self.state_backends: dict = {
             GameState.MAIN_MENU: MainMenuBackend(),
             GameState.PAUSED: PausedBackend(),
-            GameState.PLAYING: PlayingBackend()
+            GameState.PLAYING: PlayingBackend(),
+            GameState.RUNNING_SCENE: EscapeGameBackend()
         }
         self.backend: Backend | None = None
         self.next_backend: Backend | None = None
         self.set_backend(self.state)
 
-    def set_backend(self, state: GameState) -> None:
+    def set_backend(self, state: GameState, params=None) -> None:
         if state == GameState.QUITTING:
             self.running = False
             return
+        if state == GameState.RUNNING_SCENE:
+            self.state_backends[state].set_params(params)
         self.next_backend = self.state_backends[state]
         self.state = state
 

@@ -1,0 +1,688 @@
+{
+	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
+	"bounds": { "x": 100, "y": 100 },
+	"background_music": {
+		"identifier": "esi_theme",
+		"volume": 0
+	},
+
+	"map_elements": [
+
+    ],
+
+	"entity_lookup": [
+		{
+			"id": "player",
+			"sprite": "esi",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		}
+	],
+
+	"player": {
+		"lookup": "player",
+		"fallback_spawn": { "x": 50, "y": 50 },
+		"move_duration": 0.3
+	},
+
+	"entities": [
+
+    ],
+
+	"triggers": [
+		{
+			"identifier": "reset-camera",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_load"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "reset_camera"
+				}
+			]
+		},
+        {
+			"identifier": "start",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_enter"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "start_independent_dialogue",
+                    "dialogue": {
+                        "id": "",
+                        "conditions": {
+                            "all": [],
+                            "any": [],
+                            "not": []
+                        },
+                        "start_monologue": [
+                            {
+                                "id": "that-night",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                }
+                            }
+                        ],
+                        "monologues": [
+                            {
+                                "id": "that-night",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "That night, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "you couldn't sleep",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "peace",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "peace",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "You wanted to make peace with Abronoma, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "but if Big Man found out, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "you were sure he would punish you both",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "maame-house-girl",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "maame-house-girl",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "But when you closed your eyelids, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "all you could see was Maame as a house girl",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "decided",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "decided",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "You decided then that you would send the message",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "next-morning",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "next-morning",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "Very early the next morning, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "you went to the messanger man",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "told-messanger",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "told-messanger",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "You gave him your message, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "and after some time, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "he set out into the forest",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "village-to-village",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "village-to-village",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "It was now in the hands of the messangers, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "travelling from village to village",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "maybe-dropped",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "maybe-dropped",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "It could be dropped or forgotten, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "altered or lost, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "but at the very least, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "you could say that you had done it",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "so-you-did",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "so-you-did",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "And so you did, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "and Abronoma turned confident of her rescue",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "many-months",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "many-months",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "And many months later, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "her saviours arrived",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "sounds",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "sounds",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "Two moans meant the enemy was miles away, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "three quick shouts meant they were upon them",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "three-shouts",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "three-shouts",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "Three quick shouts made Big Man jump from the bed and grab his machete",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "bm:to-woods",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:to-woods",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "Maame! ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "Take Esi and go into the woods!",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "bm-ran",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm-ran",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "He then ran, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "leaving you and Maame in the hut",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": null,
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            }
+                        ]
+                    }
+				},
+                {
+                    "name": "exit_scene",
+                    "transition": "no transition",
+                    "transition_time": 0,
+                    "next_scene": "invasion",
+                    "entrance": "main",
+                    "wait_for_previous": true
+                }
+			]
+		}
+    ],
+
+	"entrances": [
+        {
+            "identifier": "main",
+            "spawn": { "x": 50, "y": 50 },
+            "transition": "fade",
+            "transition_time": 3
+        }
+	],
+
+	"exits": [
+
+	]
+}

@@ -1,0 +1,1383 @@
+{
+	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
+	"bounds": { "x": 50, "y": 24 },
+	"background_music": {
+		"identifier": "esi_theme",
+		"volume": 0
+	},
+
+	"map_elements": [
+        {
+			"rect": {
+				"x": -1,
+				"y": 0,
+				"w": 1,
+				"h": 25
+			},
+			"image": "",
+			"collision": true
+		},
+        {
+			"rect": {
+				"x": 0,
+				"y": -1,
+				"w": 51,
+				"h": 1
+			},
+			"image": "",
+			"collision": true
+		}
+    ],
+
+	"entity_lookup": [
+		{
+			"id": "player",
+			"sprite": "dungeon_esi",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		},
+		{
+			"id": "maame",
+			"sprite": "maame",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		},
+        {
+			"id": "abronoma",
+			"sprite": "abronoma",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		}
+	],
+
+	"player": {
+		"lookup": "player",
+		"fallback_spawn": { "x": 3, "y": 12 },
+		"move_duration": 0.3
+	},
+
+	"entities": [
+        {
+            "id": "maame",
+			"lookup": "maame",
+			"spawn": { "x": 10, "y": 10 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+                {
+					"id": "left",
+					"conditions": {
+						"all": ["LEFT_MAAME"],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "maame:late",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": ["REMEMBERED_MAAME"]
+							}
+						},
+                        {
+							"id": "maame:sorry",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "maame:late",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "You are late",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:far-to-go",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:far-to-go",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I had far to go",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:eat?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:eat?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Did you eat?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:sometimes",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:sometimes",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Sometimes",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:safe?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:safe?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Did you find somewhere safe?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:big-house",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:big-house",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "We walked for many miles, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "until we came to a big house",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:whose?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:whose?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Whose house?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:men-no-speak",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:men-no-speak",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Men who did not speak like us, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "men who would hit us if we walked too slow",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:other-girls?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:other-girls?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Were there other girls?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:many",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:many",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "When I counted, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "we were 35, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "all tied together by rope",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:make-friend?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:make-friend?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Did you make a friend?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:yes-friend",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:yes-friend",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Yes, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "Tansi",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:walked-together",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:walked-together",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "We walked together, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and shared some stories",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:...",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:...",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "...",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:dungeon",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:dungeon",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "The dungeon was dark and damp, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and they refused to treat us like humans",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:big-men",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:big-men",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "There were big men there, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and they did what they wanted to us",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:sorry",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:sorry",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "I'm sorry, Esi",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "add", "value": "REMEMBERED_MAAME" }
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				},
+                {
+					"id": "stayed",
+					"conditions": {
+						"all": ["STAYED_WITH_MAAME"],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "maame:run",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": ["REMEMBERED_MAAME"]
+							}
+						},
+                        {
+							"id": "maame:sorry",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "maame:run",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "You should have run",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame:where?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:where?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Where did they take you?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:big-house",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:big-house",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "They forced us to walk for many miles, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "until we came to a big house",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:whose?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:whose?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Whose house?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:men-no-speak",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:men-no-speak",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Men who did not speak like us, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "men who would hit us if we walked too slow",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:other-girls?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:other-girls?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Were there other girls?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:many",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:many",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "When I counted, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "we were 35, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "all tied together by rope",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:make-friend?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:make-friend?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Did you make a friend?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:yes-friend",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:yes-friend",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Yes, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "Tansi",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:walked-together",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:walked-together",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "We walked together, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and shared some stories",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:...",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:...",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "...",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:dungeon",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:dungeon",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "The dungeon was dark and damp, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and they refused to treat us like humans",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:big-men",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:big-men",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "There were big men there, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and they did what they wanted to us",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:sorry",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:sorry",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "I'm sorry, Esi",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "add", "value": "REMEMBERED_MAAME" }
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				}
+			]
+        }
+    ],
+
+	"triggers": [
+		{
+			"identifier": "reset-camera",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_load"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "reset_camera"
+				}
+			]
+		}
+    ],
+
+	"entrances": [
+        {
+            "identifier": "main",
+            "spawn": { "x": 3, "y": 12 },
+            "transition": "fade",
+            "transition_time": 3
+        }
+	],
+
+	"exits": [
+
+	]
+}

@@ -1,9 +1,15 @@
 {
-    "start_scene": "dungeon",
+    "start_scene": "memories",
     "scenes": [
         { "name": "dungeon", "path": "scenes/esi/dungeon.json" },
         { "name": "dungeon_morning", "path": "scenes/esi/dungeon_morning.json" },
         { "name": "village", "path": "scenes/esi/village.json" },
-        { "name": "walking", "path": "scenes/esi/walking.json" }
+        { "name": "walking", "path": "scenes/esi/walking.json" },
+        { "name": "prisoners", "path": "scenes/esi/prisoners.json" },
+        { "name": "bucket", "path": "scenes/esi/bucket.json" },
+        { "name": "after_bucket", "path": "scenes/esi/after_bucket.json" },
+        { "name": "mailman", "path": "scenes/esi/mailman.json" },
+        { "name": "invasion", "path": "scenes/esi/invasion.json" },
+        { "name": "memories", "path": "scenes/esi/memories.json" }
     ]
 }

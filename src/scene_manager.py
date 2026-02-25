@@ -77,7 +77,7 @@ def parse_catch(catch_obj: dict) -> CatchEvent | None:
     event.conditions = parse_conditions(catch_obj.get("conditions", {}))
     return event
 
-def parse_dispatch(dispatch_obj: dict) -> DispatchEvent | None:
+def parse_dispatch(dispatch_obj: dict, game) -> DispatchEvent | None:
     name: str = dispatch_obj.get("name", "")
     match name:
         case "exit_scene":
@@ -86,6 +86,11 @@ def parse_dispatch(dispatch_obj: dict) -> DispatchEvent | None:
                 transition_time=dispatch_obj.get("transition_time"),
                 next_scene=dispatch_obj.get("next_scene"),
                 entrance=dispatch_obj.get("entrance")
+            )
+        case "start_running_scene":
+            event = StartRunningScene(
+                game=game,
+                params=dispatch_obj
             )
         case "modify_flags":
             event = ModifyFlags(
@@ -114,7 +119,8 @@ def parse_dispatch(dispatch_obj: dict) -> DispatchEvent | None:
             event = BeginIndependentDialogue(
                 dialogue=parse_dialogue(
                     dialogue_obj=dispatch_obj.get("dialogue"),
-                    entity_id=""
+                    entity_id="",
+                    game=game
                 )
             )
         case "end_dialogue":
@@ -186,7 +192,7 @@ def parse_monologue_option(option_obj: dict) -> MonologueOption:
         conditions=parse_conditions(option_obj.get("conditions", {}))
     )
 
-def parse_monologue(monologue_obj: dict) -> Monologue:
+def parse_monologue(monologue_obj: dict, game) -> Monologue:
     conditions_obj: dict = monologue_obj.get("conditions", {})
     conditions: Conditions = parse_conditions(conditions_obj)
 
@@ -209,7 +215,7 @@ def parse_monologue(monologue_obj: dict) -> Monologue:
     dispatch_events: list[DispatchEvent] = []
     dispatch_objs: list = monologue_obj.get("dispatch_on_reach", [])
     for dispatch_obj in dispatch_objs:
-        de: DispatchEvent | None = parse_dispatch(dispatch_obj)
+        de: DispatchEvent | None = parse_dispatch(dispatch_obj, game)
         if de is not None:
             dispatch_events.append(de)
 
@@ -247,7 +253,7 @@ def parse_monologue(monologue_obj: dict) -> Monologue:
     )
 
 
-def parse_dialogue(dialogue_obj: dict, entity_id: str) -> Dialogue:
+def parse_dialogue(dialogue_obj: dict, entity_id: str, game) -> Dialogue:
     start_monologues: list[tuple[str, Conditions]] = []
     start_monologues_obj: list = dialogue_obj.get("start_monologue", [])
     for start_monologue_obj in start_monologues_obj:
@@ -259,7 +265,7 @@ def parse_dialogue(dialogue_obj: dict, entity_id: str) -> Dialogue:
     monologues: dict[str, Monologue] = {}
     monologues_obj: list = dialogue_obj.get("monologues", [])
     for monologue_obj in monologues_obj:
-        monologues[monologue_obj.get("id", "")] = parse_monologue(monologue_obj)
+        monologues[monologue_obj.get("id", "")] = parse_monologue(monologue_obj, game)
 
     return Dialogue(
         conditions=parse_conditions(dialogue_obj.get("conditions", {})),
@@ -269,7 +275,7 @@ def parse_dialogue(dialogue_obj: dict, entity_id: str) -> Dialogue:
     )
 
 
-def parse_scene(scene_obj: dict) -> Scene:
+def parse_scene(scene_obj: dict, game) -> Scene:
     void_color_obj: dict = scene_obj.get("void_color", {})
     void_color: tuple[int, int, int, int] = (
         void_color_obj.get("r", 0), void_color_obj.get("g", 0), void_color_obj.get("b", 0),
@@ -320,7 +326,7 @@ def parse_scene(scene_obj: dict) -> Scene:
     triggers_obj: list = scene_obj.get("triggers", [])
     for trigger_obj in triggers_obj:
         catches: list = [parse_catch(e) for e in trigger_obj.get("catch", [])]
-        dispatches: list = [parse_dispatch(e) for e in trigger_obj.get("dispatch", [])]
+        dispatches: list = [parse_dispatch(e, game) for e in trigger_obj.get("dispatch", [])]
         for i in range(catches.count(None)): catches.remove(None)
         for i in range(dispatches.count(None)): dispatches.remove(None)
 
@@ -369,7 +375,7 @@ def parse_scene(scene_obj: dict) -> Scene:
         dialogues: dict[str, Dialogue] = {}
         dialogues_obj: list = entity_obj.get("dialogues", [])
         for dialogue_obj in dialogues_obj:
-            dialogues[dialogue_obj.get("id", "")] = parse_dialogue(dialogue_obj, entity_obj.get("id", ""))
+            dialogues[dialogue_obj.get("id", "")] = parse_dialogue(dialogue_obj, entity_obj.get("id", ""), game)
 
         routes: dict[str, EntityRoute] = {}
         routes_obj: list = entity_obj.get("routes", [])
@@ -414,7 +420,7 @@ def parse_scene(scene_obj: dict) -> Scene:
 
 
 class SceneManager:
-    def __init__(self, scene_guide: str):
+    def __init__(self, scene_guide: str, game):
         self.scenes: dict[str, Scene] = {}
         self.current_scene: str = ""
         self.start_scene: str = ""
@@ -432,16 +438,22 @@ class SceneManager:
         for scene_obj in obj.get("scenes", []):
             with open(scene_obj.get("path"), "r") as file:
                 scene_json = json.load(file)
-            self.add_scene(scene_obj.get("name"), parse_scene(scene_json))
+            self.add_scene(scene_obj.get("name"), parse_scene(scene_json, game))
 
     def add_scene(self, name: str, scene: Scene) -> None:
         self.scenes[name] = scene
 
     def load_scene(self, scene_name: str, entrance_id: str, player_face_dir: pygame.Vector2,
                    from_continue: bool = False) -> None:
+        same_bg_music: bool = False
         if self.current_scene != "":
-            self.scenes[self.current_scene].unload()
-        self.scenes[scene_name].load(entrance_id, player_face_dir, from_continue)
+            if self.scenes[self.current_scene].background_music.get_raw() == self.scenes[scene_name].background_music.get_raw():
+                volume: float = self.scenes[scene_name].background_music.get_volume()
+                self.scenes[scene_name].background_music = self.scenes[self.current_scene].background_music
+                self.scenes[scene_name].background_music.set_volume(volume)
+                same_bg_music = True
+            self.scenes[self.current_scene].unload(same_bg_music)
+        self.scenes[scene_name].load(entrance_id, player_face_dir, same_bg_music and not from_continue, from_continue)
         self.current_scene = scene_name
 
     def input(self, ui_manager: UIManager, keys: pygame.key.ScancodeWrapper) -> None:

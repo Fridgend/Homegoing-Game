@@ -1,6 +1,6 @@
 {
 	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
-	"bounds": { "x": 30, "y": 30 },
+	"bounds": { "x": 29, "y": 24 },
 	"background_music": {
 		"identifier": "esi_theme",
 		"volume": 0.5
@@ -9,50 +9,50 @@
 	"map_elements": [
 		{
 			"rect": {
-				"x": -1,
+				"x": 14,
 				"y": 0,
 				"w": 2,
-				"h": 30
+				"h": 25
 			},
 			"image": "dirt_tile",
 			"collision": false
 		},
 		{
 			"rect": {
-				"x": -2,
+				"x": 13,
 				"y": 0,
 				"w": 1,
-				"h": 30
+				"h": 25
 			},
 			"image": "path_E",
 			"collision": false
 		},
 		{
 			"rect": {
-				"x": 1,
+				"x": 16,
 				"y": 0,
 				"w": 1,
-				"h": 30
+				"h": 25
 			},
 			"image": "path_W",
 			"collision": false
 		},
 		{
 			"rect": {
-				"x": -30,
+				"x": 0,
 				"y": 0,
-				"w": 28,
-				"h": 30
+				"w": 13,
+				"h": 25
 			},
 			"image": "grass_tile",
 			"collision": false
 		},
 		{
 			"rect": {
-				"x": 2,
+				"x": 17,
 				"y": 0,
-				"w": 30,
-				"h": 30
+				"w": 13,
+				"h": 25
 			},
 			"image": "grass_tile",
 			"collision": false
@@ -85,7 +85,7 @@
 
 	"player": {
 		"lookup": "player",
-		"fallback_spawn": { "x": 0, "y": 15 },
+		"fallback_spawn": { "x": 15, "y": 13 },
 		"move_duration": 0.3
 	},
 
@@ -93,7 +93,7 @@
 		{
 			"id": "big_man",
 			"lookup": "big_man",
-			"spawn": { "x": 0, "y": 14 },
+			"spawn": { "x": 15, "y": 12 },
 			"conditions": {
 				"all": [],
 				"any": [],
@@ -111,7 +111,7 @@
 		{
 			"id": "maame",
 			"lookup": "maame",
-			"spawn": { "x": -1, "y": 15 },
+			"spawn": { "x": 14, "y": 13 },
 			"conditions": {
 				"all": [],
 				"any": [],
@@ -564,43 +564,6 @@
 							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "mezzo_soprano_voice",
-							"next_monologue": "anything",
-
-							"set_route_on_reach": [
-
-							],
-
-							"dispatch_on_reach": [
-
-							],
-
-							"modify_flags_on_reach": [
-
-							],
-
-							"options": [
-
-							]
-						},
-						{
-							"id": "anything",
-							"conditions": {
-								"all": [],
-								"any": [],
-								"not": []
-							},
-							"alt_monologue": "",
-
-							"speaker": "",
-							"lines": [
-								{
-									"text": "Almost anything",
-									"char_time": 0.05
-								}
-							],
-							"font": "snake32",
-							"speaker_image": "",
-							"speaking_sfx": "",
 							"next_monologue": null,
 
 							"set_route_on_reach": [
@@ -627,7 +590,7 @@
 
 	"triggers": [
 		{
-			"identifier": "center-camera",
+			"identifier": "reset-camera",
 			"disabled": false,
 			"once": true,
 			"catch": [
@@ -637,9 +600,7 @@
 			],
 			"dispatch": [
 				{
-					"name": "move_camera_to_pos",
-					"pos": { "x": 0, "y": 15 },
-					"duration": 0
+					"name": "reset_camera"
 				}
 			]
 		},
@@ -662,7 +623,7 @@
 					"name": "exit_scene",
 					"transition": "fade",
 					"transition_time": 1,
-					"next_scene": "dungeon_morning",
+					"next_scene": "prisoners",
 					"entrance": "main",
 					"wait_for_previous": true
 				}
@@ -673,7 +634,7 @@
 	"entrances": [
         {
             "identifier": "main",
-            "spawn": { "x": 0, "y": 15 },
+            "spawn": { "x": 15, "y": 13 },
             "transition": "fade",
             "transition_time": 1
         }

@@ -493,7 +493,7 @@
 			"dispatch": [
 				{
 					"name": "move_camera_to_pos",
-					"pos": { "x": 30, "y": 4 },
+					"pos": { "x": 30, "y": 5 },
 					"duration": 0
 				}
 			]
@@ -1269,10 +1269,16 @@
 					}
 				},
 				{
-					"name": "move_camera_to_pos",
-					"pos": { "x": 6, "y": 4 },
-					"duration": 3,
+					"name": "move_player",
+					"waypoints": [
+						{ "x": 3, "y": 3, "speed": 0.5, "face_dir": "down", "wait": 7 }
+					],
 					"wait_for_previous": true
+				},
+				{
+					"name": "move_camera_to_pos",
+					"pos": { "x": 3, "y": 5 },
+					"duration": 3
 				},
 				{
 					"name": "move_player",

@@ -1,0 +1,2393 @@
+{
+	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
+	"bounds": { "x": 29, "y": 24 },
+	"background_music": {
+		"identifier": "esi_theme",
+		"volume": 0.5
+	},
+
+	"map_elements": [
+		{
+			"rect": {
+				"x": -1,
+				"y": 0,
+				"w": 1,
+				"h": 25
+			},
+			"image": "",
+			"collision": true
+		},
+		{
+			"rect": {
+				"x": 0,
+				"y": -1,
+				"w": 30,
+				"h": 1
+			},
+			"image": "",
+			"collision": true
+		},
+		{
+			"rect": {
+				"x": 14,
+				"y": 0,
+				"w": 2,
+				"h": 25
+			},
+			"image": "dirt_tile",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 13,
+				"y": 0,
+				"w": 1,
+				"h": 25
+			},
+			"image": "path_E",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 16,
+				"y": 0,
+				"w": 1,
+				"h": 25
+			},
+			"image": "path_W",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 0,
+				"y": 0,
+				"w": 13,
+				"h": 25
+			},
+			"image": "grass_tile",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 17,
+				"y": 0,
+				"w": 3,
+				"h": 25
+			},
+			"image": "grass_tile",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 20,
+				"y": 0,
+				"w": 10,
+				"h": 4
+			},
+			"image": "grass_tile",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 20,
+				"y": 20,
+				"w": 10,
+				"h": 5
+			},
+			"image": "grass_tile",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 27,
+				"y": 4,
+				"w": 3,
+				"h": 16
+			},
+			"image": "grass_tile",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 20,
+				"y": 4,
+				"w": 1,
+				"h": 1
+			},
+			"image": "path_in_SE",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 20,
+				"y": 5,
+				"w": 1,
+				"h": 14
+			},
+			"image": "path_E",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 20,
+				"y": 19,
+				"w": 1,
+				"h": 1
+			},
+			"image": "path_in_NE",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 21,
+				"y": 19,
+				"w": 5,
+				"h": 1
+			},
+			"image": "path_N",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 26,
+				"y": 19,
+				"w": 1,
+				"h": 1
+			},
+			"image": "path_in_NW",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 26,
+				"y": 5,
+				"w": 1,
+				"h": 14
+			},
+			"image": "path_W",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 26,
+				"y": 4,
+				"w": 1,
+				"h": 1
+			},
+			"image": "path_in_SW",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 21,
+				"y": 4,
+				"w": 5,
+				"h": 1
+			},
+			"image": "path_S",
+			"collision": false
+		},
+		{
+			"rect": {
+				"x": 21,
+				"y": 5,
+				"w": 5,
+				"h": 14
+			},
+			"image": "dirt_tile",
+			"collision": false
+		}
+	],
+
+	"entity_lookup": [
+		{
+			"id": "player",
+			"sprite": "esi",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		},
+		{
+			"id": "maame",
+			"sprite": "maame",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		},
+		{
+			"id": "kadejah",
+			"sprite": "kadejah",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		},
+		{
+			"id": "esdee",
+			"sprite": "esdee",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		},
+		{
+			"id": "abronoma",
+			"sprite": "abronoma",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		}
+	],
+
+	"player": {
+		"lookup": "player",
+		"fallback_spawn": { "x": 15, "y": 13 },
+		"move_duration": 0.3
+	},
+
+	"entities": [
+		{
+			"id": "maame",
+			"lookup": "maame",
+			"spawn": { "x": 14, "y": 14 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+				{
+					"id": "main",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "maame:pick",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": ["CHOSE_ABRONOMA_PRISONER"]
+							}
+						},
+						{
+							"id": "esi:abronoma",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "maame:pick",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Go find a girl to help us at home, Esi",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:abronoma",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I have decided",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi-points",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi-points",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You point at the unnamed prisoner",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "maame:name?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:name?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "What's her name?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:name-unknown",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:name-unknown",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "She doesn't seem to have one",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:needs-name",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:needs-name",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "She will need a proper name",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+								{
+									"text": "She will choose",
+									"next_monologue": "esi:she-choose-name",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "We will choose",
+									"next_monologue": "esi:we-choose-name",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "esi:she-choose-name",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "She should choose her own",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:name-root",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:we-choose-name",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "We will choose one",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:name-root",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:name-root",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "A name roots a person, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "we should choose",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:name-suggestion",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:name-suggestion",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "... ",
+									"char_time": 0.05
+								},
+								{
+									"text": "... ",
+									"char_time": 0.05
+								},
+								{
+									"text": "Abronoma",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:name-ok",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:name-ok",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "Abronoma, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "little dove. ",
+									"char_time": 0.05
+								},
+								{
+									"text": "It's a good name",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "kadejah",
+			"lookup": "kadejah",
+			"spawn": { "x": 25, "y": 5 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+				{
+					"id": "main",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "scared",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "scared",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": ["SPOKE_TO_KADEJAH"]
+							},
+							"alt_monologue": "leave",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "As you approached the young girl, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "she pulled back and buried her face in her legs",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "no-talk",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "no-talk",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "It's clear she is scared, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "so you figure she wants to be left alone",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "add", "value": "SPOKE_TO_KADEJAH" }
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "leave",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "She wants to be left alone",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "esdee",
+			"lookup": "esdee",
+			"spawn": { "x": 22, "y": 11 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+				{
+					"id": "main",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "anger",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "anger",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": ["SPOKE_TO_ESDEE"]
+							},
+							"alt_monologue": "bad-idea",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "There is an intense rage in her eyes, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and a deeper sorrow behind them",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "bad-idea",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "bad-idea",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "This might be a bad idea",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "add", "value": "SPOKE_TO_ESDEE" }
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "abronoma",
+			"lookup": "abronoma",
+			"spawn": { "x": 23, "y": 15 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+				{
+					"id": "main",
+					"conditions": {
+						"all": [],
+						"any": [],
+						"not": []
+					},
+
+					"start_monologue": [
+						{
+							"id": "approachable",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							}
+						}
+					],
+
+					"monologues": [
+						{
+							"id": "approachable",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "She is avoiding your eye contact, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "but she definitely knows you're there",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "esi:hello",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:hello",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Hello",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:hello",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "a:hello",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "?",
+							"lines": [
+								{
+									"text": "... ",
+									"char_time": 0.05
+								},
+								{
+									"text": "Hello",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:take-me?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "a:take-me?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "?",
+							"lines": [
+								{
+									"text": "Are you going to take me?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:...(1)",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "add", "value": "AWAITING_ABRONOMA_NAME" },
+								{ "how": "add", "value": "AWAITING_ABRONOMA_AGE" },
+								{ "how": "add", "value": "AWAITING_ABRONOMA_FAMILY" },
+								{ "how": "add", "value": "AWAITING_ABRONOMA_AFRAID" },
+								{ "how": "add", "value": "AWAITING_ABRONOMA_CHOICE" },
+								{ "how": "add", "value": "AWAITING_ABRONOMA_DO" }
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:...(1)",
+							"conditions": {
+								"all": [],
+								"any": [ "AWAITING_ABRONOMA_NAME", "AWAITING_ABRONOMA_AGE", "AWAITING_ABRONOMA_FAMILY"],
+								"not": ["FINISHED_ABRONOMA_PRISONER_TALK"]
+							},
+							"alt_monologue": "esi:...(2)",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "...",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+								{
+									"text": "Name?",
+									"next_monologue": "esi:name?",
+									"conditions": {
+										"all": ["AWAITING_ABRONOMA_NAME"],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Age?",
+									"next_monologue": "esi:age?",
+									"conditions": {
+										"all": ["AWAITING_ABRONOMA_AGE"],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Family?",
+									"next_monologue": "esi:family?",
+									"conditions": {
+										"all": ["AWAITING_ABRONOMA_FAMILY"],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "esi:name?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "What's your name?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:name",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "remove", "value": "AWAITING_ABRONOMA_NAME" }
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "a:name",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "?",
+							"lines": [
+								{
+									"text": "They've called me many things, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "though my mother called me something different",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:long-time",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "a:long-time",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "?",
+							"lines": [
+								{
+									"text": "But I haven't heard it in a long time",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+								{
+									"text": "What?",
+									"next_monologue": "esi:what-name?",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Okay",
+									"next_monologue": "esi:...(1)",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "esi:what-name?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "What do you mean?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:belong",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "a:belong",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "?",
+							"lines": [
+								{
+									"text": "My name belongs to a certain place, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "far from here",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:...(1)",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:age?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "How old are you?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:age",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "remove", "value": "AWAITING_ABRONOMA_AGE" }
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "a:age",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "?",
+							"lines": [
+								{
+									"text": "... ",
+									"char_time": 0.05
+								},
+								{
+									"text": "I don't know",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+								{
+									"text": "What?",
+									"next_monologue": "esi:what-age?",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Okay",
+									"next_monologue": "esi:...(1)",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "esi:what-age?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "What do you mean?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:mother-counted",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "a:mother-counted",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "?",
+							"lines": [
+								{
+									"text": "My mother used to count, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "but I don't know where she is anymore",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:...(1)",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:family?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Where is your family?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:family",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "remove", "value": "AWAITING_ABRONOMA_FAMILY" }
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "a:family",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "?",
+							"lines": [
+								{
+									"text": "Gone",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+								{
+									"text": "What?",
+									"next_monologue": "esi:what-family?",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Okay",
+									"next_monologue": "esi:...(1)",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "esi:what-family?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "What do you mean?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:explain-family",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "a:explain-family",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "?",
+							"lines": [
+								{
+									"text": "Some were taken, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "others were killed. ",
+									"char_time": 0.05
+								},
+								{
+									"text": "The rest left, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "in one way or another...",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:...(1)",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:...(2)",
+							"conditions": {
+								"all": [],
+								"any": [ "AWAITING_ABRONOMA_AFRAID", "AWAITING_ABRONOMA_CHOICE", "AWAITING_ABRONOMA_DO"],
+								"not": [ "FINISHED_ABRONOMA_PRISONER_TALK" ]
+							},
+							"alt_monologue": "choice",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "...",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+								{
+									"text": "Afraid?",
+									"next_monologue": "esi:afraid?",
+									"conditions": {
+										"all": ["AWAITING_ABRONOMA_AFRAID"],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Want?",
+									"next_monologue": "esi:want?",
+									"conditions": {
+										"all": ["AWAITING_ABRONOMA_CHOICE"],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Can do?",
+									"next_monologue": "esi:can-do?",
+									"conditions": {
+										"all": ["AWAITING_ABRONOMA_DO"],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "esi:afraid?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Are you afraid?",
+									"char_time": 0.08
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:afraid",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "remove", "value": "AWAITING_ABRONOMA_AFRAID" }
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "a:afraid",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "?",
+							"lines": [
+								{
+									"text": "Afraid of what?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:afraid-of",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:afraid-of",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Of coming with us",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:afraid-of-stay",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "a:afraid-of-stay",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "?",
+							"lines": [
+								{
+									"text": "... ",
+									"char_time": 0.05
+								},
+								{
+									"text": "I am more afraid to stay",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:...(2)",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:want?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "What do you want to do?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:want",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "remove", "value": "AWAITING_ABRONOMA_CHOICE" }
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "a:want",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "?",
+							"lines": [
+								{
+									"text": "I want to go home",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:...(2)",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:can-do?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "What can you do?",
+									"char_time": 0.08
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "a:can-do",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "remove", "value": "AWAITING_ABRONOMA_DO" }
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "a:can-do",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "?",
+							"lines": [
+								{
+									"text": "I can fetch water, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "pound tofu, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "or carry wood, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "among other things",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:...(2)",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "choice",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "Would you like to choose this prisoner?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "remove", "value": "STARTED_ABRONOMA_PRISONER_TALK" },
+								{ "how": "add", "value": "FINISHED_ABRONOMA_PRISONER_TALK" }
+							],
+
+							"options": [
+								{
+									"text": "Yes",
+									"next_monologue": "should-tell-maame",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Not yet",
+									"next_monologue": null,
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "should-tell-maame",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You should tell Maame that you've made your choice",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+								{
+									"name": "move_player",
+									"waypoints": [
+										{ "x": 15, "y": 14, "speed": 0.3, "face_dir": "down", "wait": 0 }
+									],
+									"wait": 3
+								},
+								{
+									"name": "enable_trigger",
+									"identifier": "chose_abronoma_start"
+								}
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "add", "value": "CHOSE_ABRONOMA_PRISONER" }
+							],
+
+							"options": [
+
+							]
+						}
+					]
+				}
+			]
+		}
+    ],
+
+	"triggers": [
+		{
+			"identifier": "reset-camera",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_load"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "reset_camera"
+				}
+			]
+		},
+		{
+			"identifier": "start",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_enter"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "start_entity_dialogue",
+					"entity_id": "maame",
+					"dialogue_id": "main"
+				}
+			]
+		},
+		{
+			"identifier": "chose_abronoma_start",
+			"disabled": true,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_player_enter",
+					"rect": {
+						"x": 15,
+						"y": 14,
+						"w": 1,
+						"h": 1
+					}
+				}
+			],
+			"dispatch": [
+				{
+					"name": "start_entity_dialogue",
+					"entity_id": "maame",
+					"dialogue_id": "main"
+				},
+				{
+					"name": "exit_scene",
+					"transition": "fade",
+					"transition_time": 1,
+					"next_scene": "bucket",
+					"entrance": "main",
+					"wait_for_previous": true
+				}
+			]
+		}
+	],
+
+	"entrances": [
+        {
+            "identifier": "main",
+            "spawn": { "x": 15, "y": 13 },
+            "transition": "fade",
+            "transition_time": 1
+        }
+	],
+
+	"exits": [
+
+	]
+}

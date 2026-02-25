@@ -34,7 +34,7 @@
     {
       "name": "snake",
       "path": "assets/fonts/Snake.ttf",
-      "sizes": [ 32, 40, 46, 64, 96, 192 ]
+      "sizes": [ 24, 28, 32, 40, 46, 64, 96, 192 ]
     },
     {
       "name": "vcr_osd",
@@ -147,6 +147,18 @@
     {
       "name": "dungeon_esi_spritesheet",
       "path": "assets/images/dungeon_esi_spritesheet.png"
+    },
+    {
+      "name": "esdee_spritesheet",
+      "path": "assets/images/esdee_spritesheet.png"
+    },
+    {
+      "name": "kadejah_spritesheet",
+      "path": "assets/images/kadejah_spritesheet.png"
+    },
+    {
+      "name": "warrior_spritesheet",
+      "path": "assets/images/attacker_for_minigame.png"
     }
   ],
 
@@ -244,6 +256,36 @@
     {
       "name": "tansi",
       "sprite_sheet": "tansi_spritesheet",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "animations": ["idle_down"],
+      "animation_layout": "rows",
+      "frame_time": 0.1
+    },
+    {
+      "name": "kadejah",
+      "sprite_sheet": "kadejah_spritesheet",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "animations": ["idle_down"],
+      "animation_layout": "rows",
+      "frame_time": 0.1
+    },
+    {
+      "name": "esdee",
+      "sprite_sheet": "esdee_spritesheet",
+      "width": 32,
+      "height": 32,
+      "num_frames": 1,
+      "animations": ["idle_down"],
+      "animation_layout": "rows",
+      "frame_time": 0.1
+    },
+    {
+      "name": "warrior",
+      "sprite_sheet": "warrior_spritesheet",
       "width": 32,
       "height": 32,
       "num_frames": 1,

@@ -1,0 +1,2273 @@
+{
+	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
+	"bounds": { "x": 29, "y": 24 },
+	"background_music": {
+		"identifier": "esi_theme",
+		"volume": 0.3
+	},
+
+	"map_elements": [
+		{
+			"rect": {
+				"x": 5,
+				"y": 9,
+				"w": 23,
+				"h": 4
+			},
+			"image": "dirt_tile",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 4,
+				"y": 9,
+				"w": 1,
+				"h": 4
+			},
+			"image": "path_E",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 4,
+				"y": 8,
+				"w": 1,
+				"h": 1
+			},
+			"image": "path_in_SE",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 4,
+				"y": 13,
+				"w": 1,
+				"h": 1
+			},
+			"image": "path_in_NE",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 28,
+				"y": 9,
+				"w": 1,
+				"h": 4
+			},
+			"image": "path_W",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 28,
+				"y": 8,
+				"w": 1,
+				"h": 1
+			},
+			"image": "path_in_SW",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 28,
+				"y": 13,
+				"w": 1,
+				"h": 1
+			},
+			"image": "path_in_NW",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 5,
+				"y": 8,
+				"w": 23,
+				"h": 1
+			},
+			"image": "path_S",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 5,
+				"y": 13,
+				"w": 23,
+				"h": 1
+			},
+			"image": "path_N",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 0,
+				"y": 0,
+				"w": 33,
+				"h": 8
+			},
+			"image": "grass_tile",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 0,
+				"y": 14,
+				"w": 33,
+				"h": 11
+			},
+			"image": "grass_tile",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 0,
+				"y": 8,
+				"w": 4,
+				"h": 6
+			},
+			"image": "grass_tile",
+			"collision": false
+		},
+        {
+			"rect": {
+				"x": 29,
+				"y": 8,
+				"w": 4,
+				"h": 6
+			},
+			"image": "grass_tile",
+			"collision": false
+		}
+    ],
+
+	"entity_lookup": [
+		{
+			"id": "player",
+			"sprite": "esi",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		},
+		{
+			"id": "maame",
+			"sprite": "maame",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		},
+		{
+			"id": "big_man",
+			"sprite": "big_man",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+		},
+        {
+            "id": "kojo",
+			"sprite": "kojo",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+        },
+        {
+            "id": "abronoma",
+			"sprite": "abronoma",
+			"default_animation": "idle_down",
+			"animation_frame_time": 10,
+			"collision": true
+        }
+	],
+
+	"player": {
+		"lookup": "player",
+		"fallback_spawn": { "x": 23, "y": 8 },
+		"move_duration": 0.3
+	},
+
+	"entities": [
+        {
+			"id": "kojo",
+			"lookup": "kojo",
+			"spawn": { "x": 20, "y": 8 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+
+			]
+		},
+		{
+			"id": "maame",
+			"lookup": "maame",
+			"spawn": { "x": 22, "y": 8 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+
+			],
+
+			"dialogues": [
+
+			]
+		},
+        {
+			"id": "big_man",
+			"lookup": "big_man",
+			"spawn": { "x": 7, "y": 10 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+                {
+                    "id": "walk1",
+                    "waypoints": [
+                        { "x": 10, "y": 10, "speed": 0.5, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk2",
+                    "waypoints": [
+                        { "x": 11, "y": 10, "speed": 0.5, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk3",
+                    "waypoints": [
+                        { "x": 12, "y": 10, "speed": 0.5, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk4",
+                    "waypoints": [
+                        { "x": 14, "y": 10, "speed": 0.5, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk5",
+                    "waypoints": [
+                        { "x": 16, "y": 10, "speed": 0.5, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk6",
+                    "waypoints": [
+                        { "x": 17, "y": 10, "speed": 0.5, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk7",
+                    "waypoints": [
+                        { "x": 19, "y": 10, "speed": 0.5, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk8",
+                    "waypoints": [
+                        { "x": 21, "y": 10, "speed": 0.5, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk9",
+                    "waypoints": [
+                        { "x": 24, "y": 10, "speed": 0.5, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk10",
+                    "waypoints": [
+                        { "x": 26, "y": 10, "speed": 2, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk11",
+                    "waypoints": [
+                        { "x": 26, "y": 11, "speed": 1, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                }
+			],
+
+			"dialogues": [
+
+			]
+		},
+        {
+			"id": "abronoma",
+			"lookup": "abronoma",
+			"spawn": { "x": 6, "y": 11 },
+			"conditions": {
+				"all": [],
+				"any": [],
+				"not": []
+			},
+
+			"routes": [
+                {
+                    "id": "walk0",
+                    "waypoints": [
+                        { "x": 7, "y": 11, "speed": 1, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk1",
+                    "waypoints": [
+                        { "x": 9, "y": 11, "speed": 0.7, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk2",
+                    "waypoints": [
+                        { "x": 11, "y": 11, "speed": 0.7, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk3",
+                    "waypoints": [
+                        { "x": 12, "y": 11, "speed": 1, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk4",
+                    "waypoints": [
+                        { "x": 14, "y": 11, "speed": 0.7, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk5",
+                    "waypoints": [
+                        { "x": 16, "y": 11, "speed": 0.7, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk6",
+                    "waypoints": [
+                        { "x": 17, "y": 11, "speed": 0.7, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk7",
+                    "waypoints": [
+                        { "x": 19, "y": 11, "speed": 0.7, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk8",
+                    "waypoints": [
+                        { "x": 21, "y": 11, "speed": 0.7, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk9",
+                    "waypoints": [
+                        { "x": 24, "y": 11, "speed": 0.7, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk10",
+                    "waypoints": [
+                        { "x": 26, "y": 11, "speed": 1, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                },
+                {
+                    "id": "walk11",
+                    "waypoints": [
+                        { "x": 26, "y": 12, "speed": 1, "face_dir": "down", "wait": 0 }
+                    ],
+                    "conditions": {
+                        "all": ["BLOCK"],
+                        "any": [],
+                        "not": []
+                    }
+                }
+			],
+
+			"dialogues": [
+
+			]
+		}
+    ],
+
+	"triggers": [
+		{
+			"identifier": "reset-camera",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_load"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "reset_camera"
+				}
+			]
+		},
+        {
+			"identifier": "start",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_load"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "start_independent_dialogue",
+					"dialogue": {
+                        "id": "",
+                        "conditions": {
+                            "all": [],
+                            "any": [],
+                            "not": []
+                        },
+                        "start_monologue": [
+                            {
+                                "id": "abronoma-bad",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                }
+                            }
+                        ],
+                        "monologues": [
+                            {
+                                "id": "abronoma-bad",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "Abronoma had been horrible at the chores, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "so Big Man is punishing her... ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "again",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "maame-shudders",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "maame-shudders",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "Maame always shudders at the sight, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "and has tried to stop Big Man many times",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "maame-worried",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "maame-worried",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "She looks worried today",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "punishment-explanation",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "punishment-explanation",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "Big Man has told Abronoma to carry the bucket of water from one end of the yard to the other",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "if-spill",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "if-spill",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "If Abronoma spills the tiniest amount... ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "... ",
+                                        "char_time": 0.2
+                                    },
+                                    {
+                                        "text": "Big Man will punish her",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "lift-bucket",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "lift-bucket",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "As Abronoma lifts the bucket onto her head, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "you see how her entire body starts shaking",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "kojo:never-make-it",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "kojo:never-make-it",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "kojo",
+                                "lines": [
+                                    {
+                                        "text": "She'll never make it!",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "tenor_voice",
+                                "next_monologue": "kojo:will-spill",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "kojo:will-spill",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "kojo",
+                                "lines": [
+                                    {
+                                        "text": "Watch, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "she will spill it all and drown herself in the process!",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "tenor_voice",
+                                "next_monologue": "abronoma-steps",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "abronoma-steps",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "You let out the breath you didn't realize you were holding as Abronoma took the first step",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "maame-saying",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "abronoma",
+                                        "route_id": "walk0"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "maame-saying",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "Maame used to say, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "you can learn anything when you have to learn it",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "abronoma-walks",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "abronoma-walks",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "You see how Abronoma steadies her legs, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "and keeps walking",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "bm:walk-straight",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "abronoma",
+                                        "route_id": "walk1"
+                                    },
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "big_man",
+                                        "route_id": "walk1"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:walk-straight",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "Walk straight",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "bm:lonely",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "abronoma",
+                                        "route_id": "walk2"
+                                    },
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "big_man",
+                                        "route_id": "walk2"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:lonely",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "Are you crying?",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "bm:crying?",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "abronoma",
+                                        "route_id": "walk3"
+                                    },
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "big_man",
+                                        "route_id": "walk3"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:crying?",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "No one is looking for you",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "bm:useless",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "abronoma",
+                                        "route_id": "walk4"
+                                    },
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "big_man",
+                                        "route_id": "walk4"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:useless",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "Useless",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "bm:choose",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "abronoma",
+                                        "route_id": "walk5"
+                                    },
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "big_man",
+                                        "route_id": "walk5"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:choose",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "Why would they pick such a useless girl?",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "bm:equal",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:equal",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "All you do is fail",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "bm:failure",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "abronoma",
+                                        "route_id": "walk6"
+                                    },
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "big_man",
+                                        "route_id": "walk6"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:failure",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "You will never be equal",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "bm:see",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "abronoma",
+                                        "route_id": "walk7"
+                                    },
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "big_man",
+                                        "route_id": "walk7"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:see",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "When will you see?",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "bm:family",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "abronoma",
+                                        "route_id": "walk8"
+                                    },
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "big_man",
+                                        "route_id": "walk8"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:family",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "You will never be a part of this family",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "tears",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "tears",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "You see Abronoma's face is covered in sweat and tears",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "insults",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "insults",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "Big Man's insults are slowly breaking her",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "painful",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "painful",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "It's painful to watch",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": null,
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+                                    {
+                                        "text": "Yell to stop",
+                                        "next_monologue": "esi:stop",
+                                        "conditions": {
+                                            "all": [],
+                                            "any": [],
+                                            "not": []
+                                        }
+                                    },
+                                    {
+                                        "text": "Stay quiet",
+                                        "next_monologue": "bm:no-past",
+                                        "conditions": {
+                                            "all": [],
+                                            "any": [],
+                                            "not": []
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "id": "esi:stop",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "you",
+                                "lines": [
+                                    {
+                                        "text": "Stop!",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake46",
+                                "speaker_image": "",
+                                "speaking_sfx": "mezzo_soprano_voice",
+                                "next_monologue": "bm:...",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+                                    { "how": "add", "value": "YELLED_TO_STOP_BIG_MAN" }
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:...",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "...",
+                                        "char_time": 0.2
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "bm:quiet",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:quiet",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "Quiet!",
+                                        "char_time": 0.2
+                                    }
+                                ],
+                                "font": "snake46",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "bm:no-interrupt",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "abronoma",
+                                        "route_id": "walk9"
+                                    },
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "big_man",
+                                        "route_id": "walk9"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:no-interrupt",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "Do not interrupt!",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake46",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "final-stretch",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:no-past",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "You don't have a past,",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "bm:making",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "abronoma",
+                                        "route_id": "walk9"
+                                    },
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "big_man",
+                                        "route_id": "walk9"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:making",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "which makes you...",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "bm:nobody",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bm:nobody",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "big man",
+                                "lines": [
+                                    {
+                                        "text": "absolutely nothing...",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "big_man_portrait",
+                                "speaking_sfx": "bass_voice",
+                                "next_monologue": "final-stretch",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "final-stretch",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "Abronoma is walking the final stretch, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "it looks like she'll make it",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "bucket-down",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "abronoma",
+                                        "route_id": "walk10"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "bucket-down",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "She takes the bucket off of her head, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "and carefully lowers it",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "smiling",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "smiling",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "She is smiling",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "spill",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "spill",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "But as she places it on the ground, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "something, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "whatever it may have been, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "causes two drops to spill",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "look-at-maame",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "look-at-maame",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "You look at Maame, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "who is at the verge of tears",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "kojo:failure0",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "shake_camera",
+                                        "time": -1,
+                                        "intensity": 1
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "kojo:failure0",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "kojo",
+                                "lines": [
+                                    {
+                                        "text": "The dove has failed. ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "Oh, what to do? ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "Make her suffer or you'll fail too!",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "tenor_voice",
+                                "next_monologue": "kojo:failure1",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "shake_camera",
+                                        "time": -1,
+                                        "intensity": 3
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "kojo:failure1",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "kojo",
+                                "lines": [
+                                    {
+                                        "text": "The dove has failed. ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "Oh, what to do? ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "Make her suffer or you'll fail too!",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "tenor_voice",
+                                "next_monologue": "kojo:failure2",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "shake_camera",
+                                        "time": -1,
+                                        "intensity": 7
+                                    },
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "big_man",
+                                        "route_id": "walk10"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "kojo:failure2",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "kojo",
+                                "lines": [
+                                    {
+                                        "text": "The dove has failed. ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "Oh, what to do? ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "Make her suffer or you'll fail too!",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "tenor_voice",
+                                "next_monologue": "kojo:failure3",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "shake_camera",
+                                        "time": -1,
+                                        "intensity": 16
+                                    },
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "big_man",
+                                        "route_id": "walk11"
+                                    },
+                                    {
+                                        "name": "set_route",
+                                        "entity_id": "abronoma",
+                                        "route_id": "walk11"
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "kojo:failure3",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "kojo",
+                                "lines": [
+                                    {
+                                        "text": "The dove has failed. ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "Oh, what to do? ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "Make her suffer or you'll fail too!",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "tenor_voice",
+                                "next_monologue": null,
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+                                    {
+                                        "name": "shake_camera",
+                                        "time": -1,
+                                        "intensity": 24
+                                    }
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "stop_shake_camera",
+                    "wait_for_previous": true
+                },
+                {
+                    "name": "exit_scene",
+                    "transition": "fade",
+                    "transition_time": 0.2,
+                    "next_scene": "after_bucket",
+                    "entrance": "main"
+                }
+			]
+		}
+	],
+
+	"entrances": [
+        {
+            "identifier": "main",
+            "spawn": { "x": 23, "y": 8 },
+            "transition": "fade",
+            "transition_time": 1
+        }
+	],
+
+	"exits": [
+
+	]
+}

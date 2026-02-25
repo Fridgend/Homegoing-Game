@@ -5,7 +5,8 @@ class GameState(enum.Enum):
     MAIN_MENU = 0
     PAUSED = 1
     PLAYING = 2
-    QUITTING = 3
+    RUNNING_SCENE = 3
+    QUITTING = 4
 
 class Backend:
     def __init__(self):
