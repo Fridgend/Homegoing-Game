@@ -63,7 +63,7 @@
         {
             "id": "maame",
 			"lookup": "maame",
-			"spawn": { "x": 10, "y": 10 },
+			"spawn": { "x": 16, "y": 12 },
 			"conditions": {
 				"all": [],
 				"any": [],
@@ -93,7 +93,7 @@
 							}
 						},
                         {
-							"id": "maame:sorry",
+							"id": "maame-hugs-harder",
 							"conditions": {
 								"all": [],
 								"any": [],
@@ -153,6 +153,43 @@
 							"lines": [
 								{
 									"text": "I had far to go",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:ran-as-far",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:ran-as-far",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I ran as far as I could",
 									"char_time": 0.05
 								}
 							],
@@ -226,7 +263,7 @@
 							"speaker": "you",
 							"lines": [
 								{
-									"text": "Sometimes",
+									"text": "They gave us a strange porridge",
 									"char_time": 0.05
 								}
 							],
@@ -471,6 +508,43 @@
 							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:counted-once",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:counted-once",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "But I only counted once",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
 							"next_monologue": "maame:make-friend?",
 
 							"set_route_on_reach": [
@@ -702,13 +776,370 @@
 									"char_time": 0.05
 								},
 								{
-									"text": "and they did what they wanted to us",
+									"text": "and they would grab us, ",
+									"char_time": 0.08
+								},
+								{
+									"text": "and take us somewhere private",
 									"char_time": 0.1
 								}
 							],
 							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:i-went",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:i-went",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "When he grabbed me, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "I couldn't fight him",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:couldnt-fight",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:couldnt-fight",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I couldn't fight him",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame-hugs",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame-hugs",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "Maame took you in her arms",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "maame:i-know",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:i-know",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "I know, Esi, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "I know",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:silence",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:silence",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "When he took me back, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "it was quiet",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:no-talking",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:no-talking",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I stopped talking to Tansi",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:happened-many-times",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:happened-many-times",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "It happened many times, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "not only to me",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame:its-okay",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:its-okay",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "It's okay, Esi",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:when-left",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:when-left",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "They're making us leave, Maame, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and I lost the stone you gave me",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
 							"next_monologue": "maame:sorry",
 
 							"set_route_on_reach": [
@@ -740,7 +1171,85 @@
 							"lines": [
 								{
 									"text": "I'm sorry, Esi",
-									"char_time": 0.1
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:free?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:free?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Will we ever be free? ",
+									"char_time": 0.05
+								},
+								{
+									"text": "Have we ever been?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame-hugs-harder",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame-hugs-harder",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "Maame hugs you tighter",
+									"char_time": 0.05
 								}
 							],
 							"font": "snake32",
@@ -753,11 +1262,18 @@
 							],
 
 							"dispatch_on_reach": [
-
+								{
+									"name": "exit_scene",
+									"transition": "fade",
+									"transition_time": 2,
+									"next_scene": "ending",
+									"entrance": "main",
+									"wait": 2
+								}
 							],
 
 							"modify_flags_on_reach": [
-								{ "how": "add", "value": "REMEMBERED_MAAME" }
+
 							],
 
 							"options": [
@@ -784,7 +1300,7 @@
 							}
 						},
                         {
-							"id": "maame:sorry",
+							"id": "maame-hugs-harder",
 							"conditions": {
 								"all": [],
 								"any": [],
@@ -813,6 +1329,43 @@
 							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:stayed",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:stayed",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I stayed until they pulled me away",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
 							"next_monologue": "maame:where?",
 
 							"set_route_on_reach": [
@@ -1051,6 +1604,43 @@
 							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:looked-like",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:looked-like",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "They all reminded me of you",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
 							"next_monologue": "maame:make-friend?",
 
 							"set_route_on_reach": [
@@ -1282,13 +1872,370 @@
 									"char_time": 0.05
 								},
 								{
-									"text": "and they did what they wanted to us",
+									"text": "and they would grab us, ",
+									"char_time": 0.08
+								},
+								{
+									"text": "and take us somewhere private",
 									"char_time": 0.1
 								}
 							],
 							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:i-went",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:i-went",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "When he grabbed me, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "I couldn't fight him",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:couldnt-fight",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:couldnt-fight",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I couldn't fight him",
+									"char_time": 0.1
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame-hugs",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame-hugs",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "Maame took you in her arms",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "maame:i-know",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:i-know",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "I know, Esi, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "I know",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:silence",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:silence",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "When he took me back, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "it was quiet",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:no-talking",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:no-talking",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I stopped talking to Tansi",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:happened-many-times",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:happened-many-times",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "It happened many times, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "not only to me",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame:its-okay",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:its-okay",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "It's okay, Esi",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:when-left",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:when-left",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "They're making us leave, mama, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and I lost the stone you gave me",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
 							"next_monologue": "maame:sorry",
 
 							"set_route_on_reach": [
@@ -1319,8 +2266,90 @@
 							"speaker": "maame",
 							"lines": [
 								{
-									"text": "I'm sorry, Esi",
-									"char_time": 0.1
+									"text": "It's okay, Esi, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "it was only a stone",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:free?",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:free?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Will we ever be free, mama? ",
+									"char_time": 0.05
+								},
+								{
+									"text": "Have we ever been?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame-hugs-harder",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame-hugs-harder",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "Maame hugs you tighter",
+									"char_time": 0.05
 								}
 							],
 							"font": "snake32",
@@ -1333,11 +2362,18 @@
 							],
 
 							"dispatch_on_reach": [
-
+								{
+									"name": "exit_scene",
+									"transition": "fade",
+									"transition_time": 2,
+									"next_scene": "ending",
+									"entrance": "main",
+									"wait": 2
+								}
 							],
 
 							"modify_flags_on_reach": [
-								{ "how": "add", "value": "REMEMBERED_MAAME" }
+
 							],
 
 							"options": [

@@ -92,6 +92,10 @@ def parse_dispatch(dispatch_obj: dict, game) -> DispatchEvent | None:
                 game=game,
                 params=dispatch_obj
             )
+        case "end_game":
+            event = EndGame(
+                game=game
+            )
         case "modify_flags":
             event = ModifyFlags(
                 how=dispatch_obj.get("how", ""),

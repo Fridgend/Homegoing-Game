@@ -1,0 +1,613 @@
+{
+	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
+	"bounds": { "x": 50, "y": 24 },
+	"background_music": {
+		"identifier": "esi_theme",
+		"volume": 0
+	},
+
+	"map_elements": [
+
+    ],
+
+	"entity_lookup": [
+		{
+			"id": "player",
+			"sprite": "esi",
+			"default_animation": "idle_down",
+			"animation_frame_time": 0.15,
+			"collision": true
+		}
+	],
+
+	"player": {
+		"lookup": "player",
+		"fallback_spawn": { "x": 15, "y": 12 },
+		"move_duration": 0.3
+	},
+
+	"entities": [
+
+    ],
+
+	"triggers": [
+		{
+			"identifier": "reset-camera",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_load"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "reset_camera"
+				}
+			]
+		},
+        {
+            "identifier": "start",
+            "disabled": false,
+            "once": true,
+            "catch": [
+                {
+                    "name": "on_scene_enter"
+                }
+            ],
+            "dispatch": [
+                {
+                    "name": "start_independent_dialogue",
+                    "dialogue": {
+                        "id": "",
+                        "conditions": {
+                            "all": [],
+                            "any": [],
+                            "not": []
+                        },
+
+                        "start_monologue": [
+                            {
+                                "id": "alone",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                }
+                            }
+                        ],
+
+                        "monologues": [
+                            {
+                                "id": "alone",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "Esi stood alone in the dark",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "questions",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "questions",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "There were no more questions left to ask,",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "answer",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "answer",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "and no one left to answer them",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "never-seen",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "never-seen",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "She had never seen so much of it before, ",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "sea-stretching",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "sea-stretching",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "The sea stretching farther than the eye could see",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "didnt-know",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "didnt-know",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "She didn't know where they were taking her",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "ship",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "ship",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "They pushed her onto the ship, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "along with 20 other women",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "resist",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "resist",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "She did not resist, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "because resistance required the belief that there was somewhere else to go",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "there",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "there",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "It was only there, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "below the deck of the ship and in the dungeon of the castle, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "that Esi understood",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "loss-of-home",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "loss-of-home",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "She learned that the loss of home was not merely a journey across the sea, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "but a stripping of self",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "womans-body",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "womans-body",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "She learned that a woman's body and her heritage could be traded, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "violated, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "and erased before her eyes",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "...",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "...",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "...",
+                                        "char_time": 0.1
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": "thanks",
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            },
+                            {
+                                "id": "thanks",
+                                "conditions": {
+                                    "all": [],
+                                    "any": [],
+                                    "not": []
+                                },
+                                "alt_monologue": "",
+
+                                "speaker": "",
+                                "lines": [
+                                    {
+                                        "text": "Thank you for playing",
+                                        "char_time": 0.05
+                                    }
+                                ],
+                                "font": "snake32",
+                                "speaker_image": "",
+                                "speaking_sfx": "",
+                                "next_monologue": null,
+
+                                "set_route_on_reach": [
+
+                                ],
+
+                                "dispatch_on_reach": [
+
+                                ],
+
+                                "modify_flags_on_reach": [
+
+                                ],
+
+                                "options": [
+
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "end_game",
+                    "wait_for_previous": true
+                }
+            ]
+        }
+    ],
+
+	"entrances": [
+        {
+            "identifier": "main",
+            "spawn": { "x": 15, "y": 12 },
+            "transition": "fade",
+            "transition_time": 2
+        }
+	],
+
+	"exits": [
+
+	]
+}

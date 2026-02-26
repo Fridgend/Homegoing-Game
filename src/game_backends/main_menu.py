@@ -167,19 +167,25 @@ class MainMenuBackend(Backend):
     def render_credits(self, game) -> None:
         game.ui_manager.draw_text(Text(
             "Credits", [170, 20, 20, 255],
-            self.center_pos + pygame.Vector2(0, -300), AssetManager.get_font("snake64"),
+            self.center_pos + pygame.Vector2(0, -250), AssetManager.get_font("snake64"),
             align_center=True
         ))
 
-        self.render_credit(game, "Mihir", "Programmer", -160)
-        self.render_credit(game, "Theodor", "Programmer", -100)
-        self.render_credit(game, "Abdulrahman", "Artist", -40)
-        self.render_credit(game, "Yazan", "Artist", 20)
-        self.render_credit(game, "Jonas", "Writer", 80)
+        game.ui_manager.draw_text(Text(
+            "Based on the novel by Yaa Gyasi", [255, 255, 255, 255],
+            self.center_pos + pygame.Vector2(0, -175), AssetManager.get_font("snake40"),
+            align_center=True
+        ))
+
+        self.render_credit(game, "Mihir", "Programmer", -110)
+        self.render_credit(game, "Theodor", "Programmer", -50)
+        self.render_credit(game, "Abdulrahman", "Artist", 10)
+        self.render_credit(game, "Yazan", "Artist", 70)
+        self.render_credit(game, "Jonas", "Writer", 130)
 
         game.ui_manager.draw_button(Button(Text(
             "Back", [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, 200), AssetManager.get_font("snake64"),
+            self.center_pos + pygame.Vector2(0, 250), AssetManager.get_font("snake64"),
             align_center=True
         ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 0)
 

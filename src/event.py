@@ -191,6 +191,19 @@ class StartRunningScene(DispatchEvent):
         self.dispatched = True
         self.game.set_backend(GameState.RUNNING_SCENE, self.params)
 
+class EndGame(DispatchEvent):
+    def __init__(self, game):
+        super().__init__()
+
+        self.game = game
+
+    def is_complete(self, scene) -> bool:
+        return self.dispatched
+
+    def dispatch(self, scene, manager) -> None:
+        self.dispatched = True
+        self.game.end_game()
+
 class ModifyFlags(DispatchEvent):
     def __init__(self, how: str, value: str):
         super().__init__()

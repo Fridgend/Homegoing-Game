@@ -45,6 +45,10 @@ class Game:
         self.next_backend: Backend | None = None
         self.set_backend(self.state)
 
+    def end_game(self):
+        self.backend.next_backend = GameState.QUITTING
+        self.backend.fading = -100
+
     def set_backend(self, state: GameState, params=None) -> None:
         if state == GameState.QUITTING:
             self.running = False

@@ -1,5 +1,5 @@
 {
-    "start_scene": "memories",
+    "start_scene": "ending",
     "scenes": [
         { "name": "dungeon", "path": "scenes/esi/dungeon.json" },
         { "name": "dungeon_morning", "path": "scenes/esi/dungeon_morning.json" },
@@ -10,6 +10,7 @@
         { "name": "after_bucket", "path": "scenes/esi/after_bucket.json" },
         { "name": "mailman", "path": "scenes/esi/mailman.json" },
         { "name": "invasion", "path": "scenes/esi/invasion.json" },
-        { "name": "memories", "path": "scenes/esi/memories.json" }
+        { "name": "memories", "path": "scenes/esi/memories.json" },
+        { "name": "ending", "path": "scenes/esi/ending.json" }
     ]
 }
