@@ -1,4 +1,54 @@
-# Homegoing-Game
+# Homegoing Game
+*A narrative adaptation of the novel **Homegoing** by Yaa Gyasi*
 
-Trello: [Trello](https://trello.com/b/1TudHOhC/homegoing-game)
-GDD: [Word](https://elevstockholm-my.sharepoint.com/:w:/r/personal/theodor_ristoff_nyberg_elevmail_stockholm_se/Documents/Homegoing%20Game%20GDD.docx?d=w218c6585ecae45b998cc28e67b458e0a&csf=1&web=1&e=ebLciI)
+## About the Project
+This is a narrative-driven interactive game inspired by the Esi chapter of ***Homegoing*** by Yaa Gyasi.
+
+The player takes on the role of Esi and experiences key moments from her story through dialogue choices and movement-based exploration. The game explores themes of generational trauma, agency, the loss of home, and the illusion of choice in oppressive systems.
+
+This project is a non-commercial educational adaptation created for academic purposes.
+
+## Content Warning
+This game contains references to:
+- Enslavement
+- Sexual violence (implied)
+- Physical abuse
+- Death
+- Themes of generational trauma
+
+There are no graphic scenes in the game. Sensitive events are handled through textual implication.
+
+## How to Play
+You do not use your mouse at all in this game.
+
+**Controls**
+- Move: `WASD` or `Arrow Keys`
+- Interact / Advance dialogue: `Spacebar` or `Enter`
+
+This game includes branching dialogue choices. Some decisions affect later conversations and narrative framing.
+
+Replay is encouraged.
+
+## Installation / Running the Game
+1. Go to the **Releases** sections of this repository
+2. Download the latest `.zip` file
+3. Extract the `.zip` file to a folder on your computer
+4. Open the extracted folder
+5. Double-click the `main.exe` file to run the game
+
+No additional installation is required. The executable is generated with pyinstaller.
+
+## Credits
+**Original Novel:** *Homegoing* by Yaa Gyasi\
+**Programmers:** Mihir and Theodor\
+**Artists:** Abdulrahman and Yazan\
+**Writer:** Jonas\
+**Font:** Snake
+
+## Gameplay Screenshots
+### Main Menu
+![main_menu.png](assets/screenshots/main_menu.png)
+### Bucket Scene
+![abronoma_bucket.png](assets/screenshots/abronoma_bucket.png)
+### Ending Scene
+![void.png](assets/screenshots/void.png)

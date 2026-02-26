@@ -25,6 +25,8 @@ class Camera:
 
     @classmethod
     def clamp_pos(cls, bounds: pygame.Vector2) -> None:
+        if cls.TRACK is None:
+            return
         max_x = max(0, (bounds.x - 1) * Config.TILE_SIZE - Config.WINDOW_DIMS.x)
         max_y = max(0, (bounds.y - 1) * Config.TILE_SIZE - Config.WINDOW_DIMS.y)
         cls.POS.x = pygame.math.clamp(cls.POS.x, 0, max_x)

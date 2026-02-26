@@ -45,7 +45,6 @@ class DispatchEvent:
     def update(self, scene, dt: float) -> None:
         pass
 
-
 class DispatchChain:
     def __init__(self, dispatch: list[DispatchEvent]):
         self.dispatches: list[DispatchEvent] = dispatch
@@ -111,7 +110,6 @@ class DispatchChain:
             self.dispatches[self.dispatch_index].dispatch(scene, manager)
             self.last_dispatch_index = self.dispatch_index
             self.dispatch_index += 1
-
 
 class OnPlayerEnter(CatchEvent):
     def __init__(self, rect: pygame.Rect):
@@ -324,7 +322,7 @@ class MoveCameraPosition(DispatchEvent):
         self.fraction: float = 0
 
     def is_complete(self, scene) -> bool:
-        return Camera.POS == self.pos and self.dispatched
+        return self.fraction == 1.0 and self.dispatched
 
     def dispatch(self, scene, manager) -> None:
         Camera.TRACK = None
@@ -335,14 +333,15 @@ class MoveCameraPosition(DispatchEvent):
         if not self.dispatched:
             return
 
-        t: float = -(math.cos(math.pi * self.fraction) - 1) / 2 # EASE IN-OUT
-        Camera.POS = self.start_pos.lerp(self.pos, t)
-
-        self.elapsed += dt
         if self.duration == 0:
             self.fraction = 1
+            t: float = 1.0
         else:
             self.fraction = min(self.elapsed / self.duration, 1.0)
+            t: float = -(math.cos(math.pi * self.fraction) - 1) / 2  # EASE IN-OUT
+
+        Camera.POS = self.start_pos.lerp(self.pos, t)
+        self.elapsed += dt
 
 class MoveCameraEntity(DispatchEvent):
     def __init__(self, entity_id: str, duration: float):
