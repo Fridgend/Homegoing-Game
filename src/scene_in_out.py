@@ -1,10 +1,8 @@
 import enum
-
 import pygame
 
 from src.player import Player
 from src.route_tracker import Conditions
-
 
 class SceneTransition(enum.Enum):
     FADE = 0

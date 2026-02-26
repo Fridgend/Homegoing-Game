@@ -3,7 +3,6 @@ import pygame
 from src.camera import Camera
 from src.config import Config
 
-
 class MapElement:
     def __init__(self, rect: pygame.Rect, image: pygame.Surface | None, collision: bool):
         self.rect: pygame.Rect = rect

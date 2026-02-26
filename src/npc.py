@@ -11,7 +11,6 @@ from src.route_tracker import Conditions
 from src.sprite import Sprite, dir_to_str
 from src.ui_manager import UIManager
 
-
 class NPC(Entity, Interactable):
     def __init__(self, sprite: Sprite, collision: bool, spawn: pygame.Vector2, conditions: Conditions,
                  routes: dict[str, EntityRoute], dialogues: dict[str, Dialogue]):

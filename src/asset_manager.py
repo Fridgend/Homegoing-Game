@@ -1,9 +1,7 @@
 import json
-
 import pygame
 
 from src.sprite import Sprite
-
 
 class AssetManager:
     NULL_IMAGE: pygame.Surface | None = None

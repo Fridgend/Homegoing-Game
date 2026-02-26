@@ -14,7 +14,6 @@ from src.sprite import Sprite, copy_sprite
 from src.trigger import Trigger
 from src.ui_manager import UIManager
 
-
 def parse_conditions(conditions_obj: dict) -> Conditions:
     all_flags: list[str] = [flag for flag in conditions_obj.get("all", [])]
     any_flags: list[str] = [flag for flag in conditions_obj.get("any", [])]

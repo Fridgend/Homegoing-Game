@@ -1,7 +1,6 @@
 from src.dialogue import Dialogue
 from src.player import Player
 
-
 class Interactable:
     def __init__(self):
         self.block: bool = False

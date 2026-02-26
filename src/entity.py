@@ -10,9 +10,6 @@ from src.sprite import Sprite
 from src.sprite import dir_to_str
 from src.ui_manager import UIManager
 
-CHARACTER_RENDER_SCALE: float = 2.0
-
-
 class Entity:
     def __init__(self, sprite: Sprite, collision: bool, spawn: pygame.Vector2, conditions: Conditions,
                  routes: dict[str, EntityRoute]):

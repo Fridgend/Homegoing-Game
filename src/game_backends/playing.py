@@ -2,7 +2,6 @@ import pygame
 
 from src.game_backends.backend import Backend, GameState
 
-
 class PlayingBackend(Backend):
     def __init__(self):
         super().__init__()

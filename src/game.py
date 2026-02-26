@@ -13,7 +13,6 @@ from src.game_backends.running_scene import EscapeGameBackend
 from src.scene_manager import SceneManager
 from src.ui_manager import UIManager
 
-
 class Game:
     def __init__(self, asset_guide: str, scene_guide: str, config_path: str,
                  game_state: GameState = GameState.MAIN_MENU):

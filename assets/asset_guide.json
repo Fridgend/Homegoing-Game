@@ -49,6 +49,10 @@
       "path": "assets/images/null.png"
     },
     {
+      "name": "esi_portrait",
+      "path": "assets/images/esi_portrait.png"
+    },
+    {
       "name": "big_man_portrait",
       "path": "assets/images/big_man_portrait.png"
     },

@@ -15,7 +15,6 @@ from src.route_tracker import Conditions
 from src.scene_in_out import SceneExit, str_to_scene_transition
 from src.route_tracker import Flags
 
-
 class SceneState(enum.Enum):
     ENTERING = 0,
     ENTERED = 1,

@@ -10,9 +10,6 @@ from src.sprite import Sprite
 from src.sprite import dir_to_str
 from src.ui_manager import UIManager
 
-CHARACTER_RENDER_SCALE: float = 2.0
-
-
 class Player(Entity):
     def __init__(self, spawn: pygame.Vector2, sprite: Sprite, move_duration: float):
         super().__init__(sprite, True, spawn, Conditions([], [], []), {})

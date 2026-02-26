@@ -1,9 +1,7 @@
 import random
-
 import pygame
 
 from src.config import Config
-
 
 class Camera:
     POS: pygame.Vector2 = pygame.Vector2(0, 0)

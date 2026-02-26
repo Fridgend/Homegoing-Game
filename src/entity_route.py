@@ -2,7 +2,6 @@ import pygame
 
 from src.route_tracker import Conditions
 
-
 class Waypoint:
     def __init__(self, pos: pygame.Vector2, speed: float, face_dir: pygame.Vector2, wait: float):
         self.pos: pygame.Vector2 = pos
