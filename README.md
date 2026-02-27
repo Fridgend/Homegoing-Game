@@ -41,10 +41,11 @@ Replay is encouraged.
 4. Open the extracted folder
 5. Run (double-click) the `main.exe` file to run the game
 
-[installation_step1.png](assets/screenshots/installation_step1.png)
-[installation_step2.png](assets/screenshots/installation_step2.png)
-[installation_step3.png](assets/screenshots/installation_step3.png)
-[installation_step4.png](assets/screenshots/installation_step4.png)
+### Pictures
+![installation_step1.png](assets/screenshots/installation_step1.png)
+![installation_step2.png](assets/screenshots/installation_step2.png)
+![installation_step3.png](assets/screenshots/installation_step3.png)
+![installation_step4.png](assets/screenshots/installation_step4.png)
 
 ## Credits
 **Original Novel:** *Homegoing* by Yaa Gyasi\
