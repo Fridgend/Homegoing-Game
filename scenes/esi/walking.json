@@ -207,6 +207,97 @@
 							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+								{
+									"text": "(Stay silent)",
+									"next_monologue": "silence",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "I want to know",
+									"next_monologue": "esi:want-to-know",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "esi:want-to-know",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "But I want to know",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "maame:deflect-harder",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:deflect-harder",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "There's no point, Esi",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
 							"next_monologue": "silence",
 
 							"set_route_on_reach": [
@@ -397,7 +488,7 @@
 							"speaker": "",
 							"lines": [
 								{
-									"text": "You noticed you started smiling",
+									"text": "You noticed you were smiling",
 									"char_time": 0.05
 								}
 							],
@@ -471,11 +562,7 @@
 							"speaker": "",
 							"lines": [
 								{
-									"text": "You don't know her background, ",
-									"char_time": 0.05
-								},
-								{
-									"text": "but you know that Big Man saved her from something somehow",
+									"text": "You do not know from what he saved her",
 									"char_time": 0.05
 								}
 							],
@@ -512,11 +599,11 @@
 							"speaker": "",
 							"lines": [
 								{
-									"text": "Because of it, ",
+									"text": "But because of it, ",
 									"char_time": 0.05
 								},
 								{
-									"text": "Maame will do almost anything for Big Man",
+									"text": "she will do almost anything for him",
 									"char_time": 0.05
 								}
 							],
@@ -564,6 +651,147 @@
 							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+								{
+									"text": "(Stay silent)",
+									"next_monologue": null,
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "I will help",
+									"next_monologue": "esi:will-help",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Must we?",
+									"next_monologue": "esi:must-we?",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "esi:will-help",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I will help you choose",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:must-we?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Must we choose one?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "maame:surprised",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:surprised",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "What kind of question is that? ",
+									"char_time": 0.05
+								},
+								{
+									"text": "Of course we do, Esi",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
 							"next_monologue": null,
 
 							"set_route_on_reach": [

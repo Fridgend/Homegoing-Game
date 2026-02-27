@@ -67,7 +67,7 @@
                         },
                         "start_monologue": [
                             {
-                                "id": "that-night",
+                                "id": "abronoma-said",
                                 "conditions": {
                                     "all": [],
                                     "any": [],
@@ -77,7 +77,7 @@
                         ],
                         "monologues": [
                             {
-                                "id": "that-night",
+                                "id": "abronoma-said",
                                 "conditions": {
                                     "all": [],
                                     "any": [],
@@ -92,14 +92,14 @@
                                         "char_time": 0.05
                                     },
                                     {
-                                        "text": "you couldn't sleep",
+                                        "text": "all you could think about was what Abronoma had told you",
                                         "char_time": 0.05
                                     }
                                 ],
                                 "font": "snake32",
                                 "speaker_image": "",
                                 "speaking_sfx": "",
-                                "next_monologue": "peace",
+                                "next_monologue": "liar?",
 
                                 "set_route_on_reach": [
 
@@ -118,7 +118,7 @@
                                 ]
                             },
                             {
-                                "id": "peace",
+                                "id": "liar?",
                                 "conditions": {
                                     "all": [],
                                     "any": [],
@@ -129,22 +129,22 @@
                                 "speaker": "",
                                 "lines": [
                                     {
-                                        "text": "You wanted to make peace with Abronoma, ",
+                                        "text": "You chose to believe she was a liar, ",
                                         "char_time": 0.05
                                     },
                                     {
-                                        "text": "but if Big Man found out, ",
+                                        "text": "but still, ",
                                         "char_time": 0.05
                                     },
                                     {
-                                        "text": "you were sure he would punish you both",
+                                        "text": "you couldn't look at Maame the same way",
                                         "char_time": 0.05
                                     }
                                 ],
                                 "font": "snake32",
                                 "speaker_image": "",
                                 "speaking_sfx": "",
-                                "next_monologue": "maame-house-girl",
+                                "next_monologue": "befriend-abronoma",
 
                                 "set_route_on_reach": [
 
@@ -163,7 +163,7 @@
                                 ]
                             },
                             {
-                                "id": "maame-house-girl",
+                                "id": "befriend-abronoma",
                                 "conditions": {
                                     "all": [],
                                     "any": [],
@@ -174,18 +174,18 @@
                                 "speaker": "",
                                 "lines": [
                                     {
-                                        "text": "But when you closed your eyelids, ",
+                                        "text": "You decided you'd try to become her friend, ",
                                         "char_time": 0.05
                                     },
                                     {
-                                        "text": "all you could see was Maame as a house girl",
+                                        "text": "so she could tell you the truth",
                                         "char_time": 0.05
                                     }
                                 ],
                                 "font": "snake32",
                                 "speaker_image": "",
                                 "speaking_sfx": "",
-                                "next_monologue": "decided",
+                                "next_monologue": "abronoma-no-friend",
 
                                 "set_route_on_reach": [
 
@@ -204,7 +204,7 @@
                                 ]
                             },
                             {
-                                "id": "decided",
+                                "id": "abronoma-no-friend",
                                 "conditions": {
                                     "all": [],
                                     "any": [],
@@ -215,14 +215,18 @@
                                 "speaker": "",
                                 "lines": [
                                     {
-                                        "text": "You decided then that you would send the message",
+                                        "text": "But in the months that followed, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "she would hardly speak to you",
                                         "char_time": 0.05
                                     }
                                 ],
                                 "font": "snake32",
                                 "speaker_image": "",
                                 "speaking_sfx": "",
-                                "next_monologue": "next-morning",
+                                "next_monologue": "then-one-day",
 
                                 "set_route_on_reach": [
 
@@ -241,7 +245,7 @@
                                 ]
                             },
                             {
-                                "id": "next-morning",
+                                "id": "then-one-day",
                                 "conditions": {
                                     "all": [],
                                     "any": [],
@@ -252,18 +256,18 @@
                                 "speaker": "",
                                 "lines": [
                                     {
-                                        "text": "Very early the next morning, ",
+                                        "text": "Then one day, ",
                                         "char_time": 0.05
                                     },
                                     {
-                                        "text": "you went to the messanger man",
+                                        "text": "you woke up to Big Man and Maame shouting in the next room",
                                         "char_time": 0.05
                                     }
                                 ],
                                 "font": "snake32",
                                 "speaker_image": "",
                                 "speaking_sfx": "",
-                                "next_monologue": "told-messanger",
+                                "next_monologue": "abronoma-gone",
 
                                 "set_route_on_reach": [
 
@@ -282,7 +286,7 @@
                                 ]
                             },
                             {
-                                "id": "told-messanger",
+                                "id": "abronoma-gone",
                                 "conditions": {
                                     "all": [],
                                     "any": [],
@@ -293,22 +297,14 @@
                                 "speaker": "",
                                 "lines": [
                                     {
-                                        "text": "You gave him your message, ",
-                                        "char_time": 0.05
-                                    },
-                                    {
-                                        "text": "and after some time, ",
-                                        "char_time": 0.05
-                                    },
-                                    {
-                                        "text": "he set out into the forest",
+                                        "text": "Abronoma was gone",
                                         "char_time": 0.05
                                     }
                                 ],
                                 "font": "snake32",
                                 "speaker_image": "",
                                 "speaking_sfx": "",
-                                "next_monologue": "village-to-village",
+                                "next_monologue": "never-found",
 
                                 "set_route_on_reach": [
 
@@ -327,7 +323,7 @@
                                 ]
                             },
                             {
-                                "id": "village-to-village",
+                                "id": "never-found",
                                 "conditions": {
                                     "all": [],
                                     "any": [],
@@ -338,18 +334,22 @@
                                 "speaker": "",
                                 "lines": [
                                     {
-                                        "text": "It was now in the hands of the messangers, ",
+                                        "text": "By the time they had found out, ",
                                         "char_time": 0.05
                                     },
                                     {
-                                        "text": "travelling from village to village",
+                                        "text": "she had already run many miles, ",
+                                        "char_time": 0.05
+                                    },
+                                    {
+                                        "text": "and was never found",
                                         "char_time": 0.05
                                     }
                                 ],
                                 "font": "snake32",
                                 "speaker_image": "",
                                 "speaking_sfx": "",
-                                "next_monologue": "maybe-dropped",
+                                "next_monologue": "one-night",
 
                                 "set_route_on_reach": [
 
@@ -368,7 +368,7 @@
                                 ]
                             },
                             {
-                                "id": "maybe-dropped",
+                                "id": "one-night",
                                 "conditions": {
                                     "all": [],
                                     "any": [],
@@ -379,26 +379,22 @@
                                 "speaker": "",
                                 "lines": [
                                     {
-                                        "text": "It could be dropped or forgotten, ",
+                                        "text": "Then one night, ",
                                         "char_time": 0.05
                                     },
                                     {
-                                        "text": "altered or lost, ",
+                                        "text": "some weeks later, ",
                                         "char_time": 0.05
                                     },
                                     {
-                                        "text": "but at the very least, ",
-                                        "char_time": 0.05
-                                    },
-                                    {
-                                        "text": "you could say that you had done it",
+                                        "text": "Abronoma did not return, ",
                                         "char_time": 0.05
                                     }
                                 ],
                                 "font": "snake32",
                                 "speaker_image": "",
                                 "speaking_sfx": "",
-                                "next_monologue": "so-you-did",
+                                "next_monologue": "village-returned",
 
                                 "set_route_on_reach": [
 
@@ -417,7 +413,7 @@
                                 ]
                             },
                             {
-                                "id": "so-you-did",
+                                "id": "village-returned",
                                 "conditions": {
                                     "all": [],
                                     "any": [],
@@ -428,52 +424,7 @@
                                 "speaker": "",
                                 "lines": [
                                     {
-                                        "text": "And so you did, ",
-                                        "char_time": 0.05
-                                    },
-                                    {
-                                        "text": "and Abronoma turned confident of her rescue",
-                                        "char_time": 0.05
-                                    }
-                                ],
-                                "font": "snake32",
-                                "speaker_image": "",
-                                "speaking_sfx": "",
-                                "next_monologue": "many-months",
-
-                                "set_route_on_reach": [
-
-                                ],
-
-                                "dispatch_on_reach": [
-
-                                ],
-
-                                "modify_flags_on_reach": [
-
-                                ],
-
-                                "options": [
-
-                                ]
-                            },
-                            {
-                                "id": "many-months",
-                                "conditions": {
-                                    "all": [],
-                                    "any": [],
-                                    "not": []
-                                },
-                                "alt_monologue": "",
-
-                                "speaker": "",
-                                "lines": [
-                                    {
-                                        "text": "And many months later, ",
-                                        "char_time": 0.05
-                                    },
-                                    {
-                                        "text": "her saviours arrived",
+                                        "text": "but her village did",
                                         "char_time": 0.05
                                     }
                                 ],

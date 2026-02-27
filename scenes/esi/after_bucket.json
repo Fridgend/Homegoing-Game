@@ -348,7 +348,7 @@
 							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
-							"next_monologue": "big-man-nod",
+							"next_monologue": "big-man-response",
 
 							"set_route_on_reach": [
 
@@ -367,7 +367,7 @@
 							]
 						},
                         {
-							"id": "big-man-nod",
+							"id": "big-man-response",
 							"conditions": {
 								"all": [],
 								"any": [],
@@ -378,14 +378,14 @@
 							"speaker": "",
 							"lines": [
 								{
-									"text": "You nod",
+									"text": "...",
 									"char_time": 0.05
 								}
 							],
 							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "",
-							"next_monologue": "a-laugh",
+							"next_monologue": null,
 
 							"set_route_on_reach": [
 
@@ -400,7 +400,24 @@
 							],
 
 							"options": [
-
+								{
+									"text": "(Nod)",
+									"next_monologue": "a-laugh",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Yes",
+									"next_monologue": "a-laugh",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
 							]
 						},
                         {
@@ -675,7 +692,24 @@
 							],
 
 							"options": [
-
+								{
+									"text": "Liar",
+									"next_monologue": "a:not-first-daughter",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "(Stay silent)",
+									"next_monologue": "a:not-first-daughter",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
 							]
 						},
                         {
@@ -1163,9 +1197,9 @@
                                     "name": "exit_scene",
                                     "transition": "fade",
                                     "transition_time": 1,
-                                    "next_scene": "dungeon",
+                                    "next_scene": "abronoma-gone",
                                     "entrance": "main",
-                                    "wait": 3
+                                    "wait": 2.6
                                 }
 							],
 

@@ -134,7 +134,7 @@
 
 					"start_monologue": [
 						{
-							"id": "maame:ah",
+							"id": "cooking",
 							"conditions": {
 								"all": [],
 								"any": [],
@@ -144,6 +144,296 @@
 					],
 
 					"monologues": [
+						{
+							"id": "cooking",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You need to help Maame cook",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+								{
+									"text": "Stir pot",
+									"next_monologue": "stirred-pot",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": ["COOKING_STIRRED_POT"]
+									}
+								},
+								{
+									"text": "Chop plantains",
+									"next_monologue": "chopped-plantains",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Add firewood",
+									"next_monologue": "added-firewood",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": ["COOKING_ADDED_FIREWOOD"]
+									}
+								}
+							]
+						},
+						{
+							"id": "stirred-pot",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You stirred the pot",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "add", "value": "COOKING_STIRRED_POT" }
+							],
+
+							"options": [
+								{
+									"text": "Chop plantains",
+									"next_monologue": "chopped-plantains",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Add firewood",
+									"next_monologue": "added-firewood",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": ["COOKING_ADDED_FIREWOOD"]
+									}
+								}
+							]
+						},
+						{
+							"id": "added-firewood",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You added firewood to the fire",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+								{ "how": "add", "value": "COOKING_ADDED_FIREWOOD" }
+							],
+
+							"options": [
+								{
+									"text": "Stir pot",
+									"next_monologue": "stirred-pot",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": ["COOKING_STIRRED_POT"]
+									}
+								},
+								{
+									"text": "Chop plantains",
+									"next_monologue": "chopped-plantains",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "chopped-plantains",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You chopped the plantains into slices",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+								{
+									"text": "Fry plantains",
+									"next_monologue": "dropped-plantains",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "dropped-plantains",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You dropped the plantains into the oil",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "dropped-too-quick",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "dropped-too-quick",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You dropped them so quick that oil jumped up and splashed Maame's leg",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "maame:ah",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
 						{
 							"id": "maame:ah",
 							"conditions": {
@@ -471,6 +761,60 @@
 							],
 
 							"options": [
+								{
+									"text": "Hug her",
+									"next_monologue": "hugged-maame",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Do nothing",
+									"next_monologue": null,
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "hugged-maame",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "You hugged Maame",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
 
 							]
 						}
@@ -638,6 +982,65 @@
 								],
 
 								"options": [
+									{
+										"text": "Keep cooking",
+										"next_monologue": "father",
+										"conditions": {
+											"all": [],
+											"any": [],
+											"not": []
+										}
+									},
+									{
+										"text": "Move closer",
+										"next_monologue": "moved-closer",
+										"conditions": {
+											"all": [],
+											"any": [],
+											"not": []
+										}
+									}
+								]
+							},
+							{
+								"id": "moved-closer",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "",
+								"lines": [
+									{
+										"text": "You moved closer",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake32",
+								"speaker_image": "",
+								"speaking_sfx": "",
+								"next_monologue": "father",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+									{
+										"name": "move_player",
+										"waypoints": [
+											{ "x": 5, "y": 3, "speed": 0.15, "move_dir": "down", "wait": 0 }
+										]
+									}
+								],
+
+								"modify_flags_on_reach": [
+									{ "how": "add", "value": "MOVED_CLOSER_TO_MEETING" }
+								],
+
+								"options": [
 
 								]
 							},
@@ -718,11 +1121,11 @@
 							{
 								"id": "cn:swine",
 								"conditions": {
-									"all": [],
+									"all": ["MOVED_CLOSER_TO_MEETING"],
 									"any": [],
 									"not": []
 								},
-								"alt_monologue": "",
+								"alt_monologue": "cn:swine-no-hear",
 
 								"speaker": "chief nnuro",
 								"lines": [
@@ -734,6 +1137,47 @@
 								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "tenor_voice",
+								"next_monologue": "cn:all-around-asante",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "cn:swine-no-hear",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "cn:swine-no-hear",
+
+								"speaker": "",
+								"lines": [
+									{
+										"text": "Chief Nnuro said something, ",
+										"char_time": 0.05
+									},
+									{
+										"text": "but you couldn't hear what",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake32",
+								"speaker_image": "",
+								"speaking_sfx": "",
 								"next_monologue": "cn:all-around-asante",
 
 								"set_route_on_reach": [
@@ -989,11 +1433,11 @@
 							{
 								"id": "ka:praise",
 								"conditions": {
-									"all": [],
+									"all": ["MOVED_CLOSER_TO_MEETING"],
 									"any": [],
 									"not": []
 								},
-								"alt_monologue": "",
+								"alt_monologue": "ka:praise-no-hear",
 
 								"speaker": "kwaku agyei",
 								"lines": [
@@ -1009,6 +1453,47 @@
 								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "baritone_voice",
+								"next_monologue": "ka:strongest",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "ka:praise-no-hear",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "",
+								"lines": [
+									{
+										"text": "Kwaku Agyei said something, ",
+										"char_time": 0.05
+									},
+									{
+										"text": "but you couldn't hear what",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake32",
+								"speaker_image": "",
+								"speaking_sfx": "",
 								"next_monologue": "ka:strongest",
 
 								"set_route_on_reach": [
@@ -1141,11 +1626,11 @@
 							{
 								"id": "ka:appear-weak",
 								"conditions": {
-									"all": [],
+									"all": ["MOVED_CLOSER_TO_MEETING"],
 									"any": [],
 									"not": []
 								},
-								"alt_monologue": "",
+								"alt_monologue": "ka:appear-weak-no-hear",
 
 								"speaker": "kwaku agyei",
 								"lines": [
@@ -1165,6 +1650,47 @@
 								"font": "snake32",
 								"speaker_image": "",
 								"speaking_sfx": "baritone_voice",
+								"next_monologue": "bm:who-weak?",
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							},
+							{
+								"id": "ka:appear-weak-no-hear",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "",
+								"lines": [
+									{
+										"text": "Kwaku Agyei said something, ",
+										"char_time": 0.05
+									},
+									{
+										"text": "but you couldn't hear what",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake32",
+								"speaker_image": "",
+								"speaking_sfx": "",
 								"next_monologue": "bm:who-weak?",
 
 								"set_route_on_reach": [
@@ -1269,29 +1795,22 @@
 					}
 				},
 				{
-					"name": "move_player",
-					"waypoints": [
-						{ "x": 3, "y": 3, "speed": 0.5, "face_dir": "down", "wait": 7 }
-					],
-					"wait_for_previous": true
-				},
-				{
 					"name": "move_camera_to_pos",
 					"pos": { "x": 3, "y": 5 },
-					"duration": 3
+					"duration": 3,
+					"wait_for_previous": true
 				},
 				{
 					"name": "move_player",
 					"waypoints": [
 						{ "x": 2, "y": 3, "speed": 0.5, "face_dir": "down", "wait": 0 }
 					],
-					"wait": 4
+					"wait": 3
 				},
                 {
                     "name": "start_entity_dialogue",
                     "entity_id": "maame",
-                    "dialogue_id": "main",
-					"wait": 3
+                    "dialogue_id": "main"
                 },
 				{
 					"name": "move_player",

@@ -1,6 +1,6 @@
 {
 	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
-	"bounds": { "x": 50, "y": 24 },
+	"bounds": { "x": 29, "y": 24 },
 	"background_music": {
 		"identifier": "",
 		"volume": 0
@@ -21,7 +21,7 @@
 			"rect": {
 				"x": 0,
 				"y": -1,
-				"w": 51,
+				"w": 30,
 				"h": 1
 			},
 			"image": "",
@@ -40,13 +40,6 @@
 		{
 			"id": "maame",
 			"sprite": "maame",
-			"default_animation": "idle_down",
-			"animation_frame_time": 0.15,
-			"collision": true
-		},
-        {
-			"id": "abronoma",
-			"sprite": "abronoma",
 			"default_animation": "idle_down",
 			"animation_frame_time": 0.15,
 			"collision": true
@@ -1014,7 +1007,11 @@
 							"speaker": "you",
 							"lines": [
 								{
-									"text": "I stopped talking to Tansi",
+									"text": "I stopped talking to Tansi, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "I was ashamed",
 									"char_time": 0.05
 								}
 							],
@@ -1099,6 +1096,203 @@
 							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:my-fault",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:my-fault",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "It's my fault",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:sent-message",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:sent-message",
+							"conditions": {
+								"all": ["ACCEPTED_ABRONOMA_OFFER"],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "esi:should-message",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I shouldn't have sent the message, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and I should've helped you",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:wanted-to-know-you",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:wanted-to-know-you",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I just wanted to know you better, Maame",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame:not-your-fault",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:should-message",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "If I helped Abronoma, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "none of this would've happened, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and I should've stayed with you",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame:not-your-fault",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:not-your-fault",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "It's not your fault, Esi",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
 							"next_monologue": "esi:when-left",
 
 							"set_route_on_reach": [
@@ -1170,14 +1364,81 @@
 							"speaker": "maame",
 							"lines": [
 								{
-									"text": "I'm sorry, Esi",
+									"text": "It's okay, Esi, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "it was only a stone",
 									"char_time": 0.05
 								}
 							],
 							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
-							"next_monologue": "esi:free?",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+								{
+									"text": "Will we ever be free?",
+									"next_monologue": "esi:ever-be-free?",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Were we ever free?",
+									"next_monologue": "esi:were-we-free?",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "(Stay silent)",
+									"next_monologue": "maame-hugs-harder",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
+							]
+						},
+						{
+							"id": "esi:ever-be-free?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "Will we ever be free, Maame?",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame-hugs-harder",
 
 							"set_route_on_reach": [
 
@@ -1196,7 +1457,7 @@
 							]
 						},
 						{
-							"id": "esi:free?",
+							"id": "esi:were-we-free?",
 							"conditions": {
 								"all": [],
 								"any": [],
@@ -1207,11 +1468,7 @@
 							"speaker": "you",
 							"lines": [
 								{
-									"text": "Will we ever be free? ",
-									"char_time": 0.05
-								},
-								{
-									"text": "Have we ever been?",
+									"text": "Were we ever free, Maame?",
 									"char_time": 0.05
 								}
 							],
@@ -2110,7 +2367,11 @@
 							"speaker": "you",
 							"lines": [
 								{
-									"text": "I stopped talking to Tansi",
+									"text": "I stopped talking to Tansi, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "I was ashamed",
 									"char_time": 0.05
 								}
 							],
@@ -2189,6 +2450,203 @@
 							"lines": [
 								{
 									"text": "It's okay, Esi",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "alto_voice",
+							"next_monologue": "esi:my-fault",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:my-fault",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "It's my fault",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:sent-message",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:sent-message",
+							"conditions": {
+								"all": ["ACCEPTED_ABRONOMA_OFFER"],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "esi:should-message",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I shouldn't have sent the message, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and I should've protected you",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "esi:wanted-to-know-you",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:wanted-to-know-you",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "I just wanted to know you better, mama",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame:not-your-fault",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:should-message",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
+								{
+									"text": "If I helped Abronoma, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "none of this would've happened, ",
+									"char_time": 0.05
+								},
+								{
+									"text": "and I should've protected you",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame:not-your-fault",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "maame:not-your-fault",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "maame",
+							"lines": [
+								{
+									"text": "It's not your fault, Esi",
 									"char_time": 0.05
 								}
 							],
@@ -2292,11 +2750,37 @@
 							],
 
 							"options": [
-
+								{
+									"text": "Will we ever be free?",
+									"next_monologue": "esi:ever-be-free?",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "Were we ever free?",
+									"next_monologue": "esi:were-we-free?",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								},
+								{
+									"text": "(Stay silent)",
+									"next_monologue": "maame-hugs-harder",
+									"conditions": {
+										"all": [],
+										"any": [],
+										"not": []
+									}
+								}
 							]
 						},
 						{
-							"id": "esi:free?",
+							"id": "esi:ever-be-free?",
 							"conditions": {
 								"all": [],
 								"any": [],
@@ -2307,11 +2791,44 @@
 							"speaker": "you",
 							"lines": [
 								{
-									"text": "Will we ever be free, mama? ",
+									"text": "Will we ever be free, mama?",
 									"char_time": 0.05
-								},
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "mezzo_soprano_voice",
+							"next_monologue": "maame-hugs-harder",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "esi:were-we-free?",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "you",
+							"lines": [
 								{
-									"text": "Have we ever been?",
+									"text": "Were we ever free, mama?",
 									"char_time": 0.05
 								}
 							],

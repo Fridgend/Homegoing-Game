@@ -486,11 +486,11 @@
                         {
                             "id": "abronoma-enters",
                             "conditions": {
-                                "all": [],
+                                "all": ["ACCEPTED_ABRONOMA_OFFER"],
                                 "any": [],
                                 "not": []
                             },
-                            "alt_monologue": "",
+                            "alt_monologue": "maame-grab-esi",
 
                             "speaker": "",
                             "lines": [
@@ -567,11 +567,11 @@
                         {
                             "id": "a:told-you",
                             "conditions": {
-                                "all": ["ACCEPTED_ABRONOMA_OFFER"],
+                                "all": [],
                                 "any": [],
                                 "not": []
                             },
-                            "alt_monologue": "abronoma-leaves",
+                            "alt_monologue": "",
 
                             "speaker": "abronoma",
                             "lines": [
@@ -656,10 +656,6 @@
 
                             "speaker": "",
                             "lines": [
-                                {
-                                    "text": "Then, ",
-                                    "char_time": 0.05
-                                },
                                 {
                                     "text": "Maame grabbed your hand and dropped something into it",
                                     "char_time": 0.05
@@ -2441,8 +2437,8 @@
         {
             "identifier": "main",
             "spawn": { "x": 1, "y": 2 },
-            "transition": "no transition",
-            "transition_time": 0
+            "transition": "fade",
+            "transition_time": 1
         }
 	],
 

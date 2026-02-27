@@ -6,7 +6,7 @@ The game is about 15-20 minutes long.
 ## About the Project
 This is a narrative-driven interactive game inspired by the Esi chapter of ***Homegoing*** by Yaa Gyasi.
 
-The player takes on the role of Esi and experiences key moments from her story through dialogue choices and movement-based exploration. The game explores themes of generational trauma, agency, the loss of home, and the illusion of choice in oppressive systems.
+The player takes on the role of Esi and experiences key moments from her story through dialogue choices and movement-based exploration. The game explores themes of generational trauma, gender roles, the loss of home, and the illusion of choice in oppressive systems.
 
 This project is a non-commercial educational adaptation created for academic purposes.
 

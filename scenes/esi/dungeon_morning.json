@@ -213,11 +213,15 @@
 							"speaker": "you",
 							"lines": [
 								{
-									"text": "Her lips are purple. ",
+									"text": "Her lips are purple... ",
 									"char_time": 0.05
 								},
                                 {
-                                    "text": "She's dead",
+                                    "text": "Tansi... ",
+                                    "char_time": 0.05
+                                },
+								{
+                                    "text": "she's dead",
                                     "char_time": 0.05
                                 }
 							],
@@ -254,14 +258,14 @@
 							"speaker": "tansi",
 							"lines": [
 								{
-									"text": "....................",
+									"text": "...",
 									"char_time": 0.15
 								}
 							],
 							"font": "snake32",
 							"speaker_image": "",
 							"speaking_sfx": "alto_voice",
-							"next_monologue": null,
+							"next_monologue": "tansi:...",
 
 							"set_route_on_reach": [
 
@@ -363,9 +367,27 @@
 							],
 
 							"options": [
+								{
+                                    "text": "touch her shoulder",
+                                    "next_monologue": "not-move",
+                                    "conditions": {
+                                        "all": [],
+                                        "any": [],
+                                        "not": []
+                                    }
+                                },
+								{
+                                    "text": "call her name",
+                                    "next_monologue": "not-respond",
+                                    "conditions": {
+                                        "all": [],
+                                        "any": [],
+                                        "not": []
+                                    }
+                                },
                                 {
                                     "text": "check pulse",
-                                    "next_monologue": "dead",
+                                    "next_monologue": "no-pulse",
                                     "conditions": {
                                         "all": [],
                                         "any": [],
@@ -374,7 +396,7 @@
                                 },
 								{
                                     "text": "check breathing",
-                                    "next_monologue": "dead",
+                                    "next_monologue": "no-breathing",
                                     "conditions": {
                                         "all": [],
                                         "any": [],
@@ -384,7 +406,7 @@
 							]
 						},
 						{
-							"id": "dead",
+							"id": "not-move",
 							"conditions": {
 								"all": [],
 								"any": [],
@@ -395,9 +417,195 @@
 							"speaker": "",
 							"lines": [
 								{
-									"text": "She's dead. ",
-									"char_time": 0.1
-								},
+									"text": "She doesn't react... ",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+                                {
+                                    "text": "check pulse",
+                                    "next_monologue": "no-pulse",
+                                    "conditions": {
+                                        "all": [],
+                                        "any": [],
+                                        "not": []
+                                    }
+                                },
+								{
+                                    "text": "check breathing",
+                                    "next_monologue": "no-breathing",
+                                    "conditions": {
+                                        "all": [],
+                                        "any": [],
+                                        "not": []
+                                    }
+                                }
+							]
+						},
+						{
+							"id": "not-respond",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+								{
+									"text": "She doesn't respond... ",
+									"char_time": 0.05
+								}
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": null,
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+                                {
+                                    "text": "check pulse",
+                                    "next_monologue": "no-pulse",
+                                    "conditions": {
+                                        "all": [],
+                                        "any": [],
+                                        "not": []
+                                    }
+                                },
+								{
+                                    "text": "check breathing",
+                                    "next_monologue": "no-breathing",
+                                    "conditions": {
+                                        "all": [],
+                                        "any": [],
+                                        "not": []
+                                    }
+                                }
+							]
+						},
+						{
+							"id": "no-pulse",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+                                {
+                                    "text": "You press your fingers on her neck, ",
+                                    "char_time": 0.05
+                                },
+								{
+                                    "text": "but you don't feel anything",
+                                    "char_time": 0.05
+                                }
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "body-cold",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "no-breathing",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
+                                {
+                                    "text": "You look to see if her chest rises... ",
+                                    "char_time": 0.05
+                                },
+								{
+                                    "text": "it does not",
+                                    "char_time": 0.05
+                                }
+							],
+							"font": "snake32",
+							"speaker_image": "",
+							"speaking_sfx": "",
+							"next_monologue": "body-cold",
+
+							"set_route_on_reach": [
+
+							],
+
+							"dispatch_on_reach": [
+
+							],
+
+							"modify_flags_on_reach": [
+
+							],
+
+							"options": [
+
+							]
+						},
+						{
+							"id": "body-cold",
+							"conditions": {
+								"all": [],
+								"any": [],
+								"not": []
+							},
+							"alt_monologue": "",
+
+							"speaker": "",
+							"lines": [
                                 {
                                     "text": "Her body's cold. ",
                                     "char_time": 0.05
@@ -508,6 +716,80 @@
 					"name": "move_camera_to_pos",
 					"pos": { "x": 6, "y": 4 },
 					"duration": 0
+				}
+			]
+		},
+		{
+			"identifier": "start",
+			"disabled": false,
+			"once": true,
+			"catch": [
+				{
+					"name": "on_scene_enter"
+				}
+			],
+			"dispatch": [
+				{
+					"name": "start_independent_dialogue",
+					"dialogue": {
+						"id": "",
+						"conditions": {
+							"all": [],
+							"any": [],
+							"not": []
+						},
+
+						"start_monologue": [
+							{
+								"id": "quiet",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								}
+							}
+						],
+
+						"monologues": [
+							{
+								"id": "quiet",
+								"conditions": {
+									"all": [],
+									"any": [],
+									"not": []
+								},
+								"alt_monologue": "",
+
+								"speaker": "",
+								"lines": [
+									{
+										"text": "It's very quiet in the dungeon...",
+										"char_time": 0.05
+									}
+								],
+								"font": "snake32",
+								"speaker_image": "",
+								"speaking_sfx": "",
+								"next_monologue": null,
+
+								"set_route_on_reach": [
+
+								],
+
+								"dispatch_on_reach": [
+
+								],
+
+								"modify_flags_on_reach": [
+
+								],
+
+								"options": [
+
+								]
+							}
+						]
+					}
 				}
 			]
 		}
