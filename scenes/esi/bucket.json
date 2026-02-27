@@ -3,7 +3,7 @@
 	"bounds": { "x": 29, "y": 24 },
 	"background_music": {
 		"identifier": "esi_theme",
-		"volume": 0.3
+		"volume": 0.2
 	},
 
 	"map_elements": [
@@ -1704,7 +1704,7 @@
                                 "speaker": "big man",
                                 "lines": [
                                     {
-                                        "text": "You don't have a past,",
+                                        "text": "You have no past",
                                         "char_time": 0.05
                                     }
                                 ],
@@ -1750,7 +1750,7 @@
                                 "speaker": "big man",
                                 "lines": [
                                     {
-                                        "text": "which makes you...",
+                                        "text": "And without one, ",
                                         "char_time": 0.05
                                     }
                                 ],
@@ -1787,7 +1787,7 @@
                                 "speaker": "big man",
                                 "lines": [
                                     {
-                                        "text": "absolutely nothing...",
+                                        "text": "you are nothing",
                                         "char_time": 0.05
                                     }
                                 ],

@@ -17,7 +17,7 @@ BACKGROUND_MUSIC_FADE_MS = 1000
 
 class Scene:
     def __init__(self, void_color: tuple[int, int, int, int], bounds: pygame.Vector2,
-                 background_music: pygame.mixer.Sound,
+                 background_music: pygame.mixer.Sound | None,
                  map_elements: list[MapElement],
                  player: Player,
                  entities: dict[str, Entity],
@@ -26,7 +26,8 @@ class Scene:
                  exits: list[SceneExit]
                  ):
         self.void_color: tuple[int, int, int, int] = void_color
-        self.background_music: pygame.mixer.Sound = background_music
+        self.background_music: pygame.mixer.Sound | None = background_music
+        self.music_base_volume: float = 0 if background_music is None else background_music.get_volume()
         self.bounds: pygame.Vector2 = bounds
 
         self.map_elements: list[MapElement] = map_elements
@@ -54,6 +55,11 @@ class Scene:
         self.added_dispatch_chains: set[DispatchChain] = set()
         self.removed_dispatch_chains: set[DispatchChain] = set()
 
+    def set_music_volume(self, volume: float) -> None:
+        if self.background_music is None:
+            return
+        self.background_music.set_volume(self.music_base_volume * volume)
+
     def add_dispatch_chain(self, manager, chain: DispatchChain):
         self.added_dispatch_chains.add(chain)
         chain.start(self, manager)
@@ -65,7 +71,7 @@ class Scene:
         if self.state != SceneState.EXITED: return
         self.state = SceneState.ENTERED
 
-        if not same_bg_music:
+        if not same_bg_music and self.background_music is not None:
             self.background_music.play(loops=-1, fade_ms=BACKGROUND_MUSIC_FADE_MS)
 
         if from_continue:
@@ -91,7 +97,7 @@ class Scene:
 
     def unload(self, same_bg_music: bool) -> None:
         self.state = SceneState.EXITED
-        if not same_bg_music:
+        if not same_bg_music and self.background_music is not None:
             self.background_music.fadeout(BACKGROUND_MUSIC_FADE_MS)
 
     def input(self, ui_manager: UIManager, manager, keys: pygame.key.ScancodeWrapper) -> None:
@@ -115,7 +121,8 @@ class Scene:
                 if self.dialogue is not None:
                     if self.dialogue.start(self, manager):
                         self.dialogue = None
-                    else:
+                    elif self.background_music is not None:
+                        self.music_base_volume /= 3
                         self.background_music.set_volume(self.background_music.get_volume() / 3)
 
         for scene_exit in self.exits:
@@ -188,7 +195,9 @@ class Scene:
             if self.dialogue.fade == 0:
                 self.dialogue.reset()
                 self.dialogue = None
-                self.background_music.set_volume(self.background_music.get_volume() * 3)
+                if self.background_music is not None:
+                    self.music_base_volume *= 3
+                    self.background_music.set_volume(self.background_music.get_volume() * 3)
 
         ui_manager.update()
 

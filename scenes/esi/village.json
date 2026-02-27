@@ -3,7 +3,7 @@
 	"bounds": { "x": 6, "y": 8 },
 	"background_music": {
 		"identifier": "esi_theme",
-		"volume": 0.5
+		"volume": 0.3
 	},
 
 	"map_elements": [
@@ -727,7 +727,7 @@
 								"speaker": "chief nnuro",
 								"lines": [
 									{
-										"text": "The swine of the northern village are walking about like kings.",
+										"text": "The swine of the northern village are walking about like kings",
 										"char_time": 0.05
 									}
 								],

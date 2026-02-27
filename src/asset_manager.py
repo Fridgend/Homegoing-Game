@@ -18,7 +18,8 @@ class AssetManager:
         for audio in obj.get("audio", []):
             self.add_audio(
                 name=audio.get("name"),
-                audio_path=audio.get("path")
+                audio_path=audio.get("path"),
+                volume=audio.get("volume")
             )
 
         for font in obj.get("fonts", []):
@@ -46,8 +47,10 @@ class AssetManager:
             )
 
     @classmethod
-    def add_audio(cls, name: str, audio_path: str) -> None:
-        cls.AUDIO_ASSETS[name] = pygame.mixer.Sound(audio_path)
+    def add_audio(cls, name: str, audio_path: str, volume: float) -> None:
+        sound: pygame.mixer.Sound = pygame.mixer.Sound(audio_path)
+        sound.set_volume(volume)
+        cls.AUDIO_ASSETS[name] = sound
 
     @classmethod
     def add_font(cls, name: str, font_path: str, font_size: int) -> None:
@@ -84,3 +87,9 @@ class AssetManager:
     @classmethod
     def get_sprite(cls, name: str) -> Sprite | None:
         return cls.SPRITES.get(name, None)
+
+    @classmethod
+    def set_voice_volumes(cls, volume: float) -> None:
+        voices: list = ["alto_voice", "baritone_voice", "bass_voice", "mezzo_soprano_voice", "soprano_voice", "tenor_voice"]
+        for voice in voices:
+            cls.get_audio(voice).set_volume(volume)

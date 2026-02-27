@@ -2,7 +2,7 @@
 	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
 	"bounds": { "x": 11, "y": 8 },
 	"background_music": {
-		"identifier": "esi_theme",
+		"identifier": "",
 		"volume": 0
 	},
 
@@ -326,7 +326,7 @@
 							"speaker": "",
 							"lines": [
 								{
-									"text": "So you do.",
+									"text": "So you do",
 									"char_time": 0.05
 								}
 							],
@@ -1135,7 +1135,7 @@
 									"char_time": 0.05
 								},
 								{
-									"text": "It might be time to go to bed.",
+									"text": "It might be time to go to bed",
 									"char_time": 0.05
 								}
 							],
@@ -2808,7 +2808,7 @@
 				{
 					"name": "add_entity",
 					"ids": ["soldier"],
-					"wait": 1
+					"wait": 40
 				},
 				{
 					"name": "modify_flags",

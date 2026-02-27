@@ -57,6 +57,9 @@ class Game:
         self.next_backend = self.state_backends[state]
         self.state = state
 
+    def set_music_volume(self, volume: float) -> None:
+        self.scene_manager.set_music_volume(volume)
+
     def run(self, FPS: int) -> None:
         while self.running:
             self.delta_time = self.clock.tick(FPS) / 1000.0

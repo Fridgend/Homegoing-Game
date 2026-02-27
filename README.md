@@ -1,6 +1,8 @@
 # Homegoing Game
 *A narrative adaptation of the novel **Homegoing** by Yaa Gyasi*
 
+The game is about 15-20 minutes long.
+
 ## About the Project
 This is a narrative-driven interactive game inspired by the Esi chapter of ***Homegoing*** by Yaa Gyasi.
 
@@ -42,13 +44,14 @@ No additional installation is required. The executable is generated with pyinsta
 **Original Novel:** *Homegoing* by Yaa Gyasi\
 **Programmers:** Mihir and Theodor\
 **Artists:** Abdulrahman and Yazan\
-**Writer:** Jonas\
+**Writer:** Jonas
+
 **Font:** Snake
 
 ## Gameplay Screenshots
 ### Main Menu
 ![main_menu.png](assets/screenshots/main_menu.png)
+### Dungeon Scene
+![dungeon.png](assets/screenshots/dungeon.png)
 ### Bucket Scene
 ![abronoma_bucket.png](assets/screenshots/abronoma_bucket.png)
-### Ending Scene
-![void.png](assets/screenshots/void.png)

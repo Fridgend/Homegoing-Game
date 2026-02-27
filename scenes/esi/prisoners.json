@@ -3,7 +3,7 @@
 	"bounds": { "x": 29, "y": 24 },
 	"background_music": {
 		"identifier": "esi_theme",
-		"volume": 0.5
+		"volume": 0.3
 	},
 
 	"map_elements": [

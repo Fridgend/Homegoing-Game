@@ -1,14 +1,18 @@
 import pygame
 import enum
+import math
 
 from src.asset_manager import AssetManager
 from src.game_backends.backend import Backend, GameState
 from src.ui_manager import Text, Button
 
+from src.config import Config
+
 class Menu(enum.Enum):
     MAIN = 0
     HOW_TO_PLAY = 1
-    CREDITS = 2
+    OPTIONS = 2
+    CREDITS = 3
 
 class MainMenuBackend(Backend):
     def __init__(self):
@@ -33,6 +37,9 @@ class MainMenuBackend(Backend):
 
         self.switch_menu(game, Menu.MAIN)
 
+        AssetManager.set_voice_volumes(Config.VOICE_VOLUME)
+        game.set_music_volume(Config.MUSIC_VOLUME)
+
     def unload(self, game) -> None:
         game.ui_manager.set_num_buttons(0)
 
@@ -41,10 +48,13 @@ class MainMenuBackend(Backend):
 
         match new_menu:
             case Menu.MAIN:
-                game.ui_manager.set_num_buttons(4)
+                game.ui_manager.set_num_buttons(5)
 
             case Menu.HOW_TO_PLAY:
                 game.ui_manager.set_num_buttons(1)
+
+            case Menu.OPTIONS:
+                game.ui_manager.set_num_buttons(3)
 
             case Menu.CREDITS:
                 game.ui_manager.set_num_buttons(1)
@@ -65,16 +75,36 @@ class MainMenuBackend(Backend):
                                     game.ui_manager.set_num_buttons(0)
                                 case 1: # HOW TO PLAY
                                     self.switch_menu(game, Menu.HOW_TO_PLAY)
-                                case 2: # CREDITS
+                                case 2: # OPTIONS
+                                    self.switch_menu(game, Menu.OPTIONS)
+                                case 3: # CREDITS
                                     self.switch_menu(game, Menu.CREDITS)
-                                case 3: # EXIT
+                                case 4: # EXIT
                                     self.fading = -500
                                     self.next_backend = GameState.QUITTING
                                     return
                         case Menu.HOW_TO_PLAY:
                             self.switch_menu(game, Menu.MAIN)
+                        case Menu.OPTIONS:
+                            if game.ui_manager.choice == 2:
+                                AssetManager.set_voice_volumes(Config.VOICE_VOLUME)
+                                game.set_music_volume(Config.MUSIC_VOLUME)
+                                self.switch_menu(game, Menu.MAIN)
                         case Menu.CREDITS:
                             self.switch_menu(game, Menu.MAIN)
+
+                if event.key == pygame.K_LEFT and self.state == Menu.OPTIONS:
+                    if game.ui_manager.choice == 0:
+                        Config.MUSIC_VOLUME -= 0.05
+                    elif game.ui_manager.choice == 1:
+                        Config.VOICE_VOLUME -= 0.05
+                if event.key == pygame.K_RIGHT and self.state == Menu.OPTIONS:
+                    if game.ui_manager.choice == 0:
+                        Config.MUSIC_VOLUME += 0.05
+                    elif game.ui_manager.choice == 1:
+                        Config.VOICE_VOLUME += 0.05
+                Config.MUSIC_VOLUME = pygame.math.clamp(Config.MUSIC_VOLUME, 0, 1)
+                Config.VOICE_VOLUME = pygame.math.clamp(Config.VOICE_VOLUME, 0, 1)
 
         keys: pygame.key.ScancodeWrapper = pygame.key.get_pressed()
         game.ui_manager.input(keys)
@@ -98,27 +128,33 @@ class MainMenuBackend(Backend):
         play_text: str = "Continue" if game.state_backends[GameState.PLAYING].is_setup else "Play"
         game.ui_manager.draw_button(Button(Text(
             play_text, [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, -20), AssetManager.get_font("snake64"),
+            self.center_pos + pygame.Vector2(0, -50), AssetManager.get_font("snake64"),
             align_center=True
         ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 0)
 
         game.ui_manager.draw_button(Button(Text(
             "How to Play", [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, 60), AssetManager.get_font("snake64"),
+            self.center_pos + pygame.Vector2(0, 30), AssetManager.get_font("snake64"),
             align_center=True
         ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 1)
 
         game.ui_manager.draw_button(Button(Text(
-            "Credits", [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, 140), AssetManager.get_font("snake64"),
+            "Options", [255, 255, 255, 255],
+            self.center_pos + pygame.Vector2(0, 110), AssetManager.get_font("snake64"),
             align_center=True
         ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 2)
 
         game.ui_manager.draw_button(Button(Text(
-            "Exit", [255, 255, 255, 255],
-            self.center_pos + pygame.Vector2(0, 220), AssetManager.get_font("snake64"),
+            "Credits", [255, 255, 255, 255],
+            self.center_pos + pygame.Vector2(0, 190), AssetManager.get_font("snake64"),
             align_center=True
         ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 3)
+
+        game.ui_manager.draw_button(Button(Text(
+            "Exit", [255, 255, 255, 255],
+            self.center_pos + pygame.Vector2(0, 270), AssetManager.get_font("snake64"),
+            align_center=True
+        ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 4)
 
     def render_how_to_play(self, game) -> None:
         game.ui_manager.draw_text(Text(
@@ -150,6 +186,31 @@ class MainMenuBackend(Backend):
             self.center_pos + pygame.Vector2(0, 180), AssetManager.get_font("snake64"),
             align_center=True
         ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 0)
+
+    def render_options(self, game):
+        game.ui_manager.draw_text(Text(
+            "Use Left/Right arrows to modify values", [255, 255, 255, 255],
+            self.center_pos + pygame.Vector2(0, -150), AssetManager.get_font("snake32"),
+            align_center=True
+        ))
+
+        game.ui_manager.draw_button(Button(Text(
+            "Music Volume   < " + str(round(Config.MUSIC_VOLUME * 100.0)) + "% >", [255, 255, 255, 255],
+            self.center_pos + pygame.Vector2(0, -40), AssetManager.get_font("snake64"),
+            align_center=True
+        ), pygame.Vector2(-40, 0), AssetManager.get_font("snake32"), [150, 0, 150, 255]), 0)
+
+        game.ui_manager.draw_button(Button(Text(
+            "Voice Volume   < " + str(round(Config.VOICE_VOLUME * 100.0)) + "% >", [255, 255, 255, 255],
+            self.center_pos + pygame.Vector2(0, 50), AssetManager.get_font("snake64"),
+            align_center=True
+        ), pygame.Vector2(-40, 0), AssetManager.get_font("snake32"), [150, 0, 150, 255]), 1)
+
+        game.ui_manager.draw_button(Button(Text(
+            "Done", [255, 255, 255, 255],
+            self.center_pos + pygame.Vector2(0, 180), AssetManager.get_font("snake64"),
+            align_center=True
+        ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 2)
 
     def render_credit(self, game, name: str, role: str, y: int):
         game.ui_manager.draw_text(Text(
@@ -197,6 +258,8 @@ class MainMenuBackend(Backend):
                 self.render_main_menu(game)
             case Menu.HOW_TO_PLAY:
                 self.render_how_to_play(game)
+            case Menu.OPTIONS:
+                self.render_options(game)
             case Menu.CREDITS:
                 self.render_credits(game)
 

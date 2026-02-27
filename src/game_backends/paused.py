@@ -69,7 +69,7 @@ class PausedBackend(Backend):
         ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 0)
 
         game.ui_manager.draw_button(Button(Text(
-            "Exit to Main Menu", [255, 255, 255, 255],
+            "Main Menu", [255, 255, 255, 255],
             self.center_pos, AssetManager.get_font("snake64"),
             align_center=True
         ), pygame.Vector2(-40, 0), AssetManager.get_font("snake40"), [150, 0, 150, 255]), 1)

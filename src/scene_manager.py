@@ -289,9 +289,12 @@ def parse_scene(scene_obj: dict, game) -> Scene:
     bounds = pygame.Vector2(bounds_obj.get("x", 0), bounds_obj.get("y", 0))
 
     background_music_obj: dict = scene_obj.get("background_music", {})
-    background_music: pygame.mixer.Sound = pygame.mixer.Sound(
-        AssetManager.get_audio(background_music_obj.get("identifier", "")))
-    background_music.set_volume(background_music_obj.get("volume", 0))
+    if AssetManager.get_audio(background_music_obj.get("identifier", "")) is not None:
+        background_music: pygame.mixer.Sound | None = pygame.mixer.Sound(
+            AssetManager.get_audio(background_music_obj.get("identifier", "")))
+        background_music.set_volume(background_music_obj.get("volume", 0))
+    else:
+        background_music: pygame.mixer.Sound | None = None
 
     map_elements_obj: list = scene_obj.get("map_elements", [])
     map_elements: list[MapElement] = []
@@ -443,6 +446,10 @@ class SceneManager:
                 scene_json = json.load(file)
             self.add_scene(scene_obj.get("name"), parse_scene(scene_json, game))
 
+    def set_music_volume(self, volume: float) -> None:
+        for _, scene in self.scenes.items():
+            scene.set_music_volume(volume)
+
     def add_scene(self, name: str, scene: Scene) -> None:
         self.scenes[name] = scene
 
@@ -450,7 +457,9 @@ class SceneManager:
                    from_continue: bool = False) -> None:
         same_bg_music: bool = False
         if self.current_scene != "":
-            if self.scenes[self.current_scene].background_music.get_raw() == self.scenes[scene_name].background_music.get_raw():
+            if self.scenes[self.current_scene].background_music is None or self.scenes[scene_name].background_music is None:
+                same_bg_music = False
+            elif self.scenes[self.current_scene].background_music.get_raw() == self.scenes[scene_name].background_music.get_raw():
                 volume: float = self.scenes[scene_name].background_music.get_volume()
                 self.scenes[scene_name].background_music = self.scenes[self.current_scene].background_music
                 self.scenes[scene_name].background_music.set_volume(volume)

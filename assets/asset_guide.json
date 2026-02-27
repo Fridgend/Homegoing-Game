@@ -2,31 +2,38 @@
   "audio": [
     {
       "name": "esi_theme",
-      "path": "assets/audio/esi_theme.flac"
+      "path": "assets/audio/esi_theme.flac",
+      "volume": 1
     },
     {
       "name": "alto_voice",
-      "path": "assets/audio/voices/alto.flac"
+      "path": "assets/audio/voices/alto.flac",
+      "volume": 0.5
     },
     {
       "name": "baritone_voice",
-      "path": "assets/audio/voices/baritone.flac"
+      "path": "assets/audio/voices/baritone.flac",
+      "volume": 0.5
     },
     {
       "name": "bass_voice",
-      "path": "assets/audio/voices/bass.flac"
+      "path": "assets/audio/voices/bass.flac",
+      "volume": 0.5
     },
     {
       "name": "mezzo_soprano_voice",
-      "path": "assets/audio/voices/mezzo_soprano.flac"
+      "path": "assets/audio/voices/mezzo_soprano.flac",
+      "volume": 0.5
     },
     {
       "name": "soprano_voice",
-      "path": "assets/audio/voices/soprano.flac"
+      "path": "assets/audio/voices/soprano.flac",
+      "volume": 0.5
     },
     {
       "name": "tenor_voice",
-      "path": "assets/audio/voices/tenor.flac"
+      "path": "assets/audio/voices/tenor.flac",
+      "volume": 0.5
     }
   ],
 
@@ -35,11 +42,6 @@
       "name": "snake",
       "path": "assets/fonts/Snake.ttf",
       "sizes": [ 24, 28, 32, 40, 46, 64, 96, 192 ]
-    },
-    {
-      "name": "vcr_osd",
-      "path": "assets/fonts/vcr_osd.ttf",
-      "sizes": [ 16 ]
     }
   ],
 

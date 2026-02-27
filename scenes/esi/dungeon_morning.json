@@ -2,7 +2,7 @@
 	"void_color": { "r": 170, "g": 0, "b": 0, "a": 15 },
 	"bounds": { "x": 11, "y": 8 },
 	"background_music": {
-		"identifier": "esi_theme",
+		"identifier": "",
 		"volume": 0
 	},
 
@@ -217,7 +217,7 @@
 									"char_time": 0.05
 								},
                                 {
-                                    "text": "She's dead.",
+                                    "text": "She's dead",
                                     "char_time": 0.05
                                 }
 							],
@@ -396,14 +396,14 @@
 							"lines": [
 								{
 									"text": "She's dead. ",
-									"char_time": 0.15
+									"char_time": 0.1
 								},
                                 {
                                     "text": "Her body's cold. ",
                                     "char_time": 0.05
                                 },
                                 {
-                                    "text": "She's been dead for a while.",
+                                    "text": "She's been dead for a while",
                                     "char_time": 0.05
                                 }
 							],

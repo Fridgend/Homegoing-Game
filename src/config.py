@@ -7,6 +7,9 @@ class Config:
     WINDOW_FULLSCREEN: bool = False
     TILE_SIZE: int = 32
 
+    MUSIC_VOLUME: float = 1
+    VOICE_VOLUME: float = 0.5
+
     DIALOGUE_BOX_DIMS_FRACTIONS: pygame.Vector2 = pygame.Vector2(0, 0)
     DIALOGUE_BOX_DIMS: pygame.Vector2 = pygame.Vector2(0, 0)
     DIALOGUE_BOX_POS_FRACTIONS: pygame.Vector2 = pygame.Vector2(0, 0)
@@ -26,6 +29,12 @@ class Config:
 
         if (fullscreen := obj.get("window_fullscreen", None)) is not None:
             cls.WINDOW_FULLSCREEN = fullscreen
+
+        if volume := obj.get("music_volume", 1.0):
+            cls.MUSIC_VOLUME = volume
+
+        if volume := obj.get("voice_volume", 0.5):
+            cls.VOICE_VOLUME = volume
 
         if (dlg_box_dims := obj.get("dialogue_box_dimensions", None)) is not None:
             cls.DIALOGUE_BOX_DIMS_FRACTIONS = pygame.Vector2(dlg_box_dims)

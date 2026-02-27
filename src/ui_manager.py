@@ -87,12 +87,12 @@ class UIManager:
         moving: bool = False
 
         if self.num_buttons > 0:
-            if keys[pygame.K_DOWN] or keys[pygame.K_s] or keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+            if keys[pygame.K_DOWN] or keys[pygame.K_s]:
                 moving = True
                 if not self.choice_move_block:
                     self.choice += 1
                     self.choice_move_block = True
-            elif keys[pygame.K_UP] or keys[pygame.K_w] or keys[pygame.K_LEFT] or keys[pygame.K_a]:
+            elif keys[pygame.K_UP] or keys[pygame.K_w]:
                 moving = True
                 if not self.choice_move_block:
                     self.choice -= 1
