@@ -39,9 +39,12 @@ Replay is encouraged.
 2. Download the latest `.zip` file
 3. Extract the `.zip` file to a folder on your computer
 4. Open the extracted folder
-5. Double-click the `main.exe` file to run the game
+5. Run (double-click) the `main.exe` file to run the game
 
-No additional installation is required. The executable is generated with pyinstaller.
+[installation_step1.png](assets/screenshots/installation_step1.png)
+[installation_step2.png](assets/screenshots/installation_step2.png)
+[installation_step3.png](assets/screenshots/installation_step3.png)
+[installation_step4.png](assets/screenshots/installation_step4.png)
 
 ## Credits
 **Original Novel:** *Homegoing* by Yaa Gyasi\
