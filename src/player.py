@@ -50,20 +50,23 @@ class Player(Entity):
             self.pos = self.grid_pos * Config.TILE_SIZE
 
         target_grid_pos: pygame.Vector2 = self.grid_pos + self.velocity
-        rect: pygame.Rect = pygame.Rect(target_grid_pos, self.hit_box)
-        for entity in entities:
-            if entity.get_collision(rect):
-                self.moving = False
-                self.velocity = pygame.Vector2(0, 0)
-                self.move_time = 0
-                return
 
-        for map_element in map_elements:
-            if map_element.get_collision(rect):
-                self.moving = False
-                self.velocity = pygame.Vector2(0, 0)
-                self.move_time = 0
-                return
+        if not self.controls_disabled:
+            rect: pygame.Rect = pygame.Rect(target_grid_pos, self.hit_box)
+
+            for entity in entities:
+                if entity.get_collision(rect):
+                    self.moving = False
+                    self.velocity = pygame.Vector2(0, 0)
+                    self.move_time = 0
+                    return
+
+            for map_element in map_elements:
+                if map_element.get_collision(rect):
+                    self.moving = False
+                    self.velocity = pygame.Vector2(0, 0)
+                    self.move_time = 0
+                    return
         
         self.move_time += dt
         t: float = self.move_time / self.move_duration

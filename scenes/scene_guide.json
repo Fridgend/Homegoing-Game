@@ -1,5 +1,5 @@
 {
-    "start_scene": "memories",
+    "start_scene": "dungeon",
     "scenes": [
         { "name": "dungeon", "path": "scenes/esi/dungeon.json" },
         { "name": "dungeon_morning", "path": "scenes/esi/dungeon_morning.json" },
