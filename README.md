@@ -1,7 +1,7 @@
 # Homegoing Game
 *A narrative adaptation of the novel **Homegoing** by Yaa Gyasi*
 
-The game is about 15-20 minutes long.
+The game is about 10-30 minutes long, depending on route and your speed.
 
 ## About the Project
 This is a narrative-driven interactive game inspired by the Esi chapter of ***Homegoing*** by Yaa Gyasi.
@@ -19,6 +19,9 @@ This game contains references to:
 - Themes of generational trauma
 
 There are no graphic scenes in the game. Sensitive events are handled through textual implication.
+
+### Photosensitivity Warning
+This game contains occasional camera shake and visual transition effects.
 
 ## How to Play
 You do not use your mouse at all in this game.
