@@ -6,6 +6,7 @@ class Config:
     WINDOW_DIMS: pygame.Vector2 = pygame.Vector2(0, 0)
     WINDOW_FULLSCREEN: bool = False
     TILE_SIZE: int = 32
+    ENTITY_RENDER_SCALE: float = 1.5
 
     MUSIC_VOLUME: float = 1
     VOICE_VOLUME: float = 0.5
@@ -48,6 +49,9 @@ class Config:
 
         if (tile_size := obj.get("tile_size", None)) is not None:
             cls.TILE_SIZE = tile_size
+
+        if (entity_render_scale := obj.get("entity_render_scale", None)) is not None:
+            cls.ENTITY_RENDER_SCALE = entity_render_scale
 
         if (dlg_box_bg_color := obj.get("dialogue_box_background", None)) is not None:
             cls.DIALOGUE_BOX_BACKGROUND_COLOR = pygame.Vector3(dlg_box_bg_color)

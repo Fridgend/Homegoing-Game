@@ -1,5 +1,7 @@
 import pygame
 
+from src.config import Config
+
 def dir_to_str(moving: pygame.Vector2, facing: pygame.Vector2) -> str | None:
     if moving.x != 0 or moving.y != 0:
         match (moving.x, moving.y):
@@ -68,6 +70,7 @@ class Sprite:
 
     def init_frames(self, spritesheet: pygame.Surface, animations: list[str], row_major: bool) -> None:
         elements: int = self.num_frames * len(animations)
+        render_scale: float = max(1.0, Config.ENTITY_RENDER_SCALE)
 
         x: int = 0
         y: int = 0
@@ -76,6 +79,10 @@ class Sprite:
                 x * self.dimensions.x, y * self.dimensions.y,
                 self.dimensions.x, self.dimensions.y)
             )
+            if render_scale != 1.0:
+                scaled_w = int(self.dimensions.x * render_scale)
+                scaled_h = int(self.dimensions.y * render_scale)
+                subsurface = pygame.transform.scale(subsurface, (scaled_w, scaled_h))
 
             animation: str = animations[y if row_major else x]
             if self.frames.get(animation, False):

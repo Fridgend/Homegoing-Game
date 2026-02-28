@@ -1,4 +1,5 @@
 import pygame
+import random
 
 from src.camera import Camera
 from src.config import Config
@@ -50,6 +51,9 @@ class Scene:
         self.void_surface = pygame.Surface(Config.WINDOW_DIMS).convert()
         self.void_surface.fill(self.void_color[:3])
         self.void_surface.set_alpha(self.void_color[3])
+        self.render_generated_background: bool = self._needs_generated_background()
+        self.background_tile: pygame.Surface | None = self._build_sand_background_tile() \
+            if self.render_generated_background else None
 
         self.dispatch_chains: set[DispatchChain] = set()
         self.added_dispatch_chains: set[DispatchChain] = set()
@@ -207,7 +211,10 @@ class Scene:
             entity.update(self.entities, self.map_elements, ui_manager, dt)
 
     def render(self, window_surface: pygame.Surface, ui_manager: UIManager) -> None:
-        window_surface.fill((0, 0, 0))
+        if self.render_generated_background and self.background_tile is not None:
+            self._render_tiled_background(window_surface)
+        else:
+            window_surface.fill((0, 0, 0))
         for map_element in self.map_elements: map_element.render(window_surface)
         for entity in self.entities:
             if isinstance(entity, Player):
@@ -222,3 +229,52 @@ class Scene:
             )
 
             self.dialogue.render(window_surface, dims, ui_manager)
+
+    def _needs_generated_background(self) -> bool:
+        world_w = int(self.bounds.x * Config.TILE_SIZE)
+        world_h = int(self.bounds.y * Config.TILE_SIZE)
+        win_w = int(Config.WINDOW_DIMS.x)
+        win_h = int(Config.WINDOW_DIMS.y)
+        return world_w < win_w or world_h < win_h
+
+    def _render_tiled_background(self, window_surface: pygame.Surface) -> None:
+        tile_w, tile_h = self.background_tile.get_size()
+        win_w = int(Config.WINDOW_DIMS.x)
+        win_h = int(Config.WINDOW_DIMS.y)
+        offset_x = -int(Camera.POS.x) % tile_w
+        offset_y = -int(Camera.POS.y) % tile_h
+
+        for x in range(-tile_w, win_w + tile_w, tile_w):
+            for y in range(-tile_h, win_h + tile_h, tile_h):
+                window_surface.blit(self.background_tile, (x + offset_x, y + offset_y))
+
+    def _build_sand_background_tile(self) -> pygame.Surface:
+        tile_size = 8
+        pixel_w = 32
+        pixel_h = 32
+        surface = pygame.Surface((pixel_w * tile_size, pixel_h * tile_size)).convert()
+        rng = random.Random(int(self.bounds.x * 19 + self.bounds.y * 31))
+
+        base_palette = [
+            (184, 156, 108),
+            (198, 172, 124),
+            (210, 186, 140),
+            (222, 200, 156)
+        ]
+
+        for x in range(pixel_w):
+            for y in range(pixel_h):
+                color = base_palette[min(len(base_palette) - 1, int((y / pixel_h) * len(base_palette)))]
+                jitter = rng.randint(-10, 10)
+                px = (
+                    max(0, min(255, color[0] + jitter)),
+                    max(0, min(255, color[1] + jitter)),
+                    max(0, min(255, color[2] + jitter))
+                )
+                pygame.draw.rect(surface, px, (x * tile_size, y * tile_size, tile_size, tile_size))
+
+                if rng.random() < 0.05:
+                    dark = (max(0, px[0] - 22), max(0, px[1] - 22), max(0, px[2] - 22))
+                    pygame.draw.rect(surface, dark, (x * tile_size, y * tile_size, tile_size // 2, tile_size // 2))
+
+        return surface

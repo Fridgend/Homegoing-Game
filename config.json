@@ -2,6 +2,7 @@
   "window_dimensions": [960, 540],
   "window_fullscreen": true,
   "tile_size": 32,
+  "entity_render_scale": 1.6,
 
   "music_volume": 0.8,
   "voice_volume": 0.8,

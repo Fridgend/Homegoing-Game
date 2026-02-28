@@ -22,11 +22,16 @@ class EscapeGameBackend(Backend):
     def __init__(self):
         super().__init__()
 
-        self.esi_sprite = AssetManager.get_image("esi_spritesheet")
+        render_scale = max(1.0, Config.ENTITY_RENDER_SCALE)
+        esi_image = AssetManager.get_image("esi_spritesheet")
+        raider_image = AssetManager.get_image("warrior_spritesheet")
+        esi_size = (int(esi_image.get_width() * render_scale), int(esi_image.get_height() * render_scale))
+        raider_size = (int(raider_image.get_width() * render_scale), int(raider_image.get_height() * render_scale))
+        self.esi_sprite = pygame.transform.scale(esi_image, esi_size)
         self.move_speed = 5
         self.can_escape = False
 
-        self.raider_sprite = AssetManager.get_image("warrior_spritesheet")
+        self.raider_sprite = pygame.transform.scale(raider_image, raider_size)
         self.tree_sprite = draw_pixel_tree()
         self.background_surface = self._build_background()
         
@@ -134,7 +139,7 @@ class EscapeGameBackend(Backend):
             self.max_player_x = self.player_rect.x
             self._spawn_tree()
 
-        self.camera_x = self.player_rect.centerx - Config.WINDOW_DIMS.x // 2
+        self.camera_x = self.player_rect.centerx - int(Config.WINDOW_DIMS.x) // 2
 
     def render(self, game) -> None:
         if self.run_screen:
@@ -169,10 +174,12 @@ class EscapeGameBackend(Backend):
         pygame.display.flip()
 
     def _spawn_tree(self):
+        window_w = int(Config.WINDOW_DIMS.x)
+        window_h = int(Config.WINDOW_DIMS.y)
         x = random.randint(50, 100)
-        y = random.randint(50, Config.WINDOW_DIMS.y - 100)
+        y = random.randint(50, window_h - 100)
         self.trees.append(pygame.Rect(
-            x + self.player_rect.x + Config.WINDOW_DIMS.x / 2 + TREE_OFFSET.x,
+            x + self.player_rect.x + window_w / 2 + TREE_OFFSET.x,
             y + TREE_OFFSET.y,
             12, 30
         ))
@@ -195,15 +202,18 @@ class EscapeGameBackend(Backend):
         return bg
 
     def _spawn_raider(self):
+        window_w = int(Config.WINDOW_DIMS.x)
+        window_h = int(Config.WINDOW_DIMS.y)
+        camera_x = int(self.camera_x)
         edge = random.choice(['LEFT', 'TOP', 'BOTTOM', 'RIGHT'])
         if edge == 'LEFT':
-            x, y = self.camera_x - 40, random.randint(0, Config.WINDOW_DIMS.y)
+            x, y = camera_x - 40, random.randint(0, window_h)
         elif edge == 'RIGHT':
-            x, y = self.camera_x + Config.WINDOW_DIMS.x + 40, random.randint(0, Config.WINDOW_DIMS.y)
+            x, y = camera_x + window_w + 40, random.randint(0, window_h)
         elif edge == 'TOP':
-            x, y = random.randint(self.camera_x, self.camera_x + Config.WINDOW_DIMS.x), -40
+            x, y = random.randint(camera_x, camera_x + window_w), -40
         else:
-            x, y = random.randint(self.camera_x, self.camera_x + Config.WINDOW_DIMS.x), Config.WINDOW_DIMS.y + 40
+            x, y = random.randint(camera_x, camera_x + window_w), window_h + 40
         
         if len(self.raiders) >= 30:
             self.raiders.pop(0)
