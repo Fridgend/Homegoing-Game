@@ -5,7 +5,6 @@ from src.game import Game
 from src.game_backends.backend import GameState
 
 async def main():
-    print("Hello, world, from async def main() #############################")
     pygame.init()
 
     state: GameState = GameState.MAIN_MENU
