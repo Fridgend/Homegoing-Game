@@ -1,6 +1,6 @@
 import sys
-
 import pygame
+import asyncio
 
 from src.asset_manager import AssetManager
 from src.camera import Camera
@@ -60,8 +60,9 @@ class Game:
     def set_music_volume(self, volume: float) -> None:
         self.scene_manager.set_music_volume(volume)
 
-    def run(self, FPS: int) -> None:
+    async def run(self, FPS: int) -> None:
         while self.running:
+            await asyncio.sleep(0)
             self.delta_time = self.clock.tick(FPS) / 1000.0
 
             if self.backend != self.next_backend:
